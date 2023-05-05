@@ -19,25 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"yaanggny.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/blog/js/config.js"></script>
 
-    <meta name="description" content="日常记录">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yaanggny的笔记">
-<meta property="og:url" content="https://yaanggny.github.io/blog/archives/2023/index.html">
+    <meta name="description" content="字典合并  In Python 3.9.0 or greater (released 17 October 2020, PEP-584, discussed here):  12z &#x3D; x | y  In Python 3.5 or greater(PEP 448 and available as of Python 3.5):  1z &#x3D; &amp;#123;**x, **y&amp;#125;  In Py">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python语法收集">
+<meta property="og:url" content="https://yaanggny.github.io/blog/2023/04/24/2023.04-Python%E8%AF%AD%E6%B3%95%E6%94%B6%E9%9B%86/index.html">
 <meta property="og:site_name" content="yaanggny的笔记">
-<meta property="og:description" content="日常记录">
+<meta property="og:description" content="字典合并  In Python 3.9.0 or greater (released 17 October 2020, PEP-584, discussed here):  12z &#x3D; x | y  In Python 3.5 or greater(PEP 448 and available as of Python 3.5):  1z &#x3D; &amp;#123;**x, **y&amp;#125;  In Py">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-24T14:02:01.000Z">
+<meta property="article:modified_time" content="2023-04-24T16:15:51.542Z">
 <meta property="article:author" content="yaanggny">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://yaanggny.github.io/blog/archives/2023/">
+<link rel="canonical" href="https://yaanggny.github.io/blog/2023/04/24/2023.04-Python%E8%AF%AD%E6%B3%95%E6%94%B6%E9%9B%86/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/2023/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yaanggny.github.io/blog/2023/04/24/2023.04-Python%E8%AF%AD%E6%B3%95%E6%94%B6%E9%9B%86/","path":"2023/04/24/2023.04-Python语法收集/","title":"Python语法收集"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | yaanggny的笔记</title>
+<title>Python语法收集 | yaanggny的笔记</title>
   
 
 
@@ -70,7 +73,7 @@
 
     <a href="/blog/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">yaanggny的笔记</h1>
+      <p class="site-title">yaanggny的笔记</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -123,7 +126,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -136,6 +139,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E5%85%B8%E5%90%88%E5%B9%B6"><span class="nav-number">1.</span> <span class="nav-text"> 字典合并</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -175,169 +179,141 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 7 篇日志。 继续努力。</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/04/24/2023.04-Python%E8%AF%AD%E6%B3%95%E6%94%B6%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Python语法收集 | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python语法收集
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-04-24 22:02:01" itemprop="dateCreated datePublished" datetime="2023-04-24T22:02:01+08:00">2023-04-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-04-25 00:15:51" itemprop="dateModified" datetime="2023-04-25T00:15:51+08:00">2023-04-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="字典合并"><a class="markdownIt-Anchor" href="#字典合并"></a> 字典合并</h2>
+<ul>
+<li>In Python 3.9.0 or greater (released 17 October 2020, <a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0584/">PEP-584</a>, <a target="_blank" rel="noopener" href="https://bugs.python.org/issue36144">discussed here</a>):</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">z = x | y</span><br></pre></td></tr></table></figure>
+<ul>
+<li>In Python 3.5 or greater(<a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0448">PEP 448</a> and <a target="_blank" rel="noopener" href="https://mail.python.org/pipermail/python-dev/2015-February/138564.html">available as of Python 3.5</a>):</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z = &#123;**x, **y&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>In Python 2, (or 3.4 or lower):</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z = x.copy()   <span class="comment"># start with keys and values of x</span></span><br><span class="line">z.update(y)    <span class="comment"># modifies z with keys and values of y</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = &#123;&#x27;a&#x27;: 1, &#x27;b&#x27;: 2&#125;</span><br><span class="line">y = &#123;&#x27;b&#x27;: 3, &#x27;c&#x27;: 4&#125;</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; z</span></span><br><span class="line">&#123;&#x27;a&#x27;: 1, &#x27;b&#x27;: 3, &#x27;foo&#x27;: 1, &#x27;bar&#x27;: 2, &#x27;c&#x27;: 4&#125;</span><br></pre></td></tr></table></figure>
+<p>Ref: <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/38987/how-do-i-merge-two-dictionaries-in-a-single-expression-in-python/26853961#26853961">How do I merge two dictionaries in a single expression in Python?</a></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-04-25T22:12:37+08:00"
-              content="2023-04-25">
-          04-25
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/blog/2023/04/25/Batch-Normalization/" itemprop="url">
-            <span itemprop="name">Batch-Normalization</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          
 
-      
-    </header>
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yaanggny
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://yaanggny.github.io/blog/2023/04/24/2023.04-Python%E8%AF%AD%E6%B3%95%E6%94%B6%E9%9B%86/" title="Python语法收集">https://yaanggny.github.io/blog/2023/04/24/2023.04-Python语法收集/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/blog/tags/Python/" rel="tag"># Python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2023/04/23/2023.04-javascript%E7%A7%AF%E7%B4%AF/" rel="prev" title="javascript积累">
+                  <i class="fa fa-chevron-left"></i> javascript积累
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2023/04/25/MobileNet%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" rel="next" title="MobileNet论文笔记">
+                  MobileNet论文笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-04-25T20:49:19+08:00"
-              content="2023-04-25">
-          04-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/blog/2023/04/25/MobileNet%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url">
-            <span itemprop="name">MobileNet论文笔记</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-04-24T22:02:01+08:00"
-              content="2023-04-24">
-          04-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/blog/2023/04/24/2023.04-Python%E8%AF%AD%E6%B3%95%E6%94%B6%E9%9B%86/" itemprop="url">
-            <span itemprop="name">Python语法收集</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-04-23T22:05:07+08:00"
-              content="2023-04-23">
-          04-23
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/blog/2023/04/23/2023.04-javascript%E7%A7%AF%E7%B4%AF/" itemprop="url">
-            <span itemprop="name">javascript积累</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-04-23T21:09:30+08:00"
-              content="2023-04-23">
-          04-23
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/blog/2023/04/23/2023-04-Markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95-%E6%8A%98%E5%8F%A0-%E5%85%AC%E5%BC%8F/" itemprop="url">
-            <span itemprop="name">Markdown常用语法-折叠&公式</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-04-11T22:05:07+08:00"
-              content="2023-04-11">
-          04-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/blog/2023/04/11/test_rendering/" itemprop="url">
-            <span itemprop="name">hexo-next rendering test渲染测试</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-04-08T22:20:54+08:00"
-              content="2023-04-08">
-          04-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/blog/2023/04/08/LoFTR-Detector-free%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/" itemprop="url">
-            <span itemprop="name">LoFTR-Detector-free特征匹配算法</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
 
 </div>
   </main>
