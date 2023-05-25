@@ -19,28 +19,32 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"yaanggny.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/blog/js/config.js"></script>
 
-    <meta name="description" content="字典合并  In Python 3.9.0 or greater (released 17 October 2020, PEP-584, discussed here):  12z &#x3D; x | y  In Python 3.5 or greater(PEP 448 and available as of Python 3.5):  1z &#x3D; &amp;#123;**x, **y&amp;#125;  In Py">
+    <meta name="description" content="Transformer原理入门  Transformer模型详解（图解最完整版） - 知乎 (推荐)  Transformer 模型详解 - 简书 (复制)   Transformer模型详解 - 博客园 Vision Transformer 超详细解读 (原理分析+代码解读) (一) - 知乎 (原作者)  搞懂 Vision Transformer 原理和代码，看这篇技术综述就够了 - 极市">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python语法收集">
-<meta property="og:url" content="https://yaanggny.github.io/blog/2023/04/24/2023.04-Python%E8%AF%AD%E6%B3%95%E6%94%B6%E9%9B%86/index.html">
+<meta property="og:title" content="Transformer相关资料目录">
+<meta property="og:url" content="https://yaanggny.github.io/blog/2023/05/26/Transformer%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E7%9B%AE%E5%BD%95/index.html">
 <meta property="og:site_name" content="yaanggny的笔记">
-<meta property="og:description" content="字典合并  In Python 3.9.0 or greater (released 17 October 2020, PEP-584, discussed here):  12z &#x3D; x | y  In Python 3.5 or greater(PEP 448 and available as of Python 3.5):  1z &#x3D; &amp;#123;**x, **y&amp;#125;  In Py">
+<meta property="og:description" content="Transformer原理入门  Transformer模型详解（图解最完整版） - 知乎 (推荐)  Transformer 模型详解 - 简书 (复制)   Transformer模型详解 - 博客园 Vision Transformer 超详细解读 (原理分析+代码解读) (一) - 知乎 (原作者)  搞懂 Vision Transformer 原理和代码，看这篇技术综述就够了 - 极市">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-24T14:02:01.000Z">
-<meta property="article:modified_time" content="2023-04-24T16:15:51.542Z">
+<meta property="article:published_time" content="2023-05-25T23:45:44.000Z">
+<meta property="article:modified_time" content="2023-05-25T23:49:14.375Z">
 <meta property="article:author" content="yaanggny">
-<meta property="article:tag" content="Python">
+<meta property="article:tag" content="DL">
+<meta property="article:tag" content="CV">
+<meta property="article:tag" content="Transformer">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="ViT">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://yaanggny.github.io/blog/2023/04/24/2023.04-Python%E8%AF%AD%E6%B3%95%E6%94%B6%E9%9B%86/">
+<link rel="canonical" href="https://yaanggny.github.io/blog/2023/05/26/Transformer%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E7%9B%AE%E5%BD%95/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yaanggny.github.io/blog/2023/04/24/2023.04-Python%E8%AF%AD%E6%B3%95%E6%94%B6%E9%9B%86/","path":"2023/04/24/2023.04-Python语法收集/","title":"Python语法收集"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yaanggny.github.io/blog/2023/05/26/Transformer%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E7%9B%AE%E5%BD%95/","path":"2023/05/26/Transformer相关资料目录/","title":"Transformer相关资料目录"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Python语法收集 | yaanggny的笔记</title>
+<title>Transformer相关资料目录 | yaanggny的笔记</title>
   
 
 
@@ -139,7 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E5%85%B8%E5%90%88%E5%B9%B6"><span class="nav-number">1.</span> <span class="nav-text"> 字典合并</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#transformer%E5%8E%9F%E7%90%86%E5%85%A5%E9%97%A8"><span class="nav-number">1.</span> <span class="nav-text"> Transformer原理入门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transformer%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0"><span class="nav-number">2.</span> <span class="nav-text"> Transformer系列文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87"><span class="nav-number">3.</span> <span class="nav-text"> 效率提升</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -190,7 +194,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/04/24/2023.04-Python%E8%AF%AD%E6%B3%95%E6%94%B6%E9%9B%86/">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/05/26/Transformer%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E7%9B%AE%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/images/avatar.gif">
@@ -203,12 +207,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Python语法收集 | yaanggny的笔记">
+      <meta itemprop="name" content="Transformer相关资料目录 | yaanggny的笔记">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Python语法收集
+          Transformer相关资料目录
         </h1>
 
         <div class="post-meta-container">
@@ -218,15 +222,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-04-24 22:02:01" itemprop="dateCreated datePublished" datetime="2023-04-24T22:02:01+08:00">2023-04-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-04-25 00:15:51" itemprop="dateModified" datetime="2023-04-25T00:15:51+08:00">2023-04-25</time>
+      <time title="创建时间：2023-05-26 07:45:44 / 修改时间：07:49:14" itemprop="dateCreated datePublished" datetime="2023-05-26T07:45:44+08:00">2023-05-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -234,7 +232,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+          <a href="/blog/categories/DL/" itemprop="url" rel="index"><span itemprop="name">DL</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/DL/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a>
         </span>
     </span>
 
@@ -248,21 +250,53 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="字典合并"><a class="markdownIt-Anchor" href="#字典合并"></a> 字典合并</h2>
+        <h2 id="transformer原理入门"><a class="markdownIt-Anchor" href="#transformer原理入门"></a> Transformer原理入门</h2>
 <ul>
-<li>In Python 3.9.0 or greater (released 17 October 2020, <a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0584/">PEP-584</a>, <a target="_blank" rel="noopener" href="https://bugs.python.org/issue36144">discussed here</a>):</li>
-</ul>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">z = x | y</span><br></pre></td></tr></table></figure>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/338817680">Transformer模型详解（图解最完整版） - 知乎</a> (<strong>推荐</strong>)
 <ul>
-<li>In Python 3.5 or greater(<a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0448">PEP 448</a> and <a target="_blank" rel="noopener" href="https://mail.python.org/pipermail/python-dev/2015-February/138564.html">available as of Python 3.5</a>):</li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9b87b945151e">Transformer 模型详解 - 简书</a> (复制)</li>
 </ul>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z = &#123;**x, **y&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/LXP-Never/p/15850142.html">Transformer模型详解 - 博客园</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/340149804">Vision Transformer 超详细解读 (原理分析+代码解读) (一) - 知乎</a> (原作者)
 <ul>
-<li>In Python 2, (or 3.4 or lower):</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI5MDUyMDIxNA==&amp;mid=2247531914&amp;idx=1&amp;sn=3b8d0b4d3821c64e9051a4d645467995&amp;">搞懂 Vision Transformer 原理和代码，看这篇技术综述就够了 - 极市公众号</a> (转载)</li>
 </ul>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z = x.copy()   <span class="comment"># start with keys and values of x</span></span><br><span class="line">z.update(y)    <span class="comment"># modifies z with keys and values of y</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = &#123;&#x27;a&#x27;: 1, &#x27;b&#x27;: 2&#125;</span><br><span class="line">y = &#123;&#x27;b&#x27;: 3, &#x27;c&#x27;: 4&#125;</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; z</span></span><br><span class="line">&#123;&#x27;a&#x27;: 1, &#x27;b&#x27;: 3, &#x27;foo&#x27;: 1, &#x27;bar&#x27;: 2, &#x27;c&#x27;: 4&#125;</span><br></pre></td></tr></table></figure>
-<p>Ref: <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/38987/how-do-i-merge-two-dictionaries-in-a-single-expression-in-python/26853961#26853961">How do I merge two dictionaries in a single expression in Python?</a></p>
+</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/48508221">详解Transformer （Attention Is All You Need） - 知乎</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7219249005904166949">Transformer模型详解及代码实现 - 掘金</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/NLP-LOVE/ML-NLP/tree/master/NLP/16.7%20Transformer">https://github.com/NLP-LOVE/ML-NLP/tree/master/NLP/16.7 Transformer</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/benzhujie1245com/article/details/117173090">Transformer 模型详解_空杯的境界的博客-CSDN博客</a>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://jalammar.github.io/illustrated-transformer/">The Illustrated Transformer - github.io</a> (英文)</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://terrifyzhao.github.io/2019/01/11/Transformer%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3.html">Transformer模型详解 - github.io</a></li>
+<li><a target="_blank" rel="noopener" href="http://pointborn.com/article/2022/3/2/1831.html">Transformer 模型详解</a></li>
+</ul>
+<h2 id="transformer系列文章"><a class="markdownIt-Anchor" href="#transformer系列文章"></a> Transformer系列文章</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348593638">Vision Transformer , 通用 Vision Backbone 超详细解读 (原理分析+代码解读) (目录) - 知乎</a> （原作者）</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzI5MDUyMDIxNA==&amp;action=getalbum&amp;album_id=2090301627206303744&amp;">#搞懂Tranformer系列 - 极市公众号</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzI5MDUyMDIxNA==&amp;action=getalbum&amp;album_id=1685054606675902466&amp;">#Transformer - 极市公众号</a></li>
+</ul>
+<h2 id="效率提升"><a class="markdownIt-Anchor" href="#效率提升"></a> 效率提升</h2>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/569482746">Vision Transformer在CV任务中的速度如何保证 - 知乎</a> (作者PhD课题是Vision Transformer的efficiency问题，<strong>效率提升必看</strong>)</p>
+<blockquote>
+<p>PVT: Pyramid Vision Transformer(ICCV 2021). <a target="_blank" rel="noopener" href="https://github.com/whai362/PVT">whai362/PVT</a><br />
+LIT, Less is More: Pay Less Attention in Vision Transformers (AAAI 2022)。<br />
+LITv2：Fast Vision Transformers with HiLo Attention (NeurIPS 2022)。 <a target="_blank" rel="noopener" href="https://github.com/ziplab/LIT">github: ziplab/LIT</a></p>
+</blockquote>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/353222035">大白话Pyramid Vision Transformer - 知乎</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/482141361/answer/2467438788">为什么 Vision transformer 训练和推理很慢？ - 知乎</a></p>
+</li>
+</ul>
 
     </div>
 
@@ -280,7 +314,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://yaanggny.github.io/blog/2023/04/24/2023.04-Python%E8%AF%AD%E6%B3%95%E6%94%B6%E9%9B%86/" title="Python语法收集">https://yaanggny.github.io/blog/2023/04/24/2023.04-Python语法收集/</a>
+      <a href="https://yaanggny.github.io/blog/2023/05/26/Transformer%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E7%9B%AE%E5%BD%95/" title="Transformer相关资料目录">https://yaanggny.github.io/blog/2023/05/26/Transformer相关资料目录/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -289,21 +323,22 @@
 </div>
 
           <div class="post-tags">
-              <a href="/blog/tags/Python/" rel="tag"># Python</a>
+              <a href="/blog/tags/DL/" rel="tag"># DL</a>
+              <a href="/blog/tags/CV/" rel="tag"># CV</a>
+              <a href="/blog/tags/Transformer/" rel="tag"># Transformer</a>
+              <a href="/blog/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+              <a href="/blog/tags/ViT/" rel="tag"># ViT</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/blog/2023/04/23/2023.04-javascript%E7%A7%AF%E7%B4%AF/" rel="prev" title="javascript积累">
-                  <i class="fa fa-chevron-left"></i> javascript积累
+                <a href="/blog/2023/04/25/Batch-Normalization/" rel="prev" title="Batch-Normalization">
+                  <i class="fa fa-chevron-left"></i> Batch-Normalization
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/blog/2023/04/25/MobileNet%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" rel="next" title="MobileNet论文笔记">
-                  MobileNet论文笔记 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
