@@ -19,32 +19,33 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"yaanggny.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/blog/js/config.js"></script>
 
-    <meta name="description" content="Transformer原理入门  Transformer模型详解（图解最完整版） - 知乎 (推荐)  Transformer 模型详解 - 简书 (复制)   Transformer模型详解 - 博客园 Vision Transformer 超详细解读 (原理分析+代码解读) (一) - 知乎 (原作者)  搞懂 Vision Transformer 原理和代码，看这篇技术综述就够了 - 极市">
+    <meta name="description" content="ResNet-FPN原理 ResNet-FPN是Faster RCNN中的backbone，也已经成为特征提取的常用网络结构，被用于很多框架中。  ResNet结构回顾 ResNet原理请看ResNet原理。简单说ResNet中大致包含4个大的残差块，每个大块的输出特征尺寸逐渐减小。  不同层数的ResNet结构  FPN 原理 论文：FPN FPN（Feature Pyramid Networ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Transformer相关资料目录">
-<meta property="og:url" content="https://yaanggny.github.io/blog/2023/05/26/Transformer%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E7%9B%AE%E5%BD%95/index.html">
+<meta property="og:title" content="ResNet-FPN原理">
+<meta property="og:url" content="https://yaanggny.github.io/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="yaanggny的笔记">
-<meta property="og:description" content="Transformer原理入门  Transformer模型详解（图解最完整版） - 知乎 (推荐)  Transformer 模型详解 - 简书 (复制)   Transformer模型详解 - 博客园 Vision Transformer 超详细解读 (原理分析+代码解读) (一) - 知乎 (原作者)  搞懂 Vision Transformer 原理和代码，看这篇技术综述就够了 - 极市">
+<meta property="og:description" content="ResNet-FPN原理 ResNet-FPN是Faster RCNN中的backbone，也已经成为特征提取的常用网络结构，被用于很多框架中。  ResNet结构回顾 ResNet原理请看ResNet原理。简单说ResNet中大致包含4个大的残差块，每个大块的输出特征尺寸逐渐减小。  不同层数的ResNet结构  FPN 原理 论文：FPN FPN（Feature Pyramid Networ">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-05-25T23:45:44.000Z">
-<meta property="article:modified_time" content="2023-05-25T23:49:14.375Z">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/fig-c40437b550409d08235e57241efb1520e7c141cf9d8d331a0394f71a5fca5753.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/fig-6c944ee9303c12c0bdf954293e1e69ee915f2e1587a98bd5ada14066a0356210.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/fig-d35f4ef35fba6b43b0e6b0c1922ad13ac703cced9f655956dbeaf085f83c79a6.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/fig-508b190fd2a9bd198c144c5f064d63e94f5212c782d0095794086974b0150328.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/fig-bedfb4b83ccb08d8bd79a443e6b3a7b16aa049d4c52ee127a1dd7d165d92ef25.png">
+<meta property="article:published_time" content="2023-05-27T13:35:39.000Z">
+<meta property="article:modified_time" content="2023-05-27T13:37:14.525Z">
 <meta property="article:author" content="yaanggny">
-<meta property="article:tag" content="DL">
-<meta property="article:tag" content="CV">
-<meta property="article:tag" content="Transformer">
-<meta property="article:tag" content="深度学习">
-<meta property="article:tag" content="ViT">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yaanggny.github.io/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/fig-c40437b550409d08235e57241efb1520e7c141cf9d8d331a0394f71a5fca5753.png">
 
 
-<link rel="canonical" href="https://yaanggny.github.io/blog/2023/05/26/Transformer%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E7%9B%AE%E5%BD%95/">
+<link rel="canonical" href="https://yaanggny.github.io/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yaanggny.github.io/blog/2023/05/26/Transformer%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E7%9B%AE%E5%BD%95/","path":"2023/05/26/Transformer相关资料目录/","title":"Transformer相关资料目录"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yaanggny.github.io/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/","path":"2023/05/27/ResNet-FPN原理/","title":"ResNet-FPN原理"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Transformer相关资料目录 | yaanggny的笔记</title>
+<title>ResNet-FPN原理 | yaanggny的笔记</title>
   
 
 
@@ -143,7 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#transformer%E5%8E%9F%E7%90%86%E5%85%A5%E9%97%A8"><span class="nav-number">1.</span> <span class="nav-text"> Transformer原理入门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transformer%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0"><span class="nav-number">2.</span> <span class="nav-text"> Transformer系列文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87"><span class="nav-number">3.</span> <span class="nav-text"> 效率提升</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#resnet-fpn%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text"> ResNet-FPN原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#resnet%E7%BB%93%E6%9E%84%E5%9B%9E%E9%A1%BE"><span class="nav-number">1.1.</span> <span class="nav-text"> ResNet结构回顾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fpn-%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text"> FPN 原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#resnetresnet-fpn%E5%8E%9F%E7%90%86-fpn"><span class="nav-number">2.</span> <span class="nav-text"> ResnetResNet-FPN原理&#x2F; + FPN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">3.</span> <span class="nav-text"> 参考资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -194,7 +195,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/05/26/Transformer%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E7%9B%AE%E5%BD%95/">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/images/avatar.gif">
@@ -207,12 +208,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Transformer相关资料目录 | yaanggny的笔记">
+      <meta itemprop="name" content="ResNet-FPN原理 | yaanggny的笔记">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Transformer相关资料目录
+          ResNet-FPN原理
         </h1>
 
         <div class="post-meta-container">
@@ -224,20 +225,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-05-26 07:45:44 / 修改时间：07:49:14" itemprop="dateCreated datePublished" datetime="2023-05-26T07:45:44+08:00">2023-05-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/DL/" itemprop="url" rel="index"><span itemprop="name">DL</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/DL/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a>
-        </span>
+      <time title="创建时间：2023-05-27 21:35:39 / 修改时间：21:37:14" itemprop="dateCreated datePublished" datetime="2023-05-27T21:35:39+08:00">2023-05-27</time>
     </span>
 
   
@@ -250,52 +238,35 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="transformer原理入门"><a class="markdownIt-Anchor" href="#transformer原理入门"></a> Transformer原理入门</h2>
+        <h2 id="resnet-fpn原理"><a class="markdownIt-Anchor" href="#resnet-fpn原理"></a> ResNet-FPN原理</h2>
+<p>ResNet-FPN是Faster RCNN中的backbone，也已经成为特征提取的常用网络结构，被用于很多框架中。</p>
+<h3 id="resnet结构回顾"><a class="markdownIt-Anchor" href="#resnet结构回顾"></a> ResNet结构回顾</h3>
+<p>ResNet原理请看<a href="./ResNet%E5%8E%9F%E7%90%86.md">ResNet原理</a>。简单说ResNet中大致包含4个大的残差块，每个大块的输出特征尺寸逐渐减小。</p>
+<figure align="center"><img src="/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/fig-c40437b550409d08235e57241efb1520e7c141cf9d8d331a0394f71a5fca5753.png">
+<figcaption>不同层数的ResNet结构</figcaption></figure>
+<h3 id="fpn-原理"><a class="markdownIt-Anchor" href="#fpn-原理"></a> FPN 原理</h3>
+<p>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1612.03144.pdf">FPN</a><br />
+FPN（Feature Pyramid Network）即特征金字塔网络。特征金字塔用于在多尺度的图像特征上进行识别或检测，且具有较高效率。论文提出了一种更精确且更快的特征金字塔结构。</p>
+<figure align="center"><img src="/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/fig-6c944ee9303c12c0bdf954293e1e69ee915f2e1587a98bd5ada14066a0356210.png">
+<figcaption>图1粗蓝线：普通特征图，细蓝线：语义更强的特征图。（a）从图像金字塔构建特征金字塔，特征从各尺度图像独立计算，计算量大。（b）单一尺度特征，用于快速检测。（c）重用由一个ConvNet计算的金字塔特征层次，就像是一个特征化的图像金字塔。（d）提出的特征金字塔，和(b,c)一样快，但更精确；每层都进行预测。</figcaption></figure>
+<p>图1（b）取最后一层输出的特征图，其感受野相比较前几层的的感受野更大，特征也更抽象，因此对于小目标物的检测精度可能不是很高。但FPN能够有效的增大网络对小目标检测的准确性。</p>
+<figure align="center"><img src="/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/fig-d35f4ef35fba6b43b0e6b0c1922ad13ac703cced9f655956dbeaf085f83c79a6.png">
+<figcaption>FPN特征层间连接，2倍上采样。</figcaption></figure>
+<h2 id="resnetresnet-fpn原理-fpn"><a class="markdownIt-Anchor" href="#resnetresnet-fpn原理-fpn"></a> ResnetResNet-FPN原理/ + FPN</h2>
+<p>ResNet和FPN结合的网络结构如下图所示。</p>
+<figure align="center"><img src="/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/fig-508b190fd2a9bd198c144c5f064d63e94f5212c782d0095794086974b0150328.png">
+<figcaption>ResNet-FPN结构</figcaption></figure>
+<figure align="center"><img src="/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/fig-bedfb4b83ccb08d8bd79a443e6b3a7b16aa049d4c52ee127a1dd7d165d92ef25.png">
+<figcaption>ResNet-FPN结构</figcaption></figure>
+<h2 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h2>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/338817680">Transformer模型详解（图解最完整版） - 知乎</a> (<strong>推荐</strong>)
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9b87b945151e">Transformer 模型详解 - 简书</a> (复制)</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/LXP-Never/p/15850142.html">Transformer模型详解 - 博客园</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/340149804">Vision Transformer 超详细解读 (原理分析+代码解读) (一) - 知乎</a> (原作者)
-<ul>
-<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI5MDUyMDIxNA==&amp;mid=2247531914&amp;idx=1&amp;sn=3b8d0b4d3821c64e9051a4d645467995&amp;">搞懂 Vision Transformer 原理和代码，看这篇技术综述就够了 - 极市公众号</a> (转载)</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/48508221">详解Transformer （Attention Is All You Need） - 知乎</a></li>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7219249005904166949">Transformer模型详解及代码实现 - 掘金</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/NLP-LOVE/ML-NLP/tree/master/NLP/16.7%20Transformer">https://github.com/NLP-LOVE/ML-NLP/tree/master/NLP/16.7 Transformer</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/benzhujie1245com/article/details/117173090">Transformer 模型详解_空杯的境界的博客-CSDN博客</a>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://jalammar.github.io/illustrated-transformer/">The Illustrated Transformer - github.io</a> (英文)</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://terrifyzhao.github.io/2019/01/11/Transformer%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3.html">Transformer模型详解 - github.io</a></li>
-<li><a target="_blank" rel="noopener" href="http://pointborn.com/article/2022/3/2/1831.html">Transformer 模型详解</a></li>
-</ul>
-<h2 id="transformer系列文章"><a class="markdownIt-Anchor" href="#transformer系列文章"></a> Transformer系列文章</h2>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348593638">Vision Transformer , 通用 Vision Backbone 超详细解读 (原理分析+代码解读) (目录) - 知乎</a> （原作者）</li>
-<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzI5MDUyMDIxNA==&amp;action=getalbum&amp;album_id=2090301627206303744&amp;">#搞懂Tranformer系列 - 极市公众号</a></li>
-<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzI5MDUyMDIxNA==&amp;action=getalbum&amp;album_id=1685054606675902466&amp;">#Transformer - 极市公众号</a></li>
-</ul>
-<h2 id="效率提升"><a class="markdownIt-Anchor" href="#效率提升"></a> 效率提升</h2>
-<ul>
-<li>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/569482746">Vision Transformer在CV任务中的速度如何保证 - 知乎</a> (作者PhD课题是Vision Transformer的efficiency问题，<strong>效率提升必看</strong>)</p>
-<blockquote>
-<p>PVT: Pyramid Vision Transformer(ICCV 2021). <a target="_blank" rel="noopener" href="https://github.com/whai362/PVT">whai362/PVT</a><br />
-LIT, Less is More: Pay Less Attention in Vision Transformers (AAAI 2022)。<br />
-LITv2：Fast Vision Transformers with HiLo Attention (NeurIPS 2022)。 <a target="_blank" rel="noopener" href="https://github.com/ziplab/LIT">github: ziplab/LIT</a></p>
-</blockquote>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/353222035">大白话Pyramid Vision Transformer - 知乎</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/482141361/answer/2467438788">为什么 Vision transformer 训练和推理很慢？ - 知乎</a></p>
-</li>
+<li><a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/projectdetail/2467570">ResNet+FPN详解 - 飞桨AI Studio</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Hr4y1L7Lu/">resnet_fpn原理 - bilibili</a> （配合上文使用）</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43937959/article/details/122489181">ResNet+ FPN网络结构 - CSDN博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/6a2833ca7670">语义分割网络 - FPN 结构及代码</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/414582739">Faster RCNN原理 | VGG | ResNet | ResNet50 FPN | ReXNets</a></li>
+<li><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/models/generated/torchvision.models.detection.fasterrcnn_resnet50_fpn.html">fasterrcnn_resnet50_fpn — Torchvision 0.15 documentation</a></li>
+<li><a target="_blank" rel="noopener" href="https://pytorch.org/vision/main/generated/torchvision.ops.FeaturePyramidNetwork.html">FeaturePyramidNetwork — Torchvision main documentation</a></li>
 </ul>
 
     </div>
@@ -314,7 +285,7 @@ LITv2：Fast Vision Transformers with HiLo Attention (NeurIPS 2022)。 <a target
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://yaanggny.github.io/blog/2023/05/26/Transformer%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E7%9B%AE%E5%BD%95/" title="Transformer相关资料目录">https://yaanggny.github.io/blog/2023/05/26/Transformer相关资料目录/</a>
+      <a href="https://yaanggny.github.io/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/" title="ResNet-FPN原理">https://yaanggny.github.io/blog/2023/05/27/ResNet-FPN原理/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -322,26 +293,16 @@ LITv2：Fast Vision Transformers with HiLo Attention (NeurIPS 2022)。 <a target
 </ul>
 </div>
 
-          <div class="post-tags">
-              <a href="/blog/tags/DL/" rel="tag"># DL</a>
-              <a href="/blog/tags/CV/" rel="tag"># CV</a>
-              <a href="/blog/tags/Transformer/" rel="tag"># Transformer</a>
-              <a href="/blog/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
-              <a href="/blog/tags/ViT/" rel="tag"># ViT</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/blog/2023/04/25/Batch-Normalization/" rel="prev" title="Batch-Normalization">
-                  <i class="fa fa-chevron-left"></i> Batch-Normalization
+                <a href="/blog/2023/05/27/ResNet%E5%8E%9F%E7%90%86/" rel="prev" title="ResNet原理">
+                  <i class="fa fa-chevron-left"></i> ResNet原理
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/blog/2023/05/27/ResNet%E5%8E%9F%E7%90%86/" rel="next" title="ResNet原理">
-                  ResNet原理 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>

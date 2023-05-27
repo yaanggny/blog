@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/blog/archives/">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -176,6 +176,105 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">ResNet-FPN原理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-05-27 21:35:39 / 修改时间：21:37:14" itemprop="dateCreated datePublished" datetime="2023-05-27T21:35:39+08:00">2023-05-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="resnet-fpn原理"><a class="markdownIt-Anchor" href="#resnet-fpn原理"></a> ResNet-FPN原理</h2>
+<p>ResNet-FPN是Faster RCNN中的backbone，也已经成为特征提取的常用网络结构，被用于很多框架中。</p>
+<h3 id="resnet结构回顾"><a class="markdownIt-Anchor" href="#resnet结构回顾"></a> ResNet结构回顾</h3>
+<p>ResNet原理请看<a href="./ResNet%E5%8E%9F%E7%90%86.md">ResNet原理</a>。简单说ResNet中大致包含4个大的残差块，每个大块的输出特征尺寸逐渐减小。</p>
+<figure align="center"><img src="/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/fig-c40437b550409d08235e57241efb1520e7c141cf9d8d331a0394f71a5fca5753.png">
+<figcaption>不同层数的ResNet结构</figcaption></figure>
+<h3 id="fpn-原理"><a class="markdownIt-Anchor" href="#fpn-原理"></a> FPN 原理</h3>
+<p>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1612.03144.pdf">FPN</a><br />
+FPN（Feature Pyramid Network）即特征金字塔网络。特征金字塔用于在多尺度的图像特征上进行识别或检测，且具有较高效率。论文提出了一种更精确且更快的特征金字塔结构。</p>
+<figure align="center"><img src="/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/fig-6c944ee9303c12c0bdf954293e1e69ee915f2e1587a98bd5ada14066a0356210.png">
+<figcaption>图1粗蓝线：普通特征图，细蓝线：语义更强的特征图。（a）从图像金字塔构建特征金字塔，特征从各尺度图像独立计算，计算量大。（b）单一尺度特征，用于快速检测。（c）重用由一个ConvNet计算的金字塔特征层次，就像是一个特征化的图像金字塔。（d）提出的特征金字塔，和(b,c)一样快，但更精确；每层都进行预测。</figcaption></figure>
+<p>图1（b）取最后一层输出的特征图，其感受野相比较前几层的的感受野更大，特征也更抽象，因此对于小目标物的检测精度可能不是很高。但FPN能够有效的增大网络对小目标检测的准确性。</p>
+<figure align="center"><img src="/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/fig-d35f4ef35fba6b43b0e6b0c1922ad13ac703cced9f655956dbeaf085f83c79a6.png">
+<figcaption>FPN特征层间连接，2倍上采样。</figcaption></figure>
+<h2 id="resnetresnet-fpn原理-fpn"><a class="markdownIt-Anchor" href="#resnetresnet-fpn原理-fpn"></a> ResnetResNet-FPN原理/ + FPN</h2>
+<p>ResNet和FPN结合的网络结构如下图所示。</p>
+<figure align="center"><img src="/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/fig-508b190fd2a9bd198c144c5f064d63e94f5212c782d0095794086974b0150328.png">
+<figcaption>ResNet-FPN结构</figcaption></figure>
+<figure align="center"><img src="/blog/2023/05/27/ResNet-FPN%E5%8E%9F%E7%90%86/fig-bedfb4b83ccb08d8bd79a443e6b3a7b16aa049d4c52ee127a1dd7d165d92ef25.png">
+<figcaption>ResNet-FPN结构</figcaption></figure>
+<h2 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://aistudio.baidu.com/aistudio/projectdetail/2467570">ResNet+FPN详解 - 飞桨AI Studio</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Hr4y1L7Lu/">resnet_fpn原理 - bilibili</a> （配合上文使用）</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43937959/article/details/122489181">ResNet+ FPN网络结构 - CSDN博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/6a2833ca7670">语义分割网络 - FPN 结构及代码</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/414582739">Faster RCNN原理 | VGG | ResNet | ResNet50 FPN | ReXNets</a></li>
+<li><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/models/generated/torchvision.models.detection.fasterrcnn_resnet50_fpn.html">fasterrcnn_resnet50_fpn — Torchvision 0.15 documentation</a></li>
+<li><a target="_blank" rel="noopener" href="https://pytorch.org/vision/main/generated/torchvision.ops.FeaturePyramidNetwork.html">FeaturePyramidNetwork — Torchvision main documentation</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -215,7 +314,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-05-27 16:07:49 / 修改时间：16:48:33" itemprop="dateCreated datePublished" datetime="2023-05-27T16:07:49+08:00">2023-05-27</time>
+      <time title="创建时间：2023-05-27 16:07:49 / 修改时间：17:32:50" itemprop="dateCreated datePublished" datetime="2023-05-27T16:07:49+08:00">2023-05-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -289,7 +388,7 @@
 <figcaption>不同层数的ResNet（来自论文）</figcaption></figure>
 <p>ResNet-101仍然比VGG-19计算量小。</p>
 <figure align="center"><img src="/blog/2023/05/27/ResNet%E5%8E%9F%E7%90%86/fig-20230523010307.png" alt="">
-<figcaption>层数多的网络使用深层的残差函数</figcaption></figure>
+<figcaption>层数多的网络使用深层的残差函数。（左：BasicBlock，右：BottleNeck）</figcaption></figure>
 <h2 id="实验"><a class="markdownIt-Anchor" href="#实验"></a> 实验</h2>
 <figure align="center"><img src="/blog/2023/05/27/ResNet%E5%8E%9F%E7%90%86/fig-20230523005457.png" alt="">
 <figcaption>在ImageNet数据集上的错误率对比，粗线表示验证误差，细线表示训练误差。</figcaption></figure>
