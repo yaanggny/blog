@@ -19,33 +19,25 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"yaanggny.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/blog/js/config.js"></script>
 
-    <meta name="description" content="LoFTR: Detector-Free Local Feature Matching with Transformers Paper: https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2104.00680.pdf （CVPR2021） https:&#x2F;&#x2F;zju3dv.github.io&#x2F;loftr&#x2F;files&#x2F;LoFTR-suppmat.pdf code: https:&#x2F;&#x2F;github.com&#x2F;zj">
-<meta property="og:type" content="article">
-<meta property="og:title" content="LoFTR-Detector-free特征匹配算法">
-<meta property="og:url" content="https://yaanggny.github.io/blog/2023/04/08/LoFTR-Detector-free%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/index.html">
+    <meta name="description" content="日常记录">
+<meta property="og:type" content="website">
+<meta property="og:title" content="yaanggny的笔记">
+<meta property="og:url" content="https://yaanggny.github.io/blog/page/2/index.html">
 <meta property="og:site_name" content="yaanggny的笔记">
-<meta property="og:description" content="LoFTR: Detector-Free Local Feature Matching with Transformers Paper: https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2104.00680.pdf （CVPR2021） https:&#x2F;&#x2F;zju3dv.github.io&#x2F;loftr&#x2F;files&#x2F;LoFTR-suppmat.pdf code: https:&#x2F;&#x2F;github.com&#x2F;zj">
+<meta property="og:description" content="日常记录">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://yaanggny.github.io/blog/2023/04/08/LoFTR-Detector-free%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/a41aa0c359ec3574ad9d57b064efcb1a88f453084fe42b1843e63b4da3a09b71.png">
-<meta property="og:image" content="https://yaanggny.github.io/blog/2023/04/08/LoFTR-Detector-free%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/9d75ec65e1516ccb1e923f2bd469cc84202486fa5a2e7468f9018c36f4fec2d5.png">
-<meta property="og:image" content="https://yaanggny.github.io/blog/2023/04/08/LoFTR-Detector-free%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/4f3cdf10887ca6eb988f0a14f4e38db173711c71845f05e377f8d4713e40aa67.png">
-<meta property="og:image" content="https://yaanggny.github.io/blog/2023/04/08/LoFTR-Detector-free%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/f306a045a70ea06623014e83bd607c0bb632ad295d146796d1b6aec4e0c831f4.png">
-<meta property="og:image" content="https://yaanggny.github.io/blog/2023/04/08/LoFTR-Detector-free%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/304f57e16dcaec7667266f518dda4c9300c4732d67cc36fb871a62bd0610d3dc.png">
-<meta property="article:published_time" content="2023-04-08T14:20:54.000Z">
-<meta property="article:modified_time" content="2023-05-23T00:30:27.947Z">
 <meta property="article:author" content="yaanggny">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://yaanggny.github.io/blog/2023/04/08/LoFTR-Detector-free%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/a41aa0c359ec3574ad9d57b064efcb1a88f453084fe42b1843e63b4da3a09b71.png">
 
 
-<link rel="canonical" href="https://yaanggny.github.io/blog/2023/04/08/LoFTR-Detector-free%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/">
+<link rel="canonical" href="https://yaanggny.github.io/blog/page/2/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yaanggny.github.io/blog/2023/04/08/LoFTR-Detector-free%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/","path":"2023/04/08/LoFTR-Detector-free特征匹配算法/","title":"LoFTR-Detector-free特征匹配算法"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/2/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>LoFTR-Detector-free特征匹配算法 | yaanggny的笔记</title>
+<title>yaanggny的笔记</title>
   
 
 
@@ -78,7 +70,7 @@
 
     <a href="/blog/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">yaanggny的笔记</p>
+      <h1 class="site-title">yaanggny的笔记</h1>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -131,7 +123,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -144,7 +136,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#loftr-detector-free-local-feature-matching-with-transformers"><span class="nav-number">1.</span> <span class="nav-text"> LoFTR: Detector-Free Local Feature Matching with Transformers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#abstract"><span class="nav-number">1.1.</span> <span class="nav-text"> Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.2.</span> <span class="nav-text"> 1 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%9B%B8%E5%85%B3%E7%A0%94%E7%A9%B6"><span class="nav-number">1.3.</span> <span class="nav-text"> 2 相关研究</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#detector-based-local-feature-matching"><span class="nav-number">1.3.1.</span> <span class="nav-text"> Detector-based Local Feature Matching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#detector-free-local-feature-matching"><span class="nav-number">1.3.2.</span> <span class="nav-text"> Detector-free Local Feature Matching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transformers-in-vision-related-tasks"><span class="nav-number">1.3.3.</span> <span class="nav-text"> Transformers in Vision Related Tasks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-methods"><span class="nav-number">1.4.</span> <span class="nav-text"> 3 Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#31-%E5%B1%80%E9%83%A8%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="nav-number">1.4.1.</span> <span class="nav-text"> 3.1 局部特征提取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#32-%E5%B1%80%E9%83%A8%E7%89%B9%E5%BE%81%E5%8F%98%E6%8D%A2%E5%99%A8transformer%E6%A8%A1%E5%9D%97"><span class="nav-number">1.4.2.</span> <span class="nav-text"> 3.2 局部特征变换器（Transformer）模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#transformer%E5%9F%BA%E7%A1%80"><span class="nav-number">1.4.2.1.</span> <span class="nav-text"> Transformer基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7transformer"><span class="nav-number">1.4.2.2.</span> <span class="nav-text"> 线性Transformer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81"><span class="nav-number">1.4.2.3.</span> <span class="nav-text"> 位置编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E5%92%8C%E4%BA%92%E6%B3%A8%E6%84%8F%E5%8A%9B%E5%B1%82"><span class="nav-number">1.4.2.4.</span> <span class="nav-text"> 自注意力和互注意力层</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#33-%E5%BB%BA%E7%AB%8B%E7%B2%97%E5%B0%BA%E5%BA%A6%E7%BA%A7%E5%8C%B9%E9%85%8D"><span class="nav-number">1.4.3.</span> <span class="nav-text"> 3.3 建立粗尺度级匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#34-coarse-to-fine%E6%A8%A1%E5%9D%97"><span class="nav-number">1.4.4.</span> <span class="nav-text"> 3.4 Coarse-to-Fine模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#35-%E7%9B%91%E7%9D%A3%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.5.</span> <span class="nav-text"> 3.5 监督&#x2F;损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#36-%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="nav-number">1.4.6.</span> <span class="nav-text"> 3.6 实现细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%AE%9E%E9%AA%8C"><span class="nav-number">1.5.</span> <span class="nav-text"> 4 实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#41-%E4%BC%B0%E8%AE%A1%E5%8D%95%E5%BA%94%E6%80%A7"><span class="nav-number">1.5.1.</span> <span class="nav-text"> 4.1 估计单应性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#42-%E4%BD%8D%E5%A7%BF%E4%BC%B0%E8%AE%A1"><span class="nav-number">1.5.2.</span> <span class="nav-text"> 4.2 位姿估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#43-%E8%A7%86%E8%A7%89%E5%AE%9A%E4%BD%8D"><span class="nav-number">1.5.3.</span> <span class="nav-text"> 4.3 视觉定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#44-%E7%90%86%E8%A7%A3loftr"><span class="nav-number">1.5.4.</span> <span class="nav-text"> 4.4 理解LoFTR</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">1.6.</span> <span class="nav-text"> 参考资料</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%89%A9%E5%B1%95%E7%A0%94%E7%A9%B6"><span class="nav-number">2.</span> <span class="nav-text"> 相关扩展研究</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-local-feature-matching-with-transformers-for-low-end-devices"><span class="nav-number">2.1.</span> <span class="nav-text"> 1 Local Feature Matching with Transformers for low-end devices</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8Amatching-images-from-different-viewpoints-with-deep-learning-based-on-loftr-and-magsac"><span class="nav-number">2.2.</span> <span class="nav-text"> 2 研究报告：Matching Images from Different Viewpoints with Deep Learning Based on LoFTR and MAGSAC++</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">2.3.</span> <span class="nav-text"> 3 相关概念</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -184,17 +175,16 @@
 
     </div>
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner index posts-expand">
 
-
-  
+    
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/04/08/LoFTR-Detector-free%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -208,13 +198,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="LoFTR-Detector-free特征匹配算法 | yaanggny的笔记">
+      <meta itemprop="name" content="undefined | yaanggny的笔记">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          LoFTR-Detector-free特征匹配算法
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2023/04/08/LoFTR-Detector-free%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">LoFTR-Detector-free特征匹配算法</a>
+        </h2>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -244,7 +234,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="loftr-detector-free-local-feature-matching-with-transformers"><a class="markdownIt-Anchor" href="#loftr-detector-free-local-feature-matching-with-transformers"></a> LoFTR: Detector-Free Local Feature Matching with Transformers</h1>
+          <h1 id="loftr-detector-free-local-feature-matching-with-transformers"><a class="markdownIt-Anchor" href="#loftr-detector-free-local-feature-matching-with-transformers"></a> LoFTR: Detector-Free Local Feature Matching with Transformers</h1>
 <p>Paper: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2104.00680.pdf">https://arxiv.org/pdf/2104.00680.pdf</a> （CVPR2021）<br />
 <a target="_blank" rel="noopener" href="https://zju3dv.github.io/loftr/files/LoFTR-suppmat.pdf">https://zju3dv.github.io/loftr/files/LoFTR-suppmat.pdf</a><br />
 code: <a target="_blank" rel="noopener" href="https://github.com/zju3dv/LoFTR">https://github.com/zju3dv/LoFTR</a><br />
@@ -357,6 +347,7 @@ code: <a target="_blank" rel="noopener" href="https://github.com/Kolkir/Coarse_L
 <p>Transformer: Attention is all you need. NeurIPS, 2017.<br />
 GNN vs. Transformer： Transformers are Graph Neural Networks. <a target="_blank" rel="noopener" href="https://thegradient.pub/transformers-are-graphneural-networks/">https://thegradient.pub/transformers-are-graphneural-networks/</a>, 2020.</p>
 
+      
     </div>
 
     
@@ -364,35 +355,8 @@ GNN vs. Transformer： Transformers are Graph Neural Networks. <a target="_blank
     
 
     <footer class="post-footer">
-          
-
-<div class="post-copyright">
-<ul>
-  <li class="post-copyright-author">
-      <strong>本文作者： </strong>yaanggny
-  </li>
-  <li class="post-copyright-link">
-      <strong>本文链接：</strong>
-      <a href="https://yaanggny.github.io/blog/2023/04/08/LoFTR-Detector-free%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/" title="LoFTR-Detector-free特征匹配算法">https://yaanggny.github.io/blog/2023/04/08/LoFTR-Detector-free特征匹配算法/</a>
-  </li>
-  <li class="post-copyright-license">
-      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-            </div>
-            <div class="post-nav-item">
-                <a href="/blog/2023/04/11/test_rendering/" rel="next" title="hexo-next rendering test渲染测试">
-                  hexo-next rendering test渲染测试 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        <div class="post-eof"></div>
+      
     </footer>
   </article>
 </div>
@@ -400,7 +364,9 @@ GNN vs. Transformer： Transformers are Graph Neural Networks. <a target="_blank
 
 
 
-
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/blog/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span>
+  </nav>
 
 </div>
   </main>
