@@ -19,28 +19,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"yaanggny.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/blog/js/config.js"></script>
 
-    <meta name="description" content="spawn 执行外部程序，并且需要提供一组参数，以及一个在进程退出后的输入输入和事件的数据流接口 1234567const cp &#x3D; require(&amp;#x27;child_process&amp;#x27;)const child &#x3D; cp.spawn(&amp;#x27;echo&amp;#x27;, [&amp;#x27;hello&amp;#x27;, &amp;#x27;world&amp;#x27;])child.on(&amp;#x27;err">
+    <meta name="description" content="随着计算机性能提升，多核计算能力显著增强。在实践中，通常需要针对同一算法运行多个场景的多组数据，这时，可以利用Python并行处理能力大幅提高处理速度，加快算法迭代。如用于数据预处理等。本文讨论使用Python的进程池模块，对单个函数送入多组数据，加快处理。 关键字： Python并行, 进程池, starmap, 返回值  实用demo 12345678910111213141516171819">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javascript积累">
-<meta property="og:url" content="https://yaanggny.github.io/blog/2023/04/23/2023.04-javascript%E7%A7%AF%E7%B4%AF/index.html">
+<meta property="og:title" content="Python并行化-进程池">
+<meta property="og:url" content="https://yaanggny.github.io/blog/2023/06/17/20230617-Python%E5%B9%B6%E8%A1%8C%E5%8C%96-%E8%BF%9B%E7%A8%8B%E6%B1%A0/index.html">
 <meta property="og:site_name" content="yaanggny的笔记">
-<meta property="og:description" content="spawn 执行外部程序，并且需要提供一组参数，以及一个在进程退出后的输入输入和事件的数据流接口 1234567const cp &#x3D; require(&amp;#x27;child_process&amp;#x27;)const child &#x3D; cp.spawn(&amp;#x27;echo&amp;#x27;, [&amp;#x27;hello&amp;#x27;, &amp;#x27;world&amp;#x27;])child.on(&amp;#x27;err">
+<meta property="og:description" content="随着计算机性能提升，多核计算能力显著增强。在实践中，通常需要针对同一算法运行多个场景的多组数据，这时，可以利用Python并行处理能力大幅提高处理速度，加快算法迭代。如用于数据预处理等。本文讨论使用Python的进程池模块，对单个函数送入多组数据，加快处理。 关键字： Python并行, 进程池, starmap, 返回值  实用demo 12345678910111213141516171819">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-23T14:05:07.000Z">
-<meta property="article:modified_time" content="2023-04-24T16:19:25.118Z">
+<meta property="article:published_time" content="2023-06-17T08:38:16.000Z">
+<meta property="article:modified_time" content="2023-06-17T08:56:15.445Z">
 <meta property="article:author" content="yaanggny">
-<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="并行化计算">
+<meta property="article:tag" content="进程池">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://yaanggny.github.io/blog/2023/04/23/2023.04-javascript%E7%A7%AF%E7%B4%AF/">
+<link rel="canonical" href="https://yaanggny.github.io/blog/2023/06/17/20230617-Python%E5%B9%B6%E8%A1%8C%E5%8C%96-%E8%BF%9B%E7%A8%8B%E6%B1%A0/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yaanggny.github.io/blog/2023/04/23/2023.04-javascript%E7%A7%AF%E7%B4%AF/","path":"2023/04/23/2023.04-javascript积累/","title":"javascript积累"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yaanggny.github.io/blog/2023/06/17/20230617-Python%E5%B9%B6%E8%A1%8C%E5%8C%96-%E8%BF%9B%E7%A8%8B%E6%B1%A0/","path":"2023/06/17/20230617-Python并行化-进程池/","title":"Python并行化-进程池"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>javascript积累 | yaanggny的笔记</title>
+<title>Python并行化-进程池 | yaanggny的笔记</title>
   
 
 
@@ -139,7 +141,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#spawn"><span class="nav-number">1.</span> <span class="nav-text"> spawn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">2.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%94%A8demo"><span class="nav-number">1.</span> <span class="nav-text"> 实用demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number"></span> <span class="nav-text"> 参考资料</span></a></div>
         </div>
         <!--/noindex-->
 
@@ -190,7 +192,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/04/23/2023.04-javascript%E7%A7%AF%E7%B4%AF/">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/06/17/20230617-Python%E5%B9%B6%E8%A1%8C%E5%8C%96-%E8%BF%9B%E7%A8%8B%E6%B1%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/images/avatar.gif">
@@ -203,12 +205,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="javascript积累 | yaanggny的笔记">
+      <meta itemprop="name" content="Python并行化-进程池 | yaanggny的笔记">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          javascript积累
+          Python并行化-进程池
         </h1>
 
         <div class="post-meta-container">
@@ -218,15 +220,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-04-23 22:05:07" itemprop="dateCreated datePublished" datetime="2023-04-23T22:05:07+08:00">2023-04-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-04-25 00:19:25" itemprop="dateModified" datetime="2023-04-25T00:19:25+08:00">2023-04-25</time>
+      <time title="创建时间：2023-06-17 16:38:16 / 修改时间：16:56:15" itemprop="dateCreated datePublished" datetime="2023-06-17T16:38:16+08:00">2023-06-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -234,7 +230,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+          <a href="/blog/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
         </span>
     </span>
 
@@ -248,13 +244,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="spawn"><a class="markdownIt-Anchor" href="#spawn"></a> spawn</h2>
-<p>执行外部程序，并且需要提供一组参数，以及一个在进程退出后的输入输入和事件的数据流接口</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cp = <span class="built_in">require</span>(<span class="string">&#x27;child_process&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> child = cp.<span class="title function_">spawn</span>(<span class="string">&#x27;echo&#x27;</span>, [<span class="string">&#x27;hello&#x27;</span>, <span class="string">&#x27;world&#x27;</span>])</span><br><span class="line"></span><br><span class="line">child.<span class="title function_">on</span>(<span class="string">&#x27;error&#x27;</span>, <span class="variable language_">console</span>.<span class="property">error</span>)</span><br><span class="line">child.<span class="property">stdout</span>.<span class="title function_">pipe</span>(process.<span class="property">stdout</span>)</span><br><span class="line">child.<span class="property">stderr</span>.<span class="title function_">pipe</span>(process.<span class="property">stderr</span>)</span><br></pre></td></tr></table></figure>
-<p>应用举例：<br />
-<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-deployer-git">https://github.com/hexojs/hexo-deployer-git</a> 中调用git进行提交、push。</p>
-<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
-<p><a target="_blank" rel="noopener" href="https://my.oschina.net/ahaoboy/blog/3125083">https://my.oschina.net/ahaoboy/blog/3125083</a></p>
+        <p>随着计算机性能提升，多核计算能力显著增强。在实践中，通常需要针对同一算法运行多个场景的多组数据，这时，可以利用Python并行处理能力大幅提高处理速度，加快算法迭代。如用于数据预处理等。本文讨论使用Python的进程池模块，对单个函数送入多组数据，加快处理。</p>
+<p>关键字： Python并行, 进程池, starmap, 返回值</p>
+<h3 id="实用demo"><a class="markdownIt-Anchor" href="#实用demo"></a> 实用demo</h3>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># From https://superfastpython.com/multiprocessing-pool-starmap/$\sin=1$$\sin=1$</span></span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"><span class="keyword">from</span> multiprocessing.pool <span class="keyword">import</span> Pool</span><br><span class="line"></span><br><span class="line"><span class="comment"># task executed in a worker process</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">task</span>(<span class="params">identifier, value</span>):</span><br><span class="line">    <span class="comment"># report a message</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;Task <span class="subst">&#123;identifier&#125;</span> executing with <span class="subst">&#123;value&#125;</span>&#x27;</span>, flush=<span class="literal">True</span>)</span><br><span class="line">    <span class="comment"># block for a moment</span></span><br><span class="line">    sleep(value)</span><br><span class="line">    <span class="comment"># return the generated value</span></span><br><span class="line">    <span class="comment"># return (identifier, value)</span></span><br><span class="line">    r = &#123;<span class="string">&#x27;i&#x27;</span>: identifier, <span class="string">&#x27;t&#x27;</span>: value &#125;</span><br><span class="line">    <span class="keyword">return</span> r</span><br><span class="line"></span><br><span class="line"><span class="comment"># protect the entry point</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># create and configure the process pool</span></span><br><span class="line">    <span class="keyword">with</span> Pool() <span class="keyword">as</span> pool:</span><br><span class="line">        <span class="comment"># prepare arguments</span></span><br><span class="line">        items = [(i, random()) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)]</span><br><span class="line">        <span class="comment"># execute tasks and process results in order</span></span><br><span class="line">        <span class="keyword">for</span> result <span class="keyword">in</span> pool.starmap(task, items):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;Got result: <span class="subst">&#123;result&#125;</span>&#x27;</span>, flush=<span class="literal">True</span>)</span><br><span class="line">    <span class="comment"># process pool is closed automatically</span></span><br></pre></td></tr></table></figure>
+<p>该实例可以获取返回值。</p>
+<h2 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://superfastpython.com/multiprocessing-pool-starmap/">Multiprocessing Pool.starmap() in Python</a></li>
+</ul>
 
     </div>
 
@@ -272,7 +270,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://yaanggny.github.io/blog/2023/04/23/2023.04-javascript%E7%A7%AF%E7%B4%AF/" title="javascript积累">https://yaanggny.github.io/blog/2023/04/23/2023.04-javascript积累/</a>
+      <a href="https://yaanggny.github.io/blog/2023/06/17/20230617-Python%E5%B9%B6%E8%A1%8C%E5%8C%96-%E8%BF%9B%E7%A8%8B%E6%B1%A0/" title="Python并行化-进程池">https://yaanggny.github.io/blog/2023/06/17/20230617-Python并行化-进程池/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -281,21 +279,20 @@
 </div>
 
           <div class="post-tags">
-              <a href="/blog/tags/javascript/" rel="tag"># javascript</a>
+              <a href="/blog/tags/Python/" rel="tag"># Python</a>
+              <a href="/blog/tags/%E5%B9%B6%E8%A1%8C%E5%8C%96%E8%AE%A1%E7%AE%97/" rel="tag"># 并行化计算</a>
+              <a href="/blog/tags/%E8%BF%9B%E7%A8%8B%E6%B1%A0/" rel="tag"># 进程池</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/blog/2023/04/23/2023-04-Markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95-%E6%8A%98%E5%8F%A0-%E5%85%AC%E5%BC%8F/" rel="prev" title="Markdown常用语法-折叠&公式">
-                  <i class="fa fa-chevron-left"></i> Markdown常用语法-折叠&公式
+                <a href="/blog/2023/06/17/ANMS-%E7%89%B9%E5%BE%81%E7%82%B9%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83/" rel="prev" title="特征点分布——ANMS算法">
+                  <i class="fa fa-chevron-left"></i> 特征点分布——ANMS算法
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/blog/2023/04/24/2023.04-Python%E8%AF%AD%E6%B3%95%E6%94%B6%E9%9B%86/" rel="next" title="Python语法收集">
-                  Python语法收集 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
