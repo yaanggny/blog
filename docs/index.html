@@ -148,18 +148,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/blog/archives/">
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/blog/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/blog/tags/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -176,6 +176,415 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/08/26/20230816-%E7%89%B9%E5%BE%81%E7%82%B9NMS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2023/08/26/20230816-%E7%89%B9%E5%BE%81%E7%82%B9NMS/" class="post-title-link" itemprop="url">特征点NMS</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-08-26 09:38:36 / 修改时间：09:53:29" itemprop="dateCreated datePublished" datetime="2023-08-26T09:38:36+08:00">2023-08-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="一种简单的分块取块内响应最大的nms方法"><a class="markdownIt-Anchor" href="#一种简单的分块取块内响应最大的nms方法"></a> 一种简单的分块取块内响应最大的NMS方法</h2>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">nms_block</span>(<span class="params">pts1, pts2, mconf, h1, w1, num_out=<span class="number">500</span>, min_block_size=<span class="number">2</span></span>):</span><br><span class="line">    nblockH = <span class="built_in">int</span>(h1 / min_block_size + <span class="number">0.5</span>)</span><br><span class="line">    nblockW = <span class="built_in">int</span>(w1 / min_block_size + <span class="number">0.5</span>)</span><br><span class="line">    block_pts = [[] <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(nblockH*nblockW)]</span><br><span class="line">    <span class="keyword">for</span> c, p1, p2 <span class="keyword">in</span> <span class="built_in">zip</span>(mconf, pts1, pts2):</span><br><span class="line">        xi_ = p1[<span class="number">0</span>] / min_block_size</span><br><span class="line">        yi_ = p1[<span class="number">1</span>] / min_block_size</span><br><span class="line">        xi = <span class="built_in">int</span>(xi_)</span><br><span class="line">        yi = <span class="built_in">int</span>(yi_)</span><br><span class="line">        idx = yi*nblockW + xi</span><br><span class="line">        block_pts[idx].append((c, p1, p2))</span><br><span class="line">    </span><br><span class="line">    max_local_pts = []</span><br><span class="line">    <span class="keyword">for</span> pts <span class="keyword">in</span> block_pts:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(pts):</span><br><span class="line">            cmax = -<span class="number">1</span></span><br><span class="line">            p1o, p2o = <span class="literal">None</span>, <span class="literal">None</span></span><br><span class="line">            <span class="keyword">for</span> c, p1, p2 <span class="keyword">in</span> pts:</span><br><span class="line">                <span class="keyword">if</span> c &gt; cmax:</span><br><span class="line">                    cmax = c</span><br><span class="line">                    p1o = p1</span><br><span class="line">                    p2o = p2</span><br><span class="line">            max_local_pts.append((cmax, p1o, p2o))</span><br><span class="line">    </span><br><span class="line">    num_out = <span class="built_in">min</span>(num_out, <span class="built_in">len</span>(max_local_pts))</span><br><span class="line"></span><br><span class="line">    conf = np.zeros((num_out, ), dtype=pts1.dtype) </span><br><span class="line">    pt1 = np.zeros((num_out, <span class="number">2</span>), dtype=pts1.dtype)</span><br><span class="line">    pt2 = np.zeros((num_out, <span class="number">2</span>), dtype=pts2.dtype)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_out):</span><br><span class="line">        conf[i] = max_local_pts[i][<span class="number">0</span>]</span><br><span class="line">        pt1[i, :] = max_local_pts[i][<span class="number">1</span>]</span><br><span class="line">        pt2[i, :] = max_local_pts[i][<span class="number">2</span>]</span><br><span class="line">    <span class="keyword">return</span> pt1, pt2, conf, block_pts</span><br></pre></td></tr></table></figure>
+<h2 id="opencv-goodfeaturestotrack中的nms"><a class="markdownIt-Anchor" href="#opencv-goodfeaturestotrack中的nms"></a> OpenCV goodFeaturesToTrack中的NMS</h2>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/08/05/20230805-numpy-matplotlib-pandas%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2023/08/05/20230805-numpy-matplotlib-pandas%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7/" class="post-title-link" itemprop="url">numpy-matplotlib-pandas常用技巧</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-08-05 18:15:16" itemprop="dateCreated datePublished" datetime="2023-08-05T18:15:16+08:00">2023-08-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-09 23:25:06" itemprop="dateModified" datetime="2023-08-09T23:25:06+08:00">2023-08-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="numpy"><a class="markdownIt-Anchor" href="#numpy"></a> numpy</h2>
+<h3 id="数组操作"><a class="markdownIt-Anchor" href="#数组操作"></a> 数组操作</h3>
+<h3 id="常用计算"><a class="markdownIt-Anchor" href="#常用计算"></a> 常用计算</h3>
+<ul>
+<li>直方图、概率密度、CDF</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hist, bin_edges = np.histogram(x, num_bins, density=<span class="literal">True</span>)</span><br><span class="line">pdf = hist / hist.<span class="built_in">sum</span>()  <span class="comment"># PDF</span></span><br><span class="line">cdf = np.cumsum(pdf)     <span class="comment"># CDF</span></span><br></pre></td></tr></table></figure>
+<h2 id="matplotlib"><a class="markdownIt-Anchor" href="#matplotlib"></a> matplotlib</h2>
+<h3 id="热力图heatmap"><a class="markdownIt-Anchor" href="#热力图heatmap"></a> 热力图heatmap</h3>
+<h3 id="图像保存savefig"><a class="markdownIt-Anchor" href="#图像保存savefig"></a> 图像保存savefig</h3>
+<ul>
+<li>指定大小</li>
+</ul>
+<p>最终图像大小：[size_inchs_w<em>dpi, size_inchs_h</em>dpi], dpi=dots per inch</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.gcf().set_size_inches(width/<span class="number">100</span>, height/<span class="number">100</span>)</span><br><span class="line">plt.savefig(<span class="string">&quot;image.png&quot;</span>, dpi=<span class="number">100</span>, bbox_inches=<span class="string">&#x27;tight&#x27;</span>, pad_inches=<span class="number">0</span>)  <span class="comment"># 紧促保存，无白边</span></span><br></pre></td></tr></table></figure>
+<h2 id="pandas"><a class="markdownIt-Anchor" href="#pandas"></a> pandas</h2>
+<h3 id="读写"><a class="markdownIt-Anchor" href="#读写"></a> 读写</h3>
+<h3 id="数据获取indexing"><a class="markdownIt-Anchor" href="#数据获取indexing"></a> 数据获取/indexing</h3>
+<p>pandas习惯于以列为一项数据，即第一行为标题。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df.loc</span><br><span class="line">df.iloc</span><br><span class="line">df[<span class="string">&#x27;item_key&#x27;</span>] = item_list</span><br></pre></td></tr></table></figure>
+<h3 id="不显示index列"><a class="markdownIt-Anchor" href="#不显示index列"></a> 不显示index列</h3>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印不显示index</span></span><br><span class="line"><span class="built_in">print</span>(df.to_string(index=<span class="literal">False</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存不显示index</span></span><br><span class="line">df.to_excel(***, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="小数位数控制"><a class="markdownIt-Anchor" href="#小数位数控制"></a> 小数位数控制</h2>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印</span></span><br><span class="line">df.set_options(<span class="string">&#x27;display.format&#x27;</span>, <span class="string">&#x27;%.2f&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保持文件</span></span><br><span class="line">df.to_excel(***, float_precision=<span class="string">&#x27;%.2f&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/08/05/20230805-WSL%E8%BF%9E%E6%8E%A5Android%E6%89%8B%E6%9C%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2023/08/05/20230805-WSL%E8%BF%9E%E6%8E%A5Android%E6%89%8B%E6%9C%BA/" class="post-title-link" itemprop="url">WSL连接Android手机</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-08-05 17:24:46 / 修改时间：17:42:16" itemprop="dateCreated datePublished" datetime="2023-08-05T17:24:46+08:00">2023-08-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="windows子系统用adb连接android手机"><a class="markdownIt-Anchor" href="#windows子系统用adb连接android手机"></a> Windows子系统用ADB连接Android手机</h2>
+<ul>
+<li>在WSL中用<code>apt-get</code>命令安装ADB工具并不能直接连接手机。会出现如下等错误提示：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb server version (41) doesn&#x27;t match this client (39); killing...</span><br></pre></td></tr></table></figure>
+<p>搜索后，大致是由于出现了两个不同版本的ADB，于是用<code>apt remove adb</code>卸载。</p>
+<ul>
+<li>自己下载Linux版本 ADB工具安装包，并添加路径到<code>PATH</code>，此时用<code>adb devices</code>会显示设备为空。</li>
+</ul>
+<h2 id="解决办法"><a class="markdownIt-Anchor" href="#解决办法"></a> 解决办法</h2>
+<p>结论：只保留一个版本，用Windows上的版本，即WSL和Windows主机共用一个ADB工具。</p>
+<ul>
+<li>将Windows上可用的ADB路径添加到WSL系统<code>PATH</code>变量<br />
+在<code>~/.bashrc</code>文件最后添加如下</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=&quot;/mnt/d/path/to/adb-bin:$PATH&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>获取adb命令
+<ul>
+<li>可以在WSL中将adb.exe 复制并重命名为adb（无后缀）</li>
+<li>用<code>alias adb=&quot;/mnt/d/path/to/adb.exe&quot;</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/60166965/adb-device-list-empty-using-wsl2">https://stackoverflow.com/questions/60166965/adb-device-list-empty-using-wsl2</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/06/18/20230618-ViT%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2023/06/18/20230618-ViT%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">视觉Transformer (ViT)入门</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-06-18 17:04:18 / 修改时间：17:07:50" itemprop="dateCreated datePublished" datetime="2023-06-18T17:04:18+08:00">2023-06-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Transformer最早用于NLP领域中，视觉Transformer（Visual Transformer，ViT）出自Google的论文 <em><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.11929.pdf">An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale, ICLR 2021</a></em>，是基于Transformer 模型在视觉领域的开篇之作。本文主要介绍其网络结构和基本原理。</p>
+<h2 id="摘要"><a class="markdownIt-Anchor" href="#摘要"></a> 摘要</h2>
+<p>虽然Transformer体系结构已经成为自然语言处理任务的事实标准，但其在计算机视觉中的应用仍然有限。在视觉中，注意力要么与卷积网络结合使用，要么用于替换卷积网络的某些组件，同时保持其整体结构。我们证明，这种对CNN的依赖是不必要的，并且<strong>直接应用于图像块序列的纯变换器（Transformer）可以在图像分类任务中表现得很好。</strong> 当在大量数据上进行预训练并转移到多个中小型图像识别基准任务（ImageNet、CIFAR-100、VTAB等）时，与最先进的卷积网络相比，视觉Transformer获得了优异的结果，同时需要更少的计算资源进行训练。</p>
+<p>基于自注意力结构，Transformer已成为NLP领域的首选方法。由于其计算效率和可扩展性（scalability），使得可以训练更大规模的网络，随着模型和数据的规模增长，仍然没有饱和的迹象。</p>
+<p>在计算机视觉中，卷积架构仍然占据主导地位。许多研究受NLP中的成功启发，尝试在CNN类结构结合自注意力机制，但是表现并不好。在大规模图像分类中，经典的ResNet类网络结构仍然是效果最好的。</p>
+<p>受Transformer扩展到NLP领域的成功启发，我们使用了把标准Transformer仅做小改动后直接应用到图像，但是结果令人沮丧。我们把图像分块，并对块生成特征（线性embedding）后送入Transformer，图像块按照NLP中token那样使用。在图像分类任务中使用监督训练，在中等规模数据集如ImageNet上训练，但是模型结果明显不如ResNet类网络的结果。</p>
+<p>和本文最相关的研究是 <em><strong>On the relationship between selfattention and convolutional layers. ICLR, 2020</strong></em>，其提取2x2大小的图块，并使用全自注意力，其只适合于小分辨率图像。</p>
+<p>我们认为这种结果是意料之中的，<strong>因为Transformer缺乏CNN网络的归纳性偏好（the inductive biases），因此不能在训练数据不充足的情况下泛化好。</strong></p>
+<p>但是在更大规模数据集（14M-300M图片）上训练后情况变得不同，此时可以胜过归纳偏好。<strong>当在充足的大规模数据集上训练，再迁移到小数据集上时，ViT获得极好的结果。</strong></p>
+<h2 id="模型结构"><a class="markdownIt-Anchor" href="#模型结构"></a> 模型结构</h2>
+<figure align="center"><img src="/blog/2023/06/18/20230618-ViT%E5%85%A5%E9%97%A8/fig-9196c2790e8d4904676729642204938dd442d6fd7cf29c086ce34cff52240cfa.png">
+<figcaption>ViT结构</figcaption></figure>
+<p>标准Transformer输入token的一维序列，对于2D图像，将图像划分为展平块的序列，即<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span>通道的图像<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mi>H</mi><mo>×</mo><mi>W</mi><mo>×</mo><mi>C</mi></mrow></msup></mrow><annotation encoding="application/x-tex">x\in \mathbb{R}^{H\times W\times C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">R</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.08125em;">H</span><span class="mbin mtight">×</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">W</span><span class="mbin mtight">×</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span></span></span></span></span></span></span></span></span></span></span></span>变为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>p</mi></msub><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mi>N</mi><mo>×</mo><mo stretchy="false">(</mo><msup><mi>P</mi><mn>2</mn></msup><mi>C</mi><mo stretchy="false">)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">x_p\in \mathbb{R}^{N\times (P^2C)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8252079999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.9869199999999998em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">R</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9869199999999998em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mbin mtight">×</span><span class="mopen mtight">(</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913142857142857em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span>。即原始图像的分辨率为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>×</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">H\times W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span></span></span></span>，通道数为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span>，分块大小为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>×</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">P\times P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span>，总块数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mi>H</mi><mi>W</mi><mi mathvariant="normal">/</mi><msup><mi>P</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">N=HW/P^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mord">/</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>。整个Transformer使用隐藏（latent）向量大小<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span>，因此我们用可训练的MLP线性投影来展平patch，把该投影的输出称为patch embeddings。如公式(1)所示：<br />
+<img src="/blog/2023/06/18/20230618-ViT%E5%85%A5%E9%97%A8/fig-e73614ca47e2dfdbfaeda952b1f47973a2e6e0113bce3e35fd556b362afe0e01.png" alt="picture 4" /></p>
+<p>其中LN：LayerNorm，MSA：Multihead self-attention。</p>
+<p>在原有输入序列前加入一个可学习的特征 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">s</mi></mrow></msub></mrow><annotation encoding="application/x-tex">x_{\rm class}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">c</span><span class="mord mathrm mtight">l</span><span class="mord mathrm mtight">a</span><span class="mord mathrm mtight">s</span><span class="mord mathrm mtight">s</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，类似于BERT。（<em>为执行分类，使用标准方法即给序列添加一个额外的分类token</em>）</p>
+<p>使用了标准的可学习的一维位置编码，因为没有发现2D位置编码带来显著的性能提升。</p>
+<p><strong>归纳偏好</strong> 我们发现视觉Transformer比CNN有更少的视觉上的归纳偏好。CNN中，局部性、二维邻域结构和平移不变性（translation equivariance）被结合到每一层并遍及整个模型。但是ViT中，只有MLP层是局部和平移不变的，尽管自注意力层是全局的。二维邻域结构被使用得很少：在模型开始前将图像划分为图块时或者fune-tuning时调整位置编码以应对不同分辨率的图像。此外位置编码在初始化时未携带任何2D图块位置信息，所有空间关系都是从头学习得到的。</p>
+<p><strong>混合结构</strong> 除了使用原始图像块，可以将CNN输出的特征作为模型输入，即patch embedding projection模块可以将CNN输出的特征图进行映射。</p>
+<figure align="center"><img src="/blog/2023/06/18/20230618-ViT%E5%85%A5%E9%97%A8/ViT.gif">
+<figcaption>动图展示ViT运算过程</figcaption></figure>
+<h2 id="fine-tuning和高分辨率"><a class="markdownIt-Anchor" href="#fine-tuning和高分辨率"></a> Fine-tuning和高分辨率</h2>
+<p>通常我们在大数据集上预训练ViT，然后在小的下游任务上微调。为此我们移除前期的预测模块，并连接一个零初始化的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>×</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">D\times K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span>的前馈网络，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span>是下游任务的类别数。</p>
+<p>对于大分辨率图像，我们保持块大小相同，这导致更大的序列长度（即N的大小），ViT支持任意大小的序列长度（不考虑内存约束）。<strong>对于大分辨率图像，位置编码不再有效，此时我们对预训练的位置编码进行2D插值。</strong></p>
+<h2 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h2>
+<ul>
+<li>
+<p>An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.11929.pdf">pdf</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d4bc4f540c62">Visual Transformer (ViT)模型结构以及原理解析 - 简书</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://theaisummer.com/vision-transformer/">How the Vision Transformer (ViT) works in 10 minutes: an image is worth 16x16 words | AI Summer</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.kaggle.com/code/abhinand05/vision-transformer-vit-tutorial-baseline/notebook">Vision Transformer (ViT): Tutorial + Baseline | Kaggle</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://github.com/FrancescoSaverioZuppichini/ViT">FrancescoSaverioZuppichini/ViT: Implementing Vi(sion)T(transformer)</a></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/06a40338dc7c">Visual Transformer (ViT) 代码实现 PyTorch版本 - 简书</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -300,9 +709,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-06-17 16:30:50 / 修改时间：16:53:02" itemprop="dateCreated datePublished" datetime="2023-06-17T16:30:50+08:00">2023-06-17</time>
+      <time title="创建时间：2023-06-17 16:30:50" itemprop="dateCreated datePublished" datetime="2023-06-17T16:30:50+08:00">2023-06-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-26 09:34:50" itemprop="dateModified" datetime="2023-08-26T09:34:50+08:00">2023-08-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -355,6 +770,8 @@
 </ul>
 <p>实现：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;cv::KeyPoint&gt; <span class="title">brownANMS</span><span class="params">(<span class="type">const</span> vector&lt;cv::KeyPoint&gt;&amp; keyPoints, <span class="type">int</span> numRetPoints, <span class="type">float</span> alpha=<span class="number">0.9</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    vector&lt;pair&lt;<span class="type">float</span>, <span class="type">int</span>&gt;&gt; results;</span><br><span class="line">    results.<span class="built_in">push_back</span>(<span class="built_in">make_pair</span>(FLT_MAX, <span class="number">0</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">int</span> i = <span class="number">1</span>; i &lt; keyPoints.<span class="built_in">size</span>(); ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">float</span> minDist = FLT_MAX;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">int</span> j = <span class="number">0</span>; j &lt; i; ++j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (keyPoints[i].response &lt; keyPoints[j].response*alpha)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="type">float</span> exp1 = (keyPoints[j].pt.x - keyPoints[i].pt.x);</span><br><span class="line">                <span class="type">float</span> exp2 = (keyPoints[j].pt.y - keyPoints[i].pt.y);</span><br><span class="line">                <span class="type">float</span> curDist = <span class="built_in">sqrt</span>(exp1 * exp1 + exp2 * exp2);</span><br><span class="line">                minDist = <span class="built_in">min</span>(curDist, minDist);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        results.<span class="built_in">push_back</span>(<span class="built_in">make_pair</span>(minDist, i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(results.<span class="built_in">begin</span>(), results.<span class="built_in">end</span>(), <span class="built_in">sort_pred</span>());  <span class="comment">// sorting by radius</span></span><br><span class="line">    vector&lt;cv::KeyPoint&gt; kp;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; numRetPoints; ++i)</span><br><span class="line">        kp.<span class="built_in">push_back</span>(keyPoints[results[i].second]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> kp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Python版本</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">FLT_INF = <span class="number">9e9</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">nms</span>(<span class="params">pts1, pts2, mconf, num_out=<span class="number">500</span>, min_radius=<span class="number">1</span></span>):</span><br><span class="line">    <span class="keyword">assert</span> pts1.shape[<span class="number">0</span>] == pts2.shape[<span class="number">0</span>] <span class="keyword">and</span> pts1.shape[<span class="number">0</span>] == mconf.shape[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    n = mconf.shape[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    pt_pairs = <span class="built_in">list</span>(<span class="built_in">zip</span>(mconf, pts1, pts2))</span><br><span class="line">    pt_pairs.sort(key=<span class="keyword">lambda</span> x: x[<span class="number">0</span>], reverse=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pt_dist</span>(<span class="params">p1, p2</span>):</span><br><span class="line">        dx = p1[<span class="number">0</span>] - p2[<span class="number">0</span>]</span><br><span class="line">        dy = p1[<span class="number">1</span>] - p2[<span class="number">1</span>]</span><br><span class="line">        s = dx*dx + dy*dy</span><br><span class="line">        <span class="keyword">return</span> s</span><br><span class="line">        <span class="comment"># return math.sqrt(s)</span></span><br><span class="line"></span><br><span class="line">    r = [(FLT_INF, <span class="number">0</span>)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">        minD = FLT_INF</span><br><span class="line">        p1 = pt_pairs[i][<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, i):</span><br><span class="line">            <span class="comment"># minD = min(np.linalg.norm(p1 - pts2[j, :]), minD)  # slowly</span></span><br><span class="line">            minD = <span class="built_in">min</span>(pt_dist(p1 - pt_pairs[j][<span class="number">2</span>]), minD)</span><br><span class="line">            </span><br><span class="line">        r.append((minD, i))</span><br><span class="line">    r.sort(key=<span class="keyword">lambda</span> x: x[<span class="number">0</span>], reverse=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    num_out = <span class="built_in">min</span>(num_out, n)</span><br><span class="line">    <span class="keyword">if</span> min_radius &gt; <span class="number">0</span>:</span><br><span class="line">        min_radius_sqr = min_radius*min_radius</span><br><span class="line">        <span class="comment"># r = [x for x in r if x[0] &gt; min_radius_sqr]</span></span><br><span class="line">        cnt = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> r:</span><br><span class="line">            <span class="keyword">if</span> x[<span class="number">0</span>] &lt;= min_radius_sqr:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            cnt += <span class="number">1</span></span><br><span class="line">        num_out = <span class="built_in">min</span>(num_out, cnt)</span><br><span class="line"></span><br><span class="line">    conf = np.zeros((num_out, ), dtype=pts1.dtype) </span><br><span class="line">    pt1 = np.zeros((num_out, <span class="number">2</span>), dtype=pts1.dtype)</span><br><span class="line">    pt2 = np.zeros((num_out, <span class="number">2</span>), dtype=pts2.dtype)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_out):</span><br><span class="line">        conf[i] = pt_pairs[r[i][<span class="number">1</span>]][<span class="number">0</span>]</span><br><span class="line">        pt1[i, :] = pt_pairs[r[i][<span class="number">1</span>]][<span class="number">1</span>]</span><br><span class="line">        pt2[i, :] = pt_pairs[r[i][<span class="number">1</span>]][<span class="number">2</span>]</span><br><span class="line">    <span class="keyword">return</span> pt1, pt2, conf</span><br></pre></td></tr></table></figure>
 <h4 id="不进行排序"><a class="markdownIt-Anchor" href="#不进行排序"></a> 不进行排序</h4>
 <ul>
 <li>每个<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">r_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>初始化为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord">∞</span></span></span></span>。</li>
@@ -954,581 +1371,6 @@ FPN（Feature Pyramid Network）即特征金字塔网络。特征金字塔用于
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/414582739">Faster RCNN原理 | VGG | ResNet | ResNet50 FPN | ReXNets</a></li>
 <li><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/models/generated/torchvision.models.detection.fasterrcnn_resnet50_fpn.html">fasterrcnn_resnet50_fpn — Torchvision 0.15 documentation</a></li>
 <li><a target="_blank" rel="noopener" href="https://pytorch.org/vision/main/generated/torchvision.ops.FeaturePyramidNetwork.html">FeaturePyramidNetwork — Torchvision main documentation</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/05/27/ResNet%E5%8E%9F%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="yaanggny">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yaanggny的笔记">
-      <meta itemprop="description" content="日常记录">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yaanggny的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2023/05/27/ResNet%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">ResNet原理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-05-27 16:07:49 / 修改时间：22:40:39" itemprop="dateCreated datePublished" datetime="2023-05-27T16:07:49+08:00">2023-05-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/DL/" itemprop="url" rel="index"><span itemprop="name">DL</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/DL/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="resnet-deep-residual-learning-for-image-recognition"><a class="markdownIt-Anchor" href="#resnet-deep-residual-learning-for-image-recognition"></a> ResNet: Deep Residual Learning for Image Recognition</h2>
-<p>论文: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1512.03385v1.pdf">Deep Residual Learning for Image Recognition</a></p>
-<h2 id="作用和贡献"><a class="markdownIt-Anchor" href="#作用和贡献"></a> 作用和贡献</h2>
-<ul>
-<li>ResNet提出残差网络，让深度神经网络的学习和训练变得更容易，且精度可以随深度增加而提升。</li>
-<li>提出的152层网络，比VGG网络计算量还小，且在ImageNet数据集上具有更小错误率，赢得ILSVRC 2015分类挑战赛第一</li>
-<li>深层表示对于许多视觉识别任务很重要。通过使用极深层网络，在COCO目标检测任务上提升28%。</li>
-<li>赢得ImageNet检测、定位挑战第一，COCO检测和分割第一</li>
-<li>ResNet已经成为深度学习分类等任务的基准</li>
-</ul>
-<h2 id="深层网络的问题"><a class="markdownIt-Anchor" href="#深层网络的问题"></a> 深层网络的问题</h2>
-<p>堆叠网络层、增加网络层数并不总是能让网络的精度更高或者得到更小的错误率，相反层数增加反而使得训练误差增加，尽管不是过拟合导致的。</p>
-<ul>
-<li>梯度消失和爆炸问题基本已经通过归一化初始化和中间归一化层（BN）解决。</li>
-<li>随着层数增加，精确率饱和，然后迅速下降。这并不是过拟合导致的。且对合适的网络增加层数导致训练误差增加。作者实验结果如下图。</li>
-</ul>
-<figure align="center"><img src="/blog/2023/05/27/ResNet%E5%8E%9F%E7%90%86/fig-0059b3efc22525ce3ad59a932415a2be497d36d8ed852654052027932e5d04b5.png" alt="picture 1">
-<figcaption>网络的训练误差和测试误差均随着网络深度增加而增加。</figcaption></figure>
-<p>残差网络起作用并不是因为解决了梯度消失或爆炸问题。在Resnet之前，梯度问题很大程度上已经通过批归一化解决。ResNet论文也证实了这一点：</p>
-<blockquote>
-<p>We argue that this optimization difficulty is unlikely to be caused by vanishing gradients. These plain networks are trained with BN [16], which ensures forward propagated signals to have non-zero variances. We also verify that the backward propagated gradients exhibit healthy norms with BN. So neither forward nor backward signals vanish.<br />
-我们认为，这种优化困难不太可能是由梯度消失引起的。这些普通网络是用BN[16]训练的，这确保了前向传播的信号具有非零方差。我们还验证了后向传播的梯度与BN表现出健康的范数。因此，前向和后向信号都不会消失。</p>
-</blockquote>
-<p>残差网络使得即使神经网络中的层深度不断增加，它们也有助于更快地减少训练误差，并且收敛速度更高。这反过来又有助于简化优化。但根据论文和作者的说法，这也只是猜测。最有可能的是，相等映射在某些方面有所帮助，这仍然需要仔细研究。</p>
-<h2 id="残差网络如何解决退化问题"><a class="markdownIt-Anchor" href="#残差网络如何解决退化问题"></a> 残差网络如何解决退化问题</h2>
-<ul>
-<li>跳跃连接</li>
-<li>相等映射</li>
-</ul>
-<p>ResNet使用相等映射实现了跳跃连接。任何具有短连/跳跃连接的层或块都称为残差学习块。如下图所示。</p>
-<figure align="center"><img src="/blog/2023/05/27/ResNet%E5%8E%9F%E7%90%86/fig-bf3cd681593d90d5bcefe779e5136e593800d939545a5a668a1bc2e1fb69e0d4.png" alt="picture 2">
-<figcaption>残差网络中的残差块(注意第二个relu的位置)</figcaption></figure>
-<p>网络堆叠区域相当于学习残差函数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mi mathvariant="script">H</mi><mo stretchy="false">(</mo><mi mathvariant="script">x</mi><mo stretchy="false">)</mo></mrow><mo>−</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}(x)=\mathcal{H(x)}-x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.09931em;">F</span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.00965em;">H</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">x</span></span></span></span>。</p>
-<h2 id="网络结构"><a class="markdownIt-Anchor" href="#网络结构"></a> 网络结构</h2>
-<h3 id="残差块"><a class="markdownIt-Anchor" href="#残差块"></a> 残差块</h3>
-<p>残差块实现（Pytorch）：</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">BasicBlock</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>():</span><br><span class="line">        ...</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        identity = x</span><br><span class="line">        out = self.conv1(x)</span><br><span class="line">        out = self.bn1(out)</span><br><span class="line">        out = self.relu(out)</span><br><span class="line"></span><br><span class="line">        out = self.conv2(out)</span><br><span class="line">        out = self.bn2(out)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> self.downsample <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            identity = self.downsample(x)</span><br><span class="line"></span><br><span class="line">        out += identity</span><br><span class="line">        <span class="keyword">return</span> self.relu(out)</span><br></pre></td></tr></table></figure>
-<h3 id="使用1x1卷积实现残差块输入输出维度匹配"><a class="markdownIt-Anchor" href="#使用1x1卷积实现残差块输入输出维度匹配"></a> 使用1x1卷积实现残差块输入输出维度匹配</h3>
-<figure align="center"><img src="/blog/2023/05/27/ResNet%E5%8E%9F%E7%90%86/fig-20230523002139.png" alt="">
-<figcaption>普通相等映射和添加1x1卷积的相等映射。</figcaption></figure>
-<h3 id="残差网络结构"><a class="markdownIt-Anchor" href="#残差网络结构"></a> 残差网络结构</h3>
-<figure align="center"><img src="/blog/2023/05/27/ResNet%E5%8E%9F%E7%90%86/fig-20230523003508.png" alt="">
-<figcaption>VGG19、普通34层网络和ResNet-34网络，点画线表示增加维度（图来自论文）</figcaption></figure>
-<p>VGG-19: 19.6 billion FLOPs，普通-34：3.6 billion FLOPs，ResNet-34: 3.6 billion FLOPs，跳跃连接几乎不增加计算量。</p>
-<figure align="center"><img src="/blog/2023/05/27/ResNet%E5%8E%9F%E7%90%86/fig-20230523005356.png" alt="">
-<figcaption>不同层数的ResNet（来自论文）</figcaption></figure>
-<p>ResNet-101仍然比VGG-19计算量小。</p>
-<figure align="center"><img src="/blog/2023/05/27/ResNet%E5%8E%9F%E7%90%86/fig-20230523010307.png" alt="">
-<figcaption>层数多的网络使用深层的残差函数。（左：BasicBlock，右：BottleNeck）</figcaption></figure>
-<h2 id="实验"><a class="markdownIt-Anchor" href="#实验"></a> 实验</h2>
-<figure align="center"><img src="/blog/2023/05/27/ResNet%E5%8E%9F%E7%90%86/fig-20230523005457.png" alt="">
-<figcaption>在ImageNet数据集上的错误率对比，粗线表示验证误差，细线表示训练误差。</figcaption></figure>
-<p><img src="/blog/2023/05/27/ResNet%E5%8E%9F%E7%90%86/fig-20230523010027.png" alt="" /></p>
-<h2 id="总结残差网络的优势"><a class="markdownIt-Anchor" href="#总结残差网络的优势"></a> 总结：残差网络的优势</h2>
-<ul>
-<li>With ResNets, learning continues even as the depth of networks grows. ResNet-101 and ResNet-152 are very concrete proofs of it.</li>
-</ul>
-<ul>
-<li>Deeper residual networks provide better learning capability and better convergence also.</li>
-<li>No increase in the number of parameters when compared to non-ResNet architectures with same number of layers. That is, identity mapping does not introduce any additional computation complexity.</li>
-<li>Less training error when compared to counterpart plain nets.</li>
-<li>Residual Neural Networks are easy to optimize and work very well with standard optimizers like SGD (Stochastic Gradient Descent).</li>
-</ul>
-<h2 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h2>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1512.03385v1.pdf">Deep Residual Learning for Image Recognition</a></li>
-<li><a target="_blank" rel="noopener" href="https://debuggercafe.com/residual-neural-networks-resnets-paper-explanation/">Residual Neural Networks – ResNets: Paper Explanation</a></li>
-<li><a target="_blank" rel="noopener" href="https://datawhalechina.github.io/thorough-pytorch/%E7%AC%AC%E5%8D%81%E7%AB%A0/ResNet%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.html">ResNet源码解读 — 深入浅出PyTorch - github.io</a></li>
-</ul>
-<h3 id="实现"><a class="markdownIt-Anchor" href="#实现"></a> 实现</h3>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/daweq/article/details/127540449">ResNet18网络的具体构成</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/pytorch/vision/blob/main/torchvision/models/resnet.py">https://github.com/pytorch/vision/blob/main/torchvision/models/resnet.py</a></li>
-<li><a target="_blank" rel="noopener" href="https://debuggercafe.com/implementing-resnet18-in-pytorch-from-scratch/">Implementing ResNet18 in PyTorch from Scratch</a></li>
-</ul>
-<h3 id="resnet18使用"><a class="markdownIt-Anchor" href="#resnet18使用"></a> Resnet18使用</h3>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://pytorch.org/vision/main/auto_examples/plot_scripted_tensor_transforms.html">Tensor transforms and JIT(以Resnet18为例介绍torchvison transforms模块和jit)</a></li>
-<li><a target="_blank" rel="noopener" href="https://pytorch.org/hub/pytorch_vision_resnet/">pytorch-hub-使用resnet</a></li>
-<li><a target="_blank" rel="noopener" href="https://huggingface.co/microsoft/resnet-18">huggingface - microsoft/resnet-18</a>  firfox 打开<br />
-github: huggingface/transformers</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/05/26/Transformer%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E7%9B%AE%E5%BD%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="yaanggny">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yaanggny的笔记">
-      <meta itemprop="description" content="日常记录">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yaanggny的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2023/05/26/Transformer%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%E7%9B%AE%E5%BD%95/" class="post-title-link" itemprop="url">Transformer相关资料目录</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-05-26 07:45:44" itemprop="dateCreated datePublished" datetime="2023-05-26T07:45:44+08:00">2023-05-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-06-03 22:29:58" itemprop="dateModified" datetime="2023-06-03T22:29:58+08:00">2023-06-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/DL/" itemprop="url" rel="index"><span itemprop="name">DL</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/DL/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="transformer原理入门"><a class="markdownIt-Anchor" href="#transformer原理入门"></a> Transformer原理入门</h2>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/338817680">Transformer模型详解（图解最完整版） - 知乎</a> (<strong>推荐</strong>)
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9b87b945151e">Transformer 模型详解 - 简书</a> (复制)</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/LXP-Never/p/15850142.html">Transformer模型详解 - 博客园</a></li>
-<li><a target="_blank" rel="noopener" href="https://kexue.fm/archives/4765">《Attention is All You Need》浅读（简介+代码） - 科学空间</a> （分析优缺点）</li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/340149804">Vision Transformer 超详细解读 (原理分析+代码解读) (一) - 知乎</a> (原作者)
-<ul>
-<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI5MDUyMDIxNA==&amp;mid=2247531914&amp;idx=1&amp;sn=3b8d0b4d3821c64e9051a4d645467995&amp;">搞懂 Vision Transformer 原理和代码，看这篇技术综述就够了 - 极市公众号</a> (转载)</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/48508221">详解Transformer （Attention Is All You Need） - 知乎</a></li>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7219249005904166949">Transformer模型详解及代码实现 - 掘金</a></li>
-<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIwMTc4ODE0Mw==&amp;mid=2247486960&amp;idx=1&amp;sn=1b4b9d7ec7a9f40fa8a9df6b6f53bbfb&amp;">一文读懂「Attention is All You Need」| 附代码实现</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/NLP-LOVE/ML-NLP/tree/master/NLP/16.7%20Transformer">https://github.com/NLP-LOVE/ML-NLP/tree/master/NLP/16.7 Transformer</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/benzhujie1245com/article/details/117173090">Transformer 模型详解_空杯的境界的博客-CSDN博客</a>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://jalammar.github.io/illustrated-transformer/">The Illustrated Transformer - github.io</a> (英文)</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://terrifyzhao.github.io/2019/01/11/Transformer%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3.html">Transformer模型详解 - github.io</a></li>
-<li><a target="_blank" rel="noopener" href="http://pointborn.com/article/2022/3/2/1831.html">Transformer 模型详解</a></li>
-</ul>
-<h2 id="transformer系列文章"><a class="markdownIt-Anchor" href="#transformer系列文章"></a> Transformer系列文章</h2>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348593638">Vision Transformer , 通用 Vision Backbone 超详细解读 (原理分析+代码解读) (目录) - 知乎</a> （原作者）</li>
-<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzI5MDUyMDIxNA==&amp;action=getalbum&amp;album_id=2090301627206303744&amp;">#搞懂Tranformer系列 - 极市公众号</a></li>
-<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzI5MDUyMDIxNA==&amp;action=getalbum&amp;album_id=1685054606675902466&amp;">#Transformer - 极市公众号</a></li>
-</ul>
-<h2 id="效率提升"><a class="markdownIt-Anchor" href="#效率提升"></a> 效率提升</h2>
-<ul>
-<li>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/569482746">Vision Transformer在CV任务中的速度如何保证 - 知乎</a> (作者PhD课题是Vision Transformer的efficiency问题，<strong>效率提升必看</strong>)</p>
-<blockquote>
-<p>PVT: Pyramid Vision Transformer(ICCV 2021). <a target="_blank" rel="noopener" href="https://github.com/whai362/PVT">whai362/PVT</a><br />
-LIT, Less is More: Pay Less Attention in Vision Transformers (AAAI 2022)。<br />
-LITv2：Fast Vision Transformers with HiLo Attention (NeurIPS 2022)。 <a target="_blank" rel="noopener" href="https://github.com/ziplab/LIT">github: ziplab/LIT</a></p>
-</blockquote>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/353222035">大白话Pyramid Vision Transformer - 知乎</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/482141361/answer/2467438788">为什么 Vision transformer 训练和推理很慢？ - 知乎</a></p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/04/25/Batch-Normalization/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="yaanggny">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yaanggny的笔记">
-      <meta itemprop="description" content="日常记录">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yaanggny的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2023/04/25/Batch-Normalization/" class="post-title-link" itemprop="url">Batch-Normalization</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-04-25 22:12:37" itemprop="dateCreated datePublished" datetime="2023-04-25T22:12:37+08:00">2023-04-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-04-28 00:24:47" itemprop="dateModified" datetime="2023-04-28T00:24:47+08:00">2023-04-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="batch-normalization"><a class="markdownIt-Anchor" href="#batch-normalization"></a> Batch Normalization</h2>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shine-lee/p/11989612.html">Batch Normalization详解</a><br />
-<a target="_blank" rel="noopener" href="https://blog.csdn.net/blogshinelee/article/details/103405783">https://blog.csdn.net/blogshinelee/article/details/103405783</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/435507061">深度解析Batch normalization（批归一化）</a><br />
-<a target="_blank" rel="noopener" href="https://blog.csdn.net/hjimce/article/details/50866313">深度学习（二十九）Batch Normalization 学习笔记</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42211626/article/details/122854079">Batch Normalization详解（原理+实验分析）</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b38e14c1f14d">https://www.jianshu.com/p/b38e14c1f14d</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/04/25/MobileNet%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="yaanggny">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yaanggny的笔记">
-      <meta itemprop="description" content="日常记录">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yaanggny的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2023/04/25/MobileNet%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">MobileNet论文笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-04-25 20:49:19" itemprop="dateCreated datePublished" datetime="2023-04-25T20:49:19+08:00">2023-04-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-04-28 00:27:02" itemprop="dateModified" datetime="2023-04-28T00:27:02+08:00">2023-04-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/DL/" itemprop="url" rel="index"><span itemprop="name">DL</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/DL/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/DL/CV/CNN/" itemprop="url" rel="index"><span itemprop="name">CNN</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="mobilenets-efficient-convolutional-neural-networks-for-mobile-vision-applications"><a class="markdownIt-Anchor" href="#mobilenets-efficient-convolutional-neural-networks-for-mobile-vision-applications"></a> MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications</h2>
-<p>Year: 2017， Google<br />
-Paper: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1704.04861">https://arxiv.org/pdf/1704.04861</a><br />
-Code:</p>
-<table>
-<thead>
-<tr>
-<th>framework</th>
-<th>link</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Tensorflow</td>
-<td>- <a target="_blank" rel="noopener" href="https://keras.io/api/applications/mobilenet/">https://keras.io/api/applications/mobilenet/</a> <br> - <a target="_blank" rel="noopener" href="https://github.com/miladtm94/MobileNet">https://github.com/miladtm94/MobileNet</a></td>
-</tr>
-<tr>
-<td>Pytorch</td>
-<td>- <a target="_blank" rel="noopener" href="https://github.com/osmr/imgclsmob/blob/956b4ebab0bbf98de4e1548287df5197a3c7154e/pytorch/pytorchcv/models/mobilenet.py">imgclsmob/pytorch/pytorchcv/models/mobilenet.py</a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="主要贡献"><a class="markdownIt-Anchor" href="#主要贡献"></a> 主要贡献</h2>
-<ul>
-<li>提出深度可分离卷积，减少计算量，性能影响很小</li>
-<li>可调整超参数，适应网络结构
-<ul>
-<li>宽度因子：改变通道数，影响参数量</li>
-<li>分辨率因子： 改变输入分辨率，不影响参数量</li>
-</ul>
-</li>
-</ul>
-<h2 id="网络结构"><a class="markdownIt-Anchor" href="#网络结构"></a> 网络结构</h2>
-<h3 id="深度可分离卷积depthwise-separatable"><a class="markdownIt-Anchor" href="#深度可分离卷积depthwise-separatable"></a> 深度可分离卷积(depthwise separatable)</h3>
-<p><img src="/blog/2023/04/25/MobileNet%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/fig-2023-04-27-00-17-05.png" alt="" /></p>
-<blockquote>
-<p>src: <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44708206/article/details/127644989">https://blog.csdn.net/qq_44708206/article/details/127644989</a></p>
-</blockquote>
-<p>计算量变化<br />
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">D_k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>: kernel size<br />
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mi>F</mi></msub></mrow><annotation encoding="application/x-tex">D_F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>: images size (square image)</p>
-<p>标准卷积：</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>c</mi><mn>1</mn></msub><mo>=</mo><msub><mi>D</mi><mi>k</mi></msub><mo>⋅</mo><msub><mi>D</mi><mi>k</mi></msub><mo>⋅</mo><mi>M</mi><mo>⋅</mo><msub><mi>D</mi><mi>F</mi></msub><mo>⋅</mo><msub><mi>D</mi><mi>F</mi></msub><mo>⋅</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">c_1=D_k\cdot D_k\cdot M \cdot D_F\cdot D_F\cdot N
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span></span></p>
-<p>深度可分离卷积：</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>c</mi><mn>2</mn></msub><mo>=</mo><msub><mi>D</mi><mi>k</mi></msub><mo>⋅</mo><msub><mi>D</mi><mi>k</mi></msub><mo>⋅</mo><mi>M</mi><mo>⋅</mo><msub><mi>D</mi><mi>F</mi></msub><mo>⋅</mo><msub><mi>D</mi><mi>F</mi></msub><mo>+</mo><mn>1</mn><mo>×</mo><mn>1</mn><mo>×</mo><mi>M</mi><mo>⋅</mo><mi>N</mi><mo>⋅</mo><msub><mi>D</mi><mi>F</mi></msub><mo>⋅</mo><msub><mi>D</mi><mi>F</mi></msub></mrow><annotation encoding="application/x-tex">c_2=D_k\cdot D_k\cdot M\cdot D_F\cdot D_F + 1\times 1 \times M\cdot N\cdot D_F\cdot D_F
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
-<p>比值：</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><msub><mi>c</mi><mn>2</mn></msub><msub><mi>c</mi><mn>1</mn></msub></mfrac><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>+</mo><mfrac><mn>1</mn><msubsup><mi>D</mi><mi>k</mi><mn>2</mn></msubsup></mfrac></mrow><annotation encoding="application/x-tex">\frac{c_2}{c_1}=\frac{1}{N}+\frac{1}{D_k^2}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.94356em;vertical-align:-0.8360000000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1075599999999999em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.308748em;vertical-align:-0.9873080000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7959079999999998em;"><span style="top:-2.398692em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span><span style="top:-3.0448em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.30130799999999996em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9873080000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-<p>在使用<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>×</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">3\times 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>的卷积核时，标准卷积计算量是深度可分离卷积计算量的8~9倍。</p>
-<p>深度可分离卷积的网络结构：<br />
-<img src="/blog/2023/04/25/MobileNet%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/fig-2023-04-27-00-19-24.png" alt="" /></p>
-<blockquote>
-<p>为什么3x3卷积后要加激活：增加非线性，提升表达能力。</p>
-</blockquote>
-<h3 id="宽度因子width-multiplier"><a class="markdownIt-Anchor" href="#宽度因子width-multiplier"></a> 宽度因子(Width Multiplier)</h3>
-<p>宽度因子<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>∈</mo><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\alpha\in (0,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>：改变(减少)网络输入输出通道数，影响参数量。</p>
-<h3 id="分辨率因子"><a class="markdownIt-Anchor" href="#分辨率因子"></a> 分辨率因子</h3>
-<p>分辨率因子<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>∈</mo><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\beta\in (0,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>：改变输入分辨率（和中间每层的分辨率，通常只调整输入分辨率），不影响参数量。</p>
-<h2 id="实验"><a class="markdownIt-Anchor" href="#实验"></a> 实验</h2>
-<h2 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h2>
-<ul>
-<li>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37555071/article/details/108393809">轻量级神经网络MobileNet全家桶详解</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU5MzQyMzk5OQ==&amp;mid=2247484947&amp;idx=1&amp;sn=94e47a98e9f73509ecf299054e6306d7&amp;">从MobileNet看轻量级神经网络的发展</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37555071/article/details/108393889">为什么MobileNet及其变体（如ShuffleNet）会变快？</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI5MDUyMDIxNA==&amp;mid=2247506133&amp;idx=2&amp;sn=1082d154907cedb3ebea028df3787d8e&amp;">深入剖析：为什么MobileNet及其变体（如ShuffleNet）会变快？</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv15505735?jump_opus=1">7.1 MobileNet网络详解</a></p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yE411p7L7/">https://www.bilibili.com/video/BV1yE411p7L7/</a></li>
-</ul>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV16b4y117XH?p=1">【精读AI论文】谷歌轻量化网络MobileNet V1</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44708206/article/details/127644989">MobileNet网络详解(V1~V3)</a></p>
-</li>
-</ul>
-<hr />
-<h3 id="扩展知识"><a class="markdownIt-Anchor" href="#扩展知识"></a> 扩展知识</h3>
-<p><strong>GEMM算法</strong></p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32998593/article/details/86177151">Winograd，GEMM算法综述（CNN中高效卷积实现）（上）</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_20880415/article/details/104332743">GEMM算法及优化流程详解</a></li>
-</ul>
-<p><strong>网络加速</strong></p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://102.alibaba.com/detail?id=124">含代码 | 支付宝如何优化移动端深度学习引擎？</a></li>
-<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1163013">https://cloud.tencent.com/developer/article/1163013</a></li>
 </ul>
 
       

@@ -25,6 +25,44 @@
 <li><a href="https://www.luogu.com.cn/blog/IowaBattleship/latex-gong-shi-tai-quan">LaTeX 数学公式大全</a></li>
 <li><a href="https://upupming.site/2018/10/18/katex-test/">KaTeX Test with hexo-theme-melody</a> （作者是写过hexo公式插件的，但是其2023.4版本渲染部分是正体，可参考公式语法）</li>
 </ul>
+<h2 id="表格"><a class="markdownIt-Anchor" href="#表格"></a> 表格</h2>
+<h3 id="表格中内容换行"><a class="markdownIt-Anchor" href="#表格中内容换行"></a> 表格中内容换行</h3>
+<ul>
+<li>单元格内换行：在需要换行的位置加<code>&lt;br&gt;</code>标签</li>
+</ul>
+<h3 id="表格内嵌列表"><a class="markdownIt-Anchor" href="#表格内嵌列表"></a> 表格内嵌列表</h3>
+<ul>
+<li>单元格内嵌列表：使用<code>&lt;li&gt;</code>标签</li>
+</ul>
+<h3 id="表格合并单元格"><a class="markdownIt-Anchor" href="#表格合并单元格"></a> 表格合并单元格</h3>
+<p>html语法使用，tr，td, rowspan/colspan属性的使用。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:left">优点</th>
+<th style="text-align:left">缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:left">B</td>
+<td style="text-align:left">C</td>
+</tr>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:left">B</td>
+<td style="text-align:left">C <tr><td rowspan="2">A</td><td rowspan="2">B</td><td>C1</td></tr><tr><td>C2</td> </tr></td>
+</tr>
+</tbody>
+</table>
+<p>或者整个表格使用html语法。</p>
+<h3 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h3>
+<ul>
+<li><a href="https://blog.csdn.net/weixin_42782150/article/details/126877404">Markdown中表格中内容换行、左对齐等基本操作-CSDN</a></li>
+<li><a href="https://blog.csdn.net/tyustli/article/details/128421566">markdown 合并单元格 - CSDN</a></li>
+</ul>
 ]]></content>
       <categories>
         <category>Markdown</category>
@@ -52,6 +90,28 @@
 <figure class="highlight py"><table><tr><td class="code"><pre><span class="line">z = x.copy()   <span class="comment"># start with keys and values of x</span></span><br><span class="line">z.update(y)    <span class="comment"># modifies z with keys and values of y</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">x = &#123;&#x27;a&#x27;: 1, &#x27;b&#x27;: 2&#125;</span><br><span class="line">y = &#123;&#x27;b&#x27;: 3, &#x27;c&#x27;: 4&#125;</span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; z</span></span><br><span class="line">&#123;&#x27;a&#x27;: 1, &#x27;b&#x27;: 3, &#x27;foo&#x27;: 1, &#x27;bar&#x27;: 2, &#x27;c&#x27;: 4&#125;</span><br></pre></td></tr></table></figure>
 <p>Ref: <a href="https://stackoverflow.com/questions/38987/how-do-i-merge-two-dictionaries-in-a-single-expression-in-python/26853961#26853961">How do I merge two dictionaries in a single expression in Python?</a></p>
+<h2 id="变量作用域及嵌套函数中的变量作用域"><a class="markdownIt-Anchor" href="#变量作用域及嵌套函数中的变量作用域"></a> 变量作用域及嵌套函数中的变量作用域</h2>
+<p><code>nonlocal</code>关键字使得其声明的变量和之前创建的最近作用域的变量绑定。</p>
+<blockquote>
+<p>A special quirk of Python is that – if no global or nonlocal statement is in effect – assignments to names always go into the innermost scope. Assignments do not copy data — they just bind names to objects. The same is true for deletions: the statement del x removes the binding of x from the namespace referenced by the local scope.<br />
+若没有global或nonlocal修饰，赋值总是绑定到最近的内部变量名。</p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    x = <span class="number">0</span></span><br><span class="line">    y = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">func_local</span>():</span><br><span class="line">        x += <span class="number">1</span>   <span class="comment"># UnboundLocalError: local variable &#x27;x&#x27; referenced before assignment</span></span><br><span class="line">        x += <span class="number">1</span></span><br><span class="line">        y = <span class="number">2</span></span><br><span class="line">        <span class="built_in">print</span>(x, y)</span><br><span class="line">    func_local()</span><br><span class="line">    <span class="built_in">print</span>(x, y)</span><br><span class="line">func()</span><br></pre></td></tr></table></figure>
+<p>应在func_local()中声明，</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    x = <span class="number">0</span></span><br><span class="line">    y = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">func_local</span>():</span><br><span class="line">        <span class="keyword">nonlocal</span> x</span><br><span class="line">        x += <span class="number">1</span></span><br><span class="line">        y = <span class="number">2</span></span><br><span class="line">        <span class="built_in">print</span>(x, y)</span><br><span class="line">    func_local()</span><br><span class="line">    <span class="built_in">print</span>(x, y)</span><br><span class="line"></span><br><span class="line">func()</span><br></pre></td></tr></table></figure>
+<p>官方示例</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">scope_test</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">do_local</span>():</span><br><span class="line">        spam = <span class="string">&quot;local spam&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">do_nonlocal</span>():</span><br><span class="line">        <span class="keyword">nonlocal</span> spam</span><br><span class="line">        spam = <span class="string">&quot;nonlocal spam&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">do_global</span>():</span><br><span class="line">        <span class="keyword">global</span> spam</span><br><span class="line">        spam = <span class="string">&quot;global spam&quot;</span></span><br><span class="line"></span><br><span class="line">    spam = <span class="string">&quot;test spam&quot;</span></span><br><span class="line">    do_local()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;After local assignment:&quot;</span>, spam)</span><br><span class="line">    do_nonlocal()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;After nonlocal assignment:&quot;</span>, spam)</span><br><span class="line">    do_global()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;After global assignment:&quot;</span>, spam)</span><br><span class="line"></span><br><span class="line">scope_test()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;In global scope:&quot;</span>, spam)</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">After local assignment: test spam</span><br><span class="line">After nonlocal assignment: nonlocal spam</span><br><span class="line">After global assignment: nonlocal spam</span><br><span class="line">In global scope: global spam</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The global statement can be used to indicate that particular variables live in the global scope and should be rebound there; the nonlocal statement indicates that particular variables live in an enclosing scope and should be rebound there.<br />
+<code>global</code>用于全局范围，<code>nonlocal</code>用于一个封闭的范围内，类似一个函数？</p>
+</blockquote>
+<p>Ref:</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/5218895/python-nested-functions-variable-scoping">https://stackoverflow.com/questions/5218895/python-nested-functions-variable-scoping</a></li>
+<li><a href="https://docs.python.org/3/tutorial/classes.html#python-scopes-and-namespaces">https://docs.python.org/3/tutorial/classes.html#python-scopes-and-namespaces</a></li>
+</ul>
 ]]></content>
       <categories>
         <category>Python</category>
@@ -881,6 +941,8 @@ TXT: <a href="/blog/2023/04/11/hexo-test_rendering/test_txt.txt">test_txt.txt</a
 </ul>
 <p>实现：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">vector&lt;cv::KeyPoint&gt; <span class="title">brownANMS</span><span class="params">(<span class="type">const</span> vector&lt;cv::KeyPoint&gt;&amp; keyPoints, <span class="type">int</span> numRetPoints, <span class="type">float</span> alpha=<span class="number">0.9</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    vector&lt;pair&lt;<span class="type">float</span>, <span class="type">int</span>&gt;&gt; results;</span><br><span class="line">    results.<span class="built_in">push_back</span>(<span class="built_in">make_pair</span>(FLT_MAX, <span class="number">0</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">int</span> i = <span class="number">1</span>; i &lt; keyPoints.<span class="built_in">size</span>(); ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">float</span> minDist = FLT_MAX;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">int</span> j = <span class="number">0</span>; j &lt; i; ++j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (keyPoints[i].response &lt; keyPoints[j].response*alpha)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="type">float</span> exp1 = (keyPoints[j].pt.x - keyPoints[i].pt.x);</span><br><span class="line">                <span class="type">float</span> exp2 = (keyPoints[j].pt.y - keyPoints[i].pt.y);</span><br><span class="line">                <span class="type">float</span> curDist = <span class="built_in">sqrt</span>(exp1 * exp1 + exp2 * exp2);</span><br><span class="line">                minDist = <span class="built_in">min</span>(curDist, minDist);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        results.<span class="built_in">push_back</span>(<span class="built_in">make_pair</span>(minDist, i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(results.<span class="built_in">begin</span>(), results.<span class="built_in">end</span>(), <span class="built_in">sort_pred</span>());  <span class="comment">// sorting by radius</span></span><br><span class="line">    vector&lt;cv::KeyPoint&gt; kp;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; numRetPoints; ++i)</span><br><span class="line">        kp.<span class="built_in">push_back</span>(keyPoints[results[i].second]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> kp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Python版本</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">FLT_INF = <span class="number">9e9</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">nms</span>(<span class="params">pts1, pts2, mconf, num_out=<span class="number">500</span>, min_radius=<span class="number">1</span></span>):</span><br><span class="line">    <span class="keyword">assert</span> pts1.shape[<span class="number">0</span>] == pts2.shape[<span class="number">0</span>] <span class="keyword">and</span> pts1.shape[<span class="number">0</span>] == mconf.shape[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    n = mconf.shape[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    pt_pairs = <span class="built_in">list</span>(<span class="built_in">zip</span>(mconf, pts1, pts2))</span><br><span class="line">    pt_pairs.sort(key=<span class="keyword">lambda</span> x: x[<span class="number">0</span>], reverse=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pt_dist</span>(<span class="params">p1, p2</span>):</span><br><span class="line">        dx = p1[<span class="number">0</span>] - p2[<span class="number">0</span>]</span><br><span class="line">        dy = p1[<span class="number">1</span>] - p2[<span class="number">1</span>]</span><br><span class="line">        s = dx*dx + dy*dy</span><br><span class="line">        <span class="keyword">return</span> s</span><br><span class="line">        <span class="comment"># return math.sqrt(s)</span></span><br><span class="line"></span><br><span class="line">    r = [(FLT_INF, <span class="number">0</span>)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">        minD = FLT_INF</span><br><span class="line">        p1 = pt_pairs[i][<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, i):</span><br><span class="line">            <span class="comment"># minD = min(np.linalg.norm(p1 - pts2[j, :]), minD)  # slowly</span></span><br><span class="line">            minD = <span class="built_in">min</span>(pt_dist(p1 - pt_pairs[j][<span class="number">2</span>]), minD)</span><br><span class="line">            </span><br><span class="line">        r.append((minD, i))</span><br><span class="line">    r.sort(key=<span class="keyword">lambda</span> x: x[<span class="number">0</span>], reverse=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    num_out = <span class="built_in">min</span>(num_out, n)</span><br><span class="line">    <span class="keyword">if</span> min_radius &gt; <span class="number">0</span>:</span><br><span class="line">        min_radius_sqr = min_radius*min_radius</span><br><span class="line">        <span class="comment"># r = [x for x in r if x[0] &gt; min_radius_sqr]</span></span><br><span class="line">        cnt = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> r:</span><br><span class="line">            <span class="keyword">if</span> x[<span class="number">0</span>] &lt;= min_radius_sqr:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            cnt += <span class="number">1</span></span><br><span class="line">        num_out = <span class="built_in">min</span>(num_out, cnt)</span><br><span class="line"></span><br><span class="line">    conf = np.zeros((num_out, ), dtype=pts1.dtype) </span><br><span class="line">    pt1 = np.zeros((num_out, <span class="number">2</span>), dtype=pts1.dtype)</span><br><span class="line">    pt2 = np.zeros((num_out, <span class="number">2</span>), dtype=pts2.dtype)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_out):</span><br><span class="line">        conf[i] = pt_pairs[r[i][<span class="number">1</span>]][<span class="number">0</span>]</span><br><span class="line">        pt1[i, :] = pt_pairs[r[i][<span class="number">1</span>]][<span class="number">1</span>]</span><br><span class="line">        pt2[i, :] = pt_pairs[r[i][<span class="number">1</span>]][<span class="number">2</span>]</span><br><span class="line">    <span class="keyword">return</span> pt1, pt2, conf</span><br></pre></td></tr></table></figure>
 <h4 id="不进行排序"><a class="markdownIt-Anchor" href="#不进行排序"></a> 不进行排序</h4>
 <ul>
 <li>每个<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">r_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>初始化为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">\infty</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord">∞</span></span></span></span>。</li>
@@ -945,6 +1007,150 @@ x_{i+1} = \underset{x_j}{\argmin} |x_i − x_j |,
       <tags>
         <tag>CV</tag>
         <tag>特征提取</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>视觉Transformer (ViT)入门</title>
+    <url>/blog/2023/06/18/20230618-ViT%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<p>Transformer最早用于NLP领域中，视觉Transformer（Visual Transformer，ViT）出自Google的论文 <em><a href="https://arxiv.org/pdf/2010.11929.pdf">An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale, ICLR 2021</a></em>，是基于Transformer 模型在视觉领域的开篇之作。本文主要介绍其网络结构和基本原理。</p>
+<h2 id="摘要"><a class="markdownIt-Anchor" href="#摘要"></a> 摘要</h2>
+<p>虽然Transformer体系结构已经成为自然语言处理任务的事实标准，但其在计算机视觉中的应用仍然有限。在视觉中，注意力要么与卷积网络结合使用，要么用于替换卷积网络的某些组件，同时保持其整体结构。我们证明，这种对CNN的依赖是不必要的，并且<strong>直接应用于图像块序列的纯变换器（Transformer）可以在图像分类任务中表现得很好。</strong> 当在大量数据上进行预训练并转移到多个中小型图像识别基准任务（ImageNet、CIFAR-100、VTAB等）时，与最先进的卷积网络相比，视觉Transformer获得了优异的结果，同时需要更少的计算资源进行训练。</p>
+<p>基于自注意力结构，Transformer已成为NLP领域的首选方法。由于其计算效率和可扩展性（scalability），使得可以训练更大规模的网络，随着模型和数据的规模增长，仍然没有饱和的迹象。</p>
+<p>在计算机视觉中，卷积架构仍然占据主导地位。许多研究受NLP中的成功启发，尝试在CNN类结构结合自注意力机制，但是表现并不好。在大规模图像分类中，经典的ResNet类网络结构仍然是效果最好的。</p>
+<p>受Transformer扩展到NLP领域的成功启发，我们使用了把标准Transformer仅做小改动后直接应用到图像，但是结果令人沮丧。我们把图像分块，并对块生成特征（线性embedding）后送入Transformer，图像块按照NLP中token那样使用。在图像分类任务中使用监督训练，在中等规模数据集如ImageNet上训练，但是模型结果明显不如ResNet类网络的结果。</p>
+<p>和本文最相关的研究是 <em><strong>On the relationship between selfattention and convolutional layers. ICLR, 2020</strong></em>，其提取2x2大小的图块，并使用全自注意力，其只适合于小分辨率图像。</p>
+<p>我们认为这种结果是意料之中的，<strong>因为Transformer缺乏CNN网络的归纳性偏好（the inductive biases），因此不能在训练数据不充足的情况下泛化好。</strong></p>
+<p>但是在更大规模数据集（14M-300M图片）上训练后情况变得不同，此时可以胜过归纳偏好。<strong>当在充足的大规模数据集上训练，再迁移到小数据集上时，ViT获得极好的结果。</strong></p>
+<h2 id="模型结构"><a class="markdownIt-Anchor" href="#模型结构"></a> 模型结构</h2>
+<figure align="center"><img src="/blog/2023/06/18/20230618-ViT%E5%85%A5%E9%97%A8/fig-9196c2790e8d4904676729642204938dd442d6fd7cf29c086ce34cff52240cfa.png">
+<figcaption>ViT结构</figcaption></figure>
+<p>标准Transformer输入token的一维序列，对于2D图像，将图像划分为展平块的序列，即<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span>通道的图像<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mi>H</mi><mo>×</mo><mi>W</mi><mo>×</mo><mi>C</mi></mrow></msup></mrow><annotation encoding="application/x-tex">x\in \mathbb{R}^{H\times W\times C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">R</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.08125em;">H</span><span class="mbin mtight">×</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">W</span><span class="mbin mtight">×</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span></span></span></span></span></span></span></span></span></span></span></span>变为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>p</mi></msub><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mi>N</mi><mo>×</mo><mo stretchy="false">(</mo><msup><mi>P</mi><mn>2</mn></msup><mi>C</mi><mo stretchy="false">)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">x_p\in \mathbb{R}^{N\times (P^2C)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8252079999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.9869199999999998em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">R</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9869199999999998em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mbin mtight">×</span><span class="mopen mtight">(</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913142857142857em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span>。即原始图像的分辨率为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo>×</mo><mi>W</mi></mrow><annotation encoding="application/x-tex">H\times W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span></span></span></span>，通道数为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span>，分块大小为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>×</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">P\times P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span>，总块数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mi>H</mi><mi>W</mi><mi mathvariant="normal">/</mi><msup><mi>P</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">N=HW/P^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mord">/</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>。整个Transformer使用隐藏（latent）向量大小<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span>，因此我们用可训练的MLP线性投影来展平patch，把该投影的输出称为patch embeddings。如公式(1)所示：<br />
+<img src="/blog/2023/06/18/20230618-ViT%E5%85%A5%E9%97%A8/fig-e73614ca47e2dfdbfaeda952b1f47973a2e6e0113bce3e35fd556b362afe0e01.png" alt="picture 4" /></p>
+<p>其中LN：LayerNorm，MSA：Multihead self-attention。</p>
+<p>在原有输入序列前加入一个可学习的特征 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">s</mi></mrow></msub></mrow><annotation encoding="application/x-tex">x_{\rm class}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">c</span><span class="mord mathrm mtight">l</span><span class="mord mathrm mtight">a</span><span class="mord mathrm mtight">s</span><span class="mord mathrm mtight">s</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，类似于BERT。（<em>为执行分类，使用标准方法即给序列添加一个额外的分类token</em>）</p>
+<p>使用了标准的可学习的一维位置编码，因为没有发现2D位置编码带来显著的性能提升。</p>
+<p><strong>归纳偏好</strong> 我们发现视觉Transformer比CNN有更少的视觉上的归纳偏好。CNN中，局部性、二维邻域结构和平移不变性（translation equivariance）被结合到每一层并遍及整个模型。但是ViT中，只有MLP层是局部和平移不变的，尽管自注意力层是全局的。二维邻域结构被使用得很少：在模型开始前将图像划分为图块时或者fune-tuning时调整位置编码以应对不同分辨率的图像。此外位置编码在初始化时未携带任何2D图块位置信息，所有空间关系都是从头学习得到的。</p>
+<p><strong>混合结构</strong> 除了使用原始图像块，可以将CNN输出的特征作为模型输入，即patch embedding projection模块可以将CNN输出的特征图进行映射。</p>
+<figure align="center"><img src="/blog/2023/06/18/20230618-ViT%E5%85%A5%E9%97%A8/ViT.gif">
+<figcaption>动图展示ViT运算过程</figcaption></figure>
+<h2 id="fine-tuning和高分辨率"><a class="markdownIt-Anchor" href="#fine-tuning和高分辨率"></a> Fine-tuning和高分辨率</h2>
+<p>通常我们在大数据集上预训练ViT，然后在小的下游任务上微调。为此我们移除前期的预测模块，并连接一个零初始化的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>×</mo><mi>K</mi></mrow><annotation encoding="application/x-tex">D\times K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span>的前馈网络，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span>是下游任务的类别数。</p>
+<p>对于大分辨率图像，我们保持块大小相同，这导致更大的序列长度（即N的大小），ViT支持任意大小的序列长度（不考虑内存约束）。<strong>对于大分辨率图像，位置编码不再有效，此时我们对预训练的位置编码进行2D插值。</strong></p>
+<h2 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h2>
+<ul>
+<li>
+<p>An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale: <a href="https://arxiv.org/pdf/2010.11929.pdf">pdf</a></p>
+</li>
+<li>
+<p><a href="https://www.jianshu.com/p/d4bc4f540c62">Visual Transformer (ViT)模型结构以及原理解析 - 简书</a></p>
+</li>
+<li>
+<p><a href="https://theaisummer.com/vision-transformer/">How the Vision Transformer (ViT) works in 10 minutes: an image is worth 16x16 words | AI Summer</a></p>
+</li>
+<li>
+<p><a href="https://www.kaggle.com/code/abhinand05/vision-transformer-vit-tutorial-baseline/notebook">Vision Transformer (ViT): Tutorial + Baseline | Kaggle</a></p>
+</li>
+<li>
+<p><a href="https://github.com/FrancescoSaverioZuppichini/ViT">FrancescoSaverioZuppichini/ViT: Implementing Vi(sion)T(transformer)</a></p>
+<ul>
+<li><a href="https://www.jianshu.com/p/06a40338dc7c">Visual Transformer (ViT) 代码实现 PyTorch版本 - 简书</a></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CV</category>
+      </categories>
+      <tags>
+        <tag>DL</tag>
+        <tag>CV</tag>
+        <tag>Transformer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WSL连接Android手机</title>
+    <url>/blog/2023/08/05/20230805-WSL%E8%BF%9E%E6%8E%A5Android%E6%89%8B%E6%9C%BA/</url>
+    <content><![CDATA[<h2 id="windows子系统用adb连接android手机"><a class="markdownIt-Anchor" href="#windows子系统用adb连接android手机"></a> Windows子系统用ADB连接Android手机</h2>
+<ul>
+<li>在WSL中用<code>apt-get</code>命令安装ADB工具并不能直接连接手机。会出现如下等错误提示：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">adb server version (41) doesn&#x27;t match this client (39); killing...</span><br></pre></td></tr></table></figure>
+<p>搜索后，大致是由于出现了两个不同版本的ADB，于是用<code>apt remove adb</code>卸载。</p>
+<ul>
+<li>自己下载Linux版本 ADB工具安装包，并添加路径到<code>PATH</code>，此时用<code>adb devices</code>会显示设备为空。</li>
+</ul>
+<h2 id="解决办法"><a class="markdownIt-Anchor" href="#解决办法"></a> 解决办法</h2>
+<p>结论：只保留一个版本，用Windows上的版本，即WSL和Windows主机共用一个ADB工具。</p>
+<ul>
+<li>将Windows上可用的ADB路径添加到WSL系统<code>PATH</code>变量<br />
+在<code>~/.bashrc</code>文件最后添加如下</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export PATH=&quot;/mnt/d/path/to/adb-bin:$PATH&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>获取adb命令
+<ul>
+<li>可以在WSL中将adb.exe 复制并重命名为adb（无后缀）</li>
+<li>用<code>alias adb=&quot;/mnt/d/path/to/adb.exe&quot;</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/60166965/adb-device-list-empty-using-wsl2">https://stackoverflow.com/questions/60166965/adb-device-list-empty-using-wsl2</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Android</tag>
+        <tag>ADB</tag>
+        <tag>WSL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>numpy-matplotlib-pandas常用技巧</title>
+    <url>/blog/2023/08/05/20230805-numpy-matplotlib-pandas%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<h2 id="numpy"><a class="markdownIt-Anchor" href="#numpy"></a> numpy</h2>
+<h3 id="数组操作"><a class="markdownIt-Anchor" href="#数组操作"></a> 数组操作</h3>
+<h3 id="常用计算"><a class="markdownIt-Anchor" href="#常用计算"></a> 常用计算</h3>
+<ul>
+<li>直方图、概率密度、CDF</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">hist, bin_edges = np.histogram(x, num_bins, density=<span class="literal">True</span>)</span><br><span class="line">pdf = hist / hist.<span class="built_in">sum</span>()  <span class="comment"># PDF</span></span><br><span class="line">cdf = np.cumsum(pdf)     <span class="comment"># CDF</span></span><br></pre></td></tr></table></figure>
+<h2 id="matplotlib"><a class="markdownIt-Anchor" href="#matplotlib"></a> matplotlib</h2>
+<h3 id="热力图heatmap"><a class="markdownIt-Anchor" href="#热力图heatmap"></a> 热力图heatmap</h3>
+<h3 id="图像保存savefig"><a class="markdownIt-Anchor" href="#图像保存savefig"></a> 图像保存savefig</h3>
+<ul>
+<li>指定大小</li>
+</ul>
+<p>最终图像大小：[size_inchs_w<em>dpi, size_inchs_h</em>dpi], dpi=dots per inch</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">plt.gcf().set_size_inches(width/<span class="number">100</span>, height/<span class="number">100</span>)</span><br><span class="line">plt.savefig(<span class="string">&quot;image.png&quot;</span>, dpi=<span class="number">100</span>, bbox_inches=<span class="string">&#x27;tight&#x27;</span>, pad_inches=<span class="number">0</span>)  <span class="comment"># 紧促保存，无白边</span></span><br></pre></td></tr></table></figure>
+<h2 id="pandas"><a class="markdownIt-Anchor" href="#pandas"></a> pandas</h2>
+<h3 id="读写"><a class="markdownIt-Anchor" href="#读写"></a> 读写</h3>
+<h3 id="数据获取indexing"><a class="markdownIt-Anchor" href="#数据获取indexing"></a> 数据获取/indexing</h3>
+<p>pandas习惯于以列为一项数据，即第一行为标题。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">df.loc</span><br><span class="line">df.iloc</span><br><span class="line">df[<span class="string">&#x27;item_key&#x27;</span>] = item_list</span><br></pre></td></tr></table></figure>
+<h3 id="不显示index列"><a class="markdownIt-Anchor" href="#不显示index列"></a> 不显示index列</h3>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打印不显示index</span></span><br><span class="line"><span class="built_in">print</span>(df.to_string(index=<span class="literal">False</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存不显示index</span></span><br><span class="line">df.to_excel(***, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="小数位数控制"><a class="markdownIt-Anchor" href="#小数位数控制"></a> 小数位数控制</h2>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打印</span></span><br><span class="line">df.set_options(<span class="string">&#x27;display.format&#x27;</span>, <span class="string">&#x27;%.2f&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保持文件</span></span><br><span class="line">df.to_excel(***, float_precision=<span class="string">&#x27;%.2f&#x27;</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
+    <title>特征点NMS</title>
+    <url>/blog/2023/08/26/20230816-%E7%89%B9%E5%BE%81%E7%82%B9NMS/</url>
+    <content><![CDATA[<h2 id="一种简单的分块取块内响应最大的nms方法"><a class="markdownIt-Anchor" href="#一种简单的分块取块内响应最大的nms方法"></a> 一种简单的分块取块内响应最大的NMS方法</h2>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">nms_block</span>(<span class="params">pts1, pts2, mconf, h1, w1, num_out=<span class="number">500</span>, min_block_size=<span class="number">2</span></span>):</span><br><span class="line">    nblockH = <span class="built_in">int</span>(h1 / min_block_size + <span class="number">0.5</span>)</span><br><span class="line">    nblockW = <span class="built_in">int</span>(w1 / min_block_size + <span class="number">0.5</span>)</span><br><span class="line">    block_pts = [[] <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(nblockH*nblockW)]</span><br><span class="line">    <span class="keyword">for</span> c, p1, p2 <span class="keyword">in</span> <span class="built_in">zip</span>(mconf, pts1, pts2):</span><br><span class="line">        xi_ = p1[<span class="number">0</span>] / min_block_size</span><br><span class="line">        yi_ = p1[<span class="number">1</span>] / min_block_size</span><br><span class="line">        xi = <span class="built_in">int</span>(xi_)</span><br><span class="line">        yi = <span class="built_in">int</span>(yi_)</span><br><span class="line">        idx = yi*nblockW + xi</span><br><span class="line">        block_pts[idx].append((c, p1, p2))</span><br><span class="line">    </span><br><span class="line">    max_local_pts = []</span><br><span class="line">    <span class="keyword">for</span> pts <span class="keyword">in</span> block_pts:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(pts):</span><br><span class="line">            cmax = -<span class="number">1</span></span><br><span class="line">            p1o, p2o = <span class="literal">None</span>, <span class="literal">None</span></span><br><span class="line">            <span class="keyword">for</span> c, p1, p2 <span class="keyword">in</span> pts:</span><br><span class="line">                <span class="keyword">if</span> c &gt; cmax:</span><br><span class="line">                    cmax = c</span><br><span class="line">                    p1o = p1</span><br><span class="line">                    p2o = p2</span><br><span class="line">            max_local_pts.append((cmax, p1o, p2o))</span><br><span class="line">    </span><br><span class="line">    num_out = <span class="built_in">min</span>(num_out, <span class="built_in">len</span>(max_local_pts))</span><br><span class="line"></span><br><span class="line">    conf = np.zeros((num_out, ), dtype=pts1.dtype) </span><br><span class="line">    pt1 = np.zeros((num_out, <span class="number">2</span>), dtype=pts1.dtype)</span><br><span class="line">    pt2 = np.zeros((num_out, <span class="number">2</span>), dtype=pts2.dtype)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_out):</span><br><span class="line">        conf[i] = max_local_pts[i][<span class="number">0</span>]</span><br><span class="line">        pt1[i, :] = max_local_pts[i][<span class="number">1</span>]</span><br><span class="line">        pt2[i, :] = max_local_pts[i][<span class="number">2</span>]</span><br><span class="line">    <span class="keyword">return</span> pt1, pt2, conf, block_pts</span><br></pre></td></tr></table></figure>
+<h2 id="opencv-goodfeaturestotrack中的nms"><a class="markdownIt-Anchor" href="#opencv-goodfeaturestotrack中的nms"></a> OpenCV goodFeaturesToTrack中的NMS</h2>
+]]></content>
+      <categories>
+        <category>CV</category>
+      </categories>
+      <tags>
+        <tag>NMS</tag>
+        <tag>特征提取匹配</tag>
       </tags>
   </entry>
 </search>
