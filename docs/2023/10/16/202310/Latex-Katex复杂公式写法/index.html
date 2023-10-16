@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yaanggny.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/blog/js/config.js"></script>
+
+    <meta name="description" content="记录一些复杂公式（如优化问题）的Latex和Katex写法。   优化问题描述  aligned 主要是对齐的使用。  1234567\begin&amp;#123;aligned&amp;#125;&amp; \underset&amp;#123;x&amp;#125;&amp;#123;\text&amp;#123;min&amp;#125;&amp;#125;&amp; &amp; c^T x \\&amp; \text&amp;#123;s.t.&amp;#125;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Latex-Katex复杂公式写法">
+<meta property="og:url" content="https://yaanggny.github.io/blog/2023/10/16/202310/Latex-Katex%E5%A4%8D%E6%9D%82%E5%85%AC%E5%BC%8F%E5%86%99%E6%B3%95/index.html">
+<meta property="og:site_name" content="yaanggny的笔记">
+<meta property="og:description" content="记录一些复杂公式（如优化问题）的Latex和Katex写法。   优化问题描述  aligned 主要是对齐的使用。  1234567\begin&amp;#123;aligned&amp;#125;&amp; \underset&amp;#123;x&amp;#125;&amp;#123;\text&amp;#123;min&amp;#125;&amp;#125;&amp; &amp; c^T x \\&amp; \text&amp;#123;s.t.&amp;#125;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-10-16T00:14:50.000Z">
+<meta property="article:modified_time" content="2023-10-16T00:26:03.122Z">
+<meta property="article:author" content="yaanggny">
+<meta property="article:tag" content="Markdown">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="Latex">
+<meta property="article:tag" content="Katex">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://yaanggny.github.io/blog/2023/10/16/202310/Latex-Katex%E5%A4%8D%E6%9D%82%E5%85%AC%E5%BC%8F%E5%86%99%E6%B3%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yaanggny.github.io/blog/2023/10/16/202310/Latex-Katex%E5%A4%8D%E6%9D%82%E5%85%AC%E5%BC%8F%E5%86%99%E6%B3%95/","path":"2023/10/16/202310/Latex-Katex复杂公式写法/","title":"Latex-Katex复杂公式写法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Latex-Katex复杂公式写法 | yaanggny的笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">yaanggny的笔记</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text"> 优化问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">2.</span> <span class="nav-text"> 参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">yaanggny</p>
+  <div class="site-description" itemprop="description">日常记录</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/blog/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/blog/tags/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/10/16/202310/Latex-Katex%E5%A4%8D%E6%9D%82%E5%85%AC%E5%BC%8F%E5%86%99%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Latex-Katex复杂公式写法 | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Latex-Katex复杂公式写法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-10-16 08:14:50 / 修改时间：08:26:03" itemprop="dateCreated datePublished" datetime="2023-10-16T08:14:50+08:00">2023-10-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>记录一些复杂公式（如优化问题）的Latex和Katex写法。</p>
+</blockquote>
+<h2 id="优化问题描述"><a class="markdownIt-Anchor" href="#优化问题描述"></a> 优化问题描述</h2>
+<ul>
+<li>aligned<br />
+主要是对齐的使用。</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;aligned&#125;</span><br><span class="line"><span class="built_in">&amp;</span> <span class="keyword">\underset</span>&#123;x&#125;&#123;<span class="keyword">\text</span>&#123;min&#125;&#125;</span><br><span class="line"><span class="built_in">&amp;</span> <span class="built_in">&amp;</span> c<span class="built_in">^</span>T x <span class="keyword">\\</span></span><br><span class="line"><span class="built_in">&amp;</span> <span class="keyword">\text</span>&#123;s.t.&#125; <span class="built_in">&amp;</span> <span class="built_in">&amp;</span>  Ax <span class="keyword">\leq</span> b<span class="built_in">_</span>i <span class="keyword">\\</span></span><br><span class="line"><span class="built_in">&amp;</span> <span class="built_in">&amp;</span> <span class="built_in">&amp;</span>  <span class="keyword">\sum</span><span class="built_in">_</span>&#123;i=1&#125;<span class="built_in">^</span>&#123;n&#125; x<span class="built_in">_</span>i =1 <span class="keyword">\\</span></span><br><span class="line"><span class="built_in">&amp;</span> <span class="built_in">&amp;</span> <span class="built_in">&amp;</span>  x<span class="built_in">_</span>j, <span class="keyword">\;</span> <span class="keyword">\forall</span> j <span class="keyword">\in</span> N. <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\end</span>&#123;aligned&#125;</span><br></pre></td></tr></table></figure>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.24999999999999992em" columnalign="right left right left" columnspacing="0em 1em 0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mi><munder><mo><mtext>min</mtext></mo><mi>x</mi></munder></mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><msup><mi>c</mi><mi>T</mi></msup><mi>x</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mtext>s.t.</mtext></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mi>A</mi><mi>x</mi><mo>≤</mo><msub><mi>b</mi><mi>i</mi></msub></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>x</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><msub><mi>x</mi><mi>j</mi></msub><mo separator="true">,</mo><mtext>  </mtext><mi mathvariant="normal">∀</mi><mi>j</mi><mo>∈</mo><mi>N</mi><mi mathvariant="normal">.</mi></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+&amp; \underset{x}{\text{min}}
+&amp; &amp; c^T x \\
+&amp; \text{s.t.} &amp; &amp;  Ax \leq b_i \\
+&amp; &amp; &amp;  \sum_{i=1}^{n} x_i =1 \\
+&amp; &amp; &amp;  x_j, \; \forall j \in N. \\
+\end{aligned}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:8.120397em;vertical-align:-3.8101985000000003em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:4.3101985em;"><span style="top:-7.0702645em;"><span class="pstrut" style="height:3.6513970000000002em;"></span><span class="mord"></span></span><span style="top:-5.2302645000000005em;"><span class="pstrut" style="height:3.6513970000000002em;"></span><span class="mord"></span></span><span style="top:-2.9188675em;"><span class="pstrut" style="height:3.6513970000000002em;"></span><span class="mord"></span></span><span style="top:-0.5011985000000001em;"><span class="pstrut" style="height:3.6513970000000002em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:3.8101985000000003em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:4.3101985em;"><span style="top:-7.0702645em;"><span class="pstrut" style="height:3.6513970000000002em;"></span><span class="mord"><span class="mord"></span><span class="mord"><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.66786em;"><span style="top:-2.4em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop"><span class="mord text"><span class="mord">min</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7em;"><span></span></span></span></span></span></span></span></span><span style="top:-5.2302645000000005em;"><span class="pstrut" style="height:3.6513970000000002em;"></span><span class="mord"><span class="mord"></span><span class="mord text"><span class="mord">s.t.</span></span></span></span><span style="top:-2.9188675em;"><span class="pstrut" style="height:3.6513970000000002em;"></span><span class="mord"><span class="mord"></span></span></span><span style="top:-0.5011985000000001em;"><span class="pstrut" style="height:3.6513970000000002em;"></span><span class="mord"><span class="mord"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:3.8101985000000003em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:4.3101985em;"><span style="top:-7.0702645em;"><span class="pstrut" style="height:3.6513970000000002em;"></span><span class="mord"></span></span><span style="top:-5.2302645000000005em;"><span class="pstrut" style="height:3.6513970000000002em;"></span><span class="mord"></span></span><span style="top:-2.9188675em;"><span class="pstrut" style="height:3.6513970000000002em;"></span><span class="mord"></span></span><span style="top:-0.5011985000000001em;"><span class="pstrut" style="height:3.6513970000000002em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:3.8101985000000003em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:4.3101985em;"><span style="top:-7.0702645em;"><span class="pstrut" style="height:3.6513970000000002em;"></span><span class="mord"><span class="mord"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913309999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathnormal">x</span></span></span><span style="top:-5.2302645000000005em;"><span class="pstrut" style="height:3.6513970000000002em;"></span><span class="mord"><span class="mord"></span><span class="mord mathnormal">A</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.9188675em;"><span class="pstrut" style="height:3.6513970000000002em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">1</span></span></span><span style="top:-0.5011985000000001em;"><span class="pstrut" style="height:3.6513970000000002em;"></span><span class="mord"><span class="mord"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∀</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mord">.</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:3.8101985000000003em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>align<br />
+此方式可能博客的支持性不足，无法正确显示，但Markdown插件可正常显示。</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;align*&#125;</span><br><span class="line"><span class="keyword">\min</span><span class="built_in">_</span>x <span class="keyword">\quad</span> c<span class="built_in">^</span>T x <span class="keyword">\\</span></span><br><span class="line">Ax <span class="built_in">&amp;</span><span class="keyword">\le</span> b <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\sum</span><span class="built_in">_</span>&#123;i=1&#125;<span class="built_in">^</span>n x<span class="built_in">_</span>i <span class="built_in">&amp;</span>= 1<span class="keyword">\\</span></span><br><span class="line">x<span class="built_in">_</span>j <span class="built_in">&amp;</span><span class="keyword">\ge</span> 0 <span class="keyword">\quad</span> <span class="keyword">\forall</span> j <span class="keyword">\in</span> N</span><br><span class="line"><span class="keyword">\end</span>&#123;align*&#125;</span><br></pre></td></tr></table></figure>
+<p>其余Katex支持有限，latex上还可以使用<code>array</code>、<code>matrix</code>，但matrix不够自然。其余可参考<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>。</p>
+<h2 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h2>
+<hr class="footnotes-sep" />
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://orcomplete.com/computer/sertalpbilal/latex-templates-for-optimization-models">LaTeX Templates for Optimization Models</a> <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yaanggny
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://yaanggny.github.io/blog/2023/10/16/202310/Latex-Katex%E5%A4%8D%E6%9D%82%E5%85%AC%E5%BC%8F%E5%86%99%E6%B3%95/" title="Latex-Katex复杂公式写法">https://yaanggny.github.io/blog/2023/10/16/202310/Latex-Katex复杂公式写法/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/blog/tags/Markdown/" rel="tag"># Markdown</a>
+              <a href="/blog/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a>
+              <a href="/blog/tags/Latex/" rel="tag"># Latex</a>
+              <a href="/blog/tags/Katex/" rel="tag"># Katex</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2023/10/15/202310/OpenCV-%E7%9B%B4%E7%BA%BF%E6%8B%9F%E5%90%88/" rel="prev" title="OpenCV-最小二乘直线拟合原理">
+                  <i class="fa fa-chevron-left"></i> OpenCV-最小二乘直线拟合原理
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yaanggny</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/blog/js/comments.js"></script><script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/blog/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css" integrity="sha256-gMRN4/6qeELzO1wbFa8qQLU8kfuF2dnAPiUoI0ATjx8=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/blog/js/third-party/math/katex.js"></script>
+
+
+
+</body>
+</html>
