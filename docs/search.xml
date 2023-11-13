@@ -2741,4 +2741,125 @@ x_n&#x27; &amp; y_n&#x27;
         <tag>编译</tag>
       </tags>
   </entry>
+  <entry>
+    <title>C++ json解析</title>
+    <url>/blog/2023/11/13/202311/C++json%E8%A7%A3%E6%9E%90/</url>
+    <content><![CDATA[<p>本博客记录json解析库 <a href="https://github.com/nlohmann/json">nlohmann/json</a> 的使用方法。</p>
+<p>为什么选用这个库：</p>
+<ul>
+<li>单文件，无其他依赖</li>
+<li>易用，接口友好易上手（基于现代C++语法）</li>
+<li>较好的性能</li>
+<li>良好充分的测试（使用 Valgrind, Clang Sanitizers 测试，无内存泄漏）</li>
+</ul>
+<h2 id="其他json库"><a class="markdownIt-Anchor" href="#其他json库"></a> 其他json库</h2>
+<p><strong>转为json文件</strong></p>
+<ul>
+<li><a href="https://github.com/armink/struct2json">https://github.com/armink/struct2json</a></li>
+<li><a href="https://github.com/nbsdx/SimpleJSON">https://github.com/nbsdx/SimpleJSON</a></li>
+</ul>
+<p><strong>json解析benchmark</strong></p>
+<ul>
+<li><a href="https://github.com/miloyip/nativejson-benchmark">https://github.com/miloyip/nativejson-benchmark</a>
+<blockquote>
+<p>This benchmark evaluates the conformance and performance of 41 open-source C/C++ libraries with JSON parsing/generation capabilities. Performance means speed, memory, and code size.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="nlohmannjson库用法快速入门"><a class="markdownIt-Anchor" href="#nlohmannjson库用法快速入门"></a> nlohmann/json库用法快速入门</h2>
+<p>单文件使用，参考<a href="https://github.com/nlohmann/json#integration">集成说明</a>。</p>
+<ul>
+<li>下载仓库中的<code>single_include/nlohmann/json.hpp</code>文件</li>
+<li>或者直接在release中下载<code>json.hpp</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;json_io/json.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> json = nlohmann::json;</span><br></pre></td></tr></table></figure>
+<p>json文件举例：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;pi&quot;</span><span class="punctuation">:</span> <span class="number">3.141</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;happy&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Niels&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;nothing&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;answer&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;everything&quot;</span><span class="punctuation">:</span> <span class="number">42</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;list&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">1</span><span class="punctuation">,</span> <span class="number">0</span><span class="punctuation">,</span> <span class="number">2</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;object&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;currency&quot;</span><span class="punctuation">:</span> <span class="string">&quot;USD&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="number">42.99</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>测试代码：基于v3.11.2：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget -c https://github.com/nlohmann/json/releases/download/v3.11.2/json.hpp</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;json_io/json.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> json = nlohmann::json;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">std::ifstream <span class="title">f</span><span class="params">(argv[<span class="number">1</span>])</span></span>;</span><br><span class="line">    json j = json::<span class="built_in">parse</span>(f);</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; v = j[<span class="string">&quot;list&quot;</span>].<span class="keyword">template</span> get&lt;std::vector&lt;<span class="type">int</span>&gt;&gt;();</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; v1 = j[<span class="string">&quot;list&quot;</span>].get&lt;std::vector&lt;<span class="type">int</span>&gt;&gt;();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">const</span> <span class="keyword">auto</span>&amp; e: v)</span><br><span class="line">        std::cout &lt;&lt; e &lt;&lt; <span class="string">&quot;, &quot;</span>;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">for</span>(<span class="type">const</span> <span class="keyword">auto</span>&amp; e: v1)</span><br><span class="line">        std::cout &lt;&lt; e &lt;&lt; <span class="string">&quot;, &quot;</span>;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="type">double</span> pi = j[<span class="string">&quot;pi&quot;</span>];</span><br><span class="line">    <span class="comment">// float pi = j[&quot;pi&quot;];</span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;pi= &quot;</span> &lt;&lt; pi &lt;&lt;std::endl;</span><br><span class="line"></span><br><span class="line">    pi = j.<span class="built_in">at</span>(<span class="string">&quot;pi&quot;</span>);</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;pi= &quot;</span> &lt;&lt; pi &lt;&lt;std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 紧促打印</span></span><br><span class="line">    std::cout &lt;&lt; j.<span class="built_in">dump</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 格式化打印</span></span><br><span class="line">    std::cout &lt;&lt; j.<span class="built_in">dump</span>(<span class="number">4</span>) &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1, 0, 2,</span><br><span class="line">1, 0, 2,</span><br><span class="line">pi= 3.141</span><br><span class="line">pi= 3.141</span><br><span class="line">&#123;&quot;answer&quot;:&#123;&quot;everything&quot;:42&#125;,&quot;happy&quot;:true,&quot;list&quot;:[1,0,2],&quot;name&quot;:&quot;Niels&quot;,&quot;nothing&quot;:null,&quot;object&quot;:&#123;&quot;currency&quot;:&quot;USD&quot;,&quot;value&quot;:42.99&#125;,&quot;pi&quot;:3.141&#125;</span><br><span class="line">&#123;</span><br><span class="line">    &quot;answer&quot;: &#123;</span><br><span class="line">        &quot;everything&quot;: 42</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;happy&quot;: true,</span><br><span class="line">    &quot;list&quot;: [</span><br><span class="line">        1,</span><br><span class="line">        0,</span><br><span class="line">        2</span><br><span class="line">    ],</span><br><span class="line">    &quot;name&quot;: &quot;Niels&quot;,</span><br><span class="line">    &quot;nothing&quot;: null,</span><br><span class="line">    &quot;object&quot;: &#123;</span><br><span class="line">        &quot;currency&quot;: &quot;USD&quot;,</span><br><span class="line">        &quot;value&quot;: 42.99</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;pi&quot;: 3.141</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考博客"><a class="markdownIt-Anchor" href="#参考博客"></a> 参考博客</h2>
+<ul>
+<li><a href="https://www.cnblogs.com/linuxAndMcu/p/14503341.html">【C++ JSON 开源库】nlohmann入门使用总结</a></li>
+<li><a href="https://www.cnblogs.com/lidabo/p/17015911.html">c++中nlohmann json的基本使用教程</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>工具</tag>
+        <tag>json</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>工具-终端工具配置conda和git</title>
+    <url>/blog/2023/10/24/202310/%E5%B7%A5%E5%85%B7-%E7%BB%88%E7%AB%AF%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AEconda%E5%92%8Cgit/</url>
+    <content><![CDATA[<blockquote>
+<p>主要介绍Linux和Windows上的终端的conda和git配置，提高效率。</p>
+</blockquote>
+<h2 id="linux-terminal显示当前代码分支"><a class="markdownIt-Anchor" href="#linux-terminal显示当前代码分支"></a> Linux Terminal显示当前代码分支</h2>
+<p>git显示当前分支的语法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rev-parse --abbrev-ref HEAD  <span class="comment"># 只显示分支名</span></span><br><span class="line"></span><br><span class="line">git branch --show-current</span><br></pre></td></tr></table></figure>
+<p>在<code>~/.bashrc</code>中添加如下函数和脚本即可显示当前分支名：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">parse_git_bg</span></span>() &#123;</span><br><span class="line">  <span class="keyword">if</span> [[ $(git status -s 2&gt; /dev/null) ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">&quot;\033[0;31m&quot;</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">&quot;\033[0;32m&quot;</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">PS1=<span class="string">&#x27;\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;34m\]@\[\033[0;34m\]PCname:\w\[$(parse_git_bg)\]$(__git_ps1)\n\[\033[0;32m\]\$\[\033[0m\] &#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/Dev/tools/cmake-3.26.2-Linux-x86_64/bin</span><br></pre></td></tr></table></figure>
+<h2 id="windows系统powershell配置"><a class="markdownIt-Anchor" href="#windows系统powershell配置"></a> Windows系统PowerShell配置</h2>
+<p>主要是<a href="https://github.com/microsoft/terminal">Windows Terminal</a>或PowerShell的设置。</p>
+<blockquote>
+<p>Windows Terminal支持多标签。</p>
+</blockquote>
+<h3 id="显示当前分支名"><a class="markdownIt-Anchor" href="#显示当前分支名"></a> 显示当前分支名</h3>
+<ul>
+<li>PowerShell配置脚本路径<br />
+Windows PowerShell有多个配置路径，具体可参考<a href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.3">PowerShell 配置文件简介</a>，主要有以下路径</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="variable">$PSHOME</span>\Profile.ps1                       <span class="comment"># 所有用户，所有主机</span></span><br><span class="line"><span class="variable">$PSHOME</span>\Microsoft.PowerShell_profile.ps1  <span class="comment"># 所有用户，当前主机</span></span><br><span class="line"><span class="variable">$HOME</span>\Documents\PowerShell\Profile.ps1    <span class="comment"># 当前用户，所有主机</span></span><br><span class="line"><span class="variable">$HOME</span>\Documents\PowerShell\Microsoft.PowerShell_profile.ps1  <span class="comment"># 当前用户，当前主机</span></span><br><span class="line"><span class="variable">$HOME</span>\Documents\WindowsPowerShell\Profile.ps1</span><br><span class="line"><span class="variable">$HOME</span>\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</span><br></pre></td></tr></table></figure>
+<p>此外Windows PowerShell中还可使用<code>$PROFILE</code>变量。</p>
+<ul>
+<li>路径上显示分支名<br />
+将下列代码粘贴在<code>$HOME\Documents\PowerShell\Profile.ps1</code>文件末尾，重启终端即可显示当前代码分支。</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Write-BranchName</span> <span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="variable">$branch</span> = git rev<span class="literal">-parse</span> <span class="literal">--abbrev-ref</span> HEAD</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$branch</span> <span class="operator">-eq</span> <span class="string">&quot;HEAD&quot;</span>) &#123;</span><br><span class="line">            <span class="comment"># we&#x27;re probably in detached HEAD state, so print the SHA</span></span><br><span class="line">            <span class="variable">$branch</span> = git rev<span class="literal">-parse</span> <span class="literal">--short</span> HEAD</span><br><span class="line">            <span class="built_in">Write-Host</span> <span class="string">&quot; (<span class="variable">$branch</span>)&quot;</span> <span class="literal">-ForegroundColor</span> <span class="string">&quot;red&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment"># we&#x27;re on an actual branch, so print it</span></span><br><span class="line">            <span class="built_in">Write-Host</span> <span class="string">&quot; (<span class="variable">$branch</span>)&quot;</span> <span class="literal">-ForegroundColor</span> <span class="string">&quot;blue&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">        <span class="comment"># we&#x27;ll end up here if we&#x27;re in a newly initiated git repo</span></span><br><span class="line">        <span class="built_in">Write-Host</span> <span class="string">&quot; (no branches yet)&quot;</span> <span class="literal">-ForegroundColor</span> <span class="string">&quot;yellow&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prompt</span></span> &#123;</span><br><span class="line">    <span class="variable">$base</span> =<span class="string">&quot;<span class="variable">$env:CONDA_PROMPT_MODIFIER</span> PS&quot;</span></span><br><span class="line">    <span class="variable">$path</span> =<span class="string">&quot;<span class="variable">$</span>(<span class="variable">$executionContext</span>.SessionState.Path.CurrentLocation)&quot;</span></span><br><span class="line">    <span class="variable">$userPrompt</span> =<span class="string">&quot;<span class="variable">$</span>(&#x27;&gt;&#x27; * (<span class="variable">$nestedPromptLevel</span> + 1))&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Write-Host &quot;`n$base&quot; -NoNewline</span></span><br><span class="line">    <span class="variable">$promptString</span> = <span class="string">&quot;<span class="variable">$base</span> <span class="variable">$path</span>&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># if (! (git -C . rev-parse) ) &#123;</span></span><br><span class="line">    <span class="comment">#     Write-Host $path -NoNewline -ForegroundColor &quot;green&quot;</span></span><br><span class="line">    <span class="comment">#     Write-BranchName</span></span><br><span class="line">    <span class="comment"># &#125;</span></span><br><span class="line">    <span class="comment"># else &#123;</span></span><br><span class="line">    <span class="comment">#     # we&#x27;re not in a repo so don&#x27;t bother displaying branch name/sha</span></span><br><span class="line">    <span class="comment">#     Write-Host $path -ForegroundColor &quot;green&quot;</span></span><br><span class="line">    <span class="comment"># &#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">Write-Host</span> <span class="variable">$promptString</span> <span class="literal">-NoNewline</span></span><br><span class="line">    <span class="built_in">Write-BranchName</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$userPrompt</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：为使修改不影响conda环境的显示，使用了<code>$env:CONDA_PROMPT_MODIFIER</code>。可参考<code>$conda_root\shell\condabin\conda-hook.ps1</code>及<code>$conda_root\shell\condabin\Conda.psm1</code>。</p>
+<p>参考：<a href="https://stackoverflow.com/questions/1287718/how-can-i-display-my-current-git-branch-name-in-my-powershell-prompt/">How can I display my current git branch name in my PowerShell prompt?</a></p>
+<h3 id="conda配置"><a class="markdownIt-Anchor" href="#conda配置"></a> conda配置</h3>
+<p>主要介绍conda在Windows上的使用问题。<br />
+在Windows上使用conda的步骤一般如下：</p>
+<ul>
+<li>安装<a href="https://docs.conda.io/projects/miniconda/en/latest/miniconda-install.html">Miniconda</a>/Anaconda</li>
+<li>使用conda
+<ul>
+<li>打开Anaconda Prompt (一般不会有问题)</li>
+<li>在Powershell/Windows Terminal中使用conda激活环境 （初次激活一般报错）</li>
+</ul>
+</li>
+</ul>
+<p>在PowerShell中初次激活环境一般会报错，主要是因为缺乏相应配置脚本的修改权限。其常用方式如下：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1) 仅对当前用户赋权</span></span><br><span class="line"><span class="built_in">Set-ExecutionPolicy</span> <span class="literal">-Scope</span> CurrentUser RemoteSigned <span class="literal">-Force</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2) 系统级</span></span><br><span class="line"><span class="built_in">Set-ExecutionPolicy</span> Unrestricted <span class="comment"># for the whole system (implied -Scope LocalMachine).</span></span><br><span class="line"><span class="comment"># -Scope LocalMachine # 需要管理员权限</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Set-ExecutionPolicy</span> <span class="literal">-ExecutionPolicy</span> RemoteSigned</span><br><span class="line"><span class="built_in">Set-ExecutionPolicy</span> Unrestricted</span><br></pre></td></tr></table></figure>
+<p>为此在PowerShell/Windows Terminal中使用conda的步骤：</p>
+<ul>
+<li>以管理员权限打开Powershell（搜索powershell -&gt; 选择&quot;Windows PowerShell&quot; -&gt; 选择&quot;以管理员身份运行&quot;），输入以下命令允许执行配置脚本</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> <span class="literal">-ExecutionPolicy</span> RemoteSigned <span class="literal">-Force</span></span><br><span class="line"><span class="built_in">Set-ExecutionPolicy</span> Unrestricted</span><br></pre></td></tr></table></figure>
+<ul>
+<li>配置conda，使得命令行可以显示环境名称</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">conda init powershell</span><br><span class="line"><span class="comment"># conda init --all # 所有终端</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>激活你的环境</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">conda activate your_env_name</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>常用工具</category>
+      </categories>
+      <tags>
+        <tag>Terminal</tag>
+        <tag>终端</tag>
+        <tag>conda</tag>
+        <tag>git</tag>
+      </tags>
+  </entry>
 </search>

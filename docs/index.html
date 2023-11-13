@@ -148,18 +148,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/blog/archives/">
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/blog/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/blog/tags/">
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -176,6 +176,262 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/11/13/202311/C++json%E8%A7%A3%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2023/11/13/202311/C++json%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">C++ json解析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-11-13 22:37:17 / 修改时间：23:39:31" itemprop="dateCreated datePublished" datetime="2023-11-13T22:37:17+08:00">2023-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>本博客记录json解析库 <a target="_blank" rel="noopener" href="https://github.com/nlohmann/json">nlohmann/json</a> 的使用方法。</p>
+<p>为什么选用这个库：</p>
+<ul>
+<li>单文件，无其他依赖</li>
+<li>易用，接口友好易上手（基于现代C++语法）</li>
+<li>较好的性能</li>
+<li>良好充分的测试（使用 Valgrind, Clang Sanitizers 测试，无内存泄漏）</li>
+</ul>
+<h2 id="其他json库"><a class="markdownIt-Anchor" href="#其他json库"></a> 其他json库</h2>
+<p><strong>转为json文件</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/armink/struct2json">https://github.com/armink/struct2json</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/nbsdx/SimpleJSON">https://github.com/nbsdx/SimpleJSON</a></li>
+</ul>
+<p><strong>json解析benchmark</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/miloyip/nativejson-benchmark">https://github.com/miloyip/nativejson-benchmark</a>
+<blockquote>
+<p>This benchmark evaluates the conformance and performance of 41 open-source C/C++ libraries with JSON parsing/generation capabilities. Performance means speed, memory, and code size.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="nlohmannjson库用法快速入门"><a class="markdownIt-Anchor" href="#nlohmannjson库用法快速入门"></a> nlohmann/json库用法快速入门</h2>
+<p>单文件使用，参考<a target="_blank" rel="noopener" href="https://github.com/nlohmann/json#integration">集成说明</a>。</p>
+<ul>
+<li>下载仓库中的<code>single_include/nlohmann/json.hpp</code>文件</li>
+<li>或者直接在release中下载<code>json.hpp</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;json_io/json.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> json = nlohmann::json;</span><br></pre></td></tr></table></figure>
+<p>json文件举例：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;pi&quot;</span><span class="punctuation">:</span> <span class="number">3.141</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;happy&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Niels&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;nothing&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;answer&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;everything&quot;</span><span class="punctuation">:</span> <span class="number">42</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;list&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">1</span><span class="punctuation">,</span> <span class="number">0</span><span class="punctuation">,</span> <span class="number">2</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;object&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;currency&quot;</span><span class="punctuation">:</span> <span class="string">&quot;USD&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;value&quot;</span><span class="punctuation">:</span> <span class="number">42.99</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>测试代码：基于v3.11.2：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c https://github.com/nlohmann/json/releases/download/v3.11.2/json.hpp</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;json_io/json.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> json = nlohmann::json;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">std::ifstream <span class="title">f</span><span class="params">(argv[<span class="number">1</span>])</span></span>;</span><br><span class="line">    json j = json::<span class="built_in">parse</span>(f);</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; v = j[<span class="string">&quot;list&quot;</span>].<span class="keyword">template</span> get&lt;std::vector&lt;<span class="type">int</span>&gt;&gt;();</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; v1 = j[<span class="string">&quot;list&quot;</span>].get&lt;std::vector&lt;<span class="type">int</span>&gt;&gt;();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">const</span> <span class="keyword">auto</span>&amp; e: v)</span><br><span class="line">        std::cout &lt;&lt; e &lt;&lt; <span class="string">&quot;, &quot;</span>;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">for</span>(<span class="type">const</span> <span class="keyword">auto</span>&amp; e: v1)</span><br><span class="line">        std::cout &lt;&lt; e &lt;&lt; <span class="string">&quot;, &quot;</span>;</span><br><span class="line">    std::cout &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="type">double</span> pi = j[<span class="string">&quot;pi&quot;</span>];</span><br><span class="line">    <span class="comment">// float pi = j[&quot;pi&quot;];</span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;pi= &quot;</span> &lt;&lt; pi &lt;&lt;std::endl;</span><br><span class="line"></span><br><span class="line">    pi = j.<span class="built_in">at</span>(<span class="string">&quot;pi&quot;</span>);</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;pi= &quot;</span> &lt;&lt; pi &lt;&lt;std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 紧促打印</span></span><br><span class="line">    std::cout &lt;&lt; j.<span class="built_in">dump</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 格式化打印</span></span><br><span class="line">    std::cout &lt;&lt; j.<span class="built_in">dump</span>(<span class="number">4</span>) &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">1, 0, 2,</span><br><span class="line">1, 0, 2,</span><br><span class="line">pi= 3.141</span><br><span class="line">pi= 3.141</span><br><span class="line">&#123;&quot;answer&quot;:&#123;&quot;everything&quot;:42&#125;,&quot;happy&quot;:true,&quot;list&quot;:[1,0,2],&quot;name&quot;:&quot;Niels&quot;,&quot;nothing&quot;:null,&quot;object&quot;:&#123;&quot;currency&quot;:&quot;USD&quot;,&quot;value&quot;:42.99&#125;,&quot;pi&quot;:3.141&#125;</span><br><span class="line">&#123;</span><br><span class="line">    &quot;answer&quot;: &#123;</span><br><span class="line">        &quot;everything&quot;: 42</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;happy&quot;: true,</span><br><span class="line">    &quot;list&quot;: [</span><br><span class="line">        1,</span><br><span class="line">        0,</span><br><span class="line">        2</span><br><span class="line">    ],</span><br><span class="line">    &quot;name&quot;: &quot;Niels&quot;,</span><br><span class="line">    &quot;nothing&quot;: null,</span><br><span class="line">    &quot;object&quot;: &#123;</span><br><span class="line">        &quot;currency&quot;: &quot;USD&quot;,</span><br><span class="line">        &quot;value&quot;: 42.99</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;pi&quot;: 3.141</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考博客"><a class="markdownIt-Anchor" href="#参考博客"></a> 参考博客</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/linuxAndMcu/p/14503341.html">【C++ JSON 开源库】nlohmann入门使用总结</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lidabo/p/17015911.html">c++中nlohmann json的基本使用教程</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/10/24/202310/%E5%B7%A5%E5%85%B7-%E7%BB%88%E7%AB%AF%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AEconda%E5%92%8Cgit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2023/10/24/202310/%E5%B7%A5%E5%85%B7-%E7%BB%88%E7%AB%AF%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AEconda%E5%92%8Cgit/" class="post-title-link" itemprop="url">工具-终端工具配置conda和git</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-10-24 22:56:43" itemprop="dateCreated datePublished" datetime="2023-10-24T22:56:43+08:00">2023-10-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-10-27 21:52:45" itemprop="dateModified" datetime="2023-10-27T21:52:45+08:00">2023-10-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">常用工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>主要介绍Linux和Windows上的终端的conda和git配置，提高效率。</p>
+</blockquote>
+<h2 id="linux-terminal显示当前代码分支"><a class="markdownIt-Anchor" href="#linux-terminal显示当前代码分支"></a> Linux Terminal显示当前代码分支</h2>
+<p>git显示当前分支的语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rev-parse --abbrev-ref HEAD  <span class="comment"># 只显示分支名</span></span><br><span class="line"></span><br><span class="line">git branch --show-current</span><br></pre></td></tr></table></figure>
+<p>在<code>~/.bashrc</code>中添加如下函数和脚本即可显示当前分支名：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">parse_git_bg</span></span>() &#123;</span><br><span class="line">  <span class="keyword">if</span> [[ $(git status -s 2&gt; /dev/null) ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">&quot;\033[0;31m&quot;</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">&quot;\033[0;32m&quot;</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">PS1=<span class="string">&#x27;\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;34m\]@\[\033[0;34m\]PCname:\w\[$(parse_git_bg)\]$(__git_ps1)\n\[\033[0;32m\]\$\[\033[0m\] &#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/Dev/tools/cmake-3.26.2-Linux-x86_64/bin</span><br></pre></td></tr></table></figure>
+<h2 id="windows系统powershell配置"><a class="markdownIt-Anchor" href="#windows系统powershell配置"></a> Windows系统PowerShell配置</h2>
+<p>主要是<a target="_blank" rel="noopener" href="https://github.com/microsoft/terminal">Windows Terminal</a>或PowerShell的设置。</p>
+<blockquote>
+<p>Windows Terminal支持多标签。</p>
+</blockquote>
+<h3 id="显示当前分支名"><a class="markdownIt-Anchor" href="#显示当前分支名"></a> 显示当前分支名</h3>
+<ul>
+<li>PowerShell配置脚本路径<br />
+Windows PowerShell有多个配置路径，具体可参考<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.3">PowerShell 配置文件简介</a>，主要有以下路径</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$PSHOME</span>\Profile.ps1                       <span class="comment"># 所有用户，所有主机</span></span><br><span class="line"><span class="variable">$PSHOME</span>\Microsoft.PowerShell_profile.ps1  <span class="comment"># 所有用户，当前主机</span></span><br><span class="line"><span class="variable">$HOME</span>\Documents\PowerShell\Profile.ps1    <span class="comment"># 当前用户，所有主机</span></span><br><span class="line"><span class="variable">$HOME</span>\Documents\PowerShell\Microsoft.PowerShell_profile.ps1  <span class="comment"># 当前用户，当前主机</span></span><br><span class="line"><span class="variable">$HOME</span>\Documents\WindowsPowerShell\Profile.ps1</span><br><span class="line"><span class="variable">$HOME</span>\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</span><br></pre></td></tr></table></figure>
+<p>此外Windows PowerShell中还可使用<code>$PROFILE</code>变量。</p>
+<ul>
+<li>路径上显示分支名<br />
+将下列代码粘贴在<code>$HOME\Documents\PowerShell\Profile.ps1</code>文件末尾，重启终端即可显示当前代码分支。</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Write-BranchName</span> <span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="variable">$branch</span> = git rev<span class="literal">-parse</span> <span class="literal">--abbrev-ref</span> HEAD</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$branch</span> <span class="operator">-eq</span> <span class="string">&quot;HEAD&quot;</span>) &#123;</span><br><span class="line">            <span class="comment"># we&#x27;re probably in detached HEAD state, so print the SHA</span></span><br><span class="line">            <span class="variable">$branch</span> = git rev<span class="literal">-parse</span> <span class="literal">--short</span> HEAD</span><br><span class="line">            <span class="built_in">Write-Host</span> <span class="string">&quot; (<span class="variable">$branch</span>)&quot;</span> <span class="literal">-ForegroundColor</span> <span class="string">&quot;red&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment"># we&#x27;re on an actual branch, so print it</span></span><br><span class="line">            <span class="built_in">Write-Host</span> <span class="string">&quot; (<span class="variable">$branch</span>)&quot;</span> <span class="literal">-ForegroundColor</span> <span class="string">&quot;blue&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">        <span class="comment"># we&#x27;ll end up here if we&#x27;re in a newly initiated git repo</span></span><br><span class="line">        <span class="built_in">Write-Host</span> <span class="string">&quot; (no branches yet)&quot;</span> <span class="literal">-ForegroundColor</span> <span class="string">&quot;yellow&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prompt</span></span> &#123;</span><br><span class="line">    <span class="variable">$base</span> =<span class="string">&quot;<span class="variable">$env:CONDA_PROMPT_MODIFIER</span> PS&quot;</span></span><br><span class="line">    <span class="variable">$path</span> =<span class="string">&quot;<span class="variable">$</span>(<span class="variable">$executionContext</span>.SessionState.Path.CurrentLocation)&quot;</span></span><br><span class="line">    <span class="variable">$userPrompt</span> =<span class="string">&quot;<span class="variable">$</span>(&#x27;&gt;&#x27; * (<span class="variable">$nestedPromptLevel</span> + 1))&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Write-Host &quot;`n$base&quot; -NoNewline</span></span><br><span class="line">    <span class="variable">$promptString</span> = <span class="string">&quot;<span class="variable">$base</span> <span class="variable">$path</span>&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># if (! (git -C . rev-parse) ) &#123;</span></span><br><span class="line">    <span class="comment">#     Write-Host $path -NoNewline -ForegroundColor &quot;green&quot;</span></span><br><span class="line">    <span class="comment">#     Write-BranchName</span></span><br><span class="line">    <span class="comment"># &#125;</span></span><br><span class="line">    <span class="comment"># else &#123;</span></span><br><span class="line">    <span class="comment">#     # we&#x27;re not in a repo so don&#x27;t bother displaying branch name/sha</span></span><br><span class="line">    <span class="comment">#     Write-Host $path -ForegroundColor &quot;green&quot;</span></span><br><span class="line">    <span class="comment"># &#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">Write-Host</span> <span class="variable">$promptString</span> <span class="literal">-NoNewline</span></span><br><span class="line">    <span class="built_in">Write-BranchName</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$userPrompt</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：为使修改不影响conda环境的显示，使用了<code>$env:CONDA_PROMPT_MODIFIER</code>。可参考<code>$conda_root\shell\condabin\conda-hook.ps1</code>及<code>$conda_root\shell\condabin\Conda.psm1</code>。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1287718/how-can-i-display-my-current-git-branch-name-in-my-powershell-prompt/">How can I display my current git branch name in my PowerShell prompt?</a></p>
+<h3 id="conda配置"><a class="markdownIt-Anchor" href="#conda配置"></a> conda配置</h3>
+<p>主要介绍conda在Windows上的使用问题。<br />
+在Windows上使用conda的步骤一般如下：</p>
+<ul>
+<li>安装<a target="_blank" rel="noopener" href="https://docs.conda.io/projects/miniconda/en/latest/miniconda-install.html">Miniconda</a>/Anaconda</li>
+<li>使用conda
+<ul>
+<li>打开Anaconda Prompt (一般不会有问题)</li>
+<li>在Powershell/Windows Terminal中使用conda激活环境 （初次激活一般报错）</li>
+</ul>
+</li>
+</ul>
+<p>在PowerShell中初次激活环境一般会报错，主要是因为缺乏相应配置脚本的修改权限。其常用方式如下：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1) 仅对当前用户赋权</span></span><br><span class="line"><span class="built_in">Set-ExecutionPolicy</span> <span class="literal">-Scope</span> CurrentUser RemoteSigned <span class="literal">-Force</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2) 系统级</span></span><br><span class="line"><span class="built_in">Set-ExecutionPolicy</span> Unrestricted <span class="comment"># for the whole system (implied -Scope LocalMachine).</span></span><br><span class="line"><span class="comment"># -Scope LocalMachine # 需要管理员权限</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Set-ExecutionPolicy</span> <span class="literal">-ExecutionPolicy</span> RemoteSigned</span><br><span class="line"><span class="built_in">Set-ExecutionPolicy</span> Unrestricted</span><br></pre></td></tr></table></figure>
+<p>为此在PowerShell/Windows Terminal中使用conda的步骤：</p>
+<ul>
+<li>以管理员权限打开Powershell（搜索powershell -&gt; 选择&quot;Windows PowerShell&quot; -&gt; 选择&quot;以管理员身份运行&quot;），输入以下命令允许执行配置脚本</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> <span class="literal">-ExecutionPolicy</span> RemoteSigned <span class="literal">-Force</span></span><br><span class="line"><span class="built_in">Set-ExecutionPolicy</span> Unrestricted</span><br></pre></td></tr></table></figure>
+<ul>
+<li>配置conda，使得命令行可以显示环境名称</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda init powershell</span><br><span class="line"><span class="comment"># conda init --all # 所有终端</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>激活你的环境</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate your_env_name</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1331,277 +1587,6 @@ c-16-25.333-24-45-24-59z'/></svg></span></span></span></span></span></span></spa
 <p>在相机成像过程中，通常会涉及到坐标系旋转、相机外参矩阵等问题，当世界坐标系的基取单位阵的列向量时，世界坐标系到相机坐标系的旋转可由相机坐标系的基确定。同样，知道相机坐标系的基，可以得到旋转矩阵。这一点在Fusiello立体校正[2]中使用到。</p>
 <p>[1]: <a target="_blank" rel="noopener" href="https://blog.csdn.net/rs_lys/article/details/111591501">从基变换的角度理解旋转矩阵R - CSDN</a><br />
 [2]: <a target="_blank" rel="noopener" href="https://fusiello.github.io/papers/mva99.pdf">A Compact Algorithm for Rectification of Stereo Pairs</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/09/23/20230922-%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="yaanggny">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yaanggny的笔记">
-      <meta itemprop="description" content="日常记录">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yaanggny的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2023/09/23/20230922-%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/" class="post-title-link" itemprop="url">常用工具收集</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-09-23 00:03:51" itemprop="dateCreated datePublished" datetime="2023-09-23T00:03:51+08:00">2023-09-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-10-16 08:11:35" itemprop="dateModified" datetime="2023-10-16T08:11:35+08:00">2023-10-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>收集常用工具，便于快速查找。</p>
-<h2 id="博客相关"><a class="markdownIt-Anchor" href="#博客相关"></a> 博客相关</h2>
-<ul>
-<li>博客
-<ul>
-<li>Hexo</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/docsifyjs/docsify">docsify 文档网站生成</a></li>
-</ul>
-<blockquote>
-<p>不会生成静态的 .html 文件，所有转换工作都是在运行时。如果你想要开始使用它，只需要创建一个 index.html 就可以开始编写文档并直接部署在 GitHub Pages。<br />
-适合文档，如<a target="_blank" rel="noopener" href="https://bytesfly.github.io/island/#/">侠客岛</a>。</p>
-</blockquote>
-</li>
-<li>Markdown数学公式
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bytesfly/p/markdown-formula.html">一文学会在Markdown中编辑数学符号与公式 - 博客园</a> 公式语法</li>
-<li><a target="_blank" rel="noopener" href="https://katex.org/docs/supported.html">Supported Functions · KaTeX</a></li>
-<li><a target="_blank" rel="noopener" href="https://latex.91maths.com/">LaTeX在线：吴文中数学公式编辑器</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="画图"><a class="markdownIt-Anchor" href="#画图"></a> 画图</h2>
-<ul>
-<li>在线绘图
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.desmos.com/calculator?lang=zh-CN">Desmos</a> 绘制一元函数图像</li>
-</ul>
-</li>
-</ul>
-<h2 id="编程"><a class="markdownIt-Anchor" href="#编程"></a> 编程</h2>
-<ul>
-<li>
-<p>编译工具链</p>
-<ul>
-<li>vcpkg</li>
-<li>cmake/bazel/xmake</li>
-<li>Ninja/NMake/make</li>
-<li>clang-format/Astyle</li>
-</ul>
-</li>
-<li>
-<p>Android-NDK</p>
-<ul>
-<li>addr2line</li>
-<li>readelf -d <a target="_blank" rel="noopener" href="http://XXX.so">XXX.so</a> | grep NEEDED</li>
-</ul>
-</li>
-<li>
-<p>命令行</p>
-<ul>
-<li>Python</li>
-<li>C++</li>
-</ul>
-</li>
-<li>
-<p>json/xml</p>
-</li>
-<li>
-<p>C++ filesystem</p>
-</li>
-</ul>
-<h2 id="linux常用命令"><a class="markdownIt-Anchor" href="#linux常用命令"></a> Linux常用命令</h2>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">日志重定向到文件</span></span><br><span class="line">ndk-build &gt; log.txt 2&gt;&amp;1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在/查找包含strxx的文件，排除/proc目录</span></span><br><span class="line">find / -path /proc -prune -o -name &quot;strxx&quot; -print</span><br></pre></td></tr></table></figure>
-<ul>
-<li>bloaty 查看动态库的内部大小(需安装)</li>
-</ul>
-<h2 id="环境设置"><a class="markdownIt-Anchor" href="#环境设置"></a> 环境设置</h2>
-<ul>
-<li>软件源
-<ul>
-<li><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">ubuntu | 镜像站使用帮助 | 清华大学开源软件镜像站</a></li>
-<li><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/pypi/">pypi | 镜像站使用帮助 | 清华大学开源软件镜像站</a></li>
-<li><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/">anaconda | 镜像站使用帮助 | 清华大学开源软件镜像站</a></li>
-</ul>
-</li>
-<li>Git
-<ul>
-<li><a target="_blank" rel="noopener" href="https://xflihaibo.github.io/docs/#/tool/git">Git常用语法</a></li>
-</ul>
-</li>
-<li>ssh
-<ul>
-<li><a target="_blank" rel="noopener" href="https://xflihaibo.github.io/docs/#/tool/ssh">SSH</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="数学"><a class="markdownIt-Anchor" href="#数学"></a> 数学</h2>
-<ul>
-<li>优化
-<ul>
-<li>ceres-solver</li>
-<li>Eigen</li>
-</ul>
-</li>
-</ul>
-<h2 id="相机标定版"><a class="markdownIt-Anchor" href="#相机标定版"></a> 相机标定版</h2>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2023/09/16/20230914-Cpp%E7%BB%8F%E9%AA%8C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="yaanggny">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yaanggny的笔记">
-      <meta itemprop="description" content="日常记录">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yaanggny的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2023/09/16/20230914-Cpp%E7%BB%8F%E9%AA%8C/" class="post-title-link" itemprop="url">C++经验</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-09-16 15:59:52" itemprop="dateCreated datePublished" datetime="2023-09-16T15:59:52+08:00">2023-09-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-10-06 23:28:18" itemprop="dateModified" datetime="2023-10-06T23:28:18+08:00">2023-10-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>记录C++程序相关经验。</p>
-<h2 id="重载函数编译通过但链接失败"><a class="markdownIt-Anchor" href="#重载函数编译通过但链接失败"></a> 重载函数编译通过，但链接失败</h2>
-<ul>
-<li>实参和形参不完全匹配，导致重载函数编译通过，但链接时失败。</li>
-</ul>
-<p>以整数类型参数为例，同一参数被定义为uint32_t, int，在链接时出错。通过类型强制转换，链接错误问题解决。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">func</span><span class="params">(**, <span class="type">uint32_t</span> h, <span class="type">uint32_t</span> w, *)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">func</span><span class="params">(**, <span class="type">int</span> h, <span class="type">int</span> w, *)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">func</span><span class="params">(**, <span class="type">uint32_t</span> h, <span class="type">uint32_t</span> w, *)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">func</span><span class="params">(**, <span class="type">int</span> h, <span class="type">int</span> w, *)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// return func(**, h, w, *);   // 编译通过，链接错误</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">func</span>(**, (<span class="type">uint32_t</span>)h, (<span class="type">uint32_t</span>)w, *);   <span class="comment">// 编译通过，链接通过</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
