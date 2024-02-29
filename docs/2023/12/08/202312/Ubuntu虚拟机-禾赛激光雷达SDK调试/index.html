@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://yaanggny.github.io/blog/2023/12/08/202312/Ubuntu%E8%99%9A%E6%8B%9F%E6%9C%BA-%E7%A6%BE%E8%B5%9B%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BESDK%E8%B0%83%E8%AF%95/fig-20231205234151.png">
 <meta property="og:image" content="https://yaanggny.github.io/blog/2023/12/08/202312/Ubuntu%E8%99%9A%E6%8B%9F%E6%9C%BA-%E7%A6%BE%E8%B5%9B%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BESDK%E8%B0%83%E8%AF%95/fig-20231206231424.png">
 <meta property="article:published_time" content="2023-12-08T15:37:18.000Z">
-<meta property="article:modified_time" content="2023-12-08T15:47:25.435Z">
+<meta property="article:modified_time" content="2024-02-29T16:11:22.792Z">
 <meta property="article:author" content="yaanggny">
 <meta property="article:tag" content="传感器标定">
 <meta property="article:tag" content="Linux">
@@ -149,7 +149,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text"> 环境设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#windows-10%E4%B8%8A%E7%94%A8pandarview-2%E4%B8%AD%E8%8E%B7%E5%8F%96%E7%82%B9%E4%BA%91"><span class="nav-number">2.</span> <span class="nav-text"> Windows 10上用PandarView 2中获取点云</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#virtualbox-ubuntu%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%AD%E7%94%A8pandarview-2%E8%8E%B7%E5%8F%96%E7%82%B9%E4%BA%91"><span class="nav-number">3.</span> <span class="nav-text"> VirtualBox Ubuntu虚拟机中用PandarView 2获取点云</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#virtualbox-ubuntu%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%AD%E7%94%A8ros%E9%A9%B1%E5%8A%A8%E8%8E%B7%E5%8F%96%E7%82%B9%E4%BA%91"><span class="nav-number">4.</span> <span class="nav-text"> VirtualBox Ubuntu虚拟机中用ROS驱动获取点云</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text"> 环境设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#windows-10%E4%B8%8A%E7%94%A8pandarview-2%E4%B8%AD%E8%8E%B7%E5%8F%96%E7%82%B9%E4%BA%91"><span class="nav-number">2.</span> <span class="nav-text"> Windows 10上用PandarView 2中获取点云</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#virtualbox-ubuntu%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%AD%E7%94%A8pandarview-2%E8%8E%B7%E5%8F%96%E7%82%B9%E4%BA%91"><span class="nav-number">3.</span> <span class="nav-text"> VirtualBox Ubuntu虚拟机中用PandarView 2获取点云</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#virtualbox-ubuntu%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%AD%E7%94%A8ros%E9%A9%B1%E5%8A%A8%E8%8E%B7%E5%8F%96%E7%82%B9%E4%BA%91"><span class="nav-number">4.</span> <span class="nav-text"> VirtualBox Ubuntu虚拟机中用ROS驱动获取点云</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu%E5%AE%9E%E4%BD%93%E6%9C%BA%E8%8E%B7%E5%8F%96%E7%82%B9%E4%BA%91"><span class="nav-number">5.</span> <span class="nav-text"> Ubuntu实体机获取点云</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.1.</span> <span class="nav-text"> 网络设置</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -162,18 +162,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/blog/archives/">
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/blog/categories/">
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/blog/tags/">
-        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -228,9 +228,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-12-08 23:37:18 / 修改时间：23:47:25" itemprop="dateCreated datePublished" datetime="2023-12-08T23:37:18+08:00">2023-12-08</time>
+      <time title="创建时间：2023-12-08 23:37:18" itemprop="dateCreated datePublished" datetime="2023-12-08T23:37:18+08:00">2023-12-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-01 00:11:22" itemprop="dateModified" datetime="2024-03-01T00:11:22+08:00">2024-03-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -313,6 +319,12 @@
 <p>添加打印信息，命令行打印IP信息为空，但端口号正确。于是在<code>config/config.yaml</code>中添加<strong>group_address</strong> 项目：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">udp_port:</span> <span class="number">2368</span>                   <span class="comment">#UDP port of lidar</span></span><br><span class="line"><span class="attr">ptc_port:</span> <span class="number">9347</span>                   <span class="comment">#PTC port of lidar</span></span><br><span class="line"><span class="attr">device_ip_address:</span> <span class="number">192.168</span><span class="number">.1</span><span class="number">.201</span> <span class="comment">#host_ip_address</span></span><br><span class="line"><span class="attr">group_address:</span> <span class="string">x.x.x.x</span></span><br><span class="line"><span class="attr">pcap_path:</span> <span class="string">&quot;/path/to/xxx.pcap&quot;</span> <span class="comment">#The path of pcap file</span></span><br><span class="line"><span class="attr">correction_file_path:</span> <span class="string">&quot;/path/to/xxx_angle.csv&quot;</span> <span class="comment">#The path of correction file</span></span><br><span class="line"><span class="attr">firetimes_path:</span> <span class="string">&quot;/path/to/xxx_angle.csv&quot;</span> <span class="comment">#The path of firetimes file</span></span><br><span class="line"><span class="attr">source_type:</span> <span class="number">1</span>                   <span class="comment">#The type of data source, 1: real-time lidar connection, 2: pcap, 3: packet rosbag</span></span><br></pre></td></tr></table></figure>
 <p>随后编译，启动，成功在rviz软件中显示了点云。</p>
+<h2 id="ubuntu实体机获取点云"><a class="markdownIt-Anchor" href="#ubuntu实体机获取点云"></a> Ubuntu实体机获取点云</h2>
+<h3 id="网络设置"><a class="markdownIt-Anchor" href="#网络设置"></a> 网络设置</h3>
+<p>需要用vlan设置网络，并加入组播。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># install vlan</span></span><br><span class="line">sudo apt install vlan</span><br><span class="line"></span><br><span class="line"><span class="comment"># see doc</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>无需ping 通LiDAR地址，即可获取点云。<br />
+设置完成后可以按照前述方法设置UDP端口和广播地址，即可获取点云。ROS设置需要将<code>device_ip_address</code>设置为LiDAR IP。</p>
 
     </div>
 
@@ -356,6 +368,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/blog/2024/03/01/202403/image-matching-challenge%E8%A7%84%E5%88%99%E6%95%B4%E7%90%86/" rel="next" title="image-matching-challenge规则整理">
+                  image-matching-challenge规则整理 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -376,7 +391,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
