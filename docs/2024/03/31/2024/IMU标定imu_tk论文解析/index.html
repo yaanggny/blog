@@ -22,15 +22,15 @@
     <meta name="description" content="论文：A Robust and Easy to Implement Method for IMU Calibration without External Equipments 该论文是IMU内参标定工具imu_tk的对应论文，包含了尺度、交叉轴误差等参数。 为了校准陀螺仪三元组，我们可以假设系统是无偏置的，只需对静态陀螺仪信号在合适的初始无运动期间进行平均即可。以下关于艾伦方差的讨论证明了这一点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IMU标定imu_tk论文解析A Robust and Easy to Implement Method for IMU Calibration without External Equipments">
-<meta property="og:url" content="https://yaanggny.github.io/blog/2024/03/31/202403/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:url" content="https://yaanggny.github.io/blog/2024/03/31/2024/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/index.html">
 <meta property="og:site_name" content="yaanggny的笔记">
 <meta property="og:description" content="论文：A Robust and Easy to Implement Method for IMU Calibration without External Equipments 该论文是IMU内参标定工具imu_tk的对应论文，包含了尺度、交叉轴误差等参数。 为了校准陀螺仪三元组，我们可以假设系统是无偏置的，只需对静态陀螺仪信号在合适的初始无运动期间进行平均即可。以下关于艾伦方差的讨论证明了这一点">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://yaanggny.github.io/blog/2024/03/31/202403/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-d40b902b1b0ec675131a7a2806b9da03a83f28a860f160ac265e28eb66962d8b.png">
-<meta property="og:image" content="https://yaanggny.github.io/blog/2024/03/31/202403/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-30fecdd411ae5f66cee07df8bc8bae7e536aabe1a3921d000d2618cab1ad25f7.png">
-<meta property="og:image" content="https://yaanggny.github.io/blog/2024/03/31/202403/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-46d4d71ed75bdd6bfcc00057d6c4fc21fc3f4bc294f33405a82f0e73c3c0f90b.png">
-<meta property="og:image" content="https://yaanggny.github.io/blog/2024/03/31/202403/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-5653b5fb638c912add64b58f184b1021e0b7d63a0d032a2bb5f821e77eecdebe.png">
-<meta property="og:image" content="https://yaanggny.github.io/blog/2024/03/31/202403/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-18a3f69ae0224e126eb758cb665d7752c92a4c3f49d6aa252eec752b78577f05.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2024/03/31/2024/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-d40b902b1b0ec675131a7a2806b9da03a83f28a860f160ac265e28eb66962d8b.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2024/03/31/2024/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-30fecdd411ae5f66cee07df8bc8bae7e536aabe1a3921d000d2618cab1ad25f7.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2024/03/31/2024/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-46d4d71ed75bdd6bfcc00057d6c4fc21fc3f4bc294f33405a82f0e73c3c0f90b.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2024/03/31/2024/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-5653b5fb638c912add64b58f184b1021e0b7d63a0d032a2bb5f821e77eecdebe.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2024/03/31/2024/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-18a3f69ae0224e126eb758cb665d7752c92a4c3f49d6aa252eec752b78577f05.png">
 <meta property="article:published_time" content="2024-03-31T15:14:28.000Z">
 <meta property="article:modified_time" content="2024-03-31T15:20:18.658Z">
 <meta property="article:author" content="yaanggny">
@@ -39,14 +39,14 @@
 <meta property="article:tag" content="IMU">
 <meta property="article:tag" content="论文解读">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://yaanggny.github.io/blog/2024/03/31/202403/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-d40b902b1b0ec675131a7a2806b9da03a83f28a860f160ac265e28eb66962d8b.png">
+<meta name="twitter:image" content="https://yaanggny.github.io/blog/2024/03/31/2024/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-d40b902b1b0ec675131a7a2806b9da03a83f28a860f160ac265e28eb66962d8b.png">
 
 
-<link rel="canonical" href="https://yaanggny.github.io/blog/2024/03/31/202403/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/">
+<link rel="canonical" href="https://yaanggny.github.io/blog/2024/03/31/2024/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yaanggny.github.io/blog/2024/03/31/202403/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/","path":"2024/03/31/202403/IMU标定imu_tk论文解析/","title":"IMU标定imu_tk论文解析A Robust and Easy to Implement Method for IMU Calibration without External Equipments"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yaanggny.github.io/blog/2024/03/31/2024/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/","path":"2024/03/31/2024/IMU标定imu_tk论文解析/","title":"IMU标定imu_tk论文解析A Robust and Easy to Implement Method for IMU Calibration without External Equipments"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>IMU标定imu_tk论文解析A Robust and Easy to Implement Method for IMU Calibration without External Equipments | yaanggny的笔记</title>
@@ -161,18 +161,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/blog/archives/">
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/blog/categories/">
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/blog/tags/">
-        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-count">55</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -199,7 +199,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2024/03/31/202403/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2024/03/31/2024/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/images/avatar.gif">
@@ -275,12 +275,12 @@ M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="bold-italic">f</mi><mo stretchy="false">(</mo><mi mathvariant="bold-italic">q</mi><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi><mover accent="true"><mi mathvariant="bold-italic">q</mi><mo>˙</mo></mover></mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi mathvariant="normal">Ω</mi><mo stretchy="false">(</mo><mi mathvariant="bold-italic">ω</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mi mathvariant="bold-italic">q</mi></mrow><annotation encoding="application/x-tex">\bm{f}(\bm{q},t)=\bm{\dot q}=\frac{1}{2}\Omega(\bm\omega(t))\bm{q}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.11042em;">f</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">q</span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.90232em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord"><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.70788em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord boldsymbol" style="margin-right:0.03704em;">q</span></span><span style="top:-3.01344em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.15972em;"><span class="mord mathbf">˙</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord">Ω</span><span class="mopen">(</span><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">ω</span></span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mclose">)</span><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">q</span></span></span></span></span></span></span></p>
 <p>其中<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Ω</mi><mo stretchy="false">(</mo><mi mathvariant="bold-italic">ω</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Omega(\bm{\omega})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Ω</span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">ω</span></span></span><span class="mclose">)</span></span></span></span>是把三轴角速度转为实反对称矩阵的算子：<br />
-<img src="/blog/2024/03/31/202403/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-d40b902b1b0ec675131a7a2806b9da03a83f28a860f160ac265e28eb66962d8b.png" alt="picture 0" /><br />
+<img src="/blog/2024/03/31/2024/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-d40b902b1b0ec675131a7a2806b9da03a83f28a860f160ac265e28eb66962d8b.png" alt="picture 0" /><br />
 RK4n积分算法：<br />
-<img src="/blog/2024/03/31/202403/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-30fecdd411ae5f66cee07df8bc8bae7e536aabe1a3921d000d2618cab1ad25f7.png" alt="picture 3" /></p>
+<img src="/blog/2024/03/31/2024/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-30fecdd411ae5f66cee07df8bc8bae7e536aabe1a3921d000d2618cab1ad25f7.png" alt="picture 3" /></p>
 <h3 id="allan方差"><a class="markdownIt-Anchor" href="#allan方差"></a> Allan方差</h3>
 <p>使用Allan方差来表征陀螺仪的随机偏移，其度量连续区间平均值之间的差异的方差。Allan方差<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>σ</mi><mi>a</mi><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">\sigma_a^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.061108em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">a</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>定义为<br />
-<img src="/blog/2024/03/31/202403/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-46d4d71ed75bdd6bfcc00057d6c4fc21fc3f4bc294f33405a82f0e73c3c0f90b.png" alt="picture 4" /><br />
+<img src="/blog/2024/03/31/2024/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-46d4d71ed75bdd6bfcc00057d6c4fc21fc3f4bc294f33405a82f0e73c3c0f90b.png" alt="picture 4" /><br />
 其中<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>t</mi><mo separator="true">,</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x(t,k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">x</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">)</span></span></span></span>表示第k个区间内的平均值，跨度为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span></span></span></span>秒。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span>表示将考虑的总时间分割的区间数。<br />
 令<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mn>0</mn></msub><mo>≤</mo><mover accent="true"><mi>t</mi><mo stretchy="true">~</mo></mover><mo>≤</mo><msub><mi>t</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">t_0\le \widetilde{t}\le t_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7859700000000001em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.01105em;vertical-align:-0.13597em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.87508em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">t</span></span></span><span class="svg-align" style="width:calc(100% - 0.16668em);margin-left:0.16668em;top:-3.61508em;"><span class="pstrut" style="height:3em;"></span><span style="height:0.26em;"><svg width='100%' height='0.26em' viewBox='0 0 600 260' preserveAspectRatio='none'><path d='M200 55.538c-77 0-168 73.953-177 73.953-3 0-7
 -2.175-9-5.437L2 97c-1-2-2-4-2-6 0-4 2-7 5-9l20-12C116 12 171 0 207 0c86 0
@@ -290,7 +290,7 @@ RK4n积分算法：<br />
 <blockquote>
 <p>Allan方差最低点表示偏差。</p>
 </blockquote>
-<p><img src="/blog/2024/03/31/202403/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-5653b5fb638c912add64b58f184b1021e0b7d63a0d032a2bb5f821e77eecdebe.png" alt="picture 5" /></p>
+<p><img src="/blog/2024/03/31/2024/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-5653b5fb638c912add64b58f184b1021e0b7d63a0d032a2bb5f821e77eecdebe.png" alt="picture 5" /></p>
 <h3 id="计算过程"><a class="markdownIt-Anchor" href="#计算过程"></a> 计算过程</h3>
 <p>为了避免在标定参数估算中产生不可观测性，必须至少收集九种不同的姿态[15]。根据我们的经验，需要更大数量的N的不同姿态才能获得更好的校准结果，同时保持减少每个静态间隔的持续时间，以便保证陀螺仪偏置的时间稳定性假设。<br />
 位姿数量、时间参数等设置：</p>
@@ -299,7 +299,7 @@ RK4n积分算法：<br />
 <li>使用Allan方差确定<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mrow><mi>i</mi><mi>n</mi><mi>i</mi><mi>t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{init}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
 </ul>
 <p>标定算法：<br />
-<img src="/blog/2024/03/31/202403/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-18a3f69ae0224e126eb758cb665d7752c92a4c3f49d6aa252eec752b78577f05.png" alt="picture 6" /></p>
+<img src="/blog/2024/03/31/2024/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/fig-18a3f69ae0224e126eb758cb665d7752c92a4c3f49d6aa252eec752b78577f05.png" alt="picture 6" /></p>
 <h2 id="实验"><a class="markdownIt-Anchor" href="#实验"></a> 实验</h2>
 <p>在合成数据和真实数据上进行了实验，合成数据有真值，无噪声，标定矩阵已知。真实数据标定后和IMU的用户手册对比。</p>
 <h2 id="工具"><a class="markdownIt-Anchor" href="#工具"></a> 工具</h2>
@@ -326,7 +326,7 @@ RK4n积分算法：<br />
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://yaanggny.github.io/blog/2024/03/31/202403/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/" title="IMU标定imu_tk论文解析A Robust and Easy to Implement Method for IMU Calibration without External Equipments">https://yaanggny.github.io/blog/2024/03/31/202403/IMU标定imu_tk论文解析/</a>
+      <a href="https://yaanggny.github.io/blog/2024/03/31/2024/IMU%E6%A0%87%E5%AE%9Aimu_tk%E8%AE%BA%E6%96%87%E8%A7%A3%E6%9E%90/" title="IMU标定imu_tk论文解析A Robust and Easy to Implement Method for IMU Calibration without External Equipments">https://yaanggny.github.io/blog/2024/03/31/2024/IMU标定imu_tk论文解析/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -345,11 +345,14 @@ RK4n积分算法：<br />
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/blog/2024/03/19/202403/IMU-%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A%E8%B5%84%E6%96%99/" rel="prev" title="IMU-相机标定资料">
+                <a href="/blog/2024/03/19/2024/IMU-%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A%E8%B5%84%E6%96%99/" rel="prev" title="IMU-相机标定资料">
                   <i class="fa fa-chevron-left"></i> IMU-相机标定资料
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/blog/2024/05/29/2024/python-pip%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85%E5%8C%85%E5%88%B0%E7%8E%AF%E5%A2%83/" rel="next" title="python-pip源码安装包到环境 pip install">
+                  python-pip源码安装包到环境 pip install <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
