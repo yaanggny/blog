@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yaanggny.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/blog/js/config.js"></script>
+
+    <meta name="description" content="在手机影像或传统图像算法领域积累了丰富经验的工程师，在寻求向电商平台图像算法岗位转型时，有哪些方向，如何迁移技术？以下内容产生自DeepSeek:  在手机影像算法工程师向电商平台图像算法岗位转型的面试中，需围绕 技术迁移能力、业务场景理解 和 行业痛点解决 三个核心维度展开。以下是具体的思路与策略，结合手机影像与电商图像算法的共性与差异设计：   一、技术迁移：从影像增强到电商场景的适配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手机影像或传统图像算法转电商领域图像算法思路">
+<meta property="og:url" content="https://yaanggny.github.io/blog/2025/03/27/202503/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95%E8%BD%AC%E7%94%B5%E5%95%86%E9%A2%86%E5%9F%9F%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95%E6%80%9D%E8%B7%AF/index.html">
+<meta property="og:site_name" content="yaanggny的笔记">
+<meta property="og:description" content="在手机影像或传统图像算法领域积累了丰富经验的工程师，在寻求向电商平台图像算法岗位转型时，有哪些方向，如何迁移技术？以下内容产生自DeepSeek:  在手机影像算法工程师向电商平台图像算法岗位转型的面试中，需围绕 技术迁移能力、业务场景理解 和 行业痛点解决 三个核心维度展开。以下是具体的思路与策略，结合手机影像与电商图像算法的共性与差异设计：   一、技术迁移：从影像增强到电商场景的适配">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-27T13:27:16.000Z">
+<meta property="article:modified_time" content="2025-03-27T13:46:32.244Z">
+<meta property="article:author" content="yaanggny">
+<meta property="article:tag" content="图像算法">
+<meta property="article:tag" content="技术转型">
+<meta property="article:tag" content="工程师思维">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://yaanggny.github.io/blog/2025/03/27/202503/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95%E8%BD%AC%E7%94%B5%E5%95%86%E9%A2%86%E5%9F%9F%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95%E6%80%9D%E8%B7%AF/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yaanggny.github.io/blog/2025/03/27/202503/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95%E8%BD%AC%E7%94%B5%E5%95%86%E9%A2%86%E5%9F%9F%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95%E6%80%9D%E8%B7%AF/","path":"2025/03/27/202503/传统图像算法转电商领域图像算法思路/","title":"手机影像或传统图像算法转电商领域图像算法思路"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>手机影像或传统图像算法转电商领域图像算法思路 | yaanggny的笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">yaanggny的笔记</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80-%E6%8A%80%E6%9C%AF%E8%BF%81%E7%A7%BB%E4%BB%8E%E5%BD%B1%E5%83%8F%E5%A2%9E%E5%BC%BA%E5%88%B0%E7%94%B5%E5%95%86%E5%9C%BA%E6%99%AF%E7%9A%84%E9%80%82%E9%85%8D"><span class="nav-number">1.</span> <span class="nav-text"> 一、技术迁移：从影像增强到电商场景的适配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C-%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E6%8C%96%E6%8E%98%E7%94%B5%E5%95%86%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95%E7%9A%84%E6%A0%B8%E5%BF%83%E9%9C%80%E6%B1%82"><span class="nav-number">2.</span> <span class="nav-text"> 二、业务场景挖掘：电商图像算法的核心需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-%E5%B7%AE%E5%BC%82%E5%8C%96%E7%AB%9E%E4%BA%89%E5%8A%9B%E6%9E%84%E5%BB%BA"><span class="nav-number">3.</span> <span class="nav-text"> 三、差异化竞争力构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B-%E9%9D%A2%E8%AF%95%E5%BA%94%E7%AD%94%E7%AD%96%E7%95%A5"><span class="nav-number">4.</span> <span class="nav-text"> 四、面试应答策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94-%E9%A3%8E%E9%99%A9%E4%B8%8E%E6%8C%91%E6%88%98%E5%BA%94%E5%AF%B9"><span class="nav-number">5.</span> <span class="nav-text"> 五、风险与挑战应对</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">yaanggny</p>
+  <div class="site-description" itemprop="description">日常记录</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/blog/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/blog/tags/">
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2025/03/27/202503/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95%E8%BD%AC%E7%94%B5%E5%95%86%E9%A2%86%E5%9F%9F%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95%E6%80%9D%E8%B7%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="手机影像或传统图像算法转电商领域图像算法思路 | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          手机影像或传统图像算法转电商领域图像算法思路
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-27 21:27:16 / 修改时间：21:46:32" itemprop="dateCreated datePublished" datetime="2025-03-27T21:27:16+08:00">2025-03-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E4%BA%BA%E7%94%9F%E6%80%9D%E8%80%83/" itemprop="url" rel="index"><span itemprop="name">人生思考</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E4%BA%BA%E7%94%9F%E6%80%9D%E8%80%83/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/" itemprop="url" rel="index"><span itemprop="name">职业发展</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>在手机影像或传统图像算法领域积累了丰富经验的工程师，在寻求向电商平台图像算法岗位转型时，有哪些方向，如何迁移技术？以下内容产生自DeepSeek:</p>
+</blockquote>
+<p>在手机影像算法工程师向电商平台图像算法岗位转型的面试中，需围绕 <strong>技术迁移能力</strong>、<strong>业务场景理解</strong> 和 <strong>行业痛点解决</strong> 三个核心维度展开。以下是具体的思路与策略，结合手机影像与电商图像算法的共性与差异设计：</p>
+<hr />
+<h3 id="一-技术迁移从影像增强到电商场景的适配"><a class="markdownIt-Anchor" href="#一-技术迁移从影像增强到电商场景的适配"></a> 一、技术迁移：从影像增强到电商场景的适配</h3>
+<ol>
+<li>
+<p><strong>底层技术复用</strong></p>
+<ul>
+<li><strong>多摄融合 → 多角度商品匹配</strong>：手机影像中的多摄对齐算法（如亚像素级精度优化）可迁移至电商场景，解决商品多角度图像的自动匹配与一致性检测问题，提升商品详情页的视觉体验。</li>
+<li><strong>降噪/HDR → 图像质量优化</strong>：将手机夜景降噪算法适配到电商场景，用于修复低光照拍摄的商品图片（如二手商品图），或通过HDR技术增强透明材质（玻璃、金属）的细节表现。</li>
+<li><strong>实时处理 → 高并发场景支持</strong>：手机端低延迟算法（如高通SNPE部署经验）可优化电商平台的图像审核、分类等实时任务，支撑亿级商品库的高效处理。</li>
+</ul>
+</li>
+<li>
+<p><strong>模型优化经验转化</strong></p>
+<ul>
+<li><strong>模型轻量化</strong>：手机端的模型压缩技术（如量化、剪枝）可用于电商的移动端图像搜索服务，降低服务器负载。</li>
+<li><strong>多任务学习</strong>：借鉴手机影像中同时处理对焦、白平衡、色彩增强的多任务网络设计，构建电商场景下的联合模型（如商品分类+质量检测+风格识别）。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3 id="二-业务场景挖掘电商图像算法的核心需求"><a class="markdownIt-Anchor" href="#二-业务场景挖掘电商图像算法的核心需求"></a> 二、业务场景挖掘：电商图像算法的核心需求</h3>
+<ol>
+<li>
+<p><strong>商品理解与结构化</strong></p>
+<ul>
+<li><strong>细粒度分类</strong>：将手机影像中的物体检测技术（如YOLO系列）升级为电商场景的细粒度识别，例如区分口红的不同色号或鞋款的微小设计差异。</li>
+<li><strong>属性提取</strong>：复用图像特征描述子（如SIFT、CNN特征）提取商品材质、纹理等属性，用于搜索优化或推荐系统。</li>
+</ul>
+</li>
+<li>
+<p><strong>用户体验优化</strong></p>
+<ul>
+<li><strong>虚拟试穿/试戴</strong>：利用手机影像中的人脸关键点检测、AR渲染技术，开发电商虚拟试妆、试衣算法，提升转化率。</li>
+<li><strong>图像生成与编辑</strong>：基于生成模型（如GAN），实现商品背景替换、瑕疵修复（如二手商品划痕去除），降低拍摄成本。</li>
+</ul>
+</li>
+<li>
+<p><strong>风控与合规</strong></p>
+<ul>
+<li><strong>假货识别</strong>：通过手机影像中的伪造检测技术（如Moire纹理分析），识别商品图片中的PS痕迹或盗图行为。</li>
+<li><strong>敏感内容过滤</strong>：迁移手机影像的语义分割能力，自动检测违规商品（如涉黄涉暴图案）。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3 id="三-差异化竞争力构建"><a class="markdownIt-Anchor" href="#三-差异化竞争力构建"></a> 三、差异化竞争力构建</h3>
+<ol>
+<li>
+<p><strong>跨领域问题解决案例</strong></p>
+<ul>
+<li>举例说明如何将手机影像的 <strong>光流算法</strong> 用于电商视频广告的运镜分析，或通过 <strong>多帧融合</strong> 技术提升直播商品画面的清晰度。</li>
+<li>展示专利技术的复用潜力，例如将手机多摄标定专利转化为电商多摄像头拍摄设备的自动校准方案。</li>
+</ul>
+</li>
+<li>
+<p><strong>数据闭环思维</strong></p>
+<ul>
+<li>提出构建 <strong>用户行为-图像数据</strong> 联合分析框架：通过点击热力图反推商品主图的最佳构图方式，类似手机影像中基于用户偏好优化拍照算法。</li>
+<li>设计A/B测试方案：对比不同图像增强算法对商品点击率的影响，量化技术投入的ROI。</li>
+</ul>
+</li>
+<li>
+<p><strong>行业趋势结合</strong></p>
+<ul>
+<li>引用影像配件市场数据（预计2025年达千亿规模），建议电商平台联合硬件厂商开发定制化拍摄设备，提升UGC内容质量。</li>
+<li>提出“算法+生态”策略：借鉴手机厂商与配件商的协同模式，推动电商平台与摄影工具类App的数据合作，构建图像技术生态。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3 id="四-面试应答策略"><a class="markdownIt-Anchor" href="#四-面试应答策略"></a> 四、面试应答策略</h3>
+<ol>
+<li>
+<p><strong>技术问题准备</strong></p>
+<ul>
+<li>重点复习 <strong>目标检测</strong>（如YOLO/SSD原理）、<strong>过拟合防治</strong>（数据增强、Dropout）、<strong>样本不平衡处理</strong>（Focal Loss）等通用知识点。</li>
+<li>结合电商场景举例：例如解释如何用RetinaNet解决长尾商品分类问题，或通过OHEM策略优化假货检测模型。</li>
+</ul>
+</li>
+<li>
+<p><strong>项目阐述框架</strong></p>
+<ul>
+<li>使用 <strong>STAR-L（Situation-Task-Action-Result-Learning）</strong> 模型：<br />
+<em>“在手机影像项目中，我通过改进光流网络（Action）将运动模糊场景对齐成功率提升35%（Result），这种针对动态模糊的优化可直接用于电商直播画面的稳定性增强（Learning迁移）”。</em></li>
+</ul>
+</li>
+<li>
+<p><strong>反问设计</strong></p>
+<ul>
+<li>聚焦技术落地：“贵司的商品图像审核流程中，是否遇到小语种文字识别或跨文化符号误判的问题？我此前的多语言OCR优化经验或许能提供解决方案。”</li>
+<li>探求创新空间：“是否有计划结合VR/AR技术构建沉浸式购物体验？我在手机端的实时渲染经验可支持相关开发。”</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3 id="五-风险与挑战应对"><a class="markdownIt-Anchor" href="#五-风险与挑战应对"></a> 五、风险与挑战应对</h3>
+<ol>
+<li>
+<p><strong>技术债务预警</strong></p>
+<ul>
+<li>提前询问电商平台的算法基建成熟度（如是否支持模型热更新），避免陷入低效的技术适配。</li>
+<li>建议分阶段迁移：优先落地需求明确的模块（如图像去瑕疵），再逐步扩展至复杂场景（如虚拟试穿）。</li>
+</ul>
+</li>
+<li>
+<p><strong>知识盲区弥补</strong></p>
+<ul>
+<li>突击学习电商专属技术：例如 <strong>图神经网络（GNN）</strong> 在推荐系统的应用、<strong>多模态检索</strong>（图文匹配）的SOTA模型。</li>
+<li>研究行业报告：分析Shein、Temu等企业的图像技术布局，提炼可复用的创新点。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<p>通过以上策略，既突出手机影像算法工程师的 <strong>技术深度</strong>（如模型优化、实时处理），又展现对电商业务的 <strong>场景化重构能力</strong>，最终在面试中建立“技术迁移专家”的差异化人设。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yaanggny
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://yaanggny.github.io/blog/2025/03/27/202503/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95%E8%BD%AC%E7%94%B5%E5%95%86%E9%A2%86%E5%9F%9F%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95%E6%80%9D%E8%B7%AF/" title="手机影像或传统图像算法转电商领域图像算法思路">https://yaanggny.github.io/blog/2025/03/27/202503/传统图像算法转电商领域图像算法思路/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/blog/tags/%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95/" rel="tag"># 图像算法</a>
+              <a href="/blog/tags/%E6%8A%80%E6%9C%AF%E8%BD%AC%E5%9E%8B/" rel="tag"># 技术转型</a>
+              <a href="/blog/tags/%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%80%9D%E7%BB%B4/" rel="tag"># 工程师思维</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2025/03/24/202503/%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AF%BB%E8%AE%BA%E6%96%87/" rel="prev" title="算法工程师如何读文献">
+                  <i class="fa fa-chevron-left"></i> 算法工程师如何读文献
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/" rel="next" title="ISP成像参数和HDR成像">
+                  ISP成像参数和HDR成像 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yaanggny</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/blog/js/comments.js"></script><script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/blog/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css" integrity="sha256-gMRN4/6qeELzO1wbFa8qQLU8kfuF2dnAPiUoI0ATjx8=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/blog/js/third-party/math/katex.js"></script>
+
+
+
+</body>
+</html>

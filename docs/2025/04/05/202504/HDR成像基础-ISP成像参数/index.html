@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yaanggny.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/blog/js/config.js"></script>
+
+    <meta name="description" content="主要梳理ISP成像相关参数(如曝光时长&#x2F;快门速度、ISO、gain、光圈大小等)和HDR成像相关知识。  1、ISP成像参数  1.1 参数  曝光时间（Exposure Time或shutter）  传感器感光元件暴露在光线下的时间（单位：毫秒或秒）。时间越长，传感器捕获的光子越多，图像亮度越高。但过长的曝光时间会导致运动模糊（动态场景）或过曝（高光溢出）。  ISO&#x2F;Gain（感光度&#x2F;增益）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ISP成像参数和HDR成像">
+<meta property="og:url" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/index.html">
+<meta property="og:site_name" content="yaanggny的笔记">
+<meta property="og:description" content="主要梳理ISP成像相关参数(如曝光时长&#x2F;快门速度、ISO、gain、光圈大小等)和HDR成像相关知识。  1、ISP成像参数  1.1 参数  曝光时间（Exposure Time或shutter）  传感器感光元件暴露在光线下的时间（单位：毫秒或秒）。时间越长，传感器捕获的光子越多，图像亮度越高。但过长的曝光时间会导致运动模糊（动态场景）或过曝（高光溢出）。  ISO&#x2F;Gain（感光度&#x2F;增益）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-a80d4f7eb18dc5cd41010430b2457705c9e43003871f98eda3da924989fe5ed5.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5e7c89b7e3d20d7f3e54bfa28d04751982c669acb1b62b5200f2fa9aeefe5f03.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-d3e6fb22ba445ccd7f1397be205dcfce8206a4be40461d7f85747bb1e3f28503.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-e2c501590bdaeeaacca704427eccf1e56b187f596cb56b6de81bee82359da8d2.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-197705fabf23699ac51146b27dd817e1aba0edf47e93251dae40d1d02ad59c13.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-673799401a15b9fa3d91f3c93ec71b7facb93d19b4e53b100ea880843c5b483f.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-91b49410eb1569e20687793be3a612c8fe94f971f3ab013885fb82b85986b7c4.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-451c6609f2307cc1a8304bd4e9207e680bede2f0f39821675ceda9915ee3019e.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-b2190bc0f3167141eed970e774658ba203e1cb71227e9e4a3b243d8dcf9ecce3.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-2935afbc0a6e9ec182ee176735e1de7a4bcd4b5b3944473c7e1a948a3919fd1f.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-54d249f62765b826f35469dbdec0db113b1f0ae3a147a76df27170ec07fc9b31.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-1c98301ebfe5af4c85f2f978f477a03a5d66b11244d830432cb4ce9f669bf84a.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-3d5d9bfe31dc9331f01ad35141731b282af7550084352977e75e0ce9ccd461b5.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5e48d3bb9697a868fc22dc10335ec8550f5fe5f28d0555b482542f9a6808e739.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-e083d3a5a19c8a6fbf7ca4b7b84ef1f3fb89c2f8694ad3b41caacea8b6ec32fc.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-27799dbc206a9be461c0f9bc25501b5414f93717a14e47e65664a6582a8ec20c.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8731d4d6e44e8607c88e23d75388256c4417d284c1cb7bbd59b9c78baf693aa8.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-0bfee920bd2761fff712ed1b3a6d218b0c15ab0db91cd5c6546e52e81c1f1059.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-a7cf4b1962bb8c6f903f622d327d79d682d15af96df7c6de3fd07960b51974ef.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-b1dad548cd70f6fd3f7aba962c5398db1604a43ce555a9b4431cb0b754dd6636.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-f990bbcf2f8c16cce5c7181ed695e0bcc4858c4397ecaec06590612a80ca06e9.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-84deeab3bd2f38239137fa3ca28daa78eb420b73f098ef606147ee1388df7e5b.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-0980cd797139b5329e2d55c063eacff9c911f147070b406e2656024d3369a5d6.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-839b8f810b3ac58b69d32657701fcaa79685b7ce45b19644b91055199e8b64fa.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-978a6d5e1d22df17ceee06bc04a866048536b9f5eda64cfe45d3b112007be143.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-59fd99dd8075f28c420ff03091ff4cdf78618a30a4b679a17b0c854e0e8c5163.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8cace7309773cf4f1d556ab54bcb8e55b6c0ac24e7869a24b8202bcbd5efc4fe.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-bfe13bb95c525a51ca67aa66492d148ea7b7d1fd0cc2ddaa5ba72c0bac894765.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-b09994386c2dee366431950b268b36e35b43988541d66720f077f2b6b13934af.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5db3365c382e9b9703b6b8c8e5f93838cfa99aca224c4e5b342e3157e991ee51.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-d5624fc81466776ee51247a8f3265da29e5428987dbcbd9388732557499afb4e.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-152e3621a8b338f7282e488d4b58e91c094d5426cd8b3ea04d0cebb681197daa.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-7fe552ee0aade9c6e8fe35e9bf7616830938f164cc6d839a9a34c1aa0fa2115a.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5c5ae6859d5dc423c14398b2e9076cea7d37919a5d4f5e4b1059010788ee514b.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-81afbe445e22277824348e67c441a87b1122901c6a3732589e63e2133ba85b12.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5c4b3aff249d02a8e602acf1de8967e51215a2ac8992b1578055eaaae6a82487.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-53d6e83884e58a65f072d306f5e571c5d0c5e0b90782a5e1ed59d7a7cb537005.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-d0068cf453990468e3c2c677aa80171107c77d3150501c9e55a149fad2f70115.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-ff2fd0cdd3faa57a08bb9d7fa2ccebdbdd2a1e6501eb601dee3229b2e1f2d728.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8a00051e983c13203eaf68dcc7ffdc16a0f7c276b40b385eecb8e64492d73a91.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-02e33320add2438f13b0c32c842c563f8bd5f9f05fb38c38f4ca44d80d54d40c.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-27dfc6b8d68691fa903443ee3c590af6ad7f73218fea81cc8dfa91b4ca6ef5d3.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-44f32c1dee485c943e2c9addc8afff0df2e04bf95f4c03f42a445751d6471c1f.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-aebf8ce2dd0a958d00fc92fcb182b7531cd025118439cb67e29248bacafdc898.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-dd50323181dcecab86d395bf8eb6e34100bb5e9593077c39369ce6ef343a0289.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-143e6b0745948cee1adbee5243f360e5c795b332841a2260d39857de609db850.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-0f0f4f9daea1f13098c24d79f75e3d8f3973dd7e4705c74caaf76ede3db69e75.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8c282013d2ee8faaef86f24c164867e94c5f7a605778b8d2345280694f03d8f6.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-2ca70afb4f6edf7834a400a9b346eb8da9d92aa231ea4b7204f9131995ed71a1.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-2505b06d62a8ceb7c02420314c1d78fcb5c79a1a3414bc5e7f959948747839c1.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8b11c2c4ab3641a5a01adb1734a7d0066ecc9e987c92ed238a25246e3aebace9.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-baae4ff6ae2fcafe1a090127df54fba213295b989a1db94813dd4a7b239636e5.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5ea2980038b151d5084cc381f0f3191d020ecb69148329d81415f63c3d07d1df.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8063ec87dd165b7ab13970bbc282c41d7edd5ab430da19079881b9c8ff6a30be.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-76ee60e5a1f968ae83e3c2def2935ebb11add3c719e1987213feae1c168bda5b.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-941a100b4d55fcf795ad1252c0938631e626037fee56c8a33a56f8efec2c05e3.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-e845f73930aacfd5e83f6948939d7c876951627b8bd1c760a8d0deae9dc2260b.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-bbbfbfd02811cddd541b94b3d14e9de19b3dbcf3208bc64c24d00627be0b1cf7.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-dabe42b510fb4ee692fd37fcd1f3a44cfbe56986b71bb635c9c1f978f2b6dcf5.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-1565890e179b22f245271f47aceaa8a8da2143dceee3d6e5956b5db78d0ec80c.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-1ad064c86379752cdcf085146d9f7631410b12e6a6225ee4c559398e8fcfd667.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-18a2bd1145af49541556f66eeea9fcce71cbb7627f93845e3012e48c7e2e7d3e.png">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-d815c3c008aae54261d83497cb2486c2eab9c6a1dfeb7abdb953e4d28efe0731.png">
+<meta property="article:published_time" content="2025-04-05T13:41:00.000Z">
+<meta property="article:modified_time" content="2025-04-13T08:04:42.710Z">
+<meta property="article:author" content="yaanggny">
+<meta property="article:tag" content="CV">
+<meta property="article:tag" content="计算摄影">
+<meta property="article:tag" content="图像处理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-a80d4f7eb18dc5cd41010430b2457705c9e43003871f98eda3da924989fe5ed5.png">
+
+
+<link rel="canonical" href="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/","path":"2025/04/05/202504/HDR成像基础-ISP成像参数/","title":"ISP成像参数和HDR成像"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ISP成像参数和HDR成像 | yaanggny的笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">yaanggny的笔记</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-isp%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text"> 1、ISP成像参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E5%8F%82%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text"> 1.1 参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E5%8F%82%E6%95%B0%E9%97%B4%E7%9A%84%E7%9B%B8%E4%BA%92%E4%BD%9C%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text"> 1.2 参数间的相互作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-isp%E6%B5%81%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%8F%82%E6%95%B0%E8%B0%83%E6%95%B4%E7%AD%96%E7%95%A5"><span class="nav-number">1.3.</span> <span class="nav-text"> 1.3 ISP流程中的参数调整策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-hdr%E6%88%90%E5%83%8F"><span class="nav-number">2.</span> <span class="nav-text"> 2、HDR成像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#21-%E6%9B%9D%E5%85%89%E6%8E%A7%E5%88%B6"><span class="nav-number">2.1.</span> <span class="nav-text"> 2.1 曝光控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%9B%9D%E5%85%89"><span class="nav-number">2.1.1.</span> <span class="nav-text"> 什么是曝光</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%AB%E9%97%A8%E9%80%9F%E5%BA%A6"><span class="nav-number">2.1.2.</span> <span class="nav-text"> 快门速度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%89%E5%9C%88"><span class="nav-number">2.1.3.</span> <span class="nav-text"> 光圈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iso"><span class="nav-number">2.1.4.</span> <span class="nav-text"> ISO</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E6%9C%BA%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.5.</span> <span class="nav-text"> 相机工作模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-%E6%B5%8B%E5%85%89"><span class="nav-number">2.2.</span> <span class="nav-text"> 2.2 测光</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-%E5%8A%A8%E6%80%81%E8%8C%83%E5%9B%B4"><span class="nav-number">2.3.</span> <span class="nav-text"> 2.3 动态范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-hdr%E6%88%90%E5%83%8F"><span class="nav-number">2.4.</span> <span class="nav-text"> 2.4 HDR成像</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#241-%E5%8C%85%E5%9B%B4%E6%9B%9D%E5%85%89"><span class="nav-number">2.4.1.</span> <span class="nav-text"> 2.4.1 包围曝光</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#242-%E5%A4%9A%E5%B8%A7ldr%E5%9B%BE%E5%83%8F%E8%9E%8D%E5%90%88%E4%B8%BAhdr%E5%9B%BE%E5%83%8F"><span class="nav-number">2.4.2.</span> <span class="nav-text"> 2.4.2 多帧LDR图像融合为HDR图像</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-%E8%BE%90%E5%B0%84%E6%A0%87%E5%AE%9A-radiometric-calibration"><span class="nav-number">2.5.</span> <span class="nav-text"> 2.5 辐射标定 Radiometric calibration</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BC%B0%E8%AE%A1%E7%9B%B8%E6%9C%BA%E5%93%8D%E5%BA%94%E6%9B%B2%E7%BA%BF"><span class="nav-number">2.5.1.</span> <span class="nav-text"> 如何估计相机响应曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%9B%BE%E5%83%8F%E5%BD%A2%E6%88%90%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.5.2.</span> <span class="nav-text"> 非线性图像形成模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E6%9C%BA%E5%93%8D%E5%BA%94%E6%9B%B2%E7%BA%BF%E6%97%A0%E6%B3%95%E4%BC%B0%E8%AE%A1%E6%97%B6%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">2.5.3.</span> <span class="nav-text"> 相机响应曲线无法估计时的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%89%B2%E8%B0%83%E5%86%8D%E7%8E%B0%E6%9B%B2%E7%BA%BF"><span class="nav-number">2.5.4.</span> <span class="nav-text"> 色调再现曲线</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-hdr%E6%88%90%E5%83%8F%E7%9A%84%E5%85%B6%E4%BB%96%E5%9B%A0%E7%B4%A0"><span class="nav-number">2.6.</span> <span class="nav-text"> 2.6 HDR成像的其他因素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%AF%B9-%E7%BB%9D%E5%AF%B9%E8%BE%90%E5%B0%84flux"><span class="nav-number">2.6.1.</span> <span class="nav-text"> 相对-绝对辐射flux</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AChdr%E6%B5%81%E7%A8%8B%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.6.2.</span> <span class="nav-text"> 基本HDR流程的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8hdr%E5%9B%BE%E5%83%8F"><span class="nav-number">2.6.3.</span> <span class="nav-text"> 如何存储HDR图像</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-%E8%89%B2%E8%B0%83%E6%98%A0%E5%B0%84-tonemapping"><span class="nav-number">2.7.</span> <span class="nav-text"> 2.7 色调映射 Tonemapping</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%98%BE%E7%A4%BAhdr%E5%9B%BE%E5%83%8F"><span class="nav-number">2.7.1.</span> <span class="nav-text"> 如何显示HDR图像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%9C%E8%89%B2%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">2.7.2.</span> <span class="nav-text"> 颜色的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E5%9F%9F%E5%A4%84%E7%90%86%E5%92%8Ctonemapping"><span class="nav-number">2.7.3.</span> <span class="nav-text"> 梯度域处理和ToneMapping</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28-hdr-imaging-and-tonemapping-%E6%80%9D%E8%80%83"><span class="nav-number">2.8.</span> <span class="nav-text"> 2.8 HDR imaging and tonemapping 思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.9.</span> <span class="nav-text"> 总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#hdr%E6%88%90%E5%83%8F%E5%A6%82%E4%BD%95%E4%BB%8E%E5%A4%9A%E5%B8%A7ldr%E5%9B%BE%E5%83%8F%E9%87%8D%E5%BB%BA%E9%AB%98%E5%8A%A8%E6%80%81%E8%8C%83%E5%9B%B4%E7%9A%84%E5%9B%BE%E5%83%8F"><span class="nav-number">2.9.1.</span> <span class="nav-text"> HDR成像：如何从多帧LDR图像重建高动态范围的图像。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tonemapping%E5%B0%86hdr%E5%9B%BE%E5%83%8F%E8%BD%AC%E6%8D%A2%E4%B8%BA%E4%BD%8E%E5%8A%A8%E6%80%81%E8%8C%83%E5%9B%B4%E7%9A%84%E5%9B%BE%E5%83%8F%E4%BB%A5%E4%BE%BF%E5%9C%A8%E6%98%BE%E7%A4%BA%E8%AE%BE%E5%A4%87%E4%B8%8A%E5%B1%95%E7%A4%BA"><span class="nav-number">2.9.2.</span> <span class="nav-text"> ToneMapping：将HDR图像转换为低动态范围的图像，以便在显示设备上展示。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">2.10.</span> <span class="nav-text"> 参考资料</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%9D%90%E6%96%99"><span class="nav-number">2.10.1.</span> <span class="nav-text"> 基本材料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A9%E5%85%85%E6%9D%90%E6%96%99"><span class="nav-number">2.10.2.</span> <span class="nav-text"> 扩充材料</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">yaanggny</p>
+  <div class="site-description" itemprop="description">日常记录</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/blog/categories/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/blog/tags/">
+        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ISP成像参数和HDR成像 | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ISP成像参数和HDR成像
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-04-05 21:41:00" itemprop="dateCreated datePublished" datetime="2025-04-05T21:41:00+08:00">2025-04-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-13 16:04:42" itemprop="dateModified" datetime="2025-04-13T16:04:42+08:00">2025-04-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1/" itemprop="url" rel="index"><span itemprop="name">计算摄影</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>主要梳理ISP成像相关参数(如曝光时长/快门速度、ISO、gain、光圈大小等)和HDR成像相关知识。</p>
+<h2 id="1-isp成像参数"><a class="markdownIt-Anchor" href="#1-isp成像参数"></a> 1、ISP成像参数</h2>
+<h3 id="11-参数"><a class="markdownIt-Anchor" href="#11-参数"></a> 1.1 参数</h3>
+<ul>
+<li>曝光时间（Exposure Time或shutter）</li>
+</ul>
+<p>传感器感光元件暴露在光线下的时间（单位：毫秒或秒）。时间越长，传感器捕获的光子越多，图像亮度越高。但过长的曝光时间会导致运动模糊（动态场景）或过曝（高光溢出）。</p>
+<ul>
+<li>ISO/Gain（感光度/增益）</li>
+</ul>
+<p>ISO：传统摄影术语，指传感器对光的敏感度。数字相机中，<strong>ISO通常指模拟增益（Analog Gain）</strong>，即信号在模数转换（ADC）前的放大倍数。一般在暗光环境下，通常使用高ISO，但噪点也较多。</p>
+<p>gain：广义的增益包括模拟增益（ISO）和数字增益（对数字信号的后期放大）。增益越高，信号（包括噪声）被放大越多，图像亮度提升，但噪点也更明显。</p>
+<h3 id="12-参数间的相互作用"><a class="markdownIt-Anchor" href="#12-参数间的相互作用"></a> 1.2 参数间的相互作用</h3>
+<p>图像亮度（Brightness）的数学关系可简化为：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">B</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">h</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">s</mi><mo>∝</mo><mi mathvariant="normal">E</mi><mi mathvariant="normal">x</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mtext> </mtext><mi mathvariant="normal">T</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">e</mi><mo>×</mo><mi mathvariant="normal">G</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mo>×</mo><mi mathvariant="normal">S</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">e</mi><mtext> </mtext><mi mathvariant="normal">I</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">e</mi></mrow><annotation encoding="application/x-tex">{\rm
+Brightness \propto Exposure\ Time \times Gain \times Scene\ Illuminance
+}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">B</span><span class="mord mathrm">r</span><span class="mord mathrm">i</span><span class="mord mathrm" style="margin-right:0.01389em;">g</span><span class="mord mathrm">h</span><span class="mord mathrm">t</span><span class="mord mathrm">n</span><span class="mord mathrm">e</span><span class="mord mathrm">s</span><span class="mord mathrm">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∝</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathrm">E</span><span class="mord mathrm">x</span><span class="mord mathrm">p</span><span class="mord mathrm">o</span><span class="mord mathrm">s</span><span class="mord mathrm">u</span><span class="mord mathrm">r</span><span class="mord mathrm">e</span><span class="mspace"> </span><span class="mord mathrm">T</span><span class="mord mathrm">i</span><span class="mord mathrm">m</span><span class="mord mathrm">e</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathrm">G</span><span class="mord mathrm">a</span><span class="mord mathrm">i</span><span class="mord mathrm">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathrm">S</span><span class="mord mathrm">c</span><span class="mord mathrm">e</span><span class="mord mathrm">n</span><span class="mord mathrm">e</span><span class="mspace"> </span><span class="mord mathrm">I</span><span class="mord mathrm">l</span><span class="mord mathrm">l</span><span class="mord mathrm">u</span><span class="mord mathrm">m</span><span class="mord mathrm">i</span><span class="mord mathrm">n</span><span class="mord mathrm">a</span><span class="mord mathrm">n</span><span class="mord mathrm">c</span><span class="mord mathrm">e</span></span></span></span></span></span></span></p>
+<p>即曝光时间和增益是互补的。在光照不足时，可通过增加曝光时间或<strong>提高增益（ISO）</strong> 提升亮度。曝光时间不足时（如拍摄高速运动物体），需提高增益补偿亮度，但会引入更多噪声。增益较低时，需延长曝光时间，但可能因抖动或物体运动导致模糊。</p>
+<ul>
+<li>噪声与动态范围</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>噪声</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模拟增益（ISO）</td>
+<td>放大传感器原始信号时，信号和噪声同时被放大，但信噪比（SNR）取决于传感器的本底噪声。高ISO 显著增加噪点（尤其是暗部），降低动态范围（高光容易过曝）。</td>
+</tr>
+<tr>
+<td>数字增益</td>
+<td>仅放大数字信号，不会改善SNR，可能放大量化噪声。</td>
+</tr>
+<tr>
+<td>曝光时间</td>
+<td>增加曝光时间可减少噪点，但可能引入热噪声和运动模糊。过长的曝光可能引入热噪声（传感器发热导致的随机噪声）。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>动态场景的权衡</p>
+<ul>
+<li>
+<p>拍摄高速运动物体时，需缩短曝光时间避免模糊，但需提高增益补偿亮度，导致噪点增加。</p>
+</li>
+<li>
+<p>静态场景中，优先使用长曝光+低增益以获得低噪声图像。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="13-isp流程中的参数调整策略"><a class="markdownIt-Anchor" href="#13-isp流程中的参数调整策略"></a> 1.3 ISP流程中的参数调整策略</h3>
+<p>在ISP中，通常通过自动曝光（AE）算法动态调整参数，目标是在亮度、噪声和动态范围之间找到最优平衡：</p>
+<ul>
+<li>
+<p>优先调整曝光时间： 根据场景光照和运动状态，尽可能延长曝光时间（不超出模糊容忍度）。</p>
+</li>
+<li>
+<p>调整模拟增益（ISO）：当曝光时间达到上限（如1/30秒防抖极限），提高ISO以补偿亮度。</p>
+</li>
+<li>
+<p>最后调整数字增益：在模拟增益达到传感器上限后，使用数字增益进一步提亮（但噪声更明显）。</p>
+</li>
+</ul>
+<h2 id="2-hdr成像"><a class="markdownIt-Anchor" href="#2-hdr成像"></a> 2、HDR成像</h2>
+<p>HDR成像通常包括HDR重建和多曝光融合(multi-exposure image fusion,MEF)，取决于融合发生的位置。<br />
+HDR重建使用相机响应函数（CRF），在线性HDR域中合并不同曝光的图像。通常还需要使用Tone Mapping将HDR图像映射到显示设备支持的亮度范围(LDR)。标准显示器一般是低动态范围的。</p>
+<p>MEF方法直接在低动态范围内融合图像，避免了CRF校准和复杂的色调映射过程。无论哪种HDR成像方法，都需要处理由相机抖动或物体运动引起的鬼影伪像问题。</p>
+<blockquote>
+<p>参考<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2501.11515">UltraFusion</a></p>
+</blockquote>
+<p>本部分内容总结自<a target="_blank" rel="noopener" href="http://graphics.cs.cmu.edu/courses/15-463/">CMU 计算摄影课程</a>。</p>
+<h3 id="21-曝光控制"><a class="markdownIt-Anchor" href="#21-曝光控制"></a> 2.1 曝光控制</h3>
+<h4 id="什么是曝光"><a class="markdownIt-Anchor" href="#什么是曝光"></a> 什么是曝光</h4>
+<p>粗糙的说，曝光就是固定场景捕获的图像的亮度。</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">E</mi><mi mathvariant="normal">x</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mo>=</mo><mi mathvariant="normal">G</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mo>×</mo><mi mathvariant="normal">F</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">x</mi><mo>×</mo><mi mathvariant="normal">E</mi><mi mathvariant="normal">x</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">T</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">e</mi></mrow><annotation encoding="application/x-tex">{\rm
+Exposure = Gain \times Flux \times ExposureTime
+}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">E</span><span class="mord mathrm">x</span><span class="mord mathrm">p</span><span class="mord mathrm">o</span><span class="mord mathrm">s</span><span class="mord mathrm">u</span><span class="mord mathrm">r</span><span class="mord mathrm">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathrm">G</span><span class="mord mathrm">a</span><span class="mord mathrm">i</span><span class="mord mathrm">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathrm">F</span><span class="mord mathrm">l</span><span class="mord mathrm">u</span><span class="mord mathrm">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathrm">E</span><span class="mord mathrm">x</span><span class="mord mathrm">p</span><span class="mord mathrm">o</span><span class="mord mathrm">s</span><span class="mord mathrm">u</span><span class="mord mathrm">r</span><span class="mord mathrm">e</span><span class="mord mathrm">T</span><span class="mord mathrm">i</span><span class="mord mathrm">m</span><span class="mord mathrm">e</span></span></span></span></span></span></span></p>
+<p>Flux: 光通量，由光圈aperture控制。<br />
+Gain: 增益，由ISO控制。<br />
+ExposureTime: 曝光时间，由快门速度（shutter speed）控制。</p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-a80d4f7eb18dc5cd41010430b2457705c9e43003871f98eda3da924989fe5ed5.png" alt="picture 0" /></p>
+<h4 id="快门速度"><a class="markdownIt-Anchor" href="#快门速度"></a> 快门速度</h4>
+<ul>
+<li>
+<p>控制快门打开的时间长短。<br />
+<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5e7c89b7e3d20d7f3e54bfa28d04751982c669acb1b62b5200f2fa9aeefe5f03.png" alt="picture 1" /></p>
+</li>
+<li>
+<p>快门速度的副作用<br />
+快门过慢，容易导致运动模糊。</p>
+</li>
+</ul>
+<blockquote>
+<p>单帧图像去模糊：High-quality Motion Deblurring from a Single Image, SIGGRAPH 2008</p>
+</blockquote>
+<h4 id="光圈"><a class="markdownIt-Anchor" href="#光圈"></a> 光圈</h4>
+<ul>
+<li>
+<p>光圈控制进入镜头的光量。<br />
+<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-d3e6fb22ba445ccd7f1397be205dcfce8206a4be40461d7f85747bb1e3f28503.png" alt="picture 2" /></p>
+</li>
+<li>
+<p>光圈大小通常表示为&quot;f-number&quot;，即焦距与光圈直径的比值。数字越大，光圈越小。<br />
+<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-e2c501590bdaeeaacca704427eccf1e56b187f596cb56b6de81bee82359da8d2.png" alt="picture 3" /></p>
+</li>
+<li>
+<p>光圈的副作用</p>
+<ul>
+<li>光圈尺寸增大，景深变小。</li>
+<li>sharp景深通常称为&quot;bokeh&quot;，散焦。</li>
+</ul>
+<blockquote>
+<p>bokeh是指在摄影中焦外散斑的现象。具体来说，bokeh是当镜头对焦于某个点时，背景中未对焦的区域呈现出的模糊、圆润或不规则形状的光斑效果。这种效果通常被认为是美学上的，因为良好的bokeh可以增加照片的深度感和艺术感。bokeh的形状和质量受到多种因素的影响，包括光圈的形状、镜头的光学设计以及拍摄时的光圈大小。在光学工程师的角度来看，bokeh的成因是由于镜头的离焦特性，使得光线在像面上形成弥散圆，从而在图像中表现为模糊的光斑。</p>
+</blockquote>
+<ul>
+<li>如何模拟bokeh: 计算每个像素的深度，然后用深度相关的模糊核模糊(核随深度变化而变化 )。<br />
+<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-197705fabf23699ac51146b27dd817e1aba0edf47e93251dae40d1d02ad59c13.png" alt="picture 4" /></li>
+</ul>
+</li>
+</ul>
+<h4 id="iso"><a class="markdownIt-Anchor" href="#iso"></a> ISO</h4>
+<p>ISO通常指模拟增益，即信号在模数转换（ADC）前的放大倍数。</p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-673799401a15b9fa3d91f3c93ec71b7facb93d19b4e53b100ea880843c5b483f.png" alt="picture 5" /></p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-91b49410eb1569e20687793be3a612c8fe94f971f3ab013885fb82b85986b7c4.png" alt="picture 6" /></p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-451c6609f2307cc1a8304bd4e9207e680bede2f0f39821675ceda9915ee3019e.png" alt="picture 7" /></p>
+<h4 id="相机工作模式"><a class="markdownIt-Anchor" href="#相机工作模式"></a> 相机工作模式</h4>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-b2190bc0f3167141eed970e774658ba203e1cb71227e9e4a3b243d8dcf9ecce3.png" alt="picture 8" /></p>
+<h3 id="22-测光"><a class="markdownIt-Anchor" href="#22-测光"></a> 2.2 测光</h3>
+<p>测光主要是相机对环境光的感知。<br />
+SLR相机使用独立(专门)的放置在对焦屏幕下的低分辨率传感器进行测光。无镜相机直接由主Sensor测光。</p>
+<blockquote>
+<ul>
+<li>人眼对亮度的感知是对数响应的，18%灰在视觉上被认为是介于纯黑与纯白之间的“中间调”（Mid-tone），而非数学上的50%亮度（实际对应约50%的感知亮度）。</li>
+<li>早期测光表设计基于自然场景的平均反射率统计，发现大多数场景（如风景、人像）的综合反射率接近18%。</li>
+</ul>
+</blockquote>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-2935afbc0a6e9ec182ee176735e1de7a4bcd4b5b3944473c7e1a948a3919fd1f.png" alt="picture 9" /></p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-54d249f62765b826f35469dbdec0db113b1f0ae3a147a76df27170ec07fc9b31.png" alt="picture 10" /></p>
+<h3 id="23-动态范围"><a class="markdownIt-Anchor" href="#23-动态范围"></a> 2.3 动态范围</h3>
+<ul>
+<li>（记录和显示）设备的动态范围远小于真实世界的动态范围。</li>
+<li>用有限sensor位保留世界的那些部分的信息？ ——<strong>HDR成像技术</strong></li>
+<li>如何把范围更大的信息用有限位数的显示器显示出来？——<strong>ToneMapping</strong></li>
+</ul>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-1c98301ebfe5af4c85f2f978f477a03a5d66b11244d830432cb4ce9f669bf84a.png" alt="picture 11" /></p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-3d5d9bfe31dc9331f01ad35141731b282af7550084352977e75e0ce9ccd461b5.png" alt="picture 12" /></p>
+<h3 id="24-hdr成像"><a class="markdownIt-Anchor" href="#24-hdr成像"></a> 2.4 HDR成像</h3>
+<p>思路：</p>
+<ul>
+<li>包围曝光，拍摄多张不同曝光的（低动态范围的）图像。补偿传感器的局限性。</li>
+<li>图像融合，将它们合并成一张高动态范围的图像。补偿显示设备的局限性。<br />
+<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5e48d3bb9697a868fc22dc10335ec8550f5fe5f28d0555b482542f9a6808e739.png" alt="picture 13" /></li>
+</ul>
+<h4 id="241-包围曝光"><a class="markdownIt-Anchor" href="#241-包围曝光"></a> 2.4.1 包围曝光</h4>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-e083d3a5a19c8a6fbf7ca4b7b84ef1f3fb89c2f8694ad3b41caacea8b6ec32fc.png" alt="picture 14" /></p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-27799dbc206a9be461c0f9bc25501b5414f93717a14e47e65664a6582a8ec20c.png" alt="picture 15" /></p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8731d4d6e44e8607c88e23d75388256c4417d284c1cb7bbd59b9c78baf693aa8.png" alt="picture 16" /></p>
+<h4 id="242-多帧ldr图像融合为hdr图像"><a class="markdownIt-Anchor" href="#242-多帧ldr图像融合为hdr图像"></a> 2.4.2 多帧LDR图像融合为HDR图像</h4>
+<ul>
+<li>RAW图像具有线性的反射响应曲线<br />
+图像的高亮区域通常被截断，暗区受噪声影响。</li>
+</ul>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-0bfee920bd2761fff712ed1b3a6d218b0c15ab0db91cd5c6546e52e81c1f1059.png" alt="picture 17" /></p>
+<ul>
+<li>图像的形成模型</li>
+</ul>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-a7cf4b1962bb8c6f903f622d327d79d682d15af96df7c6de3fd07960b51974ef.png" alt="picture 18" /></p>
+<ul>
+<li>融合不同曝光的图像
+<ul>
+<li>寻找合法的像素，clip选取：(noise) 0.05 &lt; pixel &lt; 0.95 (clipping/过曝)</li>
+<li>恰当地加权合法的像素</li>
+<li>新像素是合法的像素的加权平均。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-b1dad548cd70f6fd3f7aba962c5398db1604a43ce555a9b4431cb0b754dd6636.png" alt="picture 19" /></p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-f990bbcf2f8c16cce5c7181ed695e0bcc4858c4397ecaec06590612a80ca06e9.png" alt="picture 20" /></p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-84deeab3bd2f38239137fa3ca28daa78eb420b73f098ef606147ee1388df7e5b.png" alt="picture 21" /></p>
+<p>当RAW数据无法获取时，可以使用辐射标定（Radiometric calibration）来估计曝光值。</p>
+<h3 id="25-辐射标定-radiometric-calibration"><a class="markdownIt-Anchor" href="#25-辐射标定-radiometric-calibration"></a> 2.5 辐射标定 Radiometric calibration</h3>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-0980cd797139b5329e2d55c063eacff9c911f147070b406e2656024d3369a5d6.png" alt="picture 22" /></p>
+<blockquote>
+<ul>
+<li>Can you foresee any problem when we switch from RAW to rendered images?</li>
+<li>How do we deal with the nonlinearities?</li>
+</ul>
+</blockquote>
+<h4 id="如何估计相机响应曲线"><a class="markdownIt-Anchor" href="#如何估计相机响应曲线"></a> 如何估计相机响应曲线</h4>
+<p>辐射标定：估计相机的响应曲线（CRF）的过程。辐射标定可以通过以下方式完成：</p>
+<ul>
+<li>保持曝光不变，改变光圈大小，拍摄一系列图像(不同场景图像)。</li>
+<li>保持光圈(flux)不变，改变曝光，拍摄一系列图像。</li>
+<li>拍摄不同flux、不同曝光的图像。</li>
+</ul>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-839b8f810b3ac58b69d32657701fcaa79685b7ce45b19644b91055199e8b64fa.png" alt="picture 23" /></p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-978a6d5e1d22df17ceee06bc04a866048536b9f5eda64cfe45d3b112007be143.png" alt="picture 24" /></p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-59fd99dd8075f28c420ff03091ff4cdf78618a30a4b679a17b0c854e0e8c5163.png" alt="picture 25" /></p>
+<h4 id="非线性图像形成模型"><a class="markdownIt-Anchor" href="#非线性图像形成模型"></a> 非线性图像形成模型</h4>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8cace7309773cf4f1d556ab54bcb8e55b6c0ac24e7869a24b8202bcbd5efc4fe.png" alt="picture 26" /></p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-bfe13bb95c525a51ca67aa66492d148ea7b7d1fd0cc2ddaa5ba72c0bac894765.png" alt="picture 28" /></p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-b09994386c2dee366431950b268b36e35b43988541d66720f077f2b6b13934af.png" alt="picture 29" /></p>
+<h4 id="相机响应曲线无法估计时的处理"><a class="markdownIt-Anchor" href="#相机响应曲线无法估计时的处理"></a> 相机响应曲线无法估计时的处理</h4>
+<ul>
+<li>EXIF数据<br />
+<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5db3365c382e9b9703b6b8c8e5f93838cfa99aca224c4e5b342e3157e991ee51.png" alt="picture 30" /></li>
+</ul>
+<h4 id="色调再现曲线"><a class="markdownIt-Anchor" href="#色调再现曲线"></a> 色调再现曲线</h4>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-d5624fc81466776ee51247a8f3265da29e5428987dbcbd9388732557499afb4e.png" alt="picture 31" /></p>
+<h3 id="26-hdr成像的其他因素"><a class="markdownIt-Anchor" href="#26-hdr成像的其他因素"></a> 2.6 HDR成像的其他因素</h3>
+<h4 id="相对-绝对辐射flux"><a class="markdownIt-Anchor" href="#相对-绝对辐射flux"></a> 相对-绝对辐射flux</h4>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-152e3621a8b338f7282e488d4b58e91c094d5426cd8b3ea04d0cebb681197daa.png" alt="picture 32" /></p>
+<h4 id="基本hdr流程的问题"><a class="markdownIt-Anchor" href="#基本hdr流程的问题"></a> 基本HDR流程的问题</h4>
+<blockquote>
+<p>假设场景静止、相机静止<br />
+<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-7fe552ee0aade9c6e8fe35e9bf7616830938f164cc6d839a9a34c1aa0fa2115a.png" alt="picture 33" /></p>
+</blockquote>
+<h4 id="如何存储hdr图像"><a class="markdownIt-Anchor" href="#如何存储hdr图像"></a> 如何存储HDR图像</h4>
+<ul>
+<li>Most standard image formats store integer 8-bit images</li>
+<li>Some image formats store integer 12-bit or 16-bit imag</li>
+<li>HDR images are floating point 32-bit or 64-bit images</li>
+</ul>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5c5ae6859d5dc423c14398b2e9076cea7d37919a5d4f5e4b1059010788ee514b.png" alt="picture 34" /></p>
+<p>其他类型的HDR图像：</p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-81afbe445e22277824348e67c441a87b1122901c6a3732589e63e2133ba85b12.png" alt="picture 35" /></p>
+<p>其他生成HDR图像的方法：基于物理渲染的方法<br />
+<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5c4b3aff249d02a8e602acf1de8967e51215a2ac8992b1578055eaaae6a82487.png" alt="picture 36" /></p>
+<h3 id="27-色调映射-tonemapping"><a class="markdownIt-Anchor" href="#27-色调映射-tonemapping"></a> 2.7 色调映射 Tonemapping</h3>
+<p>Tonemapping补偿了设备的动态范围限制，将高动态范围的图像转换为低动态范围的显示设备可以显示的图像。</p>
+<h4 id="如何显示hdr图像"><a class="markdownIt-Anchor" href="#如何显示hdr图像"></a> 如何显示HDR图像</h4>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-53d6e83884e58a65f072d306f5e571c5d0c5e0b90782a5e1ed59d7a7cb537005.png" alt="picture 38" /></p>
+<ul>
+<li>线性缩放</li>
+</ul>
+<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-d0068cf453990468e3c2c677aa80171107c77d3150501c9e55a149fad2f70115.png">
+<figcaption>最大值缩放到1</figcaption></figure>
+<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-ff2fd0cdd3faa57a08bb9d7fa2ccebdbdd2a1e6501eb601dee3229b2e1f2d728.png">
+<figcaption>10%值映射到1</figcaption></figure>
+<ul>
+<li>摄影色调映射方法</li>
+</ul>
+<blockquote>
+<p>来自AI问答：<br />
+<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8a00051e983c13203eaf68dcc7ffdc16a0f7c276b40b385eecb8e64492d73a91.png" alt="picture 42" /></p>
+</blockquote>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-02e33320add2438f13b0c32c842c563f8bd5f9f05fb38c38f4ca44d80d54d40c.png" alt="picture 43" /></p>
+<p><strong>根据人眼对亮度的感知特性，设计成非线性的映射。</strong></p>
+<blockquote>
+<p><strong>区域系统</strong>：区域系统是由安塞尔·亚当斯（Ansel Adams）和弗雷德·阿彻（Fred Archer）在20世纪40年代开发的，用于黑白胶片摄影的一种方法，帮助摄影师在拍摄和冲印过程中更好地控制曝光和对比度。首先，区域系统将景物的亮度范围划分为11个区域，从0到X，每个区域代表不同的明暗程度。这11个区域中，中间区域（Zone V）通常对应18%灰卡的中灰色调，是测光的基础。其他区域则依次代表更暗或更亮的色调。</p>
+</blockquote>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-27dfc6b8d68691fa903443ee3c590af6ad7f73218fea81cc8dfa91b4ca6ef5d3.png" alt="picture 44" /></p>
+<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-44f32c1dee485c943e2c9addc8afff0df2e04bf95f4c03f42a445751d6471c1f.png">
+<figcaption>线性缩放Tone和摄影Tone</figcaption></figure>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-aebf8ce2dd0a958d00fc92fcb182b7531cd025118439cb67e29248bacafdc898.png" alt="picture 45" /></p>
+<h4 id="颜色的处理"><a class="markdownIt-Anchor" href="#颜色的处理"></a> 颜色的处理</h4>
+<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-dd50323181dcecab86d395bf8eb6e34100bb5e9593077c39369ce6ef343a0289.png">
+<figcaption>若所有通道相同映射，则颜色会失真。</figcaption></figure>
+<ul>
+<li>仅处理亮度通道<br />
+<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-143e6b0745948cee1adbee5243f360e5c795b332841a2260d39857de609db850.png" alt="picture 47" /></li>
+</ul>
+<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-0f0f4f9daea1f13098c24d79f75e3d8f3973dd7e4705c74caaf76ede3db69e75.png">
+<figcaption>颜色正常，但是细节丢失(似乎不太明显，大致是云的差异？)：左：全通道，右：亮度通道。</figcaption></figure>
+<ul>
+<li>只处理低频亮度<br />
+<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8c282013d2ee8faaef86f24c164867e94c5f7a605778b8d2345280694f03d8f6.png" alt="picture 50" /></li>
+</ul>
+<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-2ca70afb4f6edf7834a400a9b346eb8da9d92aa231ea4b7204f9131995ed71a1.png">
+<figcaption>颜色正常、对比度也变好，但出现halo问题</figcaption></figure>
+<blockquote>
+<p>分离低频亮度和细节所用的低通滤波器（一般是高斯滤波）将图像的不同亮度的区域加权混合在一起的原因。</p>
+</blockquote>
+<ul>
+<li>保边滤波+ToneMapping (亮度通道进一步拆分)</li>
+</ul>
+<p>亮度通道进一步使用<strong>保边滤波器</strong>拆分为细节和低频亮度，再对低频亮度进行ToneMapping。</p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-2505b06d62a8ceb7c02420314c1d78fcb5c79a1a3414bc5e7f959948747839c1.png" alt="picture 52" /></p>
+<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8b11c2c4ab3641a5a01adb1734a7d0066ecc9e987c92ed238a25246e3aebace9.png">
+<figcaption>halo问题修复</figcaption></figure>
+<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-baae4ff6ae2fcafe1a090127df54fba213295b989a1db94813dd4a7b239636e5.png">
+<figcaption>不同方法处理后的结果</figcaption></figure>
+<h4 id="梯度域处理和tonemapping"><a class="markdownIt-Anchor" href="#梯度域处理和tonemapping"></a> 梯度域处理和ToneMapping</h4>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5ea2980038b151d5084cc381f0f3191d020ecb69148329d81415f63c3d07d1df.png" alt="picture 56" /></p>
+<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8063ec87dd165b7ab13970bbc282c41d7edd5ab430da19079881b9c8ff6a30be.png">
+<figcaption>Photographic应该是人工调色？</figcaption></figure>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-76ee60e5a1f968ae83e3c2def2935ebb11add3c719e1987213feae1c168bda5b.png" alt="picture 58" /></p>
+<ul>
+<li>单张图像ToneMapping</li>
+</ul>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-941a100b4d55fcf795ad1252c0938631e626037fee56c8a33a56f8efec2c05e3.png" alt="picture 59" /></p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-e845f73930aacfd5e83f6948939d7c876951627b8bd1c760a8d0deae9dc2260b.png" alt="picture 60" /></p>
+<h3 id="28-hdr-imaging-and-tonemapping-思考"><a class="markdownIt-Anchor" href="#28-hdr-imaging-and-tonemapping-思考"></a> 2.8 HDR imaging and tonemapping 思考</h3>
+<ul>
+<li>一些术语<br />
+<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-bbbfbfd02811cddd541b94b3d14e9de19b3dbcf3208bc64c24d00627be0b1cf7.png" alt="picture 61" /></li>
+</ul>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-dabe42b510fb4ee692fd37fcd1f3a44cfbe56986b71bb635c9c1f978f2b6dcf5.png" alt="picture 62" /></p>
+<ul>
+<li>HDR成像可以得到很棒的图像，使用不当也会得到糟糕的图像。<br />
+<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-1565890e179b22f245271f47aceaa8a8da2143dceee3d6e5956b5db78d0ec80c.png" alt="picture 63" /></li>
+</ul>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-1ad064c86379752cdcf085146d9f7631410b12e6a6225ee4c559398e8fcfd667.png" alt="picture 64" /></p>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-18a2bd1145af49541556f66eeea9fcce71cbb7627f93845e3012e48c7e2e7d3e.png" alt="picture 65" /></p>
+<ul>
+<li>现代的HDR技术</li>
+</ul>
+<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-d815c3c008aae54261d83497cb2486c2eab9c6a1dfeb7abdb953e4d28efe0731.png" alt="picture 66" /></p>
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
+<h4 id="hdr成像如何从多帧ldr图像重建高动态范围的图像"><a class="markdownIt-Anchor" href="#hdr成像如何从多帧ldr图像重建高动态范围的图像"></a> HDR成像：如何从多帧LDR图像重建高动态范围的图像。</h4>
+<ul>
+<li>图像配准</li>
+<li>曝光融合</li>
+<li>辐射标定</li>
+</ul>
+<h4 id="tonemapping将hdr图像转换为低动态范围的图像以便在显示设备上展示"><a class="markdownIt-Anchor" href="#tonemapping将hdr图像转换为低动态范围的图像以便在显示设备上展示"></a> ToneMapping：将HDR图像转换为低动态范围的图像，以便在显示设备上展示。</h4>
+<ul>
+<li>非线性映射
+<ul>
+<li>分离亮度和颜色通道</li>
+<li>亮度通道进行保边滤波(分为高低频部分)</li>
+<li>halo问题</li>
+</ul>
+</li>
+</ul>
+<h3 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h3>
+<h4 id="基本材料"><a class="markdownIt-Anchor" href="#基本材料"></a> 基本材料</h4>
+<ul>
+<li>Szeliski textbook, Sections 10.1, 10.2.</li>
+<li>Debevec and Malik, “Recovering High Dynamic Range Radiance Maps from Photographs,” SIGGRAPH 1997.</li>
+<li>Mitsunaga and Nayar, “Radiometric self calibration,” CVPR 1999.<br />
+The two classical papers on radiometric calibration and HDR imaging, which more or less started HDR imaging research in computer vision and graphics.</li>
+<li>Reinhard et al., “Photographic Tone Reproduction for Digital Images,” SIGGRAPH 2002.<br />
+The photographic tonemapping paper, including a very nice discussion of the zone system for film.</li>
+</ul>
+<h4 id="扩充材料"><a class="markdownIt-Anchor" href="#扩充材料"></a> 扩充材料</h4>
+<ul>
+<li>Reinhard et al., “High Dynamic Range Imaging, Second Edition: Acquisition, Display, and Image-Based Lighting,” Morgan Kaufmann 2010.<br />
+A very comprehensive book about everything relating to HDR imaging and tonemapping.</li>
+<li>Durand and Dorsey, “Fast bilateral filtering for the display of high-dynamic-range images,” SIGGRAPH 2002.<br />
+The paper on tonemapping using bilateral filtering.</li>
+<li>Fattal et al., “Gradient Domain High Dynamic Range Compression,” SIGGRAPH 2002.<br />
+The paper on tonemapping using gradient-domain processing.</li>
+<li>Debevec, “Rendering Synthetic Objects into Real Scenes: Bridging Traditional and Image-Based Graphics with Global Illumination and High Dynamic Range<br />
+Photography,” SIGGRAPH 1998.<br />
+The original HDR light probe paper.</li>
+<li>Hasinoff et al., “Burst photography for high dynamic range and low-light imaging on mobile cameras,” SIGGRAPH Asia 2016.<br />
+The paper describing Google’s HDR+.</li>
+<li>Ward, “The radiance lighting simulation and rendering system,” SIGGRAPH 1994.</li>
+<li>Ward, “High Dynamic Range Image Encodings,” <a target="_blank" rel="noopener" href="http://www.anyhere.com/gward/hdrenc/hdr_encodings.html">http://www.anyhere.com/gward/hdrenc/hdr_encodings.html</a><br />
+The paper that introduced (among other things) the .hdr image format for HDR images. The website has a very detailed discussion of HDR image formats.</li>
+<li>Shah et al., “High-quality Motion Deblurring from a Single Image,” SIGGRAPH 2008.</li>
+<li>Fergus et al., “Removing Camera Shake from a Single Image,” SIGGRAPH 2006.<br />
+Two standard papers on motion deblurring for dealing with long shutter speeds.</li>
+<li>Barron et al., “Fast Bilateral-Space Stereo for Synthetic Defocus,” CVPR 2015.<br />
+The paper that introduced the lens blur algorithm.</li>
+<li>Kuang et al., “Evaluating HDR rendering algorithms,” TAP 2007.<br />
+One of many, many papers trying to do a perceptual evaluation of different tonemapping algorithms.</li>
+<li>Levoy, “Extreme imaging using cell phones,” <a target="_blank" rel="noopener" href="http://graphics.stanford.edu/talks/seeinthedark-public-15sep16.key.pdf">http://graphics.stanford.edu/talks/seeinthedark-public-15sep16.key.pdf</a><br />
+A set of slides by Marc Levoy on the challenges of HDR imaging and modern approaches for addressing them.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yaanggny
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/" title="ISP成像参数和HDR成像">https://yaanggny.github.io/blog/2025/04/05/202504/HDR成像基础-ISP成像参数/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/blog/tags/CV/" rel="tag"># CV</a>
+              <a href="/blog/tags/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1/" rel="tag"># 计算摄影</a>
+              <a href="/blog/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag"># 图像处理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2025/03/27/202503/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95%E8%BD%AC%E7%94%B5%E5%95%86%E9%A2%86%E5%9F%9F%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95%E6%80%9D%E8%B7%AF/" rel="prev" title="手机影像或传统图像算法转电商领域图像算法思路">
+                  <i class="fa fa-chevron-left"></i> 手机影像或传统图像算法转电商领域图像算法思路
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2025/04/05/202504/HDR-%E8%AE%BA%E6%96%87/" rel="next" title="HDR论文整理">
+                  HDR论文整理 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yaanggny</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/blog/js/comments.js"></script><script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/blog/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css" integrity="sha256-gMRN4/6qeELzO1wbFa8qQLU8kfuF2dnAPiUoI0ATjx8=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/blog/js/third-party/math/katex.js"></script>
+
+
+
+</body>
+</html>
