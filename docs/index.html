@@ -148,18 +148,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/blog/archives/">
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/blog/categories/">
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/blog/tags/">
-        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-count">68</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -176,6 +176,1079 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2025/06/14/2025/06/%E8%A7%86%E8%A7%89%E5%B8%B8%E7%94%A8%E6%A0%87%E6%B3%A8%E5%B7%A5%E5%85%B7%E5%8F%8AlabelImg%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2025/06/14/2025/06/%E8%A7%86%E8%A7%89%E5%B8%B8%E7%94%A8%E6%A0%87%E6%B3%A8%E5%B7%A5%E5%85%B7%E5%8F%8AlabelImg%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">计算机视觉常用标注工具及labelImg使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-06-14 22:37:01 / 修改时间：23:09:55" itemprop="dateCreated datePublished" datetime="2025-06-14T22:37:01+08:00">2025-06-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/DL/" itemprop="url" rel="index"><span itemprop="name">DL</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/DL/%E6%A0%87%E6%B3%A8%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">标注工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="常用标注工具"><a class="markdownIt-Anchor" href="#常用标注工具"></a> 常用标注工具</h2>
+<table>
+<thead>
+<tr>
+<th>工具名称</th>
+<th>仓库</th>
+<th>主要功能</th>
+<th>环境依赖</th>
+<th>开发状态</th>
+<th>安装方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LabelImg</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/HumanSignal/labelImg">GitHub</a></td>
+<td>目标检测标注，矩形框，无快捷键 （<strong>矩形框标注推荐</strong>）。<strong>支持yolo、pascal-voc格式</strong>。</td>
+<td>Python 3.8,3.9 （3.10报错，无法画框）</td>
+<td>2024年停止更新但可用</td>
+<td>pip/conda</td>
+</tr>
+<tr>
+<td>LabelMe</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/wkentaro/labelme">GitHub</a></td>
+<td>矩形框（快捷键）、<strong>多边形</strong>、圆（polygon, rectangle, circle, line, point and image-level flag annotation）。<strong>仅json格式输出</strong>。</td>
+<td>Python 3.x，无特殊说明</td>
+<td>2025年仍在更新</td>
+<td>pip/conda/APP安装包</td>
+</tr>
+<tr>
+<td>Label-Studio</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/HumanSignal/label-studio">GitHub</a></td>
+<td>视频流、音频等，labelImg升级版，<strong>需登录</strong></td>
+<td>Python 3.6+，Docker</td>
+<td>2025年仍在更新，活跃度高</td>
+<td>pip/conda/Docker</td>
+</tr>
+</tbody>
+</table>
+<h2 id="labelimg安装"><a class="markdownIt-Anchor" href="#labelimg安装"></a> labelImg安装</h2>
+<h3 id="安装步骤"><a class="markdownIt-Anchor" href="#安装步骤"></a> 安装步骤</h3>
+<p>环境：Windows10，<strong>Python3.9</strong>，PyQt5</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">conda create -n labelx python=3.9</span><br><span class="line">conda activate labelx</span><br><span class="line">pip install PyQt5 lxml labelImg</span><br><span class="line"></span><br><span class="line"># labelme</span><br><span class="line">pip install labelme</span><br><span class="line"></span><br><span class="line"># 启动labelImg</span><br><span class="line">labelImg</span><br></pre></td></tr></table></figure>
+<p><strong>注：Python3.10安装labelImg时报错，无法画框。</strong> 可根据<a target="_blank" rel="noopener" href="https://github.com/HumanSignal/labelImg/issues/938">网上修改源码</a>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;C:\Users\DELL\miniconda3\envs\labelx\lib\site-packages\labelImg\labelImg.py&quot;, line 965, in scroll_request</span><br><span class="line">    bar.setValue(bar.value() + bar.singleStep() * units)</span><br><span class="line">TypeError: setValue(self, a0: int): argument 1 has unexpected type &#x27;float&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="界面"><a class="markdownIt-Anchor" href="#界面"></a> 界面</h3>
+<p><img src="/blog/2025/06/14/2025/06/%E8%A7%86%E8%A7%89%E5%B8%B8%E7%94%A8%E6%A0%87%E6%B3%A8%E5%B7%A5%E5%85%B7%E5%8F%8AlabelImg%E4%BD%BF%E7%94%A8/fig-labelimg_gui.png" alt="picture 0" /></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2025/06/14/2025/06/SAM2%E6%8E%A8%E7%90%86%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2025/06/14/2025/06/SAM2%E6%8E%A8%E7%90%86%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">SAM2和PaddleSeg推理环境搭建及测试</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-06-14 22:05:29" itemprop="dateCreated datePublished" datetime="2025-06-14T22:05:29+08:00">2025-06-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-06-17 00:01:02" itemprop="dateModified" datetime="2025-06-17T00:01:02+08:00">2025-06-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/DL/" itemprop="url" rel="index"><span itemprop="name">DL</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>需要使用SAM进行数据预处理，本文记录SAM的推理环境搭建。SAM2包含SAM的所有功能，且SAM2模型较小（<a target="_blank" rel="noopener" href="https://github.com/facebookresearch/sam2?tab=readme-ov-file#model-description">对比看这里</a>），因此这里以SAM2为例。</p>
+<h2 id="1-sam基本信息"><a class="markdownIt-Anchor" href="#1-sam基本信息"></a> 1 SAM基本信息</h2>
+<p>SAM即Segment Anything Model，由Meta团队开发。SAM2是SAM的扩展，包含SAM的所有功能。</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>仓库</th>
+<th>环境要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SAM</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/segment-anything">Segment Anything</a></td>
+<td>python&gt;=3.8, pytorch&gt;=1.7, torchvision&gt;=0.8</td>
+</tr>
+<tr>
+<td>SAM 2</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/sam2">SAM2.x</a></td>
+<td>python&gt;=3.10,  torch&gt;=2.5.1, torchvision&gt;=0.20.1</td>
+</tr>
+</tbody>
+</table>
+<p>Pytorch安装按照Pytorch官方<a target="_blank" rel="noopener" href="https://pytorch.org/get-started/locally/">推荐的安装方式</a>。</p>
+<h2 id="2-sam版本差异"><a class="markdownIt-Anchor" href="#2-sam版本差异"></a> 2 SAM版本差异</h2>
+<p><strong>SAM模型的演进路径</strong></p>
+<ul>
+<li><strong>SAM → SAM 2</strong>：核心突破是<strong>从静态到动态</strong>，通过记忆机制实现视频分割与实时跟踪。</li>
+<li><strong>SAM 2 → SAM 2.1</strong>：聚焦<strong>细节与鲁棒性</strong>，通过数据增强和位置编码优化小物体/遮挡场景。</li>
+</ul>
+<p><strong>SAM各版本核心差异概览</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>SAM (初代)</strong></th>
+<th><strong>SAM 2</strong></th>
+<th><strong>SAM 2.1</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>架构/机制</strong></td>
+<td>静态Transformer架构</td>
+<td>引入<strong>流式记忆机制</strong>（记忆编码器+记忆库+记忆注意力）</td>
+<td>优化位置编码，增强<strong>遮挡头</strong>（occlusion head）</td>
+</tr>
+<tr>
+<td><strong>核心能力</strong></td>
+<td>图像分割（单帧）</td>
+<td><strong>视频实时分割</strong>+多目标跟踪</td>
+<td>提升<strong>小物体/相似物体识别</strong>+遮挡鲁棒性</td>
+</tr>
+<tr>
+<td><strong>训练数据</strong></td>
+<td>11M图像，1.1B掩码</td>
+<td>SA-V数据集（51k视频+600k时空掩码）</td>
+<td>新增<strong>视觉相似物体/小物体数据增强</strong></td>
+</tr>
+<tr>
+<td><strong>技术特点</strong></td>
+<td>支持点/框/文本提示</td>
+<td>长视频处理+动态遮挡预测</td>
+<td>开发者套件开源（支持微调）</td>
+</tr>
+<tr>
+<td><strong>开源内容</strong></td>
+<td>模型/权重</td>
+<td>代码+权重+数据集（Apache 2.0协议）</td>
+<td>训练代码+前后端演示代码</td>
+</tr>
+</tbody>
+</table>
+<p>SAM（Segment Anything Model）及其后续版本SAM 2、SAM 2.1是Meta在视觉分割领域的核心演进成果。以下从核心差异、技术改进和应用场景三方面分析其发展脉络：</p>
+<hr />
+<p><strong>SAM 2系列 vs. SAM：五大核心改进</strong></p>
+<ol>
+<li>
+<p><strong>从图像到视频的动态扩展</strong></p>
+<ul>
+<li><strong>SAM局限</strong>：仅支持单帧静态图像分割，无法处理时序连贯性。</li>
+<li><strong>SAM 2突破</strong>：
+<ul>
+<li>通过<strong>流式记忆机制</strong>实现任意长度视频的实时处理，一次处理一帧并保留历史信息。</li>
+<li>支持<strong>时空掩码传播</strong>（spatio-temporal masks），用户首帧标注后自动追踪后续帧。</li>
+<li>典型应用：运动目标跟踪（如《黑神话：悟空》快速打斗场景）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>记忆机制与遮挡处理的革新</strong></p>
+<ul>
+<li><strong>SAM 2新增模块</strong>：
+<ul>
+<li><strong>记忆库</strong>：存储对象历史特征，辅助当前帧分割决策。</li>
+<li><strong>遮挡头</strong>：预测目标是否被遮挡，减少跟踪丢失（如人群遮挡场景）。</li>
+</ul>
+</li>
+<li><strong>SAM 2.1增强</strong>：
+<ul>
+<li>优化位置编码，提升长序列遮挡处理能力（如目标短暂离开视野后重新识别）。</li>
+<li>数据增强模拟小物体/相似物体，解决细节丢失问题（如自行车轮胎与整车区分）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>交互性与泛化能力提升</strong></p>
+<ul>
+<li><strong>用户校正机制</strong>：SAM 2允许在丢失目标帧手动点击修正，模型结合记忆库实时调整预测。</li>
+<li><strong>Zero-shot泛化</strong>：未训练过的物体类别也能分割（如医疗影像中的罕见病变区域）。</li>
+</ul>
+</li>
+<li>
+<p><strong>数据集与训练策略升级</strong></p>
+<ul>
+<li><strong>SA-V数据集规模</strong>：视频量达此前最大数据集的4.5倍，标注效率比SAM提升8.4倍。</li>
+<li><strong>SAM 2.1训练优化</strong>：
+<ul>
+<li>长帧序列训练强化时序一致性。</li>
+<li>开源训练代码，支持用户微调（如机器人场景定制化分割）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>社区改进方案：经典方法的融合</strong></p>
+<ul>
+<li><strong>SAMURAI</strong>（华盛顿大学）：
+<ul>
+<li>引入<strong>卡尔曼滤波器</strong>建模运动轨迹，解决拥挤场景目标混淆问题（如《1917》士兵群场景）。</li>
+<li><strong>运动感知记忆选择</strong>：动态筛选高质量记忆帧，避免误差累积（无需重训练模型）。</li>
+</ul>
+</li>
+<li><strong>SAM 2.1++</strong>：干扰物感知记忆（DAM），区分近期外观与干扰解决帧，提升鲁棒性。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="3-sam2-windows-11运行环境搭建"><a class="markdownIt-Anchor" href="#3-sam2-windows-11运行环境搭建"></a> 3 SAM2 Windows 11运行环境搭建</h2>
+<p>参考<a target="_blank" rel="noopener" href="https://github.com/facebookresearch/sam2?tab=readme-ov-file#installation">官方文档</a>，Windows上使用WSL。步骤如下：</p>
+<ul>
+<li>WSL安装：略</li>
+<li>创建conda环境</li>
+<li>安装pytorch环境：<code>python&gt;=3.10,  torch&gt;=2.5.1, torchvision&gt;=0.20.1</code></li>
+<li>SAM2安装</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">conda create -n sam2 python=3.10</span><br><span class="line">conda activate sam2</span><br><span class="line">pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu126</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/facebookresearch/sam2</span><br><span class="line"><span class="comment"># pip install hydra-core tqdm</span></span><br><span class="line">pip install -e .</span><br></pre></td></tr></table></figure>
+<h3 id="效果测试"><a class="markdownIt-Anchor" href="#效果测试"></a> 效果测试</h3>
+<table>
+<tr><td align="center">引导框</td><td align="center">分割结果</td><tr>
+<td><img src="/blog/2025/06/14/2025/06/SAM2%E6%8E%A8%E7%90%86%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%B5%8B%E8%AF%95/fig-guide_bbox.png"></td>
+<td><img src="/blog/2025/06/14/2025/06/SAM2%E6%8E%A8%E7%90%86%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%B5%8B%E8%AF%95/fig-smaller_bbox_guided_result.png"></td>
+</tr>
+<tr>
+<td><img src="/blog/2025/06/14/2025/06/SAM2%E6%8E%A8%E7%90%86%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%B5%8B%E8%AF%95/fig-large_guided_bbox.png"></td>
+<td><img src="/blog/2025/06/14/2025/06/SAM2%E6%8E%A8%E7%90%86%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%B5%8B%E8%AF%95/fig-large_bbox_guided_result.png"></td>
+</tr>
+</table>
+<h2 id="4-paddleseg-环境搭建"><a class="markdownIt-Anchor" href="#4-paddleseg-环境搭建"></a> 4 PaddleSeg 环境搭建</h2>
+<p>paddlepaddle安装：<a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/pip/linux-pip.html">paddlepaddle-install 官方</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">conda create -n py310paddle3 python=3.10</span><br><span class="line">conda activate py310paddle3</span><br><span class="line">pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/</span><br><span class="line"></span><br><span class="line"><span class="comment"># a) 安装PaddleSeg</span></span><br><span class="line">pip install paddleseg</span><br><span class="line"></span><br><span class="line"><span class="comment"># b) 使用PaddleSeg contrib，无需pip安装</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/PaddlePaddle/PaddleSeg</span><br><span class="line"><span class="built_in">cd</span> PaddleSeg/contrib/xxx <span class="comment"># PP-HumanSeg</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：PaddleSeg contrib中的模型最好直接使用PaddleSeg仓库自带的版本，而不是使用模型自身的官方仓库，因为部分模型的官方仓库已经不维护，且配置信息不全，导致测试出错。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2025/05/11/2025/05/%E8%B0%B7%E6%AD%8CHDR-plus%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2025/05/11/2025/05/%E8%B0%B7%E6%AD%8CHDR-plus%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">【论文阅读】谷歌HDR plus算法原理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-11 17:02:42" itemprop="dateCreated datePublished" datetime="2025-05-11T17:02:42+08:00">2025-05-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-16 00:25:00" itemprop="dateModified" datetime="2025-05-16T00:25:00+08:00">2025-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1/" itemprop="url" rel="index"><span itemprop="name">计算摄影</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>论文信息：</p>
+</blockquote>
+<ul>
+<li>Burst photography for high dynamic range and low-light imaging on mobile cameras, 谷歌，2016</li>
+<li>谷歌Pixel 3的HDR算法</li>
+</ul>
+<blockquote></blockquote>
+<p><strong>问题背景</strong></p>
+<ul>
+<li>手机摄像头<strong>光圈小</strong>，导致在低光环境下收集的光子数量有限，进而使得拍摄出的图像<strong>噪点较多</strong>。</li>
+<li>手机摄像头的<strong>传感器像素较小</strong>，限制了每个像素能够存储的电子数量，这导致了手机拍摄的<strong>图像动态范围有限</strong>。</li>
+</ul>
+<p><strong>方案</strong></p>
+<ul>
+<li>介绍了一种计算摄影流程，通过捕捉、对齐和合并一系列帧来降低图像噪声并提升动态范围。</li>
+</ul>
+<p><strong>特点</strong></p>
+<ul>
+<li><strong>不使用括号曝光（Bracketed Exposures）</strong>：采用恒定低曝光拍摄帧，确保对齐的稳定性，同时避免高光溢出，使合并后的图像阴影部分更清晰且具有高比特深度，便于后续应用标准的高动态范围（HDR）色调映射方法。</li>
+<li><strong>从原始Bayer帧开始处理</strong>：与常见的移动平台硬件图像信号处理器（ISP）输出的demosaicked RGB或YUV帧不同，从原始Bayer帧开始处理能获取更多像素位，同时避免ISP进行的不利色调映射和空间降噪处理。(绕过ISP，直接从传感器获取高比特RAW数据，保留线性响应特性。)</li>
+<li><strong>运用创新算法</strong>：采用基于快速傅里叶变换（FFT）的新型对齐算法和混合二维/三维维纳滤波器（Hybrid 2D/3D Wiener Filter），实现对一系列帧的去噪和合并。(利用频域相位相关法实现抗噪运动补偿，结合金字塔细化提升对齐精度。)</li>
+<li><strong>基于Android的Camera2 API和Halide语言实现</strong>：该方案基于Android的Camera2 API构建，利用其提供的每帧相机控制和原始图像访问功能，同时采用Halide领域特定语言（DSL）编写，使得处理速度较快（在设备上处理1200万像素图像仅需4秒），无需用户干预，且已应用于多款量产手机。</li>
+</ul>
+<hr />
+<p><strong>方法</strong></p>
+<ol>
+<li><strong>恒定曝光多帧合成</strong>
+<ul>
+<li>x</li>
+</ul>
+</li>
+<li><strong>原始Bayer数据直出处理</strong>
+<ul>
+<li>绕过ISP，直接从传感器获取高比特RAW数据，保留线性响应特性。</li>
+</ul>
+</li>
+<li><strong>基于FFT的亚像素对齐算法</strong>
+<ul>
+<li>利用频域相位相关法实现抗噪运动补偿，结合金字塔细化提升对齐精度。</li>
+</ul>
+</li>
+<li><strong>混合时-空维纳滤波</strong>
+<ul>
+<li>联合时域多帧冗余与空域单帧边缘信息，平衡降噪与细节保留。</li>
+</ul>
+</li>
+<li><strong>硬件加速优化</strong>
+<ul>
+<li>通过Halide DSL实现并行化计算，显著提升处理效率。</li>
+</ul>
+</li>
+<li><strong>端到端自动化流程</strong>
+<ul>
+<li>集成自动曝光控制、多帧捕获、合成与色调映射，无需用户干预。</li>
+</ul>
+</li>
+</ol>
+<p><strong>结果</strong></p>
+<ol>
+<li><strong>成像质量提升</strong>：动态范围扩展（保留高光与暗部细节），噪点显著降低。</li>
+<li><strong>计算效率</strong>：12MP图像处理时间缩短至4秒（移动端实时性）。</li>
+<li><strong>部署应用</strong>：方案已集成于多款量产手机，兼容主流硬件平台。</li>
+</ol>
+<hr />
+<p><strong>问题背景</strong><br />
+手机相机受限于小光圈和微小传感器像素，导致：</p>
+<ol>
+<li><strong>低光噪点多</strong>：进光量少，信噪比低。</li>
+<li><strong>动态范围有限</strong>：单像素存储电子能力弱，高光易过曝，暗部细节不足。</li>
+</ol>
+<p><strong>解决方法</strong><br />
+通过<strong>多帧合成计算摄影技术</strong>提升画质，核心方法包括：</p>
+<ol>
+<li><strong>恒定曝光拍摄</strong>：
+<ul>
+<li>避免包围曝光，采用统一低曝光（防止高光溢出），便于对齐和合成。</li>
+<li>合成后图像具有低噪阴影和高位深，支持标准HDR色调映射。</li>
+</ul>
+</li>
+<li><strong>直接处理RAW数据</strong>：
+<ul>
+<li>绕过ISP的色调映射和降噪，从Bayer原始数据入手，保留更高位深和细节。</li>
+</ul>
+</li>
+<li><strong>高效算法</strong>：
+<ul>
+<li><strong>FFT对齐算法</strong>：提升多帧对齐的鲁棒性。</li>
+<li><strong>混合2D/3D维纳滤波</strong>：降噪与合成同步优化。</li>
+</ul>
+</li>
+</ol>
+<p><strong>技术特点</strong></p>
+<ol>
+<li><strong>硬件适配</strong>：基于Android Camera2 API，支持逐帧RAW数据控制。</li>
+<li><strong>高效实现</strong>：Halide DSL优化，12MP图像处理仅需4秒（端侧运行）。</li>
+<li><strong>无需用户干预</strong>：全自动流程，已量产商用。</li>
+</ol>
+<h2 id="背景和问题"><a class="markdownIt-Anchor" href="#背景和问题"></a> 背景和问题</h2>
+<h3 id="相关研究"><a class="markdownIt-Anchor" href="#相关研究"></a> 相关研究</h3>
+<h2 id="算法方案"><a class="markdownIt-Anchor" href="#算法方案"></a> 算法方案</h2>
+<h2 id="结果"><a class="markdownIt-Anchor" href="#结果"></a> 结果</h2>
+<h2 id="存在问题"><a class="markdownIt-Anchor" href="#存在问题"></a> 存在问题</h2>
+<h2 id="核心参考文献"><a class="markdownIt-Anchor" href="#核心参考文献"></a> 核心参考文献</h2>
+<h2 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h2>
+<h2 id="hdr-plus"><a class="markdownIt-Anchor" href="#hdr-plus"></a> HDR-plus</h2>
+<p>1  关键方法</p>
+<ul>
+<li>First, we do not use bracketed exposures. Instead, we capture frames of constant exposure, which makes alignment more robust, and we set this exposure low enough to avoid blowing out highlights.<br />
+固定曝光（多帧使用相同的曝光参数），低曝光</li>
+<li>Second, we begin from Bayer raw frames rather than the demosaicked RGB (or YUV) frames.<br />
+输入raw图</li>
+<li>Third, we use a novel FFT-based alignment algorithm（加速互相关计算） and a hybrid 2D/3D Wiener filter to denoise and merge the frames in a burst.****</li>
+</ul>
+<p>2  pipeline</p>
+<p>3  配准<br />
+3.1 计算稠密对应关系(光流)？<br />
+但是速度无法满足要求：  结果耗时 24ms / 百万像素<br />
+3.2 参考帧计算<br />
+sharpness计算：基于raw图中绿色通道的梯度<br />
+从前3帧中选取最锐的帧<br />
+Seeing Mt. Rainier: Lucky Imaging for multi-image Denoising, Sharpening, and Haze  Removal<br />
+<a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2010/03/SeeingMtRainier.pdf">https://www.microsoft.com/en-us/research/wp-content/uploads/2010/03/SeeingMtRainier.pdf</a><br />
+use the discrete Laplacian of the image as the local sharpness measure</p>
+<p>3.3 handling raw images<br />
+直接对齐bayer raw图(欠采样的)导致病态问题<br />
+demasic 后再配准(即便简单的)会导致耗时增加<br />
+估计位移限制在2pixel (倍数）？<br />
+把欠采样问题推迟到融合阶段解决，此时由于混叠导致的误匹配被当作其他形式的失配。</p>
+<p>平均化2x2 的RGGB bayer图块： 因此对齐下采样的3 Mp灰度图像，而不是原来的12 Mp raw图</p>
+<p>3.4 多尺度结构/分层处理</p>
+<ul>
+<li>coarse-to-fine 4层高斯金字塔(灰度图像)</li>
+<li>tile-based alignment for each pyramid level</li>
+<li>每一层的tile/块对齐是最小化如下公式（p=1,2）</li>
+</ul>
+<p>T:  tile of the reference image<br />
+I:   moving image<br />
+n: tile size, n={8,16}</p>
+<p>从粗略到精细的传播/上采样是困难的。<br />
+评价参考帧和候选帧之间的最小L1残差：<br />
+We take as candidates the alignments for the 3 nearest coarse-scale tiles, the nearest neighbor tile plus the next-nearest tiles in each dimension.<br />
+和SimpleFlow类似</p>
+<p>3.5 实现细节<br />
+3.5.1 暴力搜索(brute-force) L1对齐<br />
+在finest scale，需要大的tile size、小的搜素半径。<br />
+快速亚像素L2对齐或者相位相关都比一个最小化绝对残差的暴力搜索效果好。性能考虑？<br />
+使用绝对误差而不是误差平方：</p>
+<ul>
+<li>
+<p>map well to low level computer architectures</p>
+</li>
+<li>
+<p>更高数据吞吐量</p>
+</li>
+<li>
+<p>内存小</p>
+</li>
+<li>
+<p>ARM 硬件指令支持，使得计算高效<br />
+3.5.2 金字塔结构<br />
+Larger search distances allow larger downsampling factors between pyramid levels, which reduces the likelihood of the search getting trapped in a local minimum.<br />
+L2 norm保证可以搜素±4像素的距离，但速度慢。<br />
+粗略层获取亚像素级精度，高分辨率层获取像素级精度？</p>
+</li>
+<li>
+<p>最大层L0： L1 norm，±1像素，tile 16x16</p>
+</li>
+<li>
+<p>L1：          L2 norm，±4像素，tile 16x16   (L0 2倍降采)</p>
+</li>
+<li>
+<p>L2：          L2 norm，±4像素，tile 16x16   (L1 4倍，参考代码)</p>
+</li>
+<li>
+<p>L3：          L2 norm，±4像素，tile 8x8       (L2 4倍)</p>
+</li>
+</ul>
+<p>3.5.3 快速亚像素 L2对齐<br />
+在粗略层，使用了大的搜素半径和亚像素位移精度。保证精度。<br />
+L2误差得到的是像素级位移精度。</p>
+<p>为解决计算量问题，改进残差计算：box filter, FFT计算互相关等。</p>
+<p>计算优化：</p>
+<p>3.5.4 亚像素级精度<br />
+D2(u,v)处的3x3窗口进行二元函数(曲面)拟合，取最小值。 (比拟合两个分开的函数效果好)<br />
+近似拟合二次型：</p>
+<p>A： 半正定矩阵</p>
+<p>半正定修正：确保半正定</p>
+<p>Handheld Multi-Frame Super-Resolution<br />
+改进了 hdr-plus的对齐策略：<br />
+refine块位移向量 通过3次LK迭代。<br />
+three iterations of Lucas-Kanade[1981]</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2025/05/11/2025/05/%E8%B0%B7%E6%AD%8CNight-Sight%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2025/05/11/2025/05/%E8%B0%B7%E6%AD%8CNight-Sight%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">【论文阅读】谷歌Night-Sight夜景算法原理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-11 16:58:43" itemprop="dateCreated datePublished" datetime="2025-05-11T16:58:43+08:00">2025-05-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-15 23:08:33" itemprop="dateModified" datetime="2025-05-15T23:08:33+08:00">2025-05-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1/" itemprop="url" rel="index"><span itemprop="name">计算摄影</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>论文信息：</p>
+</blockquote>
+<h2 id="1-背景和问题"><a class="markdownIt-Anchor" href="#1-背景和问题"></a> 1 背景和问题</h2>
+<h3 id="11-相关研究"><a class="markdownIt-Anchor" href="#11-相关研究"></a> 1.1 相关研究</h3>
+<h3 id="12-目标"><a class="markdownIt-Anchor" href="#12-目标"></a> 1.2 目标</h3>
+<h2 id="2-方法介绍"><a class="markdownIt-Anchor" href="#2-方法介绍"></a> 2 方法介绍</h2>
+<h2 id="3-结果"><a class="markdownIt-Anchor" href="#3-结果"></a> 3 结果</h2>
+<h2 id="4-存在问题"><a class="markdownIt-Anchor" href="#4-存在问题"></a> 4 存在问题</h2>
+<h2 id="5-核心参考文献"><a class="markdownIt-Anchor" href="#5-核心参考文献"></a> 5 核心参考文献</h2>
+<h2 id="6-参考资料"><a class="markdownIt-Anchor" href="#6-参考资料"></a> 6 参考资料</h2>
+<hr />
+<p>Handheld Mobile Photography in Very Low Light<br />
+总结：选择曝光时间和增益的运动估计，只是快速、尽可能准确估计运动的上下界，而不是像素级乃至亚像素级的对应关系。</p>
+<h2 id="2-motion-metering"><a class="markdownIt-Anchor" href="#2-motion-metering"></a> 2 Motion Metering</h2>
+<p>目的：选择最优的曝光时间和增益。</p>
+<p>如何高效、精确的估计运动<br />
+如何利用所估计的运动参数来选择曝光时间和增益(ISO)<br />
+pipeline: Fig.3</p>
+<h3 id="21-efficient-motion-magnitude-estimationoptical-flow-magnitude"><a class="markdownIt-Anchor" href="#21-efficient-motion-magnitude-estimationoptical-flow-magnitude"></a> 2.1 Efficient motion magnitude estimation(optical flow magnitude)</h3>
+<p>直接计算光流幅度。 $$ \Delta I_t(x,y)=\bm g(x,y)\cdot \bm v(x,y) $$</p>
+<p>柯西施瓦兹不等式： $$ |\Delta I_t(x,y)|\leqslant |\bm g(x,y)|\cdot |\bm v(x,y)| $$</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="bold-italic">v</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi><mo>⩾</mo><mfrac><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="normal">Δ</mi><msub><mi>I</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi></mrow><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="bold-italic">g</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi></mrow></mfrac></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(2)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">|\bm v(x,y)| \geqslant \frac{|\Delta I_t(x,y)|}{|\bm g(x,y)|} \tag{2} 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">v</span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">⩾</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∣</span><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">g</span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mord">∣</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∣</span><span class="mord">Δ</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mord">∣</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="tag"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">2</span></span><span class="mord">)</span></span></span></span></span></span></p>
+<p>当运动方向和梯度方向相同时，等号成立。这和光圈问题类似： 若运动方向有一个分量垂直于梯度，沿着边缘的光流会被低估。因此根据Lucas-Kanade，公式2中的下界可以看作是光流幅度的直接计算。</p>
+<h4 id="噪声模型"><a class="markdownIt-Anchor" href="#噪声模型"></a> 噪声模型</h4>
+<p>我们通过在梯度<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="bold-italic">g</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">|\bm g|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">g</span></span><span class="mord">∣</span></span></span></span>相对于噪声标准差<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span></span></span></span>太低的区域用掩膜标记出运动来对噪声方差建模。(标记出梯度小于噪声标准差的运动区域) $$ |\bm g(x,y)|\lt K\sigma \tag{2} $$</p>
+<p>在低光场景中，丢弃梯度小梯度区域是十分重要的，这里噪声分布广泛，且能导致光流幅度估计失败。</p>
+<p>光流幅度refine： 下采样+取bin中的90% 异常处理</p>
+<p>对于噪声图像，用掩膜的方法优于其他方法，且速度更快。</p>
+<p>噪声模型用于计算梯度相对于噪声较高的区域，这可以作为用于进行有效运动测量的掩膜。 Fig.4</p>
+<p>场景的运动幅度(光流幅度)估计后，通过加权平均，光流幅度被合并为单一的标量。 中心加权：运动中心使用大的权重，场景外的运动不考虑。</p>
+<p>由于人对于人脸的运动模糊具有特殊的感知能力，因此采用了自动场景分割，人脸出现的时候，人脸区域比其他区域使用更大的权重。如果手动选择ROI，则其也使用大权重。</p>
+<h3 id="22-future-motion-prediction"><a class="markdownIt-Anchor" href="#22-future-motion-prediction"></a> 2.2 Future motion prediction</h3>
+<p>估计未来K张图像的最小运动的上界。</p>
+<p>[hdr-2016]的时域降噪：burst的前K帧中的一震作为参考帧，其余合成到这一帧。于是，合成图像的运动模糊和参考帧的运动模糊接近，于是具有最小运动模糊的帧被选择为参考帧。</p>
+<p>问题描述为：知道快门按下前的N个运动估计<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>i</mi></msub><mo separator="true">,</mo><mi>i</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mo>⋯</mo><mtext> </mtext><mo separator="true">,</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">v_i,i=1,\cdots,N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>，接下来的K帧中的最小运动<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>min</mi><mo>⁡</mo></msub></mrow><annotation encoding="application/x-tex">v_{\min}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">m</span><span class="mtight">i</span><span class="mtight">n</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>(幅度？)是哪一帧？</p>
+<p>一种方法是对过去的N个样本使用一个FIR滤波器，但是FIR滤波器有两个缺点：</p>
+<p>对异常值不鲁棒 N个历史值只要有一个突变，滤波器输出也突变。<br />
+不考虑K帧中只有一个被用作参考，并且当K改变时需要重新tuning。<br />
+一个基于累积分布函数的运动预测方法</p>
+<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 75: …slant P_{conf} $̲$ $v_{\min}$是未来…'> P_r(v_{\min} \gt \min_{k=1}^K v_k|{v_i},i=1,\cdots,N) \geqslant P_{conf} $$ $v_{\min}$是未来K帧上最小运动的上界，具有高置信度$P_{conf}$。 上界是为了得到最大曝光时间的保守估计，从而减少了不希望的运动模糊。
+
+为了建模快门按下后的场景运动的概率，假设快门按下前后的场景运动具有相同的分布。对快门按下前的加权平均值进行3类高斯混合模型建模，使用期望最大化算法。
+
+对比了均值法、FIR滤波器，GMM法误差最小。 假设GMM中的每个运动幅度$v_k$是独立的，有 $$ 1-P_r(v_{\min}\leqslant v_k)^K \geqslant P_{conf} \tag{5} $$ 因为$v$是一维GMM，于是对于每个高斯聚类中心，可以使用单位正太表计算$P_r(v_{\min}\leqslant v_k)$。使用二分查找计算$v_{\min}$。
+
+### 2.3 Camera stability detection
+使用gyro陀螺仪，获取角速度估计，辅助运动预测。（检测相机是否稳定）
+
+陀螺仪在视频稳定和对齐中提供有用的信号。特别是在低光环境下提供可靠的测量，此时长曝光从中受益。
+
+如何获取有用的信号？如何排除按快门操作导致的强烈干扰？ 为了从陀螺仪数据中获取相机稳定数据，我们在时间上平滑角速度，即平均快门按下前的$t_0=1.446 \rm s$。在支架上时，按快门操作会引入重要的震动，此时我们根据经验延时几百毫秒。物理上的按快门操作和软件接收信号的延时，导致难以区分是手持还是使用了支架。通过适当地丢弃陀螺仪数据再处理。
+
+### 2.4 Exposure time selection
+运动预测和相机稳定性检测，目的是选择曝光时间和增益，从而最优折中运动模糊和信噪比。 短曝光--噪声大，模糊小 长曝光--噪声小，模糊大
+
+最佳的曝光策略 把目标敏感度分解为曝光时间和增益。 根据场景运动和相机稳定状态，使用动态的曝光策略。
+
+相机稳定性决定了最大曝光时间。运动估计用于计算“模糊有限曝光时间”，其限制了估计的运动模糊到B像素， $$ t_{\exp}^{\(B\)}=\frac{B}{v_{\min}} \tag{6} </p>
+<p>随着环境变暗，需要大的增益来约束曝光时间。于是增益开始变得过大导致噪声偏大，于是曝光方案都增加了曝光时间和增益。尽管这导致所拍摄的图片超过了运动模糊阈值，但是结果图像的噪声却较为合适。</p>
+<p>静态和动态曝光方案： 亮的场景（&gt;100 lux），SNR大，使用短曝光，两种方案的增益保持最小值； 极暗场景（&lt;0.3 lux），两个方案都使用最大曝光时间。 中间的亮度情况，主要是动态曝光方案起作用。</p>
+<h2 id="3-motion-adaptive-burst-merging"><a class="markdownIt-Anchor" href="#3-motion-adaptive-burst-merging"></a> 3 Motion-adaptive Burst Merging</h2>
+<p>对齐和融合一组图像是一种有效的降噪方法。 一个简单的方法是对齐和平均所有的帧。尽管该方法对于降噪很有效，但是运动物体和对齐错误导致结果图像中的鬼影。CNN方法合成鲁棒，但是计算量大。</p>
+<p>超分也可以用于对齐和融合。</p>
+<p>基于快速和对运动鬼影鲁棒的要求，我们的方法基于[hdr-2016]描述的频域时间融合技术。 还有一些方法针对Tone-mapped后的图像(JPEG)，而不是raw图。由于有更精确的噪声模型，[hdr-2016]获得了更高的动态范围和更好的信噪比。</p>
+<p>频域融合在去噪强度和运动鬼影之间具有理论上的折中。如果场景包含运动，那么很难正确对齐不同的帧，简单的平均这些对齐的帧将导致运动模糊和鬼影。[hdr-2016]通过降低融合来自与参考帧的频带的差不能看作是噪声方差的频带的程度（即在加权平均中降低权重）来解决。 然而权重的减少由一个全局tuning参数控制，必须保守tuning以避免运动鬼影。结果是在静态区域出现更多噪声，但是没有鬼影。</p>
+<p>在低光场景，在保持对运动鬼影鲁棒的同时，在静态区域恢复丢失的去噪性能变得重要。为了达到这一目的，我们主张在频域融合之前加入一个空域相似性计算，即mismatch map。该误匹配图指出了频域融合可以激进的地方和需要保守的地方(tile)。在静态区域增强时域融合以减少噪声，在运动区域或者误配准区域降低融合以避免鬼影。</p>
+<p>计算mismatch map，大的值表示动态区域<br />
+用该图进行空间变化的频域融合，静态区域增强融合，动态区域减弱融合<br />
+在融合限制区域增强空间去噪，以补偿时域滤波</p>
+<h3 id="31-alignment"><a class="markdownIt-Anchor" href="#31-alignment"></a> 3.1 Alignment</h3>
+<p>参考帧： 最锐的帧<br />
+tile-based alignment similar to [hdr-2016]<br />
+coarse-to-fine 4层高斯金字塔raw图<br />
+对齐中的tile size随着图像噪声水平的增加而增加，轻微增加计算量 （更大的tile size）</p>
+<h3 id="32-spatially-varying-temporal-merging"><a class="markdownIt-Anchor" href="#32-spatially-varying-temporal-merging"></a> 3.2 Spatially varying temporal merging</h3>
+<p>[hdr-2016]指出在对齐后，16x16的tile会在频域执行加权平均进行融合。 这种融合算法本质上对场景中的时间变化和对齐错误具有弹性，因为与参考帧显著不同的帧和频带的降低的权重，大大超过了噪声方差。</p>
+<p>hdr-2016中tile <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span></span></span></span>处的第<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi></mrow><annotation encoding="application/x-tex">z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span>帧的权重贡献和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>−</mo><msub><mi>A</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">1-A_{tz}(\omega)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="mclose">)</span></span></span></span>成正比，其中 $$ A_{tz}(\omega)=\frac{|D_{tz}(\omega)|<sup>2}{|D_{tz}(\omega)|</sup>2 + c\sigma_{tz}^2} \tag{7} $$</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D_{tz}(\omega)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="mclose">)</span></span></span></span>是hdr-2016中定义的频域tile的差异，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>σ</mi><mrow><mi>t</mi><mi>z</mi></mrow><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">\sigma_{tz}^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.061108em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>是噪声模型给出的噪声方差，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span></span></span></span>是缩放噪声方差的常数。若tile之间的差小于噪声，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A_{tz}(\omega)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="mclose">)</span></span></span></span>减小且融合增强；若差异很大，公式7趋向于1，对tile的加权贡献减小。</p>
+<p>常数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span></span></span></span>可以用于tuning来控制去噪强度和对齐的鬼影，被称为时域强度，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">c=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>表示没有时域去噪，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">c=\infty</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord">∞</span></span></span></span>表示平均而不使用对齐。</p>
+<p>低光场景中，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span></span></span></span>需要增加以提升每一帧在时域平均上的贡献来降噪。然而由于图块(tiles)被错误对齐会引入鬼影。<br />
+为了在低光场景中减少噪声避免引入鬼影，为参数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span></span></span></span>引入一个空间变化的尺度因子<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo separator="true">,</mo><mi>z</mi></mrow><annotation encoding="application/x-tex">t,z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">t</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span>分别表示图块索引和帧索引。修改后的时域强度是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>⋅</mo><msub><mi>f</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c\cdot f_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。<br />
+时域强度因子<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>是mismatch map <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">m_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的函数， $$ m_{tz}=\frac{d_{tz}<sup>2}{d_{tz}</sup>2+s\sigma_{tz}^2} \tag{8} $$<br />
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">m_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>是在帧<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi></mrow><annotation encoding="application/x-tex">z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span>和参考帧之间的tile <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span></span></span></span>计算的，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub><mo>∈</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">m_{tz}\in[0,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6891em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>，0=不存在误匹配，1=高度误匹配。 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">d_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>是对应tile的L1差异，使用对齐阶段的结果。 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>=</mo><mn>0.5</mn></mrow><annotation encoding="application/x-tex">s=0.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span></span>，尺度因子，用于tuning 误匹配图，折中噪声和运动检测。</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">m_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的分段线性函数，得到修改后的公式： $$ A_{tz}(\omega)=\frac{|D_{tz}(\omega)|<sup>2}{|D_{tz}(\omega)|</sup>2 + cf_{tz}(m_{tz})\sigma_{tz}^2} \tag{9} $$</p>
+<p>Fig.9</p>
+<p>函数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub><mo stretchy="false">(</mo><msub><mi>m</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f_{tz}(m_{tz})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>是手动tune不同场景得出的，并进行线性插值，在高匹配区域(mismatch值小)增加时域去噪，在失配区域减少融合并保留细节。</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>最小值对所有场景相似，以增加对误匹配的鲁棒性。此时<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>=1，公式9退化为公式7。</p>
+<p>修改后的算法相比hdr-2016能更好区分噪声差异还是场景变化导致的差异。</p>
+<p>小图块的部分频带<br />
+大图块的全部频带<br />
+公式7中的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D_{tz}(\omega)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="mclose">)</span></span></span></span>只计算由16x16的图块中的一个确定的频带，公式8中的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">d_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>来自空间域计算的对齐误差，通常有更大的图块（最大到64x64），也包含了全部频带。 这种对图块差异计算的补充，提升了融合的鲁棒性，提升了低光场景的降噪。</p>
+<p>其他改进 hdr-2016：为每个颜色通道计算<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>−</mo><msub><mi>A</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">1-A_{tz}(\omega)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="mclose">)</span></span></span></span>，分通道融合 改进：为每个tile，对所有颜色通道计算最小权重，在每个频带合并所有通道。</p>
+<p>低光场景下，每个通道的权重差异很大，这将导致彩色鬼影。使用相似的权重可以显著减少彩色鬼影。</p>
+<h3 id="33-spatially-varying-denoising"><a class="markdownIt-Anchor" href="#33-spatially-varying-denoising"></a> 3.3 Spatially varying denoising</h3>
+<p>如hdr-2016，接下来在二维DFT频域执行空域降噪，对频域系数执行和公式7相同形式的收缩算子。假定所有N帧图像完美地被平均，从而计算降噪强度，并且融合后的图像的噪声方差变为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msup><mi>σ</mi><mn>2</mn></msup><mi>N</mi></mfrac></mstyle></mrow><annotation encoding="application/x-tex">\dfrac{\sigma^2}{N}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.177108em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>。 在我们修改后的实现中，融合图像的噪声方差根据每个tile融合实际出现的图像帧计算，这增加了误匹配区域的噪声方差。结果是，这些区域获得了更大的空域去噪强度，以对减小的时域去噪强度（融合帧数少的）做补偿。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2025/05/09/2025/05/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1%E8%B5%84%E6%96%99%E6%95%B4%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2025/05/09/2025/05/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1%E8%B5%84%E6%96%99%E6%95%B4%E7%90%86/" class="post-title-link" itemprop="url">计算摄影资料整理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-09 23:05:05" itemprop="dateCreated datePublished" datetime="2025-05-09T23:05:05+08:00">2025-05-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-10 00:32:03" itemprop="dateModified" datetime="2025-05-10T00:32:03+08:00">2025-05-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1/" itemprop="url" rel="index"><span itemprop="name">计算摄影</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>整理和收集计算摄影相关资料，主要来自国外计算摄影相关课程资料。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">虹膜识别算法简介</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-09 23:00:40" itemprop="dateCreated datePublished" datetime="2025-05-09T23:00:40+08:00">2025-05-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-11 22:41:09" itemprop="dateModified" datetime="2025-05-11T22:41:09+08:00">2025-05-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">识别算法</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>介绍虹膜识别算法的基本原理，包括传统算法和深度学习算法。</p>
+<h2 id="1-虹膜简介"><a class="markdownIt-Anchor" href="#1-虹膜简介"></a> 1 虹膜简介</h2>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_examples1.png" alt="picture 2" title="虹膜示例图：c：远距离虹膜，e: 英国Bath数据集，其余：中科院CASIA数据集" /></p>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_feature.png" alt="picture 8" /></p>
+<h2 id="2-虹膜识别系统简介"><a class="markdownIt-Anchor" href="#2-虹膜识别系统简介"></a> 2 虹膜识别系统简介</h2>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_recog_system1.png" alt="picture 6" /></p>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_recog_system2.png" alt="picture 7" title="基于深度学习的虹膜识别系统 图源：[4]" /></p>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_recog_system3.png" alt="picture 9" title="虹膜识别系统 图源：[2]" /></p>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_recog_system4.png" alt="picture 10" title="图像和视频虹膜识别系统 图源：VASIR[3]" /></p>
+<h2 id="21-虹膜数据集"><a class="markdownIt-Anchor" href="#21-虹膜数据集"></a> 2.1 虹膜数据集</h2>
+<ul>
+<li>CASIA-IrisV4：<a target="_blank" rel="noopener" href="https://hycasia.github.io/dataset/casia-irisv4/">https://hycasia.github.io/dataset/casia-irisv4/</a></li>
+<li>CASIA数据集：<a target="_blank" rel="noopener" href="http://biometrics.idealtest.org/downloadDB.do?id=4&amp;subset=5#/">http://biometrics.idealtest.org/downloadDB.do?id=4&amp;subset=5#/</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cbsr.ia.ac.cn/china/iris%20databases%20ch.asp">http://www.cbsr.ia.ac.cn/china/iris databases ch.asp</a></li>
+<li></li>
+</ul>
+<h2 id="3-传统识别算法"><a class="markdownIt-Anchor" href="#3-传统识别算法"></a> 3 传统识别算法</h2>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_recog_system_traditional.png" alt="picture 3" title="传统识别算法流程" /></p>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-normalization_1.png" alt="picture 1" title="虹膜归一化" /></p>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_postproc_after_normalization.png" alt="picture 4" title="虹膜归一化及后处理. 1: 归一化，2：上下裁剪crop，3：检测睫毛和眼皮后去除" /></p>
+<p><strong>虹膜图像质量评价</strong>。虹膜图像获取设备采集到的用户虹膜图像通常情况下存在运动模糊、不聚焦、瞳孔变形过度和睫毛眼睑严重遮挡虹膜等问题，最后的结果是导致识别失败或者识别错误。所以，在采集完用户的虹膜图像后我们需要对采集到的虹膜图像进行质量评价，选择满足一系列质量要求的虹膜图像来识别。</p>
+<h3 id="31-概述"><a class="markdownIt-Anchor" href="#31-概述"></a> 3.1 概述</h3>
+<h3 id="32-虹膜分割"><a class="markdownIt-Anchor" href="#32-虹膜分割"></a> 3.2 虹膜分割</h3>
+<h3 id="33-增强"><a class="markdownIt-Anchor" href="#33-增强"></a> 3.3 增强</h3>
+<h3 id="34-归一化"><a class="markdownIt-Anchor" href="#34-归一化"></a> 3.4 归一化</h3>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_normalization_2.png" alt="picture 12" /></p>
+<h3 id="35-特征提取"><a class="markdownIt-Anchor" href="#35-特征提取"></a> 3.5 特征提取</h3>
+<h3 id="36-匹配"><a class="markdownIt-Anchor" href="#36-匹配"></a> 3.6 匹配</h3>
+<h2 id="4-基于深度学习的识别算法"><a class="markdownIt-Anchor" href="#4-基于深度学习的识别算法"></a> 4 基于深度学习的识别算法</h2>
+<h3 id="41-概述"><a class="markdownIt-Anchor" href="#41-概述"></a> 4.1 概述</h3>
+<h3 id="42-多阶段网络"><a class="markdownIt-Anchor" href="#42-多阶段网络"></a> 4.2 多阶段网络</h3>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-deep_iris_seg_network1.png" alt="picture 11" /></p>
+<h3 id="43-端到端网络"><a class="markdownIt-Anchor" href="#43-端到端网络"></a> 4.3 端到端网络</h3>
+<h3 id="44-ocfon网络"><a class="markdownIt-Anchor" href="#44-ocfon网络"></a> 4.4 OCFON网络</h3>
+<p>应对未曾见过的数据</p>
+<h2 id="5-未来趋势"><a class="markdownIt-Anchor" href="#5-未来趋势"></a> 5 未来趋势</h2>
+<h2 id="6-参考文献"><a class="markdownIt-Anchor" href="#6-参考文献"></a> 6 参考文献</h2>
+<ul>
+<li>[1] 非理想情况下的虹膜识别算法研究，硕士论文，2013，<a target="_blank" rel="noopener" href="https://www.doc88.com/p-7354281260959.html">https://www.doc88.com/p-7354281260959.html</a></li>
+<li>[2] <a target="_blank" rel="noopener" href="https://www.bilibili.com/opus/367259376421257939">https://www.bilibili.com/opus/367259376421257939</a></li>
+<li>[3] <a target="_blank" rel="noopener" href="https://www.nist.gov/services-resources/software/video-based-automatic-system-iris-recognition-vasir">Video-based Automatic System for Iris Recognition (VASIR)</a></li>
+<li>[4] <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42346564/article/details/81880014">【虹膜识别】+【开源代码】虹膜识别</a></li>
+<li>[5] <a target="_blank" rel="noopener" href="http://www.aibrainelec.com/HTML/successCase/intelligentIrisRec.html">http://www.aibrainelec.com/HTML/successCase/intelligentIrisRec.html</a></li>
+<li>[6] <a target="_blank" rel="noopener" href="https://www4.comp.polyu.edu.hk/~csajaykr/tvmiris.htm">An Accurate Iris Segmentation Framework under Relaxed Imaging Constraints using Total Variation Model</a> 总变分模型分割 <a target="_blank" rel="noopener" href="http://www4.comp.polyu.edu.hk/~csajaykr/myhome/papers/ICCV15_Final.pdf">[论文pdf]</a></li>
+<li>[7] <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2303.08514">Deep Learning for Iris Recognition: A Review,2023</a></li>
+<li>[8] <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1901.11195">Joint Iris Segmentation and Localization Using Deep Multi-task Learning Framework,2019</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/xiamenwcy/IrisParseNet">https://github.com/xiamenwcy/IrisParseNet</a> [TIFS 2020]Towards Complete and Accurate Iris Segmentation Using Deep Multi-Task Attention Network for Non-Cooperative Iris Recognition虹膜分割定位实现</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/worldcoin/open-iris">https://github.com/worldcoin/open-iris</a> Worldcoin’s Iris Recognition Inference System (IRIS) project，集成先进的虹膜识别技术，Python实现</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2408.09752">A Unified Framework for Iris Anti-Spoofing: Introducing IrisGeneral Dataset and Masked-MoE Method</a> 虹膜识别数据泛化能力<br />
+中科虹霸、聚虹光电、宿州中科国虹智能、武汉虹识技术、中科领虹</li>
+<li><a target="_blank" rel="noopener" href="https://www.sohu.com/a/437077897_120865617">虹膜识别技术及其应用</a></li>
+<li><a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3651306">Deep Learning for Iris Recognition: A Survey，2024</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.08514">Deep Learning for Iris Recognition: A Review，2023</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cl.cam.ac.uk/~jgd1000/irisrecog.pdf">HowIris Recognition Works，John Daugman</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.icsmart.cn/13206/">【深度】生物识别之“虹膜识别”产业链全解析 – 芯智讯</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/600097062">TPAMI2023论文解读 | 复值虹膜识别网络</a> 设计了一个全复数神经网络，可以更好地捕获虹膜纹理的多尺度、多分辨率和多方向的相位和振幅特征</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -213,9 +1286,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-04-17 23:06:38 / 修改时间：23:30:31" itemprop="dateCreated datePublished" datetime="2025-04-17T23:06:38+08:00">2025-04-17</time>
+      <time title="创建时间：2025-04-17 23:06:38" itemprop="dateCreated datePublished" datetime="2025-04-17T23:06:38+08:00">2025-04-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-29 22:07:30" itemprop="dateModified" datetime="2025-05-29T22:07:30+08:00">2025-05-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -245,14 +1324,29 @@
 <p><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-image-pyrmaids-applications.png" alt="picture 0" /></p>
 <h2 id="高斯图像金字塔的构建"><a class="markdownIt-Anchor" href="#高斯图像金字塔的构建"></a> 高斯图像金字塔的构建</h2>
 <p><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-build-gaussian-pyrmaids.png" alt="picture 1" /></p>
-<p><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-image-pyrmaids-1.png" alt="picture 2" /></p>
-<p><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-image-residuals.png" alt="picture 3" /></p>
-<p><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-build-laplacian-pyrmaid.png" alt="picture 4" title="构建拉普拉斯金字塔" /></p>
-<p><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-reconstruction-image.png" alt="picture 5" title="重建原始图像" /></p>
-<p><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-laplacian-gaussian-pyrmaid-relationship.png" alt="picture 6" title="拉普拉斯金字塔的来历" /></p>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-image-pyrmaids-1.png">
+<figcaption>高斯图像金字塔及其特性</figcaption></figure>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-image-residuals-1.png">
+<figcaption>高斯金字塔图像（层间）细节被模糊掉</figcaption></figure>
+<h2 id="拉普拉斯金字塔"><a class="markdownIt-Anchor" href="#拉普拉斯金字塔"></a> 拉普拉斯金字塔</h2>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-laplacian-pyrmaids.png">
+<figcaption>拉普拉斯金字塔（注意最小层（大小为8）的内容和高斯金字塔相同）</figcaption></figure>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-image-residuals.png">
+<figcaption>原始图像内容重建</figcaption></figure>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-build-laplacian-pyrmaid-1.png">
+<figcaption>构建拉普拉斯金字塔</figcaption></figure>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-build-laplacian-pyrmaid.png">
+<figcaption>构建拉普拉斯金字塔</figcaption></figure>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-reconstrution-image1.png">
+<figcaption>重建原始图像</figcaption></figure>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-reconstruction-image.png">
+<figcaption>重建原始图像</figcaption></figure>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-laplacian-gaussian-pyrmaid-relationship.png">
+<figcaption>拉普拉斯金字塔的来历</figcaption></figure>
 <h2 id="相关资料"><a class="markdownIt-Anchor" href="#相关资料"></a> 相关资料</h2>
 <ul>
 <li>Peter J. Burt and Edward H. Adelson，The Laplacian Pyramid as a Compact Image Code (1983)</li>
+<li><a target="_blank" rel="noopener" href="http://graphics.cs.cmu.edu/courses/15-463/2017_fall/lectures/lecture5.pdf">http://graphics.cs.cmu.edu/courses/15-463/2017_fall/lectures/lecture5.pdf</a>  Subsampling and image pyramids</li>
 <li><a target="_blank" rel="noopener" href="https://docs.opencv.org/3.4/d4/d1f/tutorial_pyramids.html">https://docs.opencv.org/3.4/d4/d1f/tutorial_pyramids.html</a></li>
 <li><a target="_blank" rel="noopener" href="https://docs.opencv.org/4.x/dc/dff/tutorial_py_pyramids.html">https://docs.opencv.org/4.x/dc/dff/tutorial_py_pyramids.html</a></li>
 </ul>
@@ -460,7 +1554,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-17 23:33:46" itemprop="dateModified" datetime="2025-04-17T23:33:46+08:00">2025-04-17</time>
+      <time title="修改时间：2025-05-25 10:30:04" itemprop="dateModified" datetime="2025-05-25T10:30:04+08:00">2025-05-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -527,7 +1621,7 @@
 </li>
 <li>
 <p><strong>曝光良好程度</strong> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span><br />
-反映一个像素的曝光情况，观察一个通道的RAW亮度。我们希望保持不是接近0(欠曝光)或者1(过曝)的亮度。加权每个亮度基于如下权重：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><mo>−</mo><mfrac><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>−</mo><mn>0.5</mn><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn><msup><mi>σ</mi><mn>2</mn></msup></mrow></mfrac><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\exp(-\frac{(i-0.5)}{2\sigma^2})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.355em;vertical-align:-0.345em;"></span><span class="mop">exp</span><span class="mopen">(</span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463142857142857em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">0</span><span class="mord mtight">.</span><span class="mord mtight">5</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span></span></span></span>，其中取<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>=</mo><mn>0.2</mn></mrow><annotation encoding="application/x-tex">\sigma=0.2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">2</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span>是亮度，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.5</mn></mrow><annotation encoding="application/x-tex">0.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span></span>是归一化亮度。对于多个颜色通道，使用高斯曲线分别作用于每个通道，然后乘以结果，得到<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span>。</p>
+反映一个像素的曝光情况，观察一个通道的RAW亮度。我们希望保持不是接近0(欠曝光)或者1(过曝)的亮度。加权每个亮度基于如下权重：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><mo>−</mo><mfrac><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>−</mo><mn>0.5</mn><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><mrow><mn>2</mn><msup><mi>σ</mi><mn>2</mn></msup></mrow></mfrac><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\exp(-\frac{(i-0.5)^2}{2\sigma^2})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.4539199999999999em;vertical-align:-0.345em;"></span><span class="mop">exp</span><span class="mopen">(</span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.10892em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463142857142857em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">0</span><span class="mord mtight">.</span><span class="mord mtight">5</span><span class="mclose mtight"><span class="mclose mtight">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913142857142857em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span></span></span></span>，其中取<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>=</mo><mn>0.2</mn></mrow><annotation encoding="application/x-tex">\sigma=0.2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">2</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span>是亮度，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.5</mn></mrow><annotation encoding="application/x-tex">0.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span></span>是归一化亮度。对于多个颜色通道，使用高斯曲线分别作用于每个通道，然后乘以结果，得到<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span>。</p>
 </li>
 </ul>
 <p><img src="/blog/2025/04/15/202504/Exposure-Fusion/fig-bb6063dfe8f7c3fc3710cd9a3167f001f3413e534664a02de4a56ce9b7c463f3.png" alt="picture 1" title="每帧图像一个权重图，高的权重意味着对应的像素应该出现在结果图像中" /></p>
@@ -773,1342 +1867,6 @@
 <hr />
 <h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
 <p>方案提供商需通过技术升级、生态协同和全球化破局，而创业公司应根据资源禀赋选择模式，混合路径可能更适应不确定性市场。未来竞争中，<strong>技术深度、场景理解与生态整合能力</strong>将成为生存关键。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2025/04/07/202504/LeetCode207/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="yaanggny">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yaanggny的笔记">
-      <meta itemprop="description" content="日常记录">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yaanggny的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2025/04/07/202504/LeetCode207/" class="post-title-link" itemprop="url">LeetCode207课程表</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-04-07 22:32:55" itemprop="dateCreated datePublished" datetime="2025-04-07T22:32:55+08:00">2025-04-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-12 18:23:06" itemprop="dateModified" datetime="2025-04-12T18:23:06+08:00">2025-04-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="207-课程表"><a class="markdownIt-Anchor" href="#207-课程表"></a> 207. 课程表</h1>
-<p>你这个学期必须选修 <code>numCourses</code> 门课程，记为 <code>0</code> 到 <code>numCourses - 1</code>。</p>
-<p>在选修某些课程之前需要一些先修课程。 先修课程按数组 <code>prerequisites</code> 给出，其中 <code>prerequisites[i] = [ai, bi]</code>，表示如果要学习课程 <code>ai</code> 则 必须 先学习课程  <code>bi</code> 。</p>
-<p>请根据给定的总课程数 <code>numCourses</code> 和表示先修课程关系的列表 <code>prerequisites</code>，判断是否可能完成所有课程的学习？如果可以，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: numCourses = <span class="number">2</span>, prerequisites = [[<span class="number">1</span>,<span class="number">0</span>]]</span><br><span class="line">输出: true</span><br><span class="line">解释: 存在一种课程顺序 [<span class="number">0</span>,<span class="number">1</span>] 可以完成所有课程的学习。</span><br></pre></td></tr></table></figure>
-<p><strong>示例 2：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: numCourses = <span class="number">2</span>, prerequisites = [[<span class="number">1</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">1</span>]]</span><br><span class="line">输出: false</span><br><span class="line">解释: 不存在可以让我完成所有课程学习的课程顺序。</span><br></pre></td></tr></table></figure>
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= numCourses &lt;= 2000</code></li>
-<li><code>0 &lt;= prerequisites.length &lt;= 5000</code></li>
-<li><code>prerequisites[i].length == 2</code><br />
--<code>0 &lt;= ai, bi &lt; numCourses</code></li>
-<li><code>prerequisites[i]</code> 中的所有课程对 互不相同</li>
-</ul>
-<h2 id="求解"><a class="markdownIt-Anchor" href="#求解"></a> 求解</h2>
-<p>思路说明：对每个课程，判断是否存在环，如果存在环则无法完成所有课程的学习；不存在则继续判断下一个课程。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">canFinish</span><span class="params">(<span class="type">int</span> numCourses, <span class="type">const</span> vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; prerequisites)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        [[1,0],[0,2],[2,1]]</span></span><br><span class="line"><span class="comment">        0    1   2  先修课程</span></span><br><span class="line"><span class="comment">        [1]  [2] [0]  后续课程</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line"></span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">visited</span><span class="params">(numCourses, <span class="number">0</span>)</span></span>;   <span class="comment">// 0=没有访问; 1=访问过或者访问中; 2=完成访问，当前课程可以完成到底</span></span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">adj</span>(numCourses);  <span class="comment">// 每个课程的后继课程</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">const</span> <span class="keyword">auto</span>&amp; p: prerequisites)</span><br><span class="line">        &#123;</span><br><span class="line">            adj[p[<span class="number">1</span>]].<span class="built_in">push_back</span>(p[<span class="number">0</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; numCourses; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(!visited[i])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">printArr</span>(visited);</span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">dfs_findCircle</span>(i, adj, visited))  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                <span class="built_in">printArr</span>(visited);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">dfs_findCircle</span><span class="params">(<span class="type">int</span> c, <span class="type">const</span> vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; adj, vector&lt;<span class="type">int</span>&gt;&amp; visited)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(visited[c] == <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">// if(visited[c] == 2) return false;</span></span><br><span class="line"></span><br><span class="line">        visited[c] = <span class="number">1</span>;   <span class="comment">// visit c</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> n: adj[c])   <span class="comment">// following class</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(visited[n] == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">dfs_findCircle</span>(n, adj, visited)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(visited[n] == <span class="number">1</span>)  <span class="comment">// circle</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        visited[c] = <span class="number">2</span>;  <span class="comment">// 完成搜索，说明安全，这个节点(c)开始可以完成到底，不存在环</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="相关题目"><a class="markdownIt-Anchor" href="#相关题目"></a> 相关题目</h2>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/course-schedule-ii/description/">210. 课程表 II：返回学习一种方案</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2025/04/05/202504/HDR-%E8%AE%BA%E6%96%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="yaanggny">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yaanggny的笔记">
-      <meta itemprop="description" content="日常记录">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yaanggny的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2025/04/05/202504/HDR-%E8%AE%BA%E6%96%87/" class="post-title-link" itemprop="url">HDR论文整理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-04-05 23:00:11" itemprop="dateCreated datePublished" datetime="2025-04-05T23:00:11+08:00">2025-04-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-17 00:04:46" itemprop="dateModified" datetime="2025-04-17T00:04:46+08:00">2025-04-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1/" itemprop="url" rel="index"><span itemprop="name">计算摄影</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1/%E8%AE%BA%E6%96%87%E6%95%B4%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">论文整理</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="书籍"><a class="markdownIt-Anchor" href="#书籍"></a> 书籍</h2>
-<ul>
-<li>Advanced High Dynamic Range Imaging (2nd Edition)，2017 [ToneMapping、压缩、视频的Tone/压缩、评估等]
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/banterle/HDR_Toolbox">https://github.com/banterle/HDR_Toolbox</a> 附带Matlab程序</li>
-</ul>
-</li>
-</ul>
-<h2 id="论文"><a class="markdownIt-Anchor" href="#论文"></a> 论文</h2>
-<ul>
-<li>
-<p>1997，Debevec，<a target="_blank" rel="noopener" href="https://www.pauldebevec.com/Research/HDR/debevec-siggraph97.pdf">Recovering High Dynamic Range Radiance Maps from Photographs</a></p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.pauldebevec.com/Research/HDR/">Recovering High Dynamic Range Radiance Maps from Photographs</a></li>
-<li></li>
-</ul>
-</li>
-<li>
-<p>2002，<a target="_blank" rel="noopener" href="https://www-old.cs.utah.edu/docs/techreports/2002/pdf/UUCS-02-001.pdf">Photographic Tone Reproduction for Digital Images</a></p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/8629489471">Photographic Tone Reproduction for Digital Images阅读笔记</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014230360/article/details/108527016">HDR技术讲解之Photographic Tone Reproduction for Digital Images论文算法复现及改进</a></li>
-</ul>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://www.tommertens.com/old-academic/papers/exposure_fusion_reduced.pdf">Pacific Graphics 2007, Exposure Fusion</a></p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.tommertens.com/old-academic/exposure_fusion/exposure_fusion.zip">https://www.tommertens.com/old-academic/exposure_fusion/exposure_fusion.zip</a>  Matlab实现，<a target="_blank" rel="noopener" href="https://www.tommertens.com/old-academic/index.html">官网</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/Rachine/ExposureFusion">https://github.com/Rachine/ExposureFusion</a></li>
-</ul>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://dsp.etfbl.net/mif/">2011，多焦段图像融合，Multifocus Image Fusion Based on Empirical Mode Decomposition</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://cseweb.ucsd.edu/~viscomp/projects/SIG17HDR/">SIGGRAPH 2017，Deep High Dynamic Range Imaging of Dynamic Scenes</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://ivc.uwaterloo.ca/database/MEF.html">Waterloo IVC Multi-Exposure Fusion Image Database，多曝光融合图像质量评价数据集，还提供多种方法</a></p>
-</li>
-<li>
-<p>2020，An extended exposure fusion and its application to single image contrast enhancement， 曝光融合算法改进</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.ipol.im/pub/art/2019/278/article_lr.pdf">Extended Exposure Fusion, IPOL实现</a></li>
-</ul>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/7859418">TIP2017, Robust Multi-Exposure Image Fusion: A Structural Patch Decomposition Approach</a><br />
-| <a target="_blank" rel="noopener" href="https://www.cnblogs.com/rainton-z/p/11677729.html">中文参考 - 博客园</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://www.mdpi.com/2072-4292/14/3/771">2022，Multi-Exposure Image Fusion Techniques: A Comprehensive Review</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Onzon_Neural_Exposure_Fusion_for_High-Dynamic_Range_Object_Detection_CVPR_2024_paper.pdf">CVPR2024，Neural Exposure Fusion for High-Dynamic Range Object Detection</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2501.11515">2025, UltraFusion: Ultra High Dynamic Imaging using Exposure Fusion</a> | <a target="_blank" rel="noopener" href="https://openimaginglab.github.io/UltraFusion/">project</a> | <a target="_blank" rel="noopener" href="https://blog.csdn.net/u013049912/article/details/145310932">中文参考</a></p>
-</li>
-</ul>
-<h2 id="数据集"><a class="markdownIt-Anchor" href="#数据集"></a> 数据集</h2>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2405.00244">CVPR2024, Towards Real-World HDR Video Reconstruction: A Large-Scale Benchmark Dataset and A Two-Stage Alignment Network</a> | <a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Shu_Towards_Real-World_HDR_Video_Reconstruction_A_Large-Scale_Benchmark_Dataset_and_CVPR_2024_paper.pdf">CVF</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="yaanggny">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yaanggny的笔记">
-      <meta itemprop="description" content="日常记录">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yaanggny的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/" class="post-title-link" itemprop="url">ISP成像参数和HDR成像</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-04-05 21:41:00" itemprop="dateCreated datePublished" datetime="2025-04-05T21:41:00+08:00">2025-04-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-13 16:04:42" itemprop="dateModified" datetime="2025-04-13T16:04:42+08:00">2025-04-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1/" itemprop="url" rel="index"><span itemprop="name">计算摄影</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>主要梳理ISP成像相关参数(如曝光时长/快门速度、ISO、gain、光圈大小等)和HDR成像相关知识。</p>
-<h2 id="1-isp成像参数"><a class="markdownIt-Anchor" href="#1-isp成像参数"></a> 1、ISP成像参数</h2>
-<h3 id="11-参数"><a class="markdownIt-Anchor" href="#11-参数"></a> 1.1 参数</h3>
-<ul>
-<li>曝光时间（Exposure Time或shutter）</li>
-</ul>
-<p>传感器感光元件暴露在光线下的时间（单位：毫秒或秒）。时间越长，传感器捕获的光子越多，图像亮度越高。但过长的曝光时间会导致运动模糊（动态场景）或过曝（高光溢出）。</p>
-<ul>
-<li>ISO/Gain（感光度/增益）</li>
-</ul>
-<p>ISO：传统摄影术语，指传感器对光的敏感度。数字相机中，<strong>ISO通常指模拟增益（Analog Gain）</strong>，即信号在模数转换（ADC）前的放大倍数。一般在暗光环境下，通常使用高ISO，但噪点也较多。</p>
-<p>gain：广义的增益包括模拟增益（ISO）和数字增益（对数字信号的后期放大）。增益越高，信号（包括噪声）被放大越多，图像亮度提升，但噪点也更明显。</p>
-<h3 id="12-参数间的相互作用"><a class="markdownIt-Anchor" href="#12-参数间的相互作用"></a> 1.2 参数间的相互作用</h3>
-<p>图像亮度（Brightness）的数学关系可简化为：</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">B</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">h</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">s</mi><mo>∝</mo><mi mathvariant="normal">E</mi><mi mathvariant="normal">x</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mtext> </mtext><mi mathvariant="normal">T</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">e</mi><mo>×</mo><mi mathvariant="normal">G</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mo>×</mo><mi mathvariant="normal">S</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">e</mi><mtext> </mtext><mi mathvariant="normal">I</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">e</mi></mrow><annotation encoding="application/x-tex">{\rm
-Brightness \propto Exposure\ Time \times Gain \times Scene\ Illuminance
-}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">B</span><span class="mord mathrm">r</span><span class="mord mathrm">i</span><span class="mord mathrm" style="margin-right:0.01389em;">g</span><span class="mord mathrm">h</span><span class="mord mathrm">t</span><span class="mord mathrm">n</span><span class="mord mathrm">e</span><span class="mord mathrm">s</span><span class="mord mathrm">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∝</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathrm">E</span><span class="mord mathrm">x</span><span class="mord mathrm">p</span><span class="mord mathrm">o</span><span class="mord mathrm">s</span><span class="mord mathrm">u</span><span class="mord mathrm">r</span><span class="mord mathrm">e</span><span class="mspace"> </span><span class="mord mathrm">T</span><span class="mord mathrm">i</span><span class="mord mathrm">m</span><span class="mord mathrm">e</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathrm">G</span><span class="mord mathrm">a</span><span class="mord mathrm">i</span><span class="mord mathrm">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathrm">S</span><span class="mord mathrm">c</span><span class="mord mathrm">e</span><span class="mord mathrm">n</span><span class="mord mathrm">e</span><span class="mspace"> </span><span class="mord mathrm">I</span><span class="mord mathrm">l</span><span class="mord mathrm">l</span><span class="mord mathrm">u</span><span class="mord mathrm">m</span><span class="mord mathrm">i</span><span class="mord mathrm">n</span><span class="mord mathrm">a</span><span class="mord mathrm">n</span><span class="mord mathrm">c</span><span class="mord mathrm">e</span></span></span></span></span></span></span></p>
-<p>即曝光时间和增益是互补的。在光照不足时，可通过增加曝光时间或<strong>提高增益（ISO）</strong> 提升亮度。曝光时间不足时（如拍摄高速运动物体），需提高增益补偿亮度，但会引入更多噪声。增益较低时，需延长曝光时间，但可能因抖动或物体运动导致模糊。</p>
-<ul>
-<li>噪声与动态范围</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>噪声</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>模拟增益（ISO）</td>
-<td>放大传感器原始信号时，信号和噪声同时被放大，但信噪比（SNR）取决于传感器的本底噪声。高ISO 显著增加噪点（尤其是暗部），降低动态范围（高光容易过曝）。</td>
-</tr>
-<tr>
-<td>数字增益</td>
-<td>仅放大数字信号，不会改善SNR，可能放大量化噪声。</td>
-</tr>
-<tr>
-<td>曝光时间</td>
-<td>增加曝光时间可减少噪点，但可能引入热噪声和运动模糊。过长的曝光可能引入热噪声（传感器发热导致的随机噪声）。</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>
-<p>动态场景的权衡</p>
-<ul>
-<li>
-<p>拍摄高速运动物体时，需缩短曝光时间避免模糊，但需提高增益补偿亮度，导致噪点增加。</p>
-</li>
-<li>
-<p>静态场景中，优先使用长曝光+低增益以获得低噪声图像。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="13-isp流程中的参数调整策略"><a class="markdownIt-Anchor" href="#13-isp流程中的参数调整策略"></a> 1.3 ISP流程中的参数调整策略</h3>
-<p>在ISP中，通常通过自动曝光（AE）算法动态调整参数，目标是在亮度、噪声和动态范围之间找到最优平衡：</p>
-<ul>
-<li>
-<p>优先调整曝光时间： 根据场景光照和运动状态，尽可能延长曝光时间（不超出模糊容忍度）。</p>
-</li>
-<li>
-<p>调整模拟增益（ISO）：当曝光时间达到上限（如1/30秒防抖极限），提高ISO以补偿亮度。</p>
-</li>
-<li>
-<p>最后调整数字增益：在模拟增益达到传感器上限后，使用数字增益进一步提亮（但噪声更明显）。</p>
-</li>
-</ul>
-<h2 id="2-hdr成像"><a class="markdownIt-Anchor" href="#2-hdr成像"></a> 2、HDR成像</h2>
-<p>HDR成像通常包括HDR重建和多曝光融合(multi-exposure image fusion,MEF)，取决于融合发生的位置。<br />
-HDR重建使用相机响应函数（CRF），在线性HDR域中合并不同曝光的图像。通常还需要使用Tone Mapping将HDR图像映射到显示设备支持的亮度范围(LDR)。标准显示器一般是低动态范围的。</p>
-<p>MEF方法直接在低动态范围内融合图像，避免了CRF校准和复杂的色调映射过程。无论哪种HDR成像方法，都需要处理由相机抖动或物体运动引起的鬼影伪像问题。</p>
-<blockquote>
-<p>参考<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2501.11515">UltraFusion</a></p>
-</blockquote>
-<p>本部分内容总结自<a target="_blank" rel="noopener" href="http://graphics.cs.cmu.edu/courses/15-463/">CMU 计算摄影课程</a>。</p>
-<h3 id="21-曝光控制"><a class="markdownIt-Anchor" href="#21-曝光控制"></a> 2.1 曝光控制</h3>
-<h4 id="什么是曝光"><a class="markdownIt-Anchor" href="#什么是曝光"></a> 什么是曝光</h4>
-<p>粗糙的说，曝光就是固定场景捕获的图像的亮度。</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">E</mi><mi mathvariant="normal">x</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mo>=</mo><mi mathvariant="normal">G</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mo>×</mo><mi mathvariant="normal">F</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">x</mi><mo>×</mo><mi mathvariant="normal">E</mi><mi mathvariant="normal">x</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">T</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">e</mi></mrow><annotation encoding="application/x-tex">{\rm
-Exposure = Gain \times Flux \times ExposureTime
-}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">E</span><span class="mord mathrm">x</span><span class="mord mathrm">p</span><span class="mord mathrm">o</span><span class="mord mathrm">s</span><span class="mord mathrm">u</span><span class="mord mathrm">r</span><span class="mord mathrm">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathrm">G</span><span class="mord mathrm">a</span><span class="mord mathrm">i</span><span class="mord mathrm">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathrm">F</span><span class="mord mathrm">l</span><span class="mord mathrm">u</span><span class="mord mathrm">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathrm">E</span><span class="mord mathrm">x</span><span class="mord mathrm">p</span><span class="mord mathrm">o</span><span class="mord mathrm">s</span><span class="mord mathrm">u</span><span class="mord mathrm">r</span><span class="mord mathrm">e</span><span class="mord mathrm">T</span><span class="mord mathrm">i</span><span class="mord mathrm">m</span><span class="mord mathrm">e</span></span></span></span></span></span></span></p>
-<p>Flux: 光通量，由光圈aperture控制。<br />
-Gain: 增益，由ISO控制。<br />
-ExposureTime: 曝光时间，由快门速度（shutter speed）控制。</p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-a80d4f7eb18dc5cd41010430b2457705c9e43003871f98eda3da924989fe5ed5.png" alt="picture 0" /></p>
-<h4 id="快门速度"><a class="markdownIt-Anchor" href="#快门速度"></a> 快门速度</h4>
-<ul>
-<li>
-<p>控制快门打开的时间长短。<br />
-<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5e7c89b7e3d20d7f3e54bfa28d04751982c669acb1b62b5200f2fa9aeefe5f03.png" alt="picture 1" /></p>
-</li>
-<li>
-<p>快门速度的副作用<br />
-快门过慢，容易导致运动模糊。</p>
-</li>
-</ul>
-<blockquote>
-<p>单帧图像去模糊：High-quality Motion Deblurring from a Single Image, SIGGRAPH 2008</p>
-</blockquote>
-<h4 id="光圈"><a class="markdownIt-Anchor" href="#光圈"></a> 光圈</h4>
-<ul>
-<li>
-<p>光圈控制进入镜头的光量。<br />
-<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-d3e6fb22ba445ccd7f1397be205dcfce8206a4be40461d7f85747bb1e3f28503.png" alt="picture 2" /></p>
-</li>
-<li>
-<p>光圈大小通常表示为&quot;f-number&quot;，即焦距与光圈直径的比值。数字越大，光圈越小。<br />
-<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-e2c501590bdaeeaacca704427eccf1e56b187f596cb56b6de81bee82359da8d2.png" alt="picture 3" /></p>
-</li>
-<li>
-<p>光圈的副作用</p>
-<ul>
-<li>光圈尺寸增大，景深变小。</li>
-<li>sharp景深通常称为&quot;bokeh&quot;，散焦。</li>
-</ul>
-<blockquote>
-<p>bokeh是指在摄影中焦外散斑的现象。具体来说，bokeh是当镜头对焦于某个点时，背景中未对焦的区域呈现出的模糊、圆润或不规则形状的光斑效果。这种效果通常被认为是美学上的，因为良好的bokeh可以增加照片的深度感和艺术感。bokeh的形状和质量受到多种因素的影响，包括光圈的形状、镜头的光学设计以及拍摄时的光圈大小。在光学工程师的角度来看，bokeh的成因是由于镜头的离焦特性，使得光线在像面上形成弥散圆，从而在图像中表现为模糊的光斑。</p>
-</blockquote>
-<ul>
-<li>如何模拟bokeh: 计算每个像素的深度，然后用深度相关的模糊核模糊(核随深度变化而变化 )。<br />
-<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-197705fabf23699ac51146b27dd817e1aba0edf47e93251dae40d1d02ad59c13.png" alt="picture 4" /></li>
-</ul>
-</li>
-</ul>
-<h4 id="iso"><a class="markdownIt-Anchor" href="#iso"></a> ISO</h4>
-<p>ISO通常指模拟增益，即信号在模数转换（ADC）前的放大倍数。</p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-673799401a15b9fa3d91f3c93ec71b7facb93d19b4e53b100ea880843c5b483f.png" alt="picture 5" /></p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-91b49410eb1569e20687793be3a612c8fe94f971f3ab013885fb82b85986b7c4.png" alt="picture 6" /></p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-451c6609f2307cc1a8304bd4e9207e680bede2f0f39821675ceda9915ee3019e.png" alt="picture 7" /></p>
-<h4 id="相机工作模式"><a class="markdownIt-Anchor" href="#相机工作模式"></a> 相机工作模式</h4>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-b2190bc0f3167141eed970e774658ba203e1cb71227e9e4a3b243d8dcf9ecce3.png" alt="picture 8" /></p>
-<h3 id="22-测光"><a class="markdownIt-Anchor" href="#22-测光"></a> 2.2 测光</h3>
-<p>测光主要是相机对环境光的感知。<br />
-SLR相机使用独立(专门)的放置在对焦屏幕下的低分辨率传感器进行测光。无镜相机直接由主Sensor测光。</p>
-<blockquote>
-<ul>
-<li>人眼对亮度的感知是对数响应的，18%灰在视觉上被认为是介于纯黑与纯白之间的“中间调”（Mid-tone），而非数学上的50%亮度（实际对应约50%的感知亮度）。</li>
-<li>早期测光表设计基于自然场景的平均反射率统计，发现大多数场景（如风景、人像）的综合反射率接近18%。</li>
-</ul>
-</blockquote>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-2935afbc0a6e9ec182ee176735e1de7a4bcd4b5b3944473c7e1a948a3919fd1f.png" alt="picture 9" /></p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-54d249f62765b826f35469dbdec0db113b1f0ae3a147a76df27170ec07fc9b31.png" alt="picture 10" /></p>
-<h3 id="23-动态范围"><a class="markdownIt-Anchor" href="#23-动态范围"></a> 2.3 动态范围</h3>
-<ul>
-<li>（记录和显示）设备的动态范围远小于真实世界的动态范围。</li>
-<li>用有限sensor位保留世界的那些部分的信息？ ——<strong>HDR成像技术</strong></li>
-<li>如何把范围更大的信息用有限位数的显示器显示出来？——<strong>ToneMapping</strong></li>
-</ul>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-1c98301ebfe5af4c85f2f978f477a03a5d66b11244d830432cb4ce9f669bf84a.png" alt="picture 11" /></p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-3d5d9bfe31dc9331f01ad35141731b282af7550084352977e75e0ce9ccd461b5.png" alt="picture 12" /></p>
-<h3 id="24-hdr成像"><a class="markdownIt-Anchor" href="#24-hdr成像"></a> 2.4 HDR成像</h3>
-<p>思路：</p>
-<ul>
-<li>包围曝光，拍摄多张不同曝光的（低动态范围的）图像。补偿传感器的局限性。</li>
-<li>图像融合，将它们合并成一张高动态范围的图像。补偿显示设备的局限性。<br />
-<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5e48d3bb9697a868fc22dc10335ec8550f5fe5f28d0555b482542f9a6808e739.png" alt="picture 13" /></li>
-</ul>
-<h4 id="241-包围曝光"><a class="markdownIt-Anchor" href="#241-包围曝光"></a> 2.4.1 包围曝光</h4>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-e083d3a5a19c8a6fbf7ca4b7b84ef1f3fb89c2f8694ad3b41caacea8b6ec32fc.png" alt="picture 14" /></p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-27799dbc206a9be461c0f9bc25501b5414f93717a14e47e65664a6582a8ec20c.png" alt="picture 15" /></p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8731d4d6e44e8607c88e23d75388256c4417d284c1cb7bbd59b9c78baf693aa8.png" alt="picture 16" /></p>
-<h4 id="242-多帧ldr图像融合为hdr图像"><a class="markdownIt-Anchor" href="#242-多帧ldr图像融合为hdr图像"></a> 2.4.2 多帧LDR图像融合为HDR图像</h4>
-<ul>
-<li>RAW图像具有线性的反射响应曲线<br />
-图像的高亮区域通常被截断，暗区受噪声影响。</li>
-</ul>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-0bfee920bd2761fff712ed1b3a6d218b0c15ab0db91cd5c6546e52e81c1f1059.png" alt="picture 17" /></p>
-<ul>
-<li>图像的形成模型</li>
-</ul>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-a7cf4b1962bb8c6f903f622d327d79d682d15af96df7c6de3fd07960b51974ef.png" alt="picture 18" /></p>
-<ul>
-<li>融合不同曝光的图像
-<ul>
-<li>寻找合法的像素，clip选取：(noise) 0.05 &lt; pixel &lt; 0.95 (clipping/过曝)</li>
-<li>恰当地加权合法的像素</li>
-<li>新像素是合法的像素的加权平均。</li>
-</ul>
-</li>
-</ul>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-b1dad548cd70f6fd3f7aba962c5398db1604a43ce555a9b4431cb0b754dd6636.png" alt="picture 19" /></p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-f990bbcf2f8c16cce5c7181ed695e0bcc4858c4397ecaec06590612a80ca06e9.png" alt="picture 20" /></p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-84deeab3bd2f38239137fa3ca28daa78eb420b73f098ef606147ee1388df7e5b.png" alt="picture 21" /></p>
-<p>当RAW数据无法获取时，可以使用辐射标定（Radiometric calibration）来估计曝光值。</p>
-<h3 id="25-辐射标定-radiometric-calibration"><a class="markdownIt-Anchor" href="#25-辐射标定-radiometric-calibration"></a> 2.5 辐射标定 Radiometric calibration</h3>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-0980cd797139b5329e2d55c063eacff9c911f147070b406e2656024d3369a5d6.png" alt="picture 22" /></p>
-<blockquote>
-<ul>
-<li>Can you foresee any problem when we switch from RAW to rendered images?</li>
-<li>How do we deal with the nonlinearities?</li>
-</ul>
-</blockquote>
-<h4 id="如何估计相机响应曲线"><a class="markdownIt-Anchor" href="#如何估计相机响应曲线"></a> 如何估计相机响应曲线</h4>
-<p>辐射标定：估计相机的响应曲线（CRF）的过程。辐射标定可以通过以下方式完成：</p>
-<ul>
-<li>保持曝光不变，改变光圈大小，拍摄一系列图像(不同场景图像)。</li>
-<li>保持光圈(flux)不变，改变曝光，拍摄一系列图像。</li>
-<li>拍摄不同flux、不同曝光的图像。</li>
-</ul>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-839b8f810b3ac58b69d32657701fcaa79685b7ce45b19644b91055199e8b64fa.png" alt="picture 23" /></p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-978a6d5e1d22df17ceee06bc04a866048536b9f5eda64cfe45d3b112007be143.png" alt="picture 24" /></p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-59fd99dd8075f28c420ff03091ff4cdf78618a30a4b679a17b0c854e0e8c5163.png" alt="picture 25" /></p>
-<h4 id="非线性图像形成模型"><a class="markdownIt-Anchor" href="#非线性图像形成模型"></a> 非线性图像形成模型</h4>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8cace7309773cf4f1d556ab54bcb8e55b6c0ac24e7869a24b8202bcbd5efc4fe.png" alt="picture 26" /></p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-bfe13bb95c525a51ca67aa66492d148ea7b7d1fd0cc2ddaa5ba72c0bac894765.png" alt="picture 28" /></p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-b09994386c2dee366431950b268b36e35b43988541d66720f077f2b6b13934af.png" alt="picture 29" /></p>
-<h4 id="相机响应曲线无法估计时的处理"><a class="markdownIt-Anchor" href="#相机响应曲线无法估计时的处理"></a> 相机响应曲线无法估计时的处理</h4>
-<ul>
-<li>EXIF数据<br />
-<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5db3365c382e9b9703b6b8c8e5f93838cfa99aca224c4e5b342e3157e991ee51.png" alt="picture 30" /></li>
-</ul>
-<h4 id="色调再现曲线"><a class="markdownIt-Anchor" href="#色调再现曲线"></a> 色调再现曲线</h4>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-d5624fc81466776ee51247a8f3265da29e5428987dbcbd9388732557499afb4e.png" alt="picture 31" /></p>
-<h3 id="26-hdr成像的其他因素"><a class="markdownIt-Anchor" href="#26-hdr成像的其他因素"></a> 2.6 HDR成像的其他因素</h3>
-<h4 id="相对-绝对辐射flux"><a class="markdownIt-Anchor" href="#相对-绝对辐射flux"></a> 相对-绝对辐射flux</h4>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-152e3621a8b338f7282e488d4b58e91c094d5426cd8b3ea04d0cebb681197daa.png" alt="picture 32" /></p>
-<h4 id="基本hdr流程的问题"><a class="markdownIt-Anchor" href="#基本hdr流程的问题"></a> 基本HDR流程的问题</h4>
-<blockquote>
-<p>假设场景静止、相机静止<br />
-<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-7fe552ee0aade9c6e8fe35e9bf7616830938f164cc6d839a9a34c1aa0fa2115a.png" alt="picture 33" /></p>
-</blockquote>
-<h4 id="如何存储hdr图像"><a class="markdownIt-Anchor" href="#如何存储hdr图像"></a> 如何存储HDR图像</h4>
-<ul>
-<li>Most standard image formats store integer 8-bit images</li>
-<li>Some image formats store integer 12-bit or 16-bit imag</li>
-<li>HDR images are floating point 32-bit or 64-bit images</li>
-</ul>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5c5ae6859d5dc423c14398b2e9076cea7d37919a5d4f5e4b1059010788ee514b.png" alt="picture 34" /></p>
-<p>其他类型的HDR图像：</p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-81afbe445e22277824348e67c441a87b1122901c6a3732589e63e2133ba85b12.png" alt="picture 35" /></p>
-<p>其他生成HDR图像的方法：基于物理渲染的方法<br />
-<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5c4b3aff249d02a8e602acf1de8967e51215a2ac8992b1578055eaaae6a82487.png" alt="picture 36" /></p>
-<h3 id="27-色调映射-tonemapping"><a class="markdownIt-Anchor" href="#27-色调映射-tonemapping"></a> 2.7 色调映射 Tonemapping</h3>
-<p>Tonemapping补偿了设备的动态范围限制，将高动态范围的图像转换为低动态范围的显示设备可以显示的图像。</p>
-<h4 id="如何显示hdr图像"><a class="markdownIt-Anchor" href="#如何显示hdr图像"></a> 如何显示HDR图像</h4>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-53d6e83884e58a65f072d306f5e571c5d0c5e0b90782a5e1ed59d7a7cb537005.png" alt="picture 38" /></p>
-<ul>
-<li>线性缩放</li>
-</ul>
-<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-d0068cf453990468e3c2c677aa80171107c77d3150501c9e55a149fad2f70115.png">
-<figcaption>最大值缩放到1</figcaption></figure>
-<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-ff2fd0cdd3faa57a08bb9d7fa2ccebdbdd2a1e6501eb601dee3229b2e1f2d728.png">
-<figcaption>10%值映射到1</figcaption></figure>
-<ul>
-<li>摄影色调映射方法</li>
-</ul>
-<blockquote>
-<p>来自AI问答：<br />
-<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8a00051e983c13203eaf68dcc7ffdc16a0f7c276b40b385eecb8e64492d73a91.png" alt="picture 42" /></p>
-</blockquote>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-02e33320add2438f13b0c32c842c563f8bd5f9f05fb38c38f4ca44d80d54d40c.png" alt="picture 43" /></p>
-<p><strong>根据人眼对亮度的感知特性，设计成非线性的映射。</strong></p>
-<blockquote>
-<p><strong>区域系统</strong>：区域系统是由安塞尔·亚当斯（Ansel Adams）和弗雷德·阿彻（Fred Archer）在20世纪40年代开发的，用于黑白胶片摄影的一种方法，帮助摄影师在拍摄和冲印过程中更好地控制曝光和对比度。首先，区域系统将景物的亮度范围划分为11个区域，从0到X，每个区域代表不同的明暗程度。这11个区域中，中间区域（Zone V）通常对应18%灰卡的中灰色调，是测光的基础。其他区域则依次代表更暗或更亮的色调。</p>
-</blockquote>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-27dfc6b8d68691fa903443ee3c590af6ad7f73218fea81cc8dfa91b4ca6ef5d3.png" alt="picture 44" /></p>
-<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-44f32c1dee485c943e2c9addc8afff0df2e04bf95f4c03f42a445751d6471c1f.png">
-<figcaption>线性缩放Tone和摄影Tone</figcaption></figure>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-aebf8ce2dd0a958d00fc92fcb182b7531cd025118439cb67e29248bacafdc898.png" alt="picture 45" /></p>
-<h4 id="颜色的处理"><a class="markdownIt-Anchor" href="#颜色的处理"></a> 颜色的处理</h4>
-<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-dd50323181dcecab86d395bf8eb6e34100bb5e9593077c39369ce6ef343a0289.png">
-<figcaption>若所有通道相同映射，则颜色会失真。</figcaption></figure>
-<ul>
-<li>仅处理亮度通道<br />
-<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-143e6b0745948cee1adbee5243f360e5c795b332841a2260d39857de609db850.png" alt="picture 47" /></li>
-</ul>
-<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-0f0f4f9daea1f13098c24d79f75e3d8f3973dd7e4705c74caaf76ede3db69e75.png">
-<figcaption>颜色正常，但是细节丢失(似乎不太明显，大致是云的差异？)：左：全通道，右：亮度通道。</figcaption></figure>
-<ul>
-<li>只处理低频亮度<br />
-<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8c282013d2ee8faaef86f24c164867e94c5f7a605778b8d2345280694f03d8f6.png" alt="picture 50" /></li>
-</ul>
-<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-2ca70afb4f6edf7834a400a9b346eb8da9d92aa231ea4b7204f9131995ed71a1.png">
-<figcaption>颜色正常、对比度也变好，但出现halo问题</figcaption></figure>
-<blockquote>
-<p>分离低频亮度和细节所用的低通滤波器（一般是高斯滤波）将图像的不同亮度的区域加权混合在一起的原因。</p>
-</blockquote>
-<ul>
-<li>保边滤波+ToneMapping (亮度通道进一步拆分)</li>
-</ul>
-<p>亮度通道进一步使用<strong>保边滤波器</strong>拆分为细节和低频亮度，再对低频亮度进行ToneMapping。</p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-2505b06d62a8ceb7c02420314c1d78fcb5c79a1a3414bc5e7f959948747839c1.png" alt="picture 52" /></p>
-<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8b11c2c4ab3641a5a01adb1734a7d0066ecc9e987c92ed238a25246e3aebace9.png">
-<figcaption>halo问题修复</figcaption></figure>
-<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-baae4ff6ae2fcafe1a090127df54fba213295b989a1db94813dd4a7b239636e5.png">
-<figcaption>不同方法处理后的结果</figcaption></figure>
-<h4 id="梯度域处理和tonemapping"><a class="markdownIt-Anchor" href="#梯度域处理和tonemapping"></a> 梯度域处理和ToneMapping</h4>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-5ea2980038b151d5084cc381f0f3191d020ecb69148329d81415f63c3d07d1df.png" alt="picture 56" /></p>
-<figure align="center"><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-8063ec87dd165b7ab13970bbc282c41d7edd5ab430da19079881b9c8ff6a30be.png">
-<figcaption>Photographic应该是人工调色？</figcaption></figure>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-76ee60e5a1f968ae83e3c2def2935ebb11add3c719e1987213feae1c168bda5b.png" alt="picture 58" /></p>
-<ul>
-<li>单张图像ToneMapping</li>
-</ul>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-941a100b4d55fcf795ad1252c0938631e626037fee56c8a33a56f8efec2c05e3.png" alt="picture 59" /></p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-e845f73930aacfd5e83f6948939d7c876951627b8bd1c760a8d0deae9dc2260b.png" alt="picture 60" /></p>
-<h3 id="28-hdr-imaging-and-tonemapping-思考"><a class="markdownIt-Anchor" href="#28-hdr-imaging-and-tonemapping-思考"></a> 2.8 HDR imaging and tonemapping 思考</h3>
-<ul>
-<li>一些术语<br />
-<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-bbbfbfd02811cddd541b94b3d14e9de19b3dbcf3208bc64c24d00627be0b1cf7.png" alt="picture 61" /></li>
-</ul>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-dabe42b510fb4ee692fd37fcd1f3a44cfbe56986b71bb635c9c1f978f2b6dcf5.png" alt="picture 62" /></p>
-<ul>
-<li>HDR成像可以得到很棒的图像，使用不当也会得到糟糕的图像。<br />
-<img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-1565890e179b22f245271f47aceaa8a8da2143dceee3d6e5956b5db78d0ec80c.png" alt="picture 63" /></li>
-</ul>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-1ad064c86379752cdcf085146d9f7631410b12e6a6225ee4c559398e8fcfd667.png" alt="picture 64" /></p>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-18a2bd1145af49541556f66eeea9fcce71cbb7627f93845e3012e48c7e2e7d3e.png" alt="picture 65" /></p>
-<ul>
-<li>现代的HDR技术</li>
-</ul>
-<p><img src="/blog/2025/04/05/202504/HDR%E6%88%90%E5%83%8F%E5%9F%BA%E7%A1%80-ISP%E6%88%90%E5%83%8F%E5%8F%82%E6%95%B0/fig-d815c3c008aae54261d83497cb2486c2eab9c6a1dfeb7abdb953e4d28efe0731.png" alt="picture 66" /></p>
-<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
-<h4 id="hdr成像如何从多帧ldr图像重建高动态范围的图像"><a class="markdownIt-Anchor" href="#hdr成像如何从多帧ldr图像重建高动态范围的图像"></a> HDR成像：如何从多帧LDR图像重建高动态范围的图像。</h4>
-<ul>
-<li>图像配准</li>
-<li>曝光融合</li>
-<li>辐射标定</li>
-</ul>
-<h4 id="tonemapping将hdr图像转换为低动态范围的图像以便在显示设备上展示"><a class="markdownIt-Anchor" href="#tonemapping将hdr图像转换为低动态范围的图像以便在显示设备上展示"></a> ToneMapping：将HDR图像转换为低动态范围的图像，以便在显示设备上展示。</h4>
-<ul>
-<li>非线性映射
-<ul>
-<li>分离亮度和颜色通道</li>
-<li>亮度通道进行保边滤波(分为高低频部分)</li>
-<li>halo问题</li>
-</ul>
-</li>
-</ul>
-<h3 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h3>
-<h4 id="基本材料"><a class="markdownIt-Anchor" href="#基本材料"></a> 基本材料</h4>
-<ul>
-<li>Szeliski textbook, Sections 10.1, 10.2.</li>
-<li>Debevec and Malik, “Recovering High Dynamic Range Radiance Maps from Photographs,” SIGGRAPH 1997.</li>
-<li>Mitsunaga and Nayar, “Radiometric self calibration,” CVPR 1999.<br />
-The two classical papers on radiometric calibration and HDR imaging, which more or less started HDR imaging research in computer vision and graphics.</li>
-<li>Reinhard et al., “Photographic Tone Reproduction for Digital Images,” SIGGRAPH 2002.<br />
-The photographic tonemapping paper, including a very nice discussion of the zone system for film.</li>
-</ul>
-<h4 id="扩充材料"><a class="markdownIt-Anchor" href="#扩充材料"></a> 扩充材料</h4>
-<ul>
-<li>Reinhard et al., “High Dynamic Range Imaging, Second Edition: Acquisition, Display, and Image-Based Lighting,” Morgan Kaufmann 2010.<br />
-A very comprehensive book about everything relating to HDR imaging and tonemapping.</li>
-<li>Durand and Dorsey, “Fast bilateral filtering for the display of high-dynamic-range images,” SIGGRAPH 2002.<br />
-The paper on tonemapping using bilateral filtering.</li>
-<li>Fattal et al., “Gradient Domain High Dynamic Range Compression,” SIGGRAPH 2002.<br />
-The paper on tonemapping using gradient-domain processing.</li>
-<li>Debevec, “Rendering Synthetic Objects into Real Scenes: Bridging Traditional and Image-Based Graphics with Global Illumination and High Dynamic Range<br />
-Photography,” SIGGRAPH 1998.<br />
-The original HDR light probe paper.</li>
-<li>Hasinoff et al., “Burst photography for high dynamic range and low-light imaging on mobile cameras,” SIGGRAPH Asia 2016.<br />
-The paper describing Google’s HDR+.</li>
-<li>Ward, “The radiance lighting simulation and rendering system,” SIGGRAPH 1994.</li>
-<li>Ward, “High Dynamic Range Image Encodings,” <a target="_blank" rel="noopener" href="http://www.anyhere.com/gward/hdrenc/hdr_encodings.html">http://www.anyhere.com/gward/hdrenc/hdr_encodings.html</a><br />
-The paper that introduced (among other things) the .hdr image format for HDR images. The website has a very detailed discussion of HDR image formats.</li>
-<li>Shah et al., “High-quality Motion Deblurring from a Single Image,” SIGGRAPH 2008.</li>
-<li>Fergus et al., “Removing Camera Shake from a Single Image,” SIGGRAPH 2006.<br />
-Two standard papers on motion deblurring for dealing with long shutter speeds.</li>
-<li>Barron et al., “Fast Bilateral-Space Stereo for Synthetic Defocus,” CVPR 2015.<br />
-The paper that introduced the lens blur algorithm.</li>
-<li>Kuang et al., “Evaluating HDR rendering algorithms,” TAP 2007.<br />
-One of many, many papers trying to do a perceptual evaluation of different tonemapping algorithms.</li>
-<li>Levoy, “Extreme imaging using cell phones,” <a target="_blank" rel="noopener" href="http://graphics.stanford.edu/talks/seeinthedark-public-15sep16.key.pdf">http://graphics.stanford.edu/talks/seeinthedark-public-15sep16.key.pdf</a><br />
-A set of slides by Marc Levoy on the challenges of HDR imaging and modern approaches for addressing them.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2025/03/27/202503/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95%E8%BD%AC%E7%94%B5%E5%95%86%E9%A2%86%E5%9F%9F%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95%E6%80%9D%E8%B7%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="yaanggny">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yaanggny的笔记">
-      <meta itemprop="description" content="日常记录">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yaanggny的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2025/03/27/202503/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95%E8%BD%AC%E7%94%B5%E5%95%86%E9%A2%86%E5%9F%9F%E5%9B%BE%E5%83%8F%E7%AE%97%E6%B3%95%E6%80%9D%E8%B7%AF/" class="post-title-link" itemprop="url">手机影像或传统图像算法转电商领域图像算法思路</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-03-27 21:27:16 / 修改时间：21:46:32" itemprop="dateCreated datePublished" datetime="2025-03-27T21:27:16+08:00">2025-03-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/%E4%BA%BA%E7%94%9F%E6%80%9D%E8%80%83/" itemprop="url" rel="index"><span itemprop="name">人生思考</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/%E4%BA%BA%E7%94%9F%E6%80%9D%E8%80%83/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/" itemprop="url" rel="index"><span itemprop="name">职业发展</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>在手机影像或传统图像算法领域积累了丰富经验的工程师，在寻求向电商平台图像算法岗位转型时，有哪些方向，如何迁移技术？以下内容产生自DeepSeek:</p>
-</blockquote>
-<p>在手机影像算法工程师向电商平台图像算法岗位转型的面试中，需围绕 <strong>技术迁移能力</strong>、<strong>业务场景理解</strong> 和 <strong>行业痛点解决</strong> 三个核心维度展开。以下是具体的思路与策略，结合手机影像与电商图像算法的共性与差异设计：</p>
-<hr />
-<h3 id="一-技术迁移从影像增强到电商场景的适配"><a class="markdownIt-Anchor" href="#一-技术迁移从影像增强到电商场景的适配"></a> 一、技术迁移：从影像增强到电商场景的适配</h3>
-<ol>
-<li>
-<p><strong>底层技术复用</strong></p>
-<ul>
-<li><strong>多摄融合 → 多角度商品匹配</strong>：手机影像中的多摄对齐算法（如亚像素级精度优化）可迁移至电商场景，解决商品多角度图像的自动匹配与一致性检测问题，提升商品详情页的视觉体验。</li>
-<li><strong>降噪/HDR → 图像质量优化</strong>：将手机夜景降噪算法适配到电商场景，用于修复低光照拍摄的商品图片（如二手商品图），或通过HDR技术增强透明材质（玻璃、金属）的细节表现。</li>
-<li><strong>实时处理 → 高并发场景支持</strong>：手机端低延迟算法（如高通SNPE部署经验）可优化电商平台的图像审核、分类等实时任务，支撑亿级商品库的高效处理。</li>
-</ul>
-</li>
-<li>
-<p><strong>模型优化经验转化</strong></p>
-<ul>
-<li><strong>模型轻量化</strong>：手机端的模型压缩技术（如量化、剪枝）可用于电商的移动端图像搜索服务，降低服务器负载。</li>
-<li><strong>多任务学习</strong>：借鉴手机影像中同时处理对焦、白平衡、色彩增强的多任务网络设计，构建电商场景下的联合模型（如商品分类+质量检测+风格识别）。</li>
-</ul>
-</li>
-</ol>
-<hr />
-<h3 id="二-业务场景挖掘电商图像算法的核心需求"><a class="markdownIt-Anchor" href="#二-业务场景挖掘电商图像算法的核心需求"></a> 二、业务场景挖掘：电商图像算法的核心需求</h3>
-<ol>
-<li>
-<p><strong>商品理解与结构化</strong></p>
-<ul>
-<li><strong>细粒度分类</strong>：将手机影像中的物体检测技术（如YOLO系列）升级为电商场景的细粒度识别，例如区分口红的不同色号或鞋款的微小设计差异。</li>
-<li><strong>属性提取</strong>：复用图像特征描述子（如SIFT、CNN特征）提取商品材质、纹理等属性，用于搜索优化或推荐系统。</li>
-</ul>
-</li>
-<li>
-<p><strong>用户体验优化</strong></p>
-<ul>
-<li><strong>虚拟试穿/试戴</strong>：利用手机影像中的人脸关键点检测、AR渲染技术，开发电商虚拟试妆、试衣算法，提升转化率。</li>
-<li><strong>图像生成与编辑</strong>：基于生成模型（如GAN），实现商品背景替换、瑕疵修复（如二手商品划痕去除），降低拍摄成本。</li>
-</ul>
-</li>
-<li>
-<p><strong>风控与合规</strong></p>
-<ul>
-<li><strong>假货识别</strong>：通过手机影像中的伪造检测技术（如Moire纹理分析），识别商品图片中的PS痕迹或盗图行为。</li>
-<li><strong>敏感内容过滤</strong>：迁移手机影像的语义分割能力，自动检测违规商品（如涉黄涉暴图案）。</li>
-</ul>
-</li>
-</ol>
-<hr />
-<h3 id="三-差异化竞争力构建"><a class="markdownIt-Anchor" href="#三-差异化竞争力构建"></a> 三、差异化竞争力构建</h3>
-<ol>
-<li>
-<p><strong>跨领域问题解决案例</strong></p>
-<ul>
-<li>举例说明如何将手机影像的 <strong>光流算法</strong> 用于电商视频广告的运镜分析，或通过 <strong>多帧融合</strong> 技术提升直播商品画面的清晰度。</li>
-<li>展示专利技术的复用潜力，例如将手机多摄标定专利转化为电商多摄像头拍摄设备的自动校准方案。</li>
-</ul>
-</li>
-<li>
-<p><strong>数据闭环思维</strong></p>
-<ul>
-<li>提出构建 <strong>用户行为-图像数据</strong> 联合分析框架：通过点击热力图反推商品主图的最佳构图方式，类似手机影像中基于用户偏好优化拍照算法。</li>
-<li>设计A/B测试方案：对比不同图像增强算法对商品点击率的影响，量化技术投入的ROI。</li>
-</ul>
-</li>
-<li>
-<p><strong>行业趋势结合</strong></p>
-<ul>
-<li>引用影像配件市场数据（预计2025年达千亿规模），建议电商平台联合硬件厂商开发定制化拍摄设备，提升UGC内容质量。</li>
-<li>提出“算法+生态”策略：借鉴手机厂商与配件商的协同模式，推动电商平台与摄影工具类App的数据合作，构建图像技术生态。</li>
-</ul>
-</li>
-</ol>
-<hr />
-<h3 id="四-面试应答策略"><a class="markdownIt-Anchor" href="#四-面试应答策略"></a> 四、面试应答策略</h3>
-<ol>
-<li>
-<p><strong>技术问题准备</strong></p>
-<ul>
-<li>重点复习 <strong>目标检测</strong>（如YOLO/SSD原理）、<strong>过拟合防治</strong>（数据增强、Dropout）、<strong>样本不平衡处理</strong>（Focal Loss）等通用知识点。</li>
-<li>结合电商场景举例：例如解释如何用RetinaNet解决长尾商品分类问题，或通过OHEM策略优化假货检测模型。</li>
-</ul>
-</li>
-<li>
-<p><strong>项目阐述框架</strong></p>
-<ul>
-<li>使用 <strong>STAR-L（Situation-Task-Action-Result-Learning）</strong> 模型：<br />
-<em>“在手机影像项目中，我通过改进光流网络（Action）将运动模糊场景对齐成功率提升35%（Result），这种针对动态模糊的优化可直接用于电商直播画面的稳定性增强（Learning迁移）”。</em></li>
-</ul>
-</li>
-<li>
-<p><strong>反问设计</strong></p>
-<ul>
-<li>聚焦技术落地：“贵司的商品图像审核流程中，是否遇到小语种文字识别或跨文化符号误判的问题？我此前的多语言OCR优化经验或许能提供解决方案。”</li>
-<li>探求创新空间：“是否有计划结合VR/AR技术构建沉浸式购物体验？我在手机端的实时渲染经验可支持相关开发。”</li>
-</ul>
-</li>
-</ol>
-<hr />
-<h3 id="五-风险与挑战应对"><a class="markdownIt-Anchor" href="#五-风险与挑战应对"></a> 五、风险与挑战应对</h3>
-<ol>
-<li>
-<p><strong>技术债务预警</strong></p>
-<ul>
-<li>提前询问电商平台的算法基建成熟度（如是否支持模型热更新），避免陷入低效的技术适配。</li>
-<li>建议分阶段迁移：优先落地需求明确的模块（如图像去瑕疵），再逐步扩展至复杂场景（如虚拟试穿）。</li>
-</ul>
-</li>
-<li>
-<p><strong>知识盲区弥补</strong></p>
-<ul>
-<li>突击学习电商专属技术：例如 <strong>图神经网络（GNN）</strong> 在推荐系统的应用、<strong>多模态检索</strong>（图文匹配）的SOTA模型。</li>
-<li>研究行业报告：分析Shein、Temu等企业的图像技术布局，提炼可复用的创新点。</li>
-</ul>
-</li>
-</ol>
-<hr />
-<p>通过以上策略，既突出手机影像算法工程师的 <strong>技术深度</strong>（如模型优化、实时处理），又展现对电商业务的 <strong>场景化重构能力</strong>，最终在面试中建立“技术迁移专家”的差异化人设。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2025/03/24/202503/%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AF%BB%E8%AE%BA%E6%96%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="yaanggny">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yaanggny的笔记">
-      <meta itemprop="description" content="日常记录">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yaanggny的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2025/03/24/202503/%E7%AE%97%E6%B3%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E8%AF%BB%E8%AE%BA%E6%96%87/" class="post-title-link" itemprop="url">算法工程师如何读文献</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-03-24 23:10:53" itemprop="dateCreated datePublished" datetime="2025-03-24T23:10:53+08:00">2025-03-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-13 16:15:07" itemprop="dateModified" datetime="2025-04-13T16:15:07+08:00">2025-04-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/" itemprop="url" rel="index"><span itemprop="name">职业发展</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>算法工程师阅读英文文献的核心目标是 <strong>高效获取技术细节并实现应用转化</strong>。以下是一套经过实践验证的阅读方法论，结合技术深度与工程思维，帮助你在有限时间内精准掌握关键信息：</p>
-<hr />
-<h3 id="一-预读阶段5分钟快速定位文献价值"><a class="markdownIt-Anchor" href="#一-预读阶段5分钟快速定位文献价值"></a> <strong>一、预读阶段：5分钟快速定位文献价值</strong></h3>
-<h4 id="1-四步筛选法"><a class="markdownIt-Anchor" href="#1-四步筛选法"></a> 1. <strong>四步筛选法</strong></h4>
-<ul>
-<li>
-<p><strong>Step 1 - 标题解码</strong><br />
-通过标题关键词判断研究方向是否匹配需求（如 <em>“Real-Time Semantic Segmentation Using Lightweight Attention Modules”</em> 包含 <strong>实时性</strong>、<strong>语义分割</strong>、<strong>注意力机制</strong> 三个核心信号）。<br />
-<strong>工程师视角</strong>：若标题中出现 “Lightweight”、“Efficient”、“Edge Device” 等词，可能隐含对部署友好的设计。</p>
-</li>
-<li>
-<p><strong>Step 2 - 摘要解构</strong><br />
-用 <strong>问题-方法-结果</strong> 三段式拆解摘要：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[问题] Existing models suffer from high computational cost...</span><br><span class="line">[方法] We propose a dynamic pruning mechanism...</span><br><span class="line">[结果] Achieves 98% accuracy with 30% fewer FLOPs...</span><br></pre></td></tr></table></figure>
-<p><strong>关键问题</strong>：该方法是否解决了你的业务瓶颈？如模型轻量化需求。</p>
-</li>
-<li>
-<p><strong>Step 3 - 图表速览</strong><br />
-直接跳转至Figure/Table：</p>
-<ul>
-<li>模型架构图：观察是否有创新模块（如新型注意力结构）</li>
-<li>实验结果表：对比baseline指标（mAP↑20%? Latency↓50%?）</li>
-<li>消融实验：判断核心组件的实际贡献</li>
-</ul>
-</li>
-<li>
-<p><strong>Step 4 - 结论扫描</strong><br />
-重点关注 <strong>局限性声明</strong>（“However, the method struggles with…”）和 <strong>未来方向</strong>，评估技术落地风险。</p>
-</li>
-</ul>
-<h4 id="2-价值评估矩阵"><a class="markdownIt-Anchor" href="#2-价值评估矩阵"></a> 2. <strong>价值评估矩阵</strong></h4>
-<p>建立快速决策表：</p>
-<table>
-<thead>
-<tr>
-<th>评估维度</th>
-<th>高价值信号</th>
-<th>低价值信号</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>技术创新性</td>
-<td>Novel architecture/损失函数</td>
-<td>微调超参/简单组合现有方法</td>
-</tr>
-<tr>
-<td>工程可行性</td>
-<td>提供开源代码/部署指标</td>
-<td>仅理论证明/需特殊硬件</td>
-</tr>
-<tr>
-<td>业务匹配度</td>
-<td>解决同类场景问题</td>
-<td>领域偏差较大</td>
-</tr>
-</tbody>
-</table>
-<p><strong>决策</strong>：满足2个以上高价值信号则精读，否则归档备用。</p>
-<hr />
-<h3 id="二-精读阶段分层拆解技术脉络"><a class="markdownIt-Anchor" href="#二-精读阶段分层拆解技术脉络"></a> <strong>二、精读阶段：分层拆解技术脉络</strong></h3>
-<h4 id="1-方法论解剖核心章节"><a class="markdownIt-Anchor" href="#1-方法论解剖核心章节"></a> 1. <strong>方法论解剖（核心章节）</strong></h4>
-<ul>
-<li>
-<p><strong>算法流程图逆向工程</strong><br />
-手绘模型架构图（如U-Net变体），标注关键组件：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 典型代码映射示例（以特征融合模块为例）</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CrossModalFusion</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.conv1x1 = nn.Conv2d(<span class="number">256</span>, <span class="number">128</span>, <span class="number">1</span>)  <span class="comment"># 通道压缩</span></span><br><span class="line">        self.attention = SpatialAttention()   <span class="comment"># 创新点：空间注意力</span></span><br><span class="line">        self.skip_add = nn.Add()               <span class="comment"># 残差连接</span></span><br></pre></td></tr></table></figure>
-<p><strong>追问</strong>：为何选择1x1卷积？注意力机制的计算复杂度是否可控？</p>
-</li>
-<li>
-<p><strong>数学公式溯源</strong><br />
-对关键公式进行变量标注与物理意义解析：</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="script">L</mi><mrow><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>=</mo><munder><munder><mrow><mi>α</mi><msub><mi mathvariant="script">L</mi><mrow><mi>c</mi><mi>e</mi></mrow></msub></mrow><mo stretchy="true">⏟</mo></munder><mtext>分类损失</mtext></munder><mo>+</mo><munder><munder><mrow><mi>β</mi><msub><mi mathvariant="script">L</mi><mrow><mi>k</mi><mi>d</mi></mrow></msub></mrow><mo stretchy="true">⏟</mo></munder><mtext>知识蒸馏</mtext></munder><mo>+</mo><munder><munder><mrow><mi>γ</mi><msub><mi mathvariant="script">L</mi><mrow><mi>r</mi><mi>e</mi><mi>g</mi></mrow></msub></mrow><mo stretchy="true">⏟</mo></munder><mtext>正则项</mtext></munder></mrow><annotation encoding="application/x-tex">\mathcal{L}_{total} = \underbrace{\alpha \mathcal{L}_{ce}}_{\text{分类损失}} + \underbrace{\beta \mathcal{L}_{kd}}_{\text{知识蒸馏}} + \underbrace{\gamma \mathcal{L}_{reg}}_{\text{正则项}}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.159661em;vertical-align:-1.476331em;"></span><span class="mord munder"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.68333em;"><span style="top:-1.523669em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">分类损失</span></span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord munder"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.68333em;"><span class="svg-align" style="top:-2.202em;"><span class="pstrut" style="height:3em;"></span><span class="stretchy" style="height:0.548em;min-width:1.6em;"><span class="brace-left" style="height:0.548em;"><svg width='400em' height='0.548em' viewBox='0 0 400000 548' preserveAspectRatio='xMinYMin slice'><path d='M0 6l6-6h17c12.688 0 19.313.3 20 1 4 4 7.313 8.3 10 13
- 35.313 51.3 80.813 93.8 136.5 127.5 55.688 33.7 117.188 55.8 184.5 66.5.688
- 0 2 .3 4 1 18.688 2.7 76 4.3 172 5h399450v120H429l-6-1c-124.688-8-235-61.7
--331-161C60.687 138.7 32.312 99.3 7 54L0 41V6z'/></svg></span><span class="brace-center" style="height:0.548em;"><svg width='400em' height='0.548em' viewBox='0 0 400000 548' preserveAspectRatio='xMidYMin slice'><path d='M199572 214
-c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
- 53.3-86.7 123.7-153 211-199 66.7-36 137.3-56.3 212-62h199568v120H200432c-178.3
- 11.7-311.7 78.3-403 201-6 8-9.7 12-11 12-.7.7-6.7 1-18 1s-17.3-.3-18-1c-1.3 0
--5-4-11-12-44.7-59.3-101.3-106.3-170-141s-145.3-54.3-229-60H0V214z'/></svg></span><span class="brace-right" style="height:0.548em;"><svg width='400em' height='0.548em' viewBox='0 0 400000 548' preserveAspectRatio='xMaxYMin slice'><path d='M399994 0l6 6v35l-6 11c-56 104-135.3 181.3-238 232-57.3
- 28.7-117 45-179 50H-300V214h399897c43.3-7 81-15 113-26 100.7-33 179.7-91 237
--174 2.7-5 6-9 10-13 .7-1 7.3-1 20-1h17z'/></svg></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.798em;"><span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.476331em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.215211em;vertical-align:-1.5207709999999999em;"></span><span class="mord munder"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-1.4792290000000001em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">知识蒸馏</span></span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord munder"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6944399999999998em;"><span class="svg-align" style="top:-2.15756em;"><span class="pstrut" style="height:3em;"></span><span class="stretchy" style="height:0.548em;min-width:1.6em;"><span class="brace-left" style="height:0.548em;"><svg width='400em' height='0.548em' viewBox='0 0 400000 548' preserveAspectRatio='xMinYMin slice'><path d='M0 6l6-6h17c12.688 0 19.313.3 20 1 4 4 7.313 8.3 10 13
- 35.313 51.3 80.813 93.8 136.5 127.5 55.688 33.7 117.188 55.8 184.5 66.5.688
- 0 2 .3 4 1 18.688 2.7 76 4.3 172 5h399450v120H429l-6-1c-124.688-8-235-61.7
--331-161C60.687 138.7 32.312 99.3 7 54L0 41V6z'/></svg></span><span class="brace-center" style="height:0.548em;"><svg width='400em' height='0.548em' viewBox='0 0 400000 548' preserveAspectRatio='xMidYMin slice'><path d='M199572 214
-c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
- 53.3-86.7 123.7-153 211-199 66.7-36 137.3-56.3 212-62h199568v120H200432c-178.3
- 11.7-311.7 78.3-403 201-6 8-9.7 12-11 12-.7.7-6.7 1-18 1s-17.3-.3-18-1c-1.3 0
--5-4-11-12-44.7-59.3-101.3-106.3-170-141s-145.3-54.3-229-60H0V214z'/></svg></span><span class="brace-right" style="height:0.548em;"><svg width='400em' height='0.548em' viewBox='0 0 400000 548' preserveAspectRatio='xMaxYMin slice'><path d='M399994 0l6 6v35l-6 11c-56 104-135.3 181.3-238 232-57.3
- 28.7-117 45-179 50H-300V214h399897c43.3-7 81-15 113-26 100.7-33 179.7-91 237
--174 2.7-5 6-9 10-13 .7-1 7.3-1 20-1h17z'/></svg></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8424400000000001em;"><span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5207709999999999em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.295769em;vertical-align:-1.6124390000000002em;"></span><span class="mord munder"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6833299999999995em;"><span style="top:-1.3875609999999998em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord cjk_fallback mtight">正则项</span></span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord munder"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.68333em;"><span class="svg-align" style="top:-2.065892em;"><span class="pstrut" style="height:3em;"></span><span class="stretchy" style="height:0.548em;min-width:1.6em;"><span class="brace-left" style="height:0.548em;"><svg width='400em' height='0.548em' viewBox='0 0 400000 548' preserveAspectRatio='xMinYMin slice'><path d='M0 6l6-6h17c12.688 0 19.313.3 20 1 4 4 7.313 8.3 10 13
- 35.313 51.3 80.813 93.8 136.5 127.5 55.688 33.7 117.188 55.8 184.5 66.5.688
- 0 2 .3 4 1 18.688 2.7 76 4.3 172 5h399450v120H429l-6-1c-124.688-8-235-61.7
--331-161C60.687 138.7 32.312 99.3 7 54L0 41V6z'/></svg></span><span class="brace-center" style="height:0.548em;"><svg width='400em' height='0.548em' viewBox='0 0 400000 548' preserveAspectRatio='xMidYMin slice'><path d='M199572 214
-c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
- 53.3-86.7 123.7-153 211-199 66.7-36 137.3-56.3 212-62h199568v120H200432c-178.3
- 11.7-311.7 78.3-403 201-6 8-9.7 12-11 12-.7.7-6.7 1-18 1s-17.3-.3-18-1c-1.3 0
--5-4-11-12-44.7-59.3-101.3-106.3-170-141s-145.3-54.3-229-60H0V214z'/></svg></span><span class="brace-right" style="height:0.548em;"><svg width='400em' height='0.548em' viewBox='0 0 400000 548' preserveAspectRatio='xMaxYMin slice'><path d='M399994 0l6 6v35l-6 11c-56 104-135.3 181.3-238 232-57.3
- 28.7-117 45-179 50H-300V214h399897c43.3-7 81-15 113-26 100.7-33 179.7-91 237
--174 2.7-5 6-9 10-13 .7-1 7.3-1 20-1h17z'/></svg></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05556em;">γ</span><span class="mord"><span class="mord"><span class="mord mathcal">L</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.934108em;"><span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.6124390000000002em;"><span></span></span></span></span></span></span></span></span></span></p>
-<p><strong>工程考量</strong>：超参（α/β/γ）是否需要精细调参？是否引入额外计算开销？</p>
-</li>
-</ul>
-<h4 id="2-实验分析深度挖掘"><a class="markdownIt-Anchor" href="#2-实验分析深度挖掘"></a> 2. <strong>实验分析深度挖掘</strong></h4>
-<ul>
-<li>
-<p><strong>指标对比表解读技巧</strong></p>
-<ul>
-<li>横向对比：在相同硬件平台（如Jetson AGX Xavier）下的FPS差异</li>
-<li>纵向对比：参数量减少30%时精度下降是否≤2%？</li>
-<li>消融实验：若移除某模块导致mAP下降8%，说明该模块有效性显著</li>
-</ul>
-</li>
-<li>
-<p><strong>可视化结果批判性分析</strong></p>
-<ul>
-<li>成功案例：目标遮挡场景下仍能准确定位（体现算法鲁棒性）</li>
-<li>失败案例：小目标检测出现漏检（暴露算法缺陷）</li>
-</ul>
-</li>
-</ul>
-<h4 id="3-实现细节提取"><a class="markdownIt-Anchor" href="#3-实现细节提取"></a> 3. <strong>实现细节提取</strong></h4>
-<ul>
-<li>
-<p><strong>训练技巧清单</strong></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> 优化器配置: AdamW (lr=3e-4 with cosine decay)</span><br><span class="line"><span class="bullet">-</span> 数据增强: RandomPerspective + MixUp (α=0.2)</span><br><span class="line"><span class="bullet">-</span> 正则化策略: Stochastic Depth (drop rate=0.1)</span><br></pre></td></tr></table></figure>
-<p><strong>移植风险</strong>：MixUp是否适合你的数据分布？Stochastic Depth是否增加推理不确定性？</p>
-</li>
-<li>
-<p><strong>硬件适配说明</strong><br />
-关注：</p>
-<ul>
-<li>框架依赖（PyTorch/TensorRT）</li>
-<li>算子兼容性（是否包含自定义CUDA kernel）</li>
-<li>内存占用峰值（避免部署时OOM）</li>
-</ul>
-</li>
-</ul>
-<hr />
-<h3 id="三-实战转化阶段从paper到production"><a class="markdownIt-Anchor" href="#三-实战转化阶段从paper到production"></a> <strong>三、实战转化阶段：从Paper到Production</strong></h3>
-<h4 id="1-可行性评估清单"><a class="markdownIt-Anchor" href="#1-可行性评估清单"></a> 1. <strong>可行性评估清单</strong></h4>
-<table>
-<thead>
-<tr>
-<th>评估项</th>
-<th>检查要点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>计算资源匹配度</td>
-<td>模型FLOPs是否低于硬件算力阈值？</td>
-</tr>
-<tr>
-<td>数据兼容性</td>
-<td>输入分辨率/数据格式是否需要调整？</td>
-</tr>
-<tr>
-<td>工程化成本</td>
-<td>新增模块开发工时（如自定义算子开发难度）</td>
-</tr>
-<tr>
-<td>收益预期</td>
-<td>预期指标提升是否值得投入（如准确率提升5%可减少20%人工审核）</td>
-</tr>
-</tbody>
-</table>
-<h4 id="2-渐进式移植策略"><a class="markdownIt-Anchor" href="#2-渐进式移植策略"></a> 2. <strong>渐进式移植策略</strong></h4>
-<ul>
-<li>
-<p><strong>Phase 1 - 算法原型验证</strong><br />
-使用原文开源代码在标准数据集（COCO/VOC）复现，验证基础效果。</p>
-</li>
-<li>
-<p><strong>Phase 2 - 业务适配改造</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 典型改造示例：替换数据加载器</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CustomDataLoader</span>(<span class="title class_ inherited__">OriginalLoader</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.transform = AddGaussianNoise()  <span class="comment"># 添加业务场景特有噪声</span></span><br><span class="line">        self.label_mapping = load_custom_labels()  <span class="comment"># 适配私有标签体系</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>Phase 3 - 部署优化</strong></p>
-<ul>
-<li>模型量化：FP32 → INT8（测试精度损失是否&lt;1%）</li>
-<li>算子融合：Conv+BN+ReLU合并为单个OP</li>
-<li>内存优化：动态显存分配策略调整</li>
-</ul>
-</li>
-</ul>
-<h4 id="3-技术债务预防"><a class="markdownIt-Anchor" href="#3-技术债务预防"></a> 3. <strong>技术债务预防</strong></h4>
-<ul>
-<li><strong>文档化</strong>：建立算法卡片记录关键参数与适配场景</li>
-<li><strong>监控体系</strong>：在测试流水线中加入时延/显存占用等硬性指标检查</li>
-<li><strong>回滚机制</strong>：保留基线模型版本便于快速切换</li>
-</ul>
-<hr />
-<h3 id="四-效率工具链推荐"><a class="markdownIt-Anchor" href="#四-效率工具链推荐"></a> <strong>四、效率工具链推荐</strong></h3>
-<h4 id="1-阅读辅助工具"><a class="markdownIt-Anchor" href="#1-阅读辅助工具"></a> 1. <strong>阅读辅助工具</strong></h4>
-<ul>
-<li><strong>术语翻译</strong>：DeepL（保持公式/代码格式）</li>
-<li><strong>文献管理</strong>：Zotero + Notion（建立技术雷达看板）</li>
-<li><strong>图表解析</strong>：<a target="_blank" rel="noopener" href="http://Draw.io">Draw.io</a>（重绘算法流程图加深理解）</li>
-</ul>
-<h4 id="2-代码实践工具"><a class="markdownIt-Anchor" href="#2-代码实践工具"></a> 2. <strong>代码实践工具</strong></h4>
-<ul>
-<li><strong>快速复现</strong>：Google Colab Pro（直接运行论文官方代码）</li>
-<li><strong>性能分析</strong>：PyTorch Profiler（定位计算瓶颈）</li>
-<li><strong>部署验证</strong>：TensorRT/Docker（构建与生产一致的环境）</li>
-</ul>
-<hr />
-<h3 id="五-避坑指南工程师常见误区"><a class="markdownIt-Anchor" href="#五-避坑指南工程师常见误区"></a> <strong>五、避坑指南：工程师常见误区</strong></h3>
-<ol>
-<li>
-<p><strong>盲目追求SOTA</strong></p>
-<ul>
-<li>问题：某CVPR论文在COCO达SOTA，但需要200TPU小时训练</li>
-<li>对策：优先选择提供&quot;速度-精度平衡点&quot;分析的论文</li>
-</ul>
-</li>
-<li>
-<p><strong>忽视实现细节</strong></p>
-<ul>
-<li>问题：直接移植模型但精度下降严重，后发现未继承预训练权重</li>
-<li>对策：建立checklist核对初始化策略/数据预处理方式</li>
-</ul>
-</li>
-<li>
-<p><strong>过度依赖自动化工具</strong></p>
-<ul>
-<li>问题：使用自动模型压缩工具导致边缘case识别失败</li>
-<li>对策：保留人工验证环节，特别是在业务关键路径</li>
-</ul>
-</li>
-</ol>
-<hr />
-<h3 id="六-进阶训练构建技术洞察力"><a class="markdownIt-Anchor" href="#六-进阶训练构建技术洞察力"></a> <strong>六、进阶训练：构建技术洞察力</strong></h3>
-<ul>
-<li>
-<p><strong>每周精读1篇顶会论文</strong>（CVPR/ICCV/NeurIPS）并撰写三句话总结：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 核心创新：提出动态稀疏注意力机制</span><br><span class="line">2. 技术价值：在相同精度下减少40%计算量</span><br><span class="line">3. 落地风险：依赖自定义CUDA kernel增加部署复杂度</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>参与开源项目</strong>（如MMDetection）：通过PR提交阅读论文后实现的算法模块，获得社区反馈。</p>
-</li>
-</ul>
-<hr />
-<p>将文献阅读转化为可执行的技术方案，建议结合自身业务场景调整侧重点。<strong>读论文不是目标，而是为了做出更好的技术决策</strong>。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2025/03/22/202503/VS-Release-mode-debugging/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="yaanggny">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yaanggny的笔记">
-      <meta itemprop="description" content="日常记录">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | yaanggny的笔记">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2025/03/22/202503/VS-Release-mode-debugging/" class="post-title-link" itemprop="url">VS-Release模式下进入断点调试</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-03-22 23:42:11" itemprop="dateCreated datePublished" datetime="2025-03-22T23:42:11+08:00">2025-03-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-27 21:55:07" itemprop="dateModified" datetime="2025-03-27T21:55:07+08:00">2025-03-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">编程工具</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Visual Studio Release模式下进入断点调试，需要修改项目属性。<br />
-修改方法（都要操作）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 项目属性  --&gt; c/c++ --&gt; 常规  --&gt; 调试信息格式   选择程序数据库       （默认：无）</span><br><span class="line">- 项目属性  --&gt; 链接器 --&gt; 调试  --&gt; 生成调试信息    生成经过优化以使链接更快的调试信息 (/DEBUG:FASTLINK)（默认：否）</span><br></pre></td></tr></table></figure>
-<p>可选：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">项目属性  --&gt; c/c++ --&gt; 优化  --&gt; 优化           选择已禁用          （默认：优化）</span><br></pre></td></tr></table></figure>
-<p>参考：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shiyixirui/p/17817487.html">https://www.cnblogs.com/shiyixirui/p/17817487.html</a></li>
-</ul>
 
       
     </div>

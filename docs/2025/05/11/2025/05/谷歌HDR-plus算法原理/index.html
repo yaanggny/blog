@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yaanggny.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/blog/js/config.js"></script>
+
+    <meta name="description" content="论文信息：   Burst photography for high dynamic range and low-light imaging on mobile cameras, 谷歌，2016 谷歌Pixel 3的HDR算法   问题背景  手机摄像头光圈小，导致在低光环境下收集的光子数量有限，进而使得拍摄出的图像噪点较多。 手机摄像头的传感器像素较小，限制了每个像素能够存储的电子数量，这导致">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文阅读】谷歌HDR plus算法原理">
+<meta property="og:url" content="https://yaanggny.github.io/blog/2025/05/11/2025/05/%E8%B0%B7%E6%AD%8CHDR-plus%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="yaanggny的笔记">
+<meta property="og:description" content="论文信息：   Burst photography for high dynamic range and low-light imaging on mobile cameras, 谷歌，2016 谷歌Pixel 3的HDR算法   问题背景  手机摄像头光圈小，导致在低光环境下收集的光子数量有限，进而使得拍摄出的图像噪点较多。 手机摄像头的传感器像素较小，限制了每个像素能够存储的电子数量，这导致">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-11T09:02:42.000Z">
+<meta property="article:modified_time" content="2025-05-15T16:25:00.198Z">
+<meta property="article:author" content="yaanggny">
+<meta property="article:tag" content="论文阅读">
+<meta property="article:tag" content="计算摄影">
+<meta property="article:tag" content="HDR">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://yaanggny.github.io/blog/2025/05/11/2025/05/%E8%B0%B7%E6%AD%8CHDR-plus%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yaanggny.github.io/blog/2025/05/11/2025/05/%E8%B0%B7%E6%AD%8CHDR-plus%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/","path":"2025/05/11/2025/05/谷歌HDR-plus算法原理/","title":"【论文阅读】谷歌HDR plus算法原理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【论文阅读】谷歌HDR plus算法原理 | yaanggny的笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">yaanggny的笔记</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E5%92%8C%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text"> 背景和问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%A0%94%E7%A9%B6"><span class="nav-number">1.1.</span> <span class="nav-text"> 相关研究</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%96%B9%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text"> 算法方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C"><span class="nav-number">3.</span> <span class="nav-text"> 结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%9C%A8%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text"> 存在问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">5.</span> <span class="nav-text"> 核心参考文献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">6.</span> <span class="nav-text"> 参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hdr-plus"><span class="nav-number">7.</span> <span class="nav-text"> HDR-plus</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">yaanggny</p>
+  <div class="site-description" itemprop="description">日常记录</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/blog/categories/">
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/blog/tags/">
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2025/05/11/2025/05/%E8%B0%B7%E6%AD%8CHDR-plus%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【论文阅读】谷歌HDR plus算法原理 | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【论文阅读】谷歌HDR plus算法原理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-11 17:02:42" itemprop="dateCreated datePublished" datetime="2025-05-11T17:02:42+08:00">2025-05-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-16 00:25:00" itemprop="dateModified" datetime="2025-05-16T00:25:00+08:00">2025-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1/" itemprop="url" rel="index"><span itemprop="name">计算摄影</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>论文信息：</p>
+</blockquote>
+<ul>
+<li>Burst photography for high dynamic range and low-light imaging on mobile cameras, 谷歌，2016</li>
+<li>谷歌Pixel 3的HDR算法</li>
+</ul>
+<blockquote></blockquote>
+<p><strong>问题背景</strong></p>
+<ul>
+<li>手机摄像头<strong>光圈小</strong>，导致在低光环境下收集的光子数量有限，进而使得拍摄出的图像<strong>噪点较多</strong>。</li>
+<li>手机摄像头的<strong>传感器像素较小</strong>，限制了每个像素能够存储的电子数量，这导致了手机拍摄的<strong>图像动态范围有限</strong>。</li>
+</ul>
+<p><strong>方案</strong></p>
+<ul>
+<li>介绍了一种计算摄影流程，通过捕捉、对齐和合并一系列帧来降低图像噪声并提升动态范围。</li>
+</ul>
+<p><strong>特点</strong></p>
+<ul>
+<li><strong>不使用括号曝光（Bracketed Exposures）</strong>：采用恒定低曝光拍摄帧，确保对齐的稳定性，同时避免高光溢出，使合并后的图像阴影部分更清晰且具有高比特深度，便于后续应用标准的高动态范围（HDR）色调映射方法。</li>
+<li><strong>从原始Bayer帧开始处理</strong>：与常见的移动平台硬件图像信号处理器（ISP）输出的demosaicked RGB或YUV帧不同，从原始Bayer帧开始处理能获取更多像素位，同时避免ISP进行的不利色调映射和空间降噪处理。(绕过ISP，直接从传感器获取高比特RAW数据，保留线性响应特性。)</li>
+<li><strong>运用创新算法</strong>：采用基于快速傅里叶变换（FFT）的新型对齐算法和混合二维/三维维纳滤波器（Hybrid 2D/3D Wiener Filter），实现对一系列帧的去噪和合并。(利用频域相位相关法实现抗噪运动补偿，结合金字塔细化提升对齐精度。)</li>
+<li><strong>基于Android的Camera2 API和Halide语言实现</strong>：该方案基于Android的Camera2 API构建，利用其提供的每帧相机控制和原始图像访问功能，同时采用Halide领域特定语言（DSL）编写，使得处理速度较快（在设备上处理1200万像素图像仅需4秒），无需用户干预，且已应用于多款量产手机。</li>
+</ul>
+<hr />
+<p><strong>方法</strong></p>
+<ol>
+<li><strong>恒定曝光多帧合成</strong>
+<ul>
+<li>x</li>
+</ul>
+</li>
+<li><strong>原始Bayer数据直出处理</strong>
+<ul>
+<li>绕过ISP，直接从传感器获取高比特RAW数据，保留线性响应特性。</li>
+</ul>
+</li>
+<li><strong>基于FFT的亚像素对齐算法</strong>
+<ul>
+<li>利用频域相位相关法实现抗噪运动补偿，结合金字塔细化提升对齐精度。</li>
+</ul>
+</li>
+<li><strong>混合时-空维纳滤波</strong>
+<ul>
+<li>联合时域多帧冗余与空域单帧边缘信息，平衡降噪与细节保留。</li>
+</ul>
+</li>
+<li><strong>硬件加速优化</strong>
+<ul>
+<li>通过Halide DSL实现并行化计算，显著提升处理效率。</li>
+</ul>
+</li>
+<li><strong>端到端自动化流程</strong>
+<ul>
+<li>集成自动曝光控制、多帧捕获、合成与色调映射，无需用户干预。</li>
+</ul>
+</li>
+</ol>
+<p><strong>结果</strong></p>
+<ol>
+<li><strong>成像质量提升</strong>：动态范围扩展（保留高光与暗部细节），噪点显著降低。</li>
+<li><strong>计算效率</strong>：12MP图像处理时间缩短至4秒（移动端实时性）。</li>
+<li><strong>部署应用</strong>：方案已集成于多款量产手机，兼容主流硬件平台。</li>
+</ol>
+<hr />
+<p><strong>问题背景</strong><br />
+手机相机受限于小光圈和微小传感器像素，导致：</p>
+<ol>
+<li><strong>低光噪点多</strong>：进光量少，信噪比低。</li>
+<li><strong>动态范围有限</strong>：单像素存储电子能力弱，高光易过曝，暗部细节不足。</li>
+</ol>
+<p><strong>解决方法</strong><br />
+通过<strong>多帧合成计算摄影技术</strong>提升画质，核心方法包括：</p>
+<ol>
+<li><strong>恒定曝光拍摄</strong>：
+<ul>
+<li>避免包围曝光，采用统一低曝光（防止高光溢出），便于对齐和合成。</li>
+<li>合成后图像具有低噪阴影和高位深，支持标准HDR色调映射。</li>
+</ul>
+</li>
+<li><strong>直接处理RAW数据</strong>：
+<ul>
+<li>绕过ISP的色调映射和降噪，从Bayer原始数据入手，保留更高位深和细节。</li>
+</ul>
+</li>
+<li><strong>高效算法</strong>：
+<ul>
+<li><strong>FFT对齐算法</strong>：提升多帧对齐的鲁棒性。</li>
+<li><strong>混合2D/3D维纳滤波</strong>：降噪与合成同步优化。</li>
+</ul>
+</li>
+</ol>
+<p><strong>技术特点</strong></p>
+<ol>
+<li><strong>硬件适配</strong>：基于Android Camera2 API，支持逐帧RAW数据控制。</li>
+<li><strong>高效实现</strong>：Halide DSL优化，12MP图像处理仅需4秒（端侧运行）。</li>
+<li><strong>无需用户干预</strong>：全自动流程，已量产商用。</li>
+</ol>
+<h2 id="背景和问题"><a class="markdownIt-Anchor" href="#背景和问题"></a> 背景和问题</h2>
+<h3 id="相关研究"><a class="markdownIt-Anchor" href="#相关研究"></a> 相关研究</h3>
+<h2 id="算法方案"><a class="markdownIt-Anchor" href="#算法方案"></a> 算法方案</h2>
+<h2 id="结果"><a class="markdownIt-Anchor" href="#结果"></a> 结果</h2>
+<h2 id="存在问题"><a class="markdownIt-Anchor" href="#存在问题"></a> 存在问题</h2>
+<h2 id="核心参考文献"><a class="markdownIt-Anchor" href="#核心参考文献"></a> 核心参考文献</h2>
+<h2 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h2>
+<h2 id="hdr-plus"><a class="markdownIt-Anchor" href="#hdr-plus"></a> HDR-plus</h2>
+<p>1  关键方法</p>
+<ul>
+<li>First, we do not use bracketed exposures. Instead, we capture frames of constant exposure, which makes alignment more robust, and we set this exposure low enough to avoid blowing out highlights.<br />
+固定曝光（多帧使用相同的曝光参数），低曝光</li>
+<li>Second, we begin from Bayer raw frames rather than the demosaicked RGB (or YUV) frames.<br />
+输入raw图</li>
+<li>Third, we use a novel FFT-based alignment algorithm（加速互相关计算） and a hybrid 2D/3D Wiener filter to denoise and merge the frames in a burst.****</li>
+</ul>
+<p>2  pipeline</p>
+<p>3  配准<br />
+3.1 计算稠密对应关系(光流)？<br />
+但是速度无法满足要求：  结果耗时 24ms / 百万像素<br />
+3.2 参考帧计算<br />
+sharpness计算：基于raw图中绿色通道的梯度<br />
+从前3帧中选取最锐的帧<br />
+Seeing Mt. Rainier: Lucky Imaging for multi-image Denoising, Sharpening, and Haze  Removal<br />
+<a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2010/03/SeeingMtRainier.pdf">https://www.microsoft.com/en-us/research/wp-content/uploads/2010/03/SeeingMtRainier.pdf</a><br />
+use the discrete Laplacian of the image as the local sharpness measure</p>
+<p>3.3 handling raw images<br />
+直接对齐bayer raw图(欠采样的)导致病态问题<br />
+demasic 后再配准(即便简单的)会导致耗时增加<br />
+估计位移限制在2pixel (倍数）？<br />
+把欠采样问题推迟到融合阶段解决，此时由于混叠导致的误匹配被当作其他形式的失配。</p>
+<p>平均化2x2 的RGGB bayer图块： 因此对齐下采样的3 Mp灰度图像，而不是原来的12 Mp raw图</p>
+<p>3.4 多尺度结构/分层处理</p>
+<ul>
+<li>coarse-to-fine 4层高斯金字塔(灰度图像)</li>
+<li>tile-based alignment for each pyramid level</li>
+<li>每一层的tile/块对齐是最小化如下公式（p=1,2）</li>
+</ul>
+<p>T:  tile of the reference image<br />
+I:   moving image<br />
+n: tile size, n={8,16}</p>
+<p>从粗略到精细的传播/上采样是困难的。<br />
+评价参考帧和候选帧之间的最小L1残差：<br />
+We take as candidates the alignments for the 3 nearest coarse-scale tiles, the nearest neighbor tile plus the next-nearest tiles in each dimension.<br />
+和SimpleFlow类似</p>
+<p>3.5 实现细节<br />
+3.5.1 暴力搜索(brute-force) L1对齐<br />
+在finest scale，需要大的tile size、小的搜素半径。<br />
+快速亚像素L2对齐或者相位相关都比一个最小化绝对残差的暴力搜索效果好。性能考虑？<br />
+使用绝对误差而不是误差平方：</p>
+<ul>
+<li>
+<p>map well to low level computer architectures</p>
+</li>
+<li>
+<p>更高数据吞吐量</p>
+</li>
+<li>
+<p>内存小</p>
+</li>
+<li>
+<p>ARM 硬件指令支持，使得计算高效<br />
+3.5.2 金字塔结构<br />
+Larger search distances allow larger downsampling factors between pyramid levels, which reduces the likelihood of the search getting trapped in a local minimum.<br />
+L2 norm保证可以搜素±4像素的距离，但速度慢。<br />
+粗略层获取亚像素级精度，高分辨率层获取像素级精度？</p>
+</li>
+<li>
+<p>最大层L0： L1 norm，±1像素，tile 16x16</p>
+</li>
+<li>
+<p>L1：          L2 norm，±4像素，tile 16x16   (L0 2倍降采)</p>
+</li>
+<li>
+<p>L2：          L2 norm，±4像素，tile 16x16   (L1 4倍，参考代码)</p>
+</li>
+<li>
+<p>L3：          L2 norm，±4像素，tile 8x8       (L2 4倍)</p>
+</li>
+</ul>
+<p>3.5.3 快速亚像素 L2对齐<br />
+在粗略层，使用了大的搜素半径和亚像素位移精度。保证精度。<br />
+L2误差得到的是像素级位移精度。</p>
+<p>为解决计算量问题，改进残差计算：box filter, FFT计算互相关等。</p>
+<p>计算优化：</p>
+<p>3.5.4 亚像素级精度<br />
+D2(u,v)处的3x3窗口进行二元函数(曲面)拟合，取最小值。 (比拟合两个分开的函数效果好)<br />
+近似拟合二次型：</p>
+<p>A： 半正定矩阵</p>
+<p>半正定修正：确保半正定</p>
+<p>Handheld Multi-Frame Super-Resolution<br />
+改进了 hdr-plus的对齐策略：<br />
+refine块位移向量 通过3次LK迭代。<br />
+three iterations of Lucas-Kanade[1981]</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yaanggny
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://yaanggny.github.io/blog/2025/05/11/2025/05/%E8%B0%B7%E6%AD%8CHDR-plus%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/" title="【论文阅读】谷歌HDR plus算法原理">https://yaanggny.github.io/blog/2025/05/11/2025/05/谷歌HDR-plus算法原理/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/blog/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag"># 论文阅读</a>
+              <a href="/blog/tags/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1/" rel="tag"># 计算摄影</a>
+              <a href="/blog/tags/HDR/" rel="tag"># HDR</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2025/05/11/2025/05/%E8%B0%B7%E6%AD%8CNight-Sight%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/" rel="prev" title="【论文阅读】谷歌Night-Sight夜景算法原理">
+                  <i class="fa fa-chevron-left"></i> 【论文阅读】谷歌Night-Sight夜景算法原理
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2025/06/14/2025/06/SAM2%E6%8E%A8%E7%90%86%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%B5%8B%E8%AF%95/" rel="next" title="SAM2和PaddleSeg推理环境搭建及测试">
+                  SAM2和PaddleSeg推理环境搭建及测试 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yaanggny</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/blog/js/comments.js"></script><script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/blog/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css" integrity="sha256-gMRN4/6qeELzO1wbFa8qQLU8kfuF2dnAPiUoI0ATjx8=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/blog/js/third-party/math/katex.js"></script>
+
+
+
+</body>
+</html>

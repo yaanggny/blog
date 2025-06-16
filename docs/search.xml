@@ -4607,14 +4607,29 @@ A set of slides by Marc Levoy on the challenges of HDR imaging and modern approa
 <p><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-image-pyrmaids-applications.png" alt="picture 0" /></p>
 <h2 id="高斯图像金字塔的构建"><a class="markdownIt-Anchor" href="#高斯图像金字塔的构建"></a> 高斯图像金字塔的构建</h2>
 <p><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-build-gaussian-pyrmaids.png" alt="picture 1" /></p>
-<p><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-image-pyrmaids-1.png" alt="picture 2" /></p>
-<p><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-image-residuals.png" alt="picture 3" /></p>
-<p><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-build-laplacian-pyrmaid.png" alt="picture 4" title="构建拉普拉斯金字塔" /></p>
-<p><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-reconstruction-image.png" alt="picture 5" title="重建原始图像" /></p>
-<p><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-laplacian-gaussian-pyrmaid-relationship.png" alt="picture 6" title="拉普拉斯金字塔的来历" /></p>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-image-pyrmaids-1.png">
+<figcaption>高斯图像金字塔及其特性</figcaption></figure>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-image-residuals-1.png">
+<figcaption>高斯金字塔图像（层间）细节被模糊掉</figcaption></figure>
+<h2 id="拉普拉斯金字塔"><a class="markdownIt-Anchor" href="#拉普拉斯金字塔"></a> 拉普拉斯金字塔</h2>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-laplacian-pyrmaids.png">
+<figcaption>拉普拉斯金字塔（注意最小层（大小为8）的内容和高斯金字塔相同）</figcaption></figure>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-image-residuals.png">
+<figcaption>原始图像内容重建</figcaption></figure>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-build-laplacian-pyrmaid-1.png">
+<figcaption>构建拉普拉斯金字塔</figcaption></figure>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-build-laplacian-pyrmaid.png">
+<figcaption>构建拉普拉斯金字塔</figcaption></figure>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-reconstrution-image1.png">
+<figcaption>重建原始图像</figcaption></figure>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-reconstruction-image.png">
+<figcaption>重建原始图像</figcaption></figure>
+<figure align="center"><img src="/blog/2025/04/17/202504/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1-%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94/fig-laplacian-gaussian-pyrmaid-relationship.png">
+<figcaption>拉普拉斯金字塔的来历</figcaption></figure>
 <h2 id="相关资料"><a class="markdownIt-Anchor" href="#相关资料"></a> 相关资料</h2>
 <ul>
 <li>Peter J. Burt and Edward H. Adelson，The Laplacian Pyramid as a Compact Image Code (1983)</li>
+<li><a href="http://graphics.cs.cmu.edu/courses/15-463/2017_fall/lectures/lecture5.pdf">http://graphics.cs.cmu.edu/courses/15-463/2017_fall/lectures/lecture5.pdf</a>  Subsampling and image pyramids</li>
 <li><a href="https://docs.opencv.org/3.4/d4/d1f/tutorial_pyramids.html">https://docs.opencv.org/3.4/d4/d1f/tutorial_pyramids.html</a></li>
 <li><a href="https://docs.opencv.org/4.x/dc/dff/tutorial_py_pyramids.html">https://docs.opencv.org/4.x/dc/dff/tutorial_py_pyramids.html</a></li>
 </ul>
@@ -4673,7 +4688,7 @@ A set of slides by Marc Levoy on the challenges of HDR imaging and modern approa
 </li>
 <li>
 <p><strong>曝光良好程度</strong> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span><br />
-反映一个像素的曝光情况，观察一个通道的RAW亮度。我们希望保持不是接近0(欠曝光)或者1(过曝)的亮度。加权每个亮度基于如下权重：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><mo>−</mo><mfrac><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>−</mo><mn>0.5</mn><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn><msup><mi>σ</mi><mn>2</mn></msup></mrow></mfrac><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\exp(-\frac{(i-0.5)}{2\sigma^2})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.355em;vertical-align:-0.345em;"></span><span class="mop">exp</span><span class="mopen">(</span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463142857142857em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">0</span><span class="mord mtight">.</span><span class="mord mtight">5</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span></span></span></span>，其中取<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>=</mo><mn>0.2</mn></mrow><annotation encoding="application/x-tex">\sigma=0.2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">2</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span>是亮度，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.5</mn></mrow><annotation encoding="application/x-tex">0.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span></span>是归一化亮度。对于多个颜色通道，使用高斯曲线分别作用于每个通道，然后乘以结果，得到<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span>。</p>
+反映一个像素的曝光情况，观察一个通道的RAW亮度。我们希望保持不是接近0(欠曝光)或者1(过曝)的亮度。加权每个亮度基于如下权重：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><mo>−</mo><mfrac><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>−</mo><mn>0.5</mn><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><mrow><mn>2</mn><msup><mi>σ</mi><mn>2</mn></msup></mrow></mfrac><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\exp(-\frac{(i-0.5)^2}{2\sigma^2})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.4539199999999999em;vertical-align:-0.345em;"></span><span class="mop">exp</span><span class="mopen">(</span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.10892em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463142857142857em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">0</span><span class="mord mtight">.</span><span class="mord mtight">5</span><span class="mclose mtight"><span class="mclose mtight">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913142857142857em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span></span></span></span>，其中取<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>=</mo><mn>0.2</mn></mrow><annotation encoding="application/x-tex">\sigma=0.2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">2</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span>是亮度，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.5</mn></mrow><annotation encoding="application/x-tex">0.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span></span>是归一化亮度。对于多个颜色通道，使用高斯曲线分别作用于每个通道，然后乘以结果，得到<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span>。</p>
 </li>
 </ul>
 <p><img src="/blog/2025/04/15/202504/Exposure-Fusion/fig-bb6063dfe8f7c3fc3710cd9a3167f001f3413e534664a02de4a56ce9b7c463f3.png" alt="picture 1" title="每帧图像一个权重图，高的权重意味着对应的像素应该出现在结果图像中" /></p>
@@ -4734,6 +4749,648 @@ A set of slides by Marc Levoy on the challenges of HDR imaging and modern approa
 <li><a href="https://docs.opencv.org/3.4/d4/d1f/tutorial_pyramids.html">https://docs.opencv.org/3.4/d4/d1f/tutorial_pyramids.html</a></li>
 <li><a href="https://docs.opencv.org/4.x/dc/dff/tutorial_py_pyramids.html">https://docs.opencv.org/4.x/dc/dff/tutorial_py_pyramids.html</a></li>
 </ul>
+]]></content>
+      <categories>
+        <category>计算摄影</category>
+        <category>论文阅读</category>
+      </categories>
+      <tags>
+        <tag>论文阅读</tag>
+        <tag>计算摄影</tag>
+        <tag>HDR</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SAM2和PaddleSeg推理环境搭建及测试</title>
+    <url>/blog/2025/06/14/2025/06/SAM2%E6%8E%A8%E7%90%86%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<p>需要使用SAM进行数据预处理，本文记录SAM的推理环境搭建。SAM2包含SAM的所有功能，且SAM2模型较小（<a href="https://github.com/facebookresearch/sam2?tab=readme-ov-file#model-description">对比看这里</a>），因此这里以SAM2为例。</p>
+<h2 id="1-sam基本信息"><a class="markdownIt-Anchor" href="#1-sam基本信息"></a> 1 SAM基本信息</h2>
+<p>SAM即Segment Anything Model，由Meta团队开发。SAM2是SAM的扩展，包含SAM的所有功能。</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>仓库</th>
+<th>环境要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SAM</td>
+<td><a href="https://github.com/facebookresearch/segment-anything">Segment Anything</a></td>
+<td>python&gt;=3.8, pytorch&gt;=1.7, torchvision&gt;=0.8</td>
+</tr>
+<tr>
+<td>SAM 2</td>
+<td><a href="https://github.com/facebookresearch/sam2">SAM2.x</a></td>
+<td>python&gt;=3.10,  torch&gt;=2.5.1, torchvision&gt;=0.20.1</td>
+</tr>
+</tbody>
+</table>
+<p>Pytorch安装按照Pytorch官方<a href="https://pytorch.org/get-started/locally/">推荐的安装方式</a>。</p>
+<h2 id="2-sam版本差异"><a class="markdownIt-Anchor" href="#2-sam版本差异"></a> 2 SAM版本差异</h2>
+<p><strong>SAM模型的演进路径</strong></p>
+<ul>
+<li><strong>SAM → SAM 2</strong>：核心突破是<strong>从静态到动态</strong>，通过记忆机制实现视频分割与实时跟踪。</li>
+<li><strong>SAM 2 → SAM 2.1</strong>：聚焦<strong>细节与鲁棒性</strong>，通过数据增强和位置编码优化小物体/遮挡场景。</li>
+</ul>
+<p><strong>SAM各版本核心差异概览</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>SAM (初代)</strong></th>
+<th><strong>SAM 2</strong></th>
+<th><strong>SAM 2.1</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>架构/机制</strong></td>
+<td>静态Transformer架构</td>
+<td>引入<strong>流式记忆机制</strong>（记忆编码器+记忆库+记忆注意力）</td>
+<td>优化位置编码，增强<strong>遮挡头</strong>（occlusion head）</td>
+</tr>
+<tr>
+<td><strong>核心能力</strong></td>
+<td>图像分割（单帧）</td>
+<td><strong>视频实时分割</strong>+多目标跟踪</td>
+<td>提升<strong>小物体/相似物体识别</strong>+遮挡鲁棒性</td>
+</tr>
+<tr>
+<td><strong>训练数据</strong></td>
+<td>11M图像，1.1B掩码</td>
+<td>SA-V数据集（51k视频+600k时空掩码）</td>
+<td>新增<strong>视觉相似物体/小物体数据增强</strong></td>
+</tr>
+<tr>
+<td><strong>技术特点</strong></td>
+<td>支持点/框/文本提示</td>
+<td>长视频处理+动态遮挡预测</td>
+<td>开发者套件开源（支持微调）</td>
+</tr>
+<tr>
+<td><strong>开源内容</strong></td>
+<td>模型/权重</td>
+<td>代码+权重+数据集（Apache 2.0协议）</td>
+<td>训练代码+前后端演示代码</td>
+</tr>
+</tbody>
+</table>
+<p>SAM（Segment Anything Model）及其后续版本SAM 2、SAM 2.1是Meta在视觉分割领域的核心演进成果。以下从核心差异、技术改进和应用场景三方面分析其发展脉络：</p>
+<hr />
+<p><strong>SAM 2系列 vs. SAM：五大核心改进</strong></p>
+<ol>
+<li>
+<p><strong>从图像到视频的动态扩展</strong></p>
+<ul>
+<li><strong>SAM局限</strong>：仅支持单帧静态图像分割，无法处理时序连贯性。</li>
+<li><strong>SAM 2突破</strong>：
+<ul>
+<li>通过<strong>流式记忆机制</strong>实现任意长度视频的实时处理，一次处理一帧并保留历史信息。</li>
+<li>支持<strong>时空掩码传播</strong>（spatio-temporal masks），用户首帧标注后自动追踪后续帧。</li>
+<li>典型应用：运动目标跟踪（如《黑神话：悟空》快速打斗场景）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>记忆机制与遮挡处理的革新</strong></p>
+<ul>
+<li><strong>SAM 2新增模块</strong>：
+<ul>
+<li><strong>记忆库</strong>：存储对象历史特征，辅助当前帧分割决策。</li>
+<li><strong>遮挡头</strong>：预测目标是否被遮挡，减少跟踪丢失（如人群遮挡场景）。</li>
+</ul>
+</li>
+<li><strong>SAM 2.1增强</strong>：
+<ul>
+<li>优化位置编码，提升长序列遮挡处理能力（如目标短暂离开视野后重新识别）。</li>
+<li>数据增强模拟小物体/相似物体，解决细节丢失问题（如自行车轮胎与整车区分）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>交互性与泛化能力提升</strong></p>
+<ul>
+<li><strong>用户校正机制</strong>：SAM 2允许在丢失目标帧手动点击修正，模型结合记忆库实时调整预测。</li>
+<li><strong>Zero-shot泛化</strong>：未训练过的物体类别也能分割（如医疗影像中的罕见病变区域）。</li>
+</ul>
+</li>
+<li>
+<p><strong>数据集与训练策略升级</strong></p>
+<ul>
+<li><strong>SA-V数据集规模</strong>：视频量达此前最大数据集的4.5倍，标注效率比SAM提升8.4倍。</li>
+<li><strong>SAM 2.1训练优化</strong>：
+<ul>
+<li>长帧序列训练强化时序一致性。</li>
+<li>开源训练代码，支持用户微调（如机器人场景定制化分割）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>社区改进方案：经典方法的融合</strong></p>
+<ul>
+<li><strong>SAMURAI</strong>（华盛顿大学）：
+<ul>
+<li>引入<strong>卡尔曼滤波器</strong>建模运动轨迹，解决拥挤场景目标混淆问题（如《1917》士兵群场景）。</li>
+<li><strong>运动感知记忆选择</strong>：动态筛选高质量记忆帧，避免误差累积（无需重训练模型）。</li>
+</ul>
+</li>
+<li><strong>SAM 2.1++</strong>：干扰物感知记忆（DAM），区分近期外观与干扰解决帧，提升鲁棒性。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="3-sam2-windows-11运行环境搭建"><a class="markdownIt-Anchor" href="#3-sam2-windows-11运行环境搭建"></a> 3 SAM2 Windows 11运行环境搭建</h2>
+<p>参考<a href="https://github.com/facebookresearch/sam2?tab=readme-ov-file#installation">官方文档</a>，Windows上使用WSL。步骤如下：</p>
+<ul>
+<li>WSL安装：略</li>
+<li>创建conda环境</li>
+<li>安装pytorch环境：<code>python&gt;=3.10,  torch&gt;=2.5.1, torchvision&gt;=0.20.1</code></li>
+<li>SAM2安装</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n sam2 python=3.10</span><br><span class="line">conda activate sam2</span><br><span class="line">pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu126</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/facebookresearch/sam2</span><br><span class="line"><span class="comment"># pip install hydra-core tqdm</span></span><br><span class="line">pip install -e .</span><br></pre></td></tr></table></figure>
+<h3 id="效果测试"><a class="markdownIt-Anchor" href="#效果测试"></a> 效果测试</h3>
+<table>
+<tr><td align="center">引导框</td><td align="center">分割结果</td><tr>
+<td><img src="/blog/2025/06/14/2025/06/SAM2%E6%8E%A8%E7%90%86%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%B5%8B%E8%AF%95/fig-guide_bbox.png"></td>
+<td><img src="/blog/2025/06/14/2025/06/SAM2%E6%8E%A8%E7%90%86%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%B5%8B%E8%AF%95/fig-smaller_bbox_guided_result.png"></td>
+</tr>
+<tr>
+<td><img src="/blog/2025/06/14/2025/06/SAM2%E6%8E%A8%E7%90%86%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%B5%8B%E8%AF%95/fig-large_guided_bbox.png"></td>
+<td><img src="/blog/2025/06/14/2025/06/SAM2%E6%8E%A8%E7%90%86%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%B5%8B%E8%AF%95/fig-large_bbox_guided_result.png"></td>
+</tr>
+</table>
+<h2 id="4-paddleseg-环境搭建"><a class="markdownIt-Anchor" href="#4-paddleseg-环境搭建"></a> 4 PaddleSeg 环境搭建</h2>
+<p>paddlepaddle安装：<a href="https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/pip/linux-pip.html">paddlepaddle-install 官方</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n py310paddle3 python=3.10</span><br><span class="line">conda activate py310paddle3</span><br><span class="line">pip install paddlepaddle-gpu==3.0.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/</span><br><span class="line"></span><br><span class="line"><span class="comment"># a) 安装PaddleSeg</span></span><br><span class="line">pip install paddleseg</span><br><span class="line"></span><br><span class="line"><span class="comment"># b) 使用PaddleSeg contrib，无需pip安装</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/PaddlePaddle/PaddleSeg</span><br><span class="line"><span class="built_in">cd</span> PaddleSeg/contrib/xxx <span class="comment"># PP-HumanSeg</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：PaddleSeg contrib中的模型最好直接使用PaddleSeg仓库自带的版本，而不是使用模型自身的官方仓库，因为部分模型的官方仓库已经不维护，且配置信息不全，导致测试出错。</p>
+]]></content>
+      <categories>
+        <category>DL</category>
+      </categories>
+      <tags>
+        <tag>CV</tag>
+        <tag>DL</tag>
+        <tag>SAM</tag>
+        <tag>环境搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>虹膜识别算法简介</title>
+    <url>/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/</url>
+    <content><![CDATA[<p>介绍虹膜识别算法的基本原理，包括传统算法和深度学习算法。</p>
+<h2 id="1-虹膜简介"><a class="markdownIt-Anchor" href="#1-虹膜简介"></a> 1 虹膜简介</h2>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_examples1.png" alt="picture 2" title="虹膜示例图：c：远距离虹膜，e: 英国Bath数据集，其余：中科院CASIA数据集" /></p>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_feature.png" alt="picture 8" /></p>
+<h2 id="2-虹膜识别系统简介"><a class="markdownIt-Anchor" href="#2-虹膜识别系统简介"></a> 2 虹膜识别系统简介</h2>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_recog_system1.png" alt="picture 6" /></p>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_recog_system2.png" alt="picture 7" title="基于深度学习的虹膜识别系统 图源：[4]" /></p>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_recog_system3.png" alt="picture 9" title="虹膜识别系统 图源：[2]" /></p>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_recog_system4.png" alt="picture 10" title="图像和视频虹膜识别系统 图源：VASIR[3]" /></p>
+<h2 id="21-虹膜数据集"><a class="markdownIt-Anchor" href="#21-虹膜数据集"></a> 2.1 虹膜数据集</h2>
+<ul>
+<li>CASIA-IrisV4：<a href="https://hycasia.github.io/dataset/casia-irisv4/">https://hycasia.github.io/dataset/casia-irisv4/</a></li>
+<li>CASIA数据集：<a href="http://biometrics.idealtest.org/downloadDB.do?id=4&amp;subset=5#/">http://biometrics.idealtest.org/downloadDB.do?id=4&amp;subset=5#/</a></li>
+<li><a href="http://www.cbsr.ia.ac.cn/china/iris%20databases%20ch.asp">http://www.cbsr.ia.ac.cn/china/iris databases ch.asp</a></li>
+<li></li>
+</ul>
+<h2 id="3-传统识别算法"><a class="markdownIt-Anchor" href="#3-传统识别算法"></a> 3 传统识别算法</h2>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_recog_system_traditional.png" alt="picture 3" title="传统识别算法流程" /></p>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-normalization_1.png" alt="picture 1" title="虹膜归一化" /></p>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_postproc_after_normalization.png" alt="picture 4" title="虹膜归一化及后处理. 1: 归一化，2：上下裁剪crop，3：检测睫毛和眼皮后去除" /></p>
+<p><strong>虹膜图像质量评价</strong>。虹膜图像获取设备采集到的用户虹膜图像通常情况下存在运动模糊、不聚焦、瞳孔变形过度和睫毛眼睑严重遮挡虹膜等问题，最后的结果是导致识别失败或者识别错误。所以，在采集完用户的虹膜图像后我们需要对采集到的虹膜图像进行质量评价，选择满足一系列质量要求的虹膜图像来识别。</p>
+<h3 id="31-概述"><a class="markdownIt-Anchor" href="#31-概述"></a> 3.1 概述</h3>
+<h3 id="32-虹膜分割"><a class="markdownIt-Anchor" href="#32-虹膜分割"></a> 3.2 虹膜分割</h3>
+<h3 id="33-增强"><a class="markdownIt-Anchor" href="#33-增强"></a> 3.3 增强</h3>
+<h3 id="34-归一化"><a class="markdownIt-Anchor" href="#34-归一化"></a> 3.4 归一化</h3>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-iris_normalization_2.png" alt="picture 12" /></p>
+<h3 id="35-特征提取"><a class="markdownIt-Anchor" href="#35-特征提取"></a> 3.5 特征提取</h3>
+<h3 id="36-匹配"><a class="markdownIt-Anchor" href="#36-匹配"></a> 3.6 匹配</h3>
+<h2 id="4-基于深度学习的识别算法"><a class="markdownIt-Anchor" href="#4-基于深度学习的识别算法"></a> 4 基于深度学习的识别算法</h2>
+<h3 id="41-概述"><a class="markdownIt-Anchor" href="#41-概述"></a> 4.1 概述</h3>
+<h3 id="42-多阶段网络"><a class="markdownIt-Anchor" href="#42-多阶段网络"></a> 4.2 多阶段网络</h3>
+<p><img src="/blog/2025/05/09/2025/05/%E8%99%B9%E8%86%9C%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/fig-deep_iris_seg_network1.png" alt="picture 11" /></p>
+<h3 id="43-端到端网络"><a class="markdownIt-Anchor" href="#43-端到端网络"></a> 4.3 端到端网络</h3>
+<h3 id="44-ocfon网络"><a class="markdownIt-Anchor" href="#44-ocfon网络"></a> 4.4 OCFON网络</h3>
+<p>应对未曾见过的数据</p>
+<h2 id="5-未来趋势"><a class="markdownIt-Anchor" href="#5-未来趋势"></a> 5 未来趋势</h2>
+<h2 id="6-参考文献"><a class="markdownIt-Anchor" href="#6-参考文献"></a> 6 参考文献</h2>
+<ul>
+<li>[1] 非理想情况下的虹膜识别算法研究，硕士论文，2013，<a href="https://www.doc88.com/p-7354281260959.html">https://www.doc88.com/p-7354281260959.html</a></li>
+<li>[2] <a href="https://www.bilibili.com/opus/367259376421257939">https://www.bilibili.com/opus/367259376421257939</a></li>
+<li>[3] <a href="https://www.nist.gov/services-resources/software/video-based-automatic-system-iris-recognition-vasir">Video-based Automatic System for Iris Recognition (VASIR)</a></li>
+<li>[4] <a href="https://blog.csdn.net/weixin_42346564/article/details/81880014">【虹膜识别】+【开源代码】虹膜识别</a></li>
+<li>[5] <a href="http://www.aibrainelec.com/HTML/successCase/intelligentIrisRec.html">http://www.aibrainelec.com/HTML/successCase/intelligentIrisRec.html</a></li>
+<li>[6] <a href="https://www4.comp.polyu.edu.hk/~csajaykr/tvmiris.htm">An Accurate Iris Segmentation Framework under Relaxed Imaging Constraints using Total Variation Model</a> 总变分模型分割 <a href="http://www4.comp.polyu.edu.hk/~csajaykr/myhome/papers/ICCV15_Final.pdf">[论文pdf]</a></li>
+<li>[7] <a href="https://arxiv.org/pdf/2303.08514">Deep Learning for Iris Recognition: A Review,2023</a></li>
+<li>[8] <a href="https://arxiv.org/pdf/1901.11195">Joint Iris Segmentation and Localization Using Deep Multi-task Learning Framework,2019</a></li>
+<li><a href="https://github.com/xiamenwcy/IrisParseNet">https://github.com/xiamenwcy/IrisParseNet</a> [TIFS 2020]Towards Complete and Accurate Iris Segmentation Using Deep Multi-Task Attention Network for Non-Cooperative Iris Recognition虹膜分割定位实现</li>
+<li><a href="https://github.com/worldcoin/open-iris">https://github.com/worldcoin/open-iris</a> Worldcoin’s Iris Recognition Inference System (IRIS) project，集成先进的虹膜识别技术，Python实现</li>
+<li><a href="https://arxiv.org/abs/2408.09752">A Unified Framework for Iris Anti-Spoofing: Introducing IrisGeneral Dataset and Masked-MoE Method</a> 虹膜识别数据泛化能力<br />
+中科虹霸、聚虹光电、宿州中科国虹智能、武汉虹识技术、中科领虹</li>
+<li><a href="https://www.sohu.com/a/437077897_120865617">虹膜识别技术及其应用</a></li>
+<li><a href="https://dl.acm.org/doi/10.1145/3651306">Deep Learning for Iris Recognition: A Survey，2024</a></li>
+<li><a href="https://arxiv.org/abs/2303.08514">Deep Learning for Iris Recognition: A Review，2023</a></li>
+<li><a href="https://www.cl.cam.ac.uk/~jgd1000/irisrecog.pdf">HowIris Recognition Works，John Daugman</a></li>
+<li><a href="https://www.icsmart.cn/13206/">【深度】生物识别之“虹膜识别”产业链全解析 – 芯智讯</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/600097062">TPAMI2023论文解读 | 复值虹膜识别网络</a> 设计了一个全复数神经网络，可以更好地捕获虹膜纹理的多尺度、多分辨率和多方向的相位和振幅特征</li>
+</ul>
+]]></content>
+      <categories>
+        <category>识别算法</category>
+        <category>CV</category>
+      </categories>
+      <tags>
+        <tag>CV</tag>
+        <tag>虹膜识别</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机视觉常用标注工具及labelImg使用</title>
+    <url>/blog/2025/06/14/2025/06/%E8%A7%86%E8%A7%89%E5%B8%B8%E7%94%A8%E6%A0%87%E6%B3%A8%E5%B7%A5%E5%85%B7%E5%8F%8AlabelImg%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="常用标注工具"><a class="markdownIt-Anchor" href="#常用标注工具"></a> 常用标注工具</h2>
+<table>
+<thead>
+<tr>
+<th>工具名称</th>
+<th>仓库</th>
+<th>主要功能</th>
+<th>环境依赖</th>
+<th>开发状态</th>
+<th>安装方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LabelImg</td>
+<td><a href="https://github.com/HumanSignal/labelImg">GitHub</a></td>
+<td>目标检测标注，矩形框，无快捷键 （<strong>矩形框标注推荐</strong>）。<strong>支持yolo、pascal-voc格式</strong>。</td>
+<td>Python 3.8,3.9 （3.10报错，无法画框）</td>
+<td>2024年停止更新但可用</td>
+<td>pip/conda</td>
+</tr>
+<tr>
+<td>LabelMe</td>
+<td><a href="https://github.com/wkentaro/labelme">GitHub</a></td>
+<td>矩形框（快捷键）、<strong>多边形</strong>、圆（polygon, rectangle, circle, line, point and image-level flag annotation）。<strong>仅json格式输出</strong>。</td>
+<td>Python 3.x，无特殊说明</td>
+<td>2025年仍在更新</td>
+<td>pip/conda/APP安装包</td>
+</tr>
+<tr>
+<td>Label-Studio</td>
+<td><a href="https://github.com/HumanSignal/label-studio">GitHub</a></td>
+<td>视频流、音频等，labelImg升级版，<strong>需登录</strong></td>
+<td>Python 3.6+，Docker</td>
+<td>2025年仍在更新，活跃度高</td>
+<td>pip/conda/Docker</td>
+</tr>
+</tbody>
+</table>
+<h2 id="labelimg安装"><a class="markdownIt-Anchor" href="#labelimg安装"></a> labelImg安装</h2>
+<h3 id="安装步骤"><a class="markdownIt-Anchor" href="#安装步骤"></a> 安装步骤</h3>
+<p>环境：Windows10，<strong>Python3.9</strong>，PyQt5</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda create -n labelx python=3.9</span><br><span class="line">conda activate labelx</span><br><span class="line">pip install PyQt5 lxml labelImg</span><br><span class="line"></span><br><span class="line"># labelme</span><br><span class="line">pip install labelme</span><br><span class="line"></span><br><span class="line"># 启动labelImg</span><br><span class="line">labelImg</span><br></pre></td></tr></table></figure>
+<p><strong>注：Python3.10安装labelImg时报错，无法画框。</strong> 可根据<a href="https://github.com/HumanSignal/labelImg/issues/938">网上修改源码</a>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;C:\Users\DELL\miniconda3\envs\labelx\lib\site-packages\labelImg\labelImg.py&quot;, line 965, in scroll_request</span><br><span class="line">    bar.setValue(bar.value() + bar.singleStep() * units)</span><br><span class="line">TypeError: setValue(self, a0: int): argument 1 has unexpected type &#x27;float&#x27;</span><br></pre></td></tr></table></figure>
+<h3 id="界面"><a class="markdownIt-Anchor" href="#界面"></a> 界面</h3>
+<p><img src="/blog/2025/06/14/2025/06/%E8%A7%86%E8%A7%89%E5%B8%B8%E7%94%A8%E6%A0%87%E6%B3%A8%E5%B7%A5%E5%85%B7%E5%8F%8AlabelImg%E4%BD%BF%E7%94%A8/fig-labelimg_gui.png" alt="picture 0" /></p>
+]]></content>
+      <categories>
+        <category>DL</category>
+        <category>标注工具</category>
+      </categories>
+      <tags>
+        <tag>CV</tag>
+        <tag>DL</tag>
+        <tag>标注工具</tag>
+        <tag>labelImg</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算摄影资料整理</title>
+    <url>/blog/2025/05/09/2025/05/%E8%AE%A1%E7%AE%97%E6%91%84%E5%BD%B1%E8%B5%84%E6%96%99%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[<p>整理和收集计算摄影相关资料，主要来自国外计算摄影相关课程资料。</p>
+]]></content>
+      <categories>
+        <category>计算摄影</category>
+      </categories>
+      <tags>
+        <tag>计算摄影</tag>
+        <tag>课程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【论文阅读】谷歌Night-Sight夜景算法原理</title>
+    <url>/blog/2025/05/11/2025/05/%E8%B0%B7%E6%AD%8CNight-Sight%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<blockquote>
+<p>论文信息：</p>
+</blockquote>
+<h2 id="1-背景和问题"><a class="markdownIt-Anchor" href="#1-背景和问题"></a> 1 背景和问题</h2>
+<h3 id="11-相关研究"><a class="markdownIt-Anchor" href="#11-相关研究"></a> 1.1 相关研究</h3>
+<h3 id="12-目标"><a class="markdownIt-Anchor" href="#12-目标"></a> 1.2 目标</h3>
+<h2 id="2-方法介绍"><a class="markdownIt-Anchor" href="#2-方法介绍"></a> 2 方法介绍</h2>
+<h2 id="3-结果"><a class="markdownIt-Anchor" href="#3-结果"></a> 3 结果</h2>
+<h2 id="4-存在问题"><a class="markdownIt-Anchor" href="#4-存在问题"></a> 4 存在问题</h2>
+<h2 id="5-核心参考文献"><a class="markdownIt-Anchor" href="#5-核心参考文献"></a> 5 核心参考文献</h2>
+<h2 id="6-参考资料"><a class="markdownIt-Anchor" href="#6-参考资料"></a> 6 参考资料</h2>
+<hr />
+<p>Handheld Mobile Photography in Very Low Light<br />
+总结：选择曝光时间和增益的运动估计，只是快速、尽可能准确估计运动的上下界，而不是像素级乃至亚像素级的对应关系。</p>
+<h2 id="2-motion-metering"><a class="markdownIt-Anchor" href="#2-motion-metering"></a> 2 Motion Metering</h2>
+<p>目的：选择最优的曝光时间和增益。</p>
+<p>如何高效、精确的估计运动<br />
+如何利用所估计的运动参数来选择曝光时间和增益(ISO)<br />
+pipeline: Fig.3</p>
+<h3 id="21-efficient-motion-magnitude-estimationoptical-flow-magnitude"><a class="markdownIt-Anchor" href="#21-efficient-motion-magnitude-estimationoptical-flow-magnitude"></a> 2.1 Efficient motion magnitude estimation(optical flow magnitude)</h3>
+<p>直接计算光流幅度。 $$ \Delta I_t(x,y)=\bm g(x,y)\cdot \bm v(x,y) $$</p>
+<p>柯西施瓦兹不等式： $$ |\Delta I_t(x,y)|\leqslant |\bm g(x,y)|\cdot |\bm v(x,y)| $$</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="bold-italic">v</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi><mo>⩾</mo><mfrac><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="normal">Δ</mi><msub><mi>I</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi></mrow><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="bold-italic">g</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi></mrow></mfrac></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(2)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">|\bm v(x,y)| \geqslant \frac{|\Delta I_t(x,y)|}{|\bm g(x,y)|} \tag{2} 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">v</span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">⩾</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∣</span><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">g</span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mord">∣</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∣</span><span class="mord">Δ</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mord">∣</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="tag"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord text"><span class="mord">(</span><span class="mord"><span class="mord">2</span></span><span class="mord">)</span></span></span></span></span></span></p>
+<p>当运动方向和梯度方向相同时，等号成立。这和光圈问题类似： 若运动方向有一个分量垂直于梯度，沿着边缘的光流会被低估。因此根据Lucas-Kanade，公式2中的下界可以看作是光流幅度的直接计算。</p>
+<h4 id="噪声模型"><a class="markdownIt-Anchor" href="#噪声模型"></a> 噪声模型</h4>
+<p>我们通过在梯度<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="bold-italic">g</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">|\bm g|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">g</span></span><span class="mord">∣</span></span></span></span>相对于噪声标准差<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span></span></span></span>太低的区域用掩膜标记出运动来对噪声方差建模。(标记出梯度小于噪声标准差的运动区域) $$ |\bm g(x,y)|\lt K\sigma \tag{2} $$</p>
+<p>在低光场景中，丢弃梯度小梯度区域是十分重要的，这里噪声分布广泛，且能导致光流幅度估计失败。</p>
+<p>光流幅度refine： 下采样+取bin中的90% 异常处理</p>
+<p>对于噪声图像，用掩膜的方法优于其他方法，且速度更快。</p>
+<p>噪声模型用于计算梯度相对于噪声较高的区域，这可以作为用于进行有效运动测量的掩膜。 Fig.4</p>
+<p>场景的运动幅度(光流幅度)估计后，通过加权平均，光流幅度被合并为单一的标量。 中心加权：运动中心使用大的权重，场景外的运动不考虑。</p>
+<p>由于人对于人脸的运动模糊具有特殊的感知能力，因此采用了自动场景分割，人脸出现的时候，人脸区域比其他区域使用更大的权重。如果手动选择ROI，则其也使用大权重。</p>
+<h3 id="22-future-motion-prediction"><a class="markdownIt-Anchor" href="#22-future-motion-prediction"></a> 2.2 Future motion prediction</h3>
+<p>估计未来K张图像的最小运动的上界。</p>
+<p>[hdr-2016]的时域降噪：burst的前K帧中的一震作为参考帧，其余合成到这一帧。于是，合成图像的运动模糊和参考帧的运动模糊接近，于是具有最小运动模糊的帧被选择为参考帧。</p>
+<p>问题描述为：知道快门按下前的N个运动估计<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>i</mi></msub><mo separator="true">,</mo><mi>i</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mo>⋯</mo><mtext> </mtext><mo separator="true">,</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">v_i,i=1,\cdots,N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>，接下来的K帧中的最小运动<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>min</mi><mo>⁡</mo></msub></mrow><annotation encoding="application/x-tex">v_{\min}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">m</span><span class="mtight">i</span><span class="mtight">n</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>(幅度？)是哪一帧？</p>
+<p>一种方法是对过去的N个样本使用一个FIR滤波器，但是FIR滤波器有两个缺点：</p>
+<p>对异常值不鲁棒 N个历史值只要有一个突变，滤波器输出也突变。<br />
+不考虑K帧中只有一个被用作参考，并且当K改变时需要重新tuning。<br />
+一个基于累积分布函数的运动预测方法</p>
+<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 75: …slant P_{conf} $̲$ $v_{\min}$是未来…'> P_r(v_{\min} \gt \min_{k=1}^K v_k|{v_i},i=1,\cdots,N) \geqslant P_{conf} $$ $v_{\min}$是未来K帧上最小运动的上界，具有高置信度$P_{conf}$。 上界是为了得到最大曝光时间的保守估计，从而减少了不希望的运动模糊。
+
+为了建模快门按下后的场景运动的概率，假设快门按下前后的场景运动具有相同的分布。对快门按下前的加权平均值进行3类高斯混合模型建模，使用期望最大化算法。
+
+对比了均值法、FIR滤波器，GMM法误差最小。 假设GMM中的每个运动幅度$v_k$是独立的，有 $$ 1-P_r(v_{\min}\leqslant v_k)^K \geqslant P_{conf} \tag{5} $$ 因为$v$是一维GMM，于是对于每个高斯聚类中心，可以使用单位正太表计算$P_r(v_{\min}\leqslant v_k)$。使用二分查找计算$v_{\min}$。
+
+### 2.3 Camera stability detection
+使用gyro陀螺仪，获取角速度估计，辅助运动预测。（检测相机是否稳定）
+
+陀螺仪在视频稳定和对齐中提供有用的信号。特别是在低光环境下提供可靠的测量，此时长曝光从中受益。
+
+如何获取有用的信号？如何排除按快门操作导致的强烈干扰？ 为了从陀螺仪数据中获取相机稳定数据，我们在时间上平滑角速度，即平均快门按下前的$t_0=1.446 \rm s$。在支架上时，按快门操作会引入重要的震动，此时我们根据经验延时几百毫秒。物理上的按快门操作和软件接收信号的延时，导致难以区分是手持还是使用了支架。通过适当地丢弃陀螺仪数据再处理。
+
+### 2.4 Exposure time selection
+运动预测和相机稳定性检测，目的是选择曝光时间和增益，从而最优折中运动模糊和信噪比。 短曝光--噪声大，模糊小 长曝光--噪声小，模糊大
+
+最佳的曝光策略 把目标敏感度分解为曝光时间和增益。 根据场景运动和相机稳定状态，使用动态的曝光策略。
+
+相机稳定性决定了最大曝光时间。运动估计用于计算“模糊有限曝光时间”，其限制了估计的运动模糊到B像素， $$ t_{\exp}^{\(B\)}=\frac{B}{v_{\min}} \tag{6} </p>
+<p>随着环境变暗，需要大的增益来约束曝光时间。于是增益开始变得过大导致噪声偏大，于是曝光方案都增加了曝光时间和增益。尽管这导致所拍摄的图片超过了运动模糊阈值，但是结果图像的噪声却较为合适。</p>
+<p>静态和动态曝光方案： 亮的场景（&gt;100 lux），SNR大，使用短曝光，两种方案的增益保持最小值； 极暗场景（&lt;0.3 lux），两个方案都使用最大曝光时间。 中间的亮度情况，主要是动态曝光方案起作用。</p>
+<h2 id="3-motion-adaptive-burst-merging"><a class="markdownIt-Anchor" href="#3-motion-adaptive-burst-merging"></a> 3 Motion-adaptive Burst Merging</h2>
+<p>对齐和融合一组图像是一种有效的降噪方法。 一个简单的方法是对齐和平均所有的帧。尽管该方法对于降噪很有效，但是运动物体和对齐错误导致结果图像中的鬼影。CNN方法合成鲁棒，但是计算量大。</p>
+<p>超分也可以用于对齐和融合。</p>
+<p>基于快速和对运动鬼影鲁棒的要求，我们的方法基于[hdr-2016]描述的频域时间融合技术。 还有一些方法针对Tone-mapped后的图像(JPEG)，而不是raw图。由于有更精确的噪声模型，[hdr-2016]获得了更高的动态范围和更好的信噪比。</p>
+<p>频域融合在去噪强度和运动鬼影之间具有理论上的折中。如果场景包含运动，那么很难正确对齐不同的帧，简单的平均这些对齐的帧将导致运动模糊和鬼影。[hdr-2016]通过降低融合来自与参考帧的频带的差不能看作是噪声方差的频带的程度（即在加权平均中降低权重）来解决。 然而权重的减少由一个全局tuning参数控制，必须保守tuning以避免运动鬼影。结果是在静态区域出现更多噪声，但是没有鬼影。</p>
+<p>在低光场景，在保持对运动鬼影鲁棒的同时，在静态区域恢复丢失的去噪性能变得重要。为了达到这一目的，我们主张在频域融合之前加入一个空域相似性计算，即mismatch map。该误匹配图指出了频域融合可以激进的地方和需要保守的地方(tile)。在静态区域增强时域融合以减少噪声，在运动区域或者误配准区域降低融合以避免鬼影。</p>
+<p>计算mismatch map，大的值表示动态区域<br />
+用该图进行空间变化的频域融合，静态区域增强融合，动态区域减弱融合<br />
+在融合限制区域增强空间去噪，以补偿时域滤波</p>
+<h3 id="31-alignment"><a class="markdownIt-Anchor" href="#31-alignment"></a> 3.1 Alignment</h3>
+<p>参考帧： 最锐的帧<br />
+tile-based alignment similar to [hdr-2016]<br />
+coarse-to-fine 4层高斯金字塔raw图<br />
+对齐中的tile size随着图像噪声水平的增加而增加，轻微增加计算量 （更大的tile size）</p>
+<h3 id="32-spatially-varying-temporal-merging"><a class="markdownIt-Anchor" href="#32-spatially-varying-temporal-merging"></a> 3.2 Spatially varying temporal merging</h3>
+<p>[hdr-2016]指出在对齐后，16x16的tile会在频域执行加权平均进行融合。 这种融合算法本质上对场景中的时间变化和对齐错误具有弹性，因为与参考帧显著不同的帧和频带的降低的权重，大大超过了噪声方差。</p>
+<p>hdr-2016中tile <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span></span></span></span>处的第<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi></mrow><annotation encoding="application/x-tex">z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span>帧的权重贡献和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>−</mo><msub><mi>A</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">1-A_{tz}(\omega)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="mclose">)</span></span></span></span>成正比，其中 $$ A_{tz}(\omega)=\frac{|D_{tz}(\omega)|<sup>2}{|D_{tz}(\omega)|</sup>2 + c\sigma_{tz}^2} \tag{7} $$</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D_{tz}(\omega)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="mclose">)</span></span></span></span>是hdr-2016中定义的频域tile的差异，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>σ</mi><mrow><mi>t</mi><mi>z</mi></mrow><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">\sigma_{tz}^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.061108em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span>是噪声模型给出的噪声方差，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span></span></span></span>是缩放噪声方差的常数。若tile之间的差小于噪声，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A_{tz}(\omega)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="mclose">)</span></span></span></span>减小且融合增强；若差异很大，公式7趋向于1，对tile的加权贡献减小。</p>
+<p>常数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span></span></span></span>可以用于tuning来控制去噪强度和对齐的鬼影，被称为时域强度，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">c=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>表示没有时域去噪，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">c=\infty</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord">∞</span></span></span></span>表示平均而不使用对齐。</p>
+<p>低光场景中，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span></span></span></span>需要增加以提升每一帧在时域平均上的贡献来降噪。然而由于图块(tiles)被错误对齐会引入鬼影。<br />
+为了在低光场景中减少噪声避免引入鬼影，为参数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span></span></span></span>引入一个空间变化的尺度因子<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo separator="true">,</mo><mi>z</mi></mrow><annotation encoding="application/x-tex">t,z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">t</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span>分别表示图块索引和帧索引。修改后的时域强度是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>⋅</mo><msub><mi>f</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">c\cdot f_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。<br />
+时域强度因子<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>是mismatch map <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">m_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的函数， $$ m_{tz}=\frac{d_{tz}<sup>2}{d_{tz}</sup>2+s\sigma_{tz}^2} \tag{8} $$<br />
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">m_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>是在帧<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi></mrow><annotation encoding="application/x-tex">z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span>和参考帧之间的tile <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span></span></span></span>计算的，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub><mo>∈</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">m_{tz}\in[0,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6891em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>，0=不存在误匹配，1=高度误匹配。 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">d_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>是对应tile的L1差异，使用对齐阶段的结果。 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>=</mo><mn>0.5</mn></mrow><annotation encoding="application/x-tex">s=0.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span></span>，尺度因子，用于tuning 误匹配图，折中噪声和运动检测。</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">m_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的分段线性函数，得到修改后的公式： $$ A_{tz}(\omega)=\frac{|D_{tz}(\omega)|<sup>2}{|D_{tz}(\omega)|</sup>2 + cf_{tz}(m_{tz})\sigma_{tz}^2} \tag{9} $$</p>
+<p>Fig.9</p>
+<p>函数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub><mo stretchy="false">(</mo><msub><mi>m</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f_{tz}(m_{tz})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>是手动tune不同场景得出的，并进行线性插值，在高匹配区域(mismatch值小)增加时域去噪，在失配区域减少融合并保留细节。</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>最小值对所有场景相似，以增加对误匹配的鲁棒性。此时<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>=1，公式9退化为公式7。</p>
+<p>修改后的算法相比hdr-2016能更好区分噪声差异还是场景变化导致的差异。</p>
+<p>小图块的部分频带<br />
+大图块的全部频带<br />
+公式7中的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D_{tz}(\omega)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="mclose">)</span></span></span></span>只计算由16x16的图块中的一个确定的频带，公式8中的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub></mrow><annotation encoding="application/x-tex">d_{tz}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>来自空间域计算的对齐误差，通常有更大的图块（最大到64x64），也包含了全部频带。 这种对图块差异计算的补充，提升了融合的鲁棒性，提升了低光场景的降噪。</p>
+<p>其他改进 hdr-2016：为每个颜色通道计算<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>−</mo><msub><mi>A</mi><mrow><mi>t</mi><mi>z</mi></mrow></msub><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">1-A_{tz}(\omega)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="mclose">)</span></span></span></span>，分通道融合 改进：为每个tile，对所有颜色通道计算最小权重，在每个频带合并所有通道。</p>
+<p>低光场景下，每个通道的权重差异很大，这将导致彩色鬼影。使用相似的权重可以显著减少彩色鬼影。</p>
+<h3 id="33-spatially-varying-denoising"><a class="markdownIt-Anchor" href="#33-spatially-varying-denoising"></a> 3.3 Spatially varying denoising</h3>
+<p>如hdr-2016，接下来在二维DFT频域执行空域降噪，对频域系数执行和公式7相同形式的收缩算子。假定所有N帧图像完美地被平均，从而计算降噪强度，并且融合后的图像的噪声方差变为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><msup><mi>σ</mi><mn>2</mn></msup><mi>N</mi></mfrac></mstyle></mrow><annotation encoding="application/x-tex">\dfrac{\sigma^2}{N}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.177108em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>。 在我们修改后的实现中，融合图像的噪声方差根据每个tile融合实际出现的图像帧计算，这增加了误匹配区域的噪声方差。结果是，这些区域获得了更大的空域去噪强度，以对减小的时域去噪强度（融合帧数少的）做补偿。</p>
+]]></content>
+      <categories>
+        <category>计算摄影</category>
+        <category>论文阅读</category>
+      </categories>
+      <tags>
+        <tag>论文阅读</tag>
+        <tag>计算摄影</tag>
+        <tag>HDR</tag>
+        <tag>夜景</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【论文阅读】谷歌HDR plus算法原理</title>
+    <url>/blog/2025/05/11/2025/05/%E8%B0%B7%E6%AD%8CHDR-plus%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<blockquote>
+<p>论文信息：</p>
+</blockquote>
+<ul>
+<li>Burst photography for high dynamic range and low-light imaging on mobile cameras, 谷歌，2016</li>
+<li>谷歌Pixel 3的HDR算法</li>
+</ul>
+<blockquote></blockquote>
+<p><strong>问题背景</strong></p>
+<ul>
+<li>手机摄像头<strong>光圈小</strong>，导致在低光环境下收集的光子数量有限，进而使得拍摄出的图像<strong>噪点较多</strong>。</li>
+<li>手机摄像头的<strong>传感器像素较小</strong>，限制了每个像素能够存储的电子数量，这导致了手机拍摄的<strong>图像动态范围有限</strong>。</li>
+</ul>
+<p><strong>方案</strong></p>
+<ul>
+<li>介绍了一种计算摄影流程，通过捕捉、对齐和合并一系列帧来降低图像噪声并提升动态范围。</li>
+</ul>
+<p><strong>特点</strong></p>
+<ul>
+<li><strong>不使用括号曝光（Bracketed Exposures）</strong>：采用恒定低曝光拍摄帧，确保对齐的稳定性，同时避免高光溢出，使合并后的图像阴影部分更清晰且具有高比特深度，便于后续应用标准的高动态范围（HDR）色调映射方法。</li>
+<li><strong>从原始Bayer帧开始处理</strong>：与常见的移动平台硬件图像信号处理器（ISP）输出的demosaicked RGB或YUV帧不同，从原始Bayer帧开始处理能获取更多像素位，同时避免ISP进行的不利色调映射和空间降噪处理。(绕过ISP，直接从传感器获取高比特RAW数据，保留线性响应特性。)</li>
+<li><strong>运用创新算法</strong>：采用基于快速傅里叶变换（FFT）的新型对齐算法和混合二维/三维维纳滤波器（Hybrid 2D/3D Wiener Filter），实现对一系列帧的去噪和合并。(利用频域相位相关法实现抗噪运动补偿，结合金字塔细化提升对齐精度。)</li>
+<li><strong>基于Android的Camera2 API和Halide语言实现</strong>：该方案基于Android的Camera2 API构建，利用其提供的每帧相机控制和原始图像访问功能，同时采用Halide领域特定语言（DSL）编写，使得处理速度较快（在设备上处理1200万像素图像仅需4秒），无需用户干预，且已应用于多款量产手机。</li>
+</ul>
+<hr />
+<p><strong>方法</strong></p>
+<ol>
+<li><strong>恒定曝光多帧合成</strong>
+<ul>
+<li>x</li>
+</ul>
+</li>
+<li><strong>原始Bayer数据直出处理</strong>
+<ul>
+<li>绕过ISP，直接从传感器获取高比特RAW数据，保留线性响应特性。</li>
+</ul>
+</li>
+<li><strong>基于FFT的亚像素对齐算法</strong>
+<ul>
+<li>利用频域相位相关法实现抗噪运动补偿，结合金字塔细化提升对齐精度。</li>
+</ul>
+</li>
+<li><strong>混合时-空维纳滤波</strong>
+<ul>
+<li>联合时域多帧冗余与空域单帧边缘信息，平衡降噪与细节保留。</li>
+</ul>
+</li>
+<li><strong>硬件加速优化</strong>
+<ul>
+<li>通过Halide DSL实现并行化计算，显著提升处理效率。</li>
+</ul>
+</li>
+<li><strong>端到端自动化流程</strong>
+<ul>
+<li>集成自动曝光控制、多帧捕获、合成与色调映射，无需用户干预。</li>
+</ul>
+</li>
+</ol>
+<p><strong>结果</strong></p>
+<ol>
+<li><strong>成像质量提升</strong>：动态范围扩展（保留高光与暗部细节），噪点显著降低。</li>
+<li><strong>计算效率</strong>：12MP图像处理时间缩短至4秒（移动端实时性）。</li>
+<li><strong>部署应用</strong>：方案已集成于多款量产手机，兼容主流硬件平台。</li>
+</ol>
+<hr />
+<p><strong>问题背景</strong><br />
+手机相机受限于小光圈和微小传感器像素，导致：</p>
+<ol>
+<li><strong>低光噪点多</strong>：进光量少，信噪比低。</li>
+<li><strong>动态范围有限</strong>：单像素存储电子能力弱，高光易过曝，暗部细节不足。</li>
+</ol>
+<p><strong>解决方法</strong><br />
+通过<strong>多帧合成计算摄影技术</strong>提升画质，核心方法包括：</p>
+<ol>
+<li><strong>恒定曝光拍摄</strong>：
+<ul>
+<li>避免包围曝光，采用统一低曝光（防止高光溢出），便于对齐和合成。</li>
+<li>合成后图像具有低噪阴影和高位深，支持标准HDR色调映射。</li>
+</ul>
+</li>
+<li><strong>直接处理RAW数据</strong>：
+<ul>
+<li>绕过ISP的色调映射和降噪，从Bayer原始数据入手，保留更高位深和细节。</li>
+</ul>
+</li>
+<li><strong>高效算法</strong>：
+<ul>
+<li><strong>FFT对齐算法</strong>：提升多帧对齐的鲁棒性。</li>
+<li><strong>混合2D/3D维纳滤波</strong>：降噪与合成同步优化。</li>
+</ul>
+</li>
+</ol>
+<p><strong>技术特点</strong></p>
+<ol>
+<li><strong>硬件适配</strong>：基于Android Camera2 API，支持逐帧RAW数据控制。</li>
+<li><strong>高效实现</strong>：Halide DSL优化，12MP图像处理仅需4秒（端侧运行）。</li>
+<li><strong>无需用户干预</strong>：全自动流程，已量产商用。</li>
+</ol>
+<h2 id="背景和问题"><a class="markdownIt-Anchor" href="#背景和问题"></a> 背景和问题</h2>
+<h3 id="相关研究"><a class="markdownIt-Anchor" href="#相关研究"></a> 相关研究</h3>
+<h2 id="算法方案"><a class="markdownIt-Anchor" href="#算法方案"></a> 算法方案</h2>
+<h2 id="结果"><a class="markdownIt-Anchor" href="#结果"></a> 结果</h2>
+<h2 id="存在问题"><a class="markdownIt-Anchor" href="#存在问题"></a> 存在问题</h2>
+<h2 id="核心参考文献"><a class="markdownIt-Anchor" href="#核心参考文献"></a> 核心参考文献</h2>
+<h2 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h2>
+<h2 id="hdr-plus"><a class="markdownIt-Anchor" href="#hdr-plus"></a> HDR-plus</h2>
+<p>1  关键方法</p>
+<ul>
+<li>First, we do not use bracketed exposures. Instead, we capture frames of constant exposure, which makes alignment more robust, and we set this exposure low enough to avoid blowing out highlights.<br />
+固定曝光（多帧使用相同的曝光参数），低曝光</li>
+<li>Second, we begin from Bayer raw frames rather than the demosaicked RGB (or YUV) frames.<br />
+输入raw图</li>
+<li>Third, we use a novel FFT-based alignment algorithm（加速互相关计算） and a hybrid 2D/3D Wiener filter to denoise and merge the frames in a burst.****</li>
+</ul>
+<p>2  pipeline</p>
+<p>3  配准<br />
+3.1 计算稠密对应关系(光流)？<br />
+但是速度无法满足要求：  结果耗时 24ms / 百万像素<br />
+3.2 参考帧计算<br />
+sharpness计算：基于raw图中绿色通道的梯度<br />
+从前3帧中选取最锐的帧<br />
+Seeing Mt. Rainier: Lucky Imaging for multi-image Denoising, Sharpening, and Haze  Removal<br />
+<a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2010/03/SeeingMtRainier.pdf">https://www.microsoft.com/en-us/research/wp-content/uploads/2010/03/SeeingMtRainier.pdf</a><br />
+use the discrete Laplacian of the image as the local sharpness measure</p>
+<p>3.3 handling raw images<br />
+直接对齐bayer raw图(欠采样的)导致病态问题<br />
+demasic 后再配准(即便简单的)会导致耗时增加<br />
+估计位移限制在2pixel (倍数）？<br />
+把欠采样问题推迟到融合阶段解决，此时由于混叠导致的误匹配被当作其他形式的失配。</p>
+<p>平均化2x2 的RGGB bayer图块： 因此对齐下采样的3 Mp灰度图像，而不是原来的12 Mp raw图</p>
+<p>3.4 多尺度结构/分层处理</p>
+<ul>
+<li>coarse-to-fine 4层高斯金字塔(灰度图像)</li>
+<li>tile-based alignment for each pyramid level</li>
+<li>每一层的tile/块对齐是最小化如下公式（p=1,2）</li>
+</ul>
+<p>T:  tile of the reference image<br />
+I:   moving image<br />
+n: tile size, n={8,16}</p>
+<p>从粗略到精细的传播/上采样是困难的。<br />
+评价参考帧和候选帧之间的最小L1残差：<br />
+We take as candidates the alignments for the 3 nearest coarse-scale tiles, the nearest neighbor tile plus the next-nearest tiles in each dimension.<br />
+和SimpleFlow类似</p>
+<p>3.5 实现细节<br />
+3.5.1 暴力搜索(brute-force) L1对齐<br />
+在finest scale，需要大的tile size、小的搜素半径。<br />
+快速亚像素L2对齐或者相位相关都比一个最小化绝对残差的暴力搜索效果好。性能考虑？<br />
+使用绝对误差而不是误差平方：</p>
+<ul>
+<li>
+<p>map well to low level computer architectures</p>
+</li>
+<li>
+<p>更高数据吞吐量</p>
+</li>
+<li>
+<p>内存小</p>
+</li>
+<li>
+<p>ARM 硬件指令支持，使得计算高效<br />
+3.5.2 金字塔结构<br />
+Larger search distances allow larger downsampling factors between pyramid levels, which reduces the likelihood of the search getting trapped in a local minimum.<br />
+L2 norm保证可以搜素±4像素的距离，但速度慢。<br />
+粗略层获取亚像素级精度，高分辨率层获取像素级精度？</p>
+</li>
+<li>
+<p>最大层L0： L1 norm，±1像素，tile 16x16</p>
+</li>
+<li>
+<p>L1：          L2 norm，±4像素，tile 16x16   (L0 2倍降采)</p>
+</li>
+<li>
+<p>L2：          L2 norm，±4像素，tile 16x16   (L1 4倍，参考代码)</p>
+</li>
+<li>
+<p>L3：          L2 norm，±4像素，tile 8x8       (L2 4倍)</p>
+</li>
+</ul>
+<p>3.5.3 快速亚像素 L2对齐<br />
+在粗略层，使用了大的搜素半径和亚像素位移精度。保证精度。<br />
+L2误差得到的是像素级位移精度。</p>
+<p>为解决计算量问题，改进残差计算：box filter, FFT计算互相关等。</p>
+<p>计算优化：</p>
+<p>3.5.4 亚像素级精度<br />
+D2(u,v)处的3x3窗口进行二元函数(曲面)拟合，取最小值。 (比拟合两个分开的函数效果好)<br />
+近似拟合二次型：</p>
+<p>A： 半正定矩阵</p>
+<p>半正定修正：确保半正定</p>
+<p>Handheld Multi-Frame Super-Resolution<br />
+改进了 hdr-plus的对齐策略：<br />
+refine块位移向量 通过3次LK迭代。<br />
+three iterations of Lucas-Kanade[1981]</p>
 ]]></content>
       <categories>
         <category>计算摄影</category>
