@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yaanggny.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/blog/js/config.js"></script>
+
+    <meta name="description" content="摘要：ExecuTorch 是Pytorch 最新的用于移动设备和端侧设备（如可穿戴设备、嵌入式设备）的推理框架，能够高效地将PyTorch模型部署到边缘设备，是PyTorch Mobile的升级版。基于此，结合项目需要，在Android手机上进行模型推理测试。  1 ExecuTorch 简介 ExecuTorch是 Pytorch 2.x时代用于移动设备和端侧设备的推理框架，能够高效地将PyT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ExecuTorch-pytorch端侧推理框架Android测试">
+<meta property="og:url" content="https://yaanggny.github.io/blog/2025/06/21/2025/06/ExecuTorch-pytorch%E7%AB%AF%E4%BE%A7%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6Android%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="yaanggny的笔记">
+<meta property="og:description" content="摘要：ExecuTorch 是Pytorch 最新的用于移动设备和端侧设备（如可穿戴设备、嵌入式设备）的推理框架，能够高效地将PyTorch模型部署到边缘设备，是PyTorch Mobile的升级版。基于此，结合项目需要，在Android手机上进行模型推理测试。  1 ExecuTorch 简介 ExecuTorch是 Pytorch 2.x时代用于移动设备和端侧设备的推理框架，能够高效地将PyT">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yaanggny.github.io/blog/2025/06/21/2025/06/ExecuTorch-pytorch%E7%AB%AF%E4%BE%A7%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6Android%E6%B5%8B%E8%AF%95/fig-executorch-work-flow.png">
+<meta property="article:published_time" content="2025-06-21T15:59:41.000Z">
+<meta property="article:modified_time" content="2025-06-21T16:27:41.715Z">
+<meta property="article:author" content="yaanggny">
+<meta property="article:tag" content="DL">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="模型部署">
+<meta property="article:tag" content="Pytorch">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yaanggny.github.io/blog/2025/06/21/2025/06/ExecuTorch-pytorch%E7%AB%AF%E4%BE%A7%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6Android%E6%B5%8B%E8%AF%95/fig-executorch-work-flow.png">
+
+
+<link rel="canonical" href="https://yaanggny.github.io/blog/2025/06/21/2025/06/ExecuTorch-pytorch%E7%AB%AF%E4%BE%A7%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6Android%E6%B5%8B%E8%AF%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://yaanggny.github.io/blog/2025/06/21/2025/06/ExecuTorch-pytorch%E7%AB%AF%E4%BE%A7%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6Android%E6%B5%8B%E8%AF%95/","path":"2025/06/21/2025/06/ExecuTorch-pytorch端侧推理框架Android测试/","title":"ExecuTorch-pytorch端侧推理框架Android测试"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ExecuTorch-pytorch端侧推理框架Android测试 | yaanggny的笔记</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">yaanggny的笔记</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-executorch-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text"> 1 ExecuTorch 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-exectutorch-%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="nav-number">2.</span> <span class="nav-text"> 2 ExectuTorch 工作流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-android-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">3.</span> <span class="nav-text"> 3 Android 环境搭建</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">yaanggny</p>
+  <div class="site-description" itemprop="description">日常记录</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/blog/categories/">
+        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/blog/tags/">
+        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yaanggny.github.io/blog/2025/06/21/2025/06/ExecuTorch-pytorch%E7%AB%AF%E4%BE%A7%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6Android%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="yaanggny">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yaanggny的笔记">
+      <meta itemprop="description" content="日常记录">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ExecuTorch-pytorch端侧推理框架Android测试 | yaanggny的笔记">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ExecuTorch-pytorch端侧推理框架Android测试
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-06-21 23:59:41" itemprop="dateCreated datePublished" datetime="2025-06-21T23:59:41+08:00">2025-06-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-06-22 00:27:41" itemprop="dateModified" datetime="2025-06-22T00:27:41+08:00">2025-06-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/DL/" itemprop="url" rel="index"><span itemprop="name">DL</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/DL/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" itemprop="url" rel="index"><span itemprop="name">模型部署</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><strong>摘要</strong>：<a target="_blank" rel="noopener" href="https://docs.pytorch.org/executorch/stable/intro-overview.html">ExecuTorch</a> 是Pytorch 最新的用于移动设备和端侧设备（如可穿戴设备、嵌入式设备）的推理框架，能够高效地将PyTorch模型部署到边缘设备，是PyTorch Mobile的升级版。基于此，结合项目需要，在Android手机上进行模型推理测试。</p>
+<h2 id="1-executorch-简介"><a class="markdownIt-Anchor" href="#1-executorch-简介"></a> 1 ExecuTorch 简介</h2>
+<p>ExecuTorch是 Pytorch 2.x时代用于移动设备和端侧设备的推理框架，能够高效地将PyTorch模型部署到边缘设备，是PyTorch Mobile的升级版。主要优势：</p>
+<ul>
+<li>可移植性好： 兼容各种计算平台，从高端移动手机到高度受限的嵌入式系统和微控制器。</li>
+<li>Pytorch兼容性好： 使开发人员能够在PyTorch模型创建和转换、调试和部署到各种平台中使用相同的工具链和开发工具。</li>
+<li>性能好： 由于使用了轻量级运行时，并利用了CPU、NPU和DSP等全硬件功能，提供无缝且高性能的体验。</li>
+</ul>
+<p>Pytorch Mobile 与 ExecuTorch 的区别：</p>
+<ul>
+<li><strong>PyTorch Mobile</strong>是Pytorch 1.x时代使用 TorchScript 进行端侧推理的框架，现已（2025年）<strong>停止维护</strong>。</li>
+<li><strong>ExecuTorch</strong> 不依赖 TorchScript，利用 PyTorch 2 编译器和导出功能在设备上执行 PyTorch 模型。<strong>内存占用更小，并且具有动态内存占用，性能和可移植性更优</strong>。</li>
+</ul>
+<h2 id="2-exectutorch-工作流"><a class="markdownIt-Anchor" href="#2-exectutorch-工作流"></a> 2 ExectuTorch 工作流</h2>
+<p>模型训练、量化、转换、推理<br />
+<img src="/blog/2025/06/21/2025/06/ExecuTorch-pytorch%E7%AB%AF%E4%BE%A7%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6Android%E6%B5%8B%E8%AF%95/fig-executorch-work-flow.png" alt="picture 0" /></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">float_model(Python)                          Example Input</span><br><span class="line">    \                                              /</span><br><span class="line">     \                                            /</span><br><span class="line">—-------------------------------------------------------</span><br><span class="line">|                        export                        |</span><br><span class="line">—-------------------------------------------------------</span><br><span class="line">                            |</span><br><span class="line">                    FX Graph in ATen     Backend Specific Quantizer</span><br><span class="line">                            |                       /</span><br><span class="line">—--------------------------------------------------------</span><br><span class="line">|                     prepare_pt2e                      |</span><br><span class="line">—--------------------------------------------------------</span><br><span class="line">                            |</span><br><span class="line">                     Calibrate/Train</span><br><span class="line">                            |</span><br><span class="line">—--------------------------------------------------------</span><br><span class="line">|                    convert_pt2e                       |</span><br><span class="line">—--------------------------------------------------------</span><br><span class="line">                            |</span><br><span class="line">                    Quantized Model</span><br><span class="line">                            |</span><br><span class="line">—--------------------------------------------------------</span><br><span class="line">|                       Lowering                        |</span><br><span class="line">—--------------------------------------------------------</span><br><span class="line">                            |</span><br><span class="line">        Executorch, Inductor or &lt;Other Backends&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="3-android-环境搭建"><a class="markdownIt-Anchor" href="#3-android-环境搭建"></a> 3 Android 环境搭建</h2>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>yaanggny
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://yaanggny.github.io/blog/2025/06/21/2025/06/ExecuTorch-pytorch%E7%AB%AF%E4%BE%A7%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6Android%E6%B5%8B%E8%AF%95/" title="ExecuTorch-pytorch端侧推理框架Android测试">https://yaanggny.github.io/blog/2025/06/21/2025/06/ExecuTorch-pytorch端侧推理框架Android测试/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/blog/tags/DL/" rel="tag"># DL</a>
+              <a href="/blog/tags/Android/" rel="tag"># Android</a>
+              <a href="/blog/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" rel="tag"># 模型部署</a>
+              <a href="/blog/tags/Pytorch/" rel="tag"># Pytorch</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2025/06/14/2025/06/%E8%A7%86%E8%A7%89%E5%B8%B8%E7%94%A8%E6%A0%87%E6%B3%A8%E5%B7%A5%E5%85%B7%E5%8F%8AlabelImg%E4%BD%BF%E7%94%A8/" rel="prev" title="计算机视觉常用标注工具及labelImg使用">
+                  <i class="fa fa-chevron-left"></i> 计算机视觉常用标注工具及labelImg使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2025/11/19/2025/11/GyroBasedEIS/" rel="next" title="A Non-Linear Filter for Gyroscope-Based Video Stabilization论文阅读">
+                  A Non-Linear Filter for Gyroscope-Based Video Stabilization论文阅读 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yaanggny</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/blog/js/comments.js"></script><script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/blog/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css" integrity="sha256-gMRN4/6qeELzO1wbFa8qQLU8kfuF2dnAPiUoI0ATjx8=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/blog/js/third-party/math/katex.js"></script>
+
+
+
+</body>
+</html>
